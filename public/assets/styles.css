@@ -1,6 +1,6 @@
 /* ============================================================
-   くらしの整理ナビ 共通スタイル v2 (2026-09-10)
-   変更点: コントラスト改訂 / 3段レスポンシブ / ドロワー / アニメーション
+   くらしの整理ナビ 共通スタイル v2.1 (2026-09-10)
+   変更点: コントラスト改訂 / 3段レスポンシブ / ドロワー / アニメーション / ロゴ画像化
    旧 styles.css を丸ごと差し替えてください
 ============================================================ */
 
@@ -36,7 +36,7 @@
   --shadow-lg: 0 14px 34px rgba(21,84,108,.14);
   --radius: 10px; --radius-sm: 6px; --radius-lg: 18px;
 
-  --header-h: 68px;
+  --header-h: 90px;
   --ease: cubic-bezier(.2,.8,.2,1);
 }
 
@@ -121,25 +121,12 @@ img { max-width: 100%; display: block; }
   display: flex; align-items: center; justify-content: space-between; gap: 28px;
 }
 .site-logo {
-  display: flex; align-items: center; gap: 11px;
-  color: var(--text); text-decoration: none; flex: 0 0 auto;
+  display: block; flex: 0 0 auto; line-height: 0;
+  text-decoration: none;
+  transition: opacity .18s var(--ease);
 }
-.site-logo:hover { text-decoration: none; }
-.logo-mark {
-  width: 42px; height: 42px; flex: 0 0 auto;
-  background: linear-gradient(140deg, #3E9BBE, var(--primary-deep));
-  border-radius: 11px; display: grid; place-items: center;
-  color: #fff; font-family: inherit; font-weight: 700; font-size: 19px;
-}
-.logo-text { line-height: 1.2; }
-.logo-name {
-  display: block; font-family: inherit;
-  font-size: 21px; font-weight: 700; white-space: nowrap;
-}
-.logo-sub {
-  display: block; font-size: 10px; font-weight: 500;
-  color: var(--muted); letter-spacing: .16em;
-}
+.site-logo:hover { text-decoration: none; opacity: .82; }
+.site-logo img { height: 64px; width: auto; display: block; }
 
 .site-nav { display: flex; gap: 26px; align-items: center; flex: 1 1 auto; justify-content: center; }
 .site-nav a {
@@ -405,9 +392,8 @@ a.btn-secondary:hover {
   max-width: 1160px; margin: 0 auto; padding: 0 20px 32px;
   display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 36px;
 }
-.footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-.footer-brand .logo-mark { width: 36px; height: 36px; font-size: 17px; border-radius: 10px; }
-.footer-brand span { font-family: inherit; font-size: 18px; font-weight: 700; color: #fff; }
+.footer-brand { display: block; margin-bottom: 16px; line-height: 0; }
+.footer-brand img { height: 52px; width: auto; display: block; }
 .footer-inner p { font-size: 12.5px; color: #B9C6D0; margin: 0; }
 .footer-inner h4 {
   color: #fff; font-size: 13.5px; font-weight: 600; margin: 0 0 14px;
@@ -609,8 +595,8 @@ img, video, iframe, table, pre, code { max-width: 100%; }
 /* スクロール追従。中身が画面より高い場合はサイドバー内だけスクロール */
 aside.side { align-self: start; }
 .side-sticky {
-  position: sticky; top: 84px;
-  max-height: calc(100vh - 100px);
+  position: sticky; top: 106px;
+  max-height: calc(100vh - 122px);
   overflow-y: auto; overscroll-behavior: contain;
   scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent;
   padding-right: 2px;
@@ -717,6 +703,7 @@ a[data-aff].btn-secondary:hover {
 
 /* ============ レスポンシブ ============ */
 @media (max-width: 1024px) {
+  .site-logo img { height: 56px; }
   .site-nav { gap: 16px; }
   .site-nav a { font-size: 13px; }
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
@@ -732,9 +719,8 @@ a[data-aff].btn-secondary:hover {
   .header-inner { padding: 10px 16px; gap: 10px; }
   .header-top-inner { padding: 6px 16px; justify-content: center; font-size: 11.5px; }
   .header-top-inner .tagline { display: none; }
-  .logo-mark { width: 36px; height: 36px; font-size: 16px; border-radius: 9px; }
-  .logo-name { font-size: 17px; }
-  .logo-sub { display: none; }
+  .site-logo img { height: 44px; }
+  .footer-brand img { height: 46px; }
 
   .site-nav { display: none; }
   .header-cta { display: none; }
@@ -803,7 +789,7 @@ a[data-aff].btn-secondary:hover {
 
 @media (max-width: 480px) {
   .footer-inner { grid-template-columns: 1fr; gap: 22px; }
-  .logo-name { font-size: 16px; }
+  .site-logo img { height: 40px; }
   .section-head h2 { font-size: 20px; }
   .article-body p, .article-body li { font-size: 15.5px; line-height: 1.9; }
   .rank-badge { width: 46px; height: 46px; font-size: 16px; }

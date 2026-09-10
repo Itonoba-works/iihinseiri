@@ -11,12 +11,13 @@ const { active = '' } = Astro.props;
   </div>
 
   <div class="header-inner">
-    <a href="/" class="site-logo">
-      <span class="logo-mark">整</span>
-      <span class="logo-text">
-        <span class="logo-name">{site.name}</span>
-        <span class="logo-sub">{site.nameEn}</span>
-      </span>
+    <a href="/" class="site-logo" aria-label={site.name}>
+      <img
+        src={`/images/brand/logo.png?v=${site.assetVersion}`}
+        alt={site.name}
+        width="2170" height="725"
+        fetchpriority="high" decoding="async"
+      />
     </a>
 
     <nav class="site-nav" aria-label="メインナビゲーション">
