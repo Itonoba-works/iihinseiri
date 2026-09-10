@@ -72,15 +72,18 @@ p, li, dd, dt, td, th { color: var(--text); }
 /* --- リンク: 色だけに頼らず常時下線。下線色だけ水色 --- */
 a { color: var(--primary-deep); text-decoration: none; }
 a:hover { color: #0E3D50; }
-.article-body a:not(.btn-cta):not(.btn-secondary),
-.lead a, .info-box a, .qa-a a, aside.side a {
+.article-body a:not(.btn-cta):not(.btn-secondary):not([data-aff]),
+.lead a:not(.btn-cta):not(.btn-secondary),
+.info-box a:not(.btn-cta):not(.btn-secondary),
+.qa-a a:not(.btn-cta):not(.btn-secondary),
+aside.side a:not(.btn-cta):not(.btn-secondary) {
   text-decoration: underline;
   text-decoration-color: var(--primary-line);
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
   font-weight: 600;
 }
-.article-body a:hover { text-decoration-color: var(--accent); }
+.article-body a:not(.btn-cta):not(.btn-secondary):hover { text-decoration-color: var(--accent); }
 a:focus-visible, button:focus-visible {
   outline: 3px solid var(--primary-line); outline-offset: 2px; border-radius: 4px;
 }
@@ -230,15 +233,27 @@ img { max-width: 100%; display: block; }
 .rank-badge .no { font-size: 11px; font-weight: 700; display: block; line-height: 1; }
 .rank-badge .num { font-size: 22px; line-height: 1; display: block; }
 
-/* ============ CTAボタン ============ */
-.btn-cta {
+/* ============ CTAボタン ============
+   - どこに置かれても白文字で必ず読める（下線・色被り防止）
+   - a要素・button要素どちらでもOK
+   - :visited でも色が変わらないよう明示
+*/
+.btn-cta,
+a.btn-cta,
+a.btn-cta:link,
+a.btn-cta:visited {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  background: var(--accent); color: #fff; font-weight: 700;
+  background: var(--accent); color: #fff !important; font-weight: 700;
   padding: 14px 28px; min-height: 48px; border-radius: 40px; border: none;
-  font-size: 15px; cursor: pointer; text-decoration: none;
+  font-size: 15px; cursor: pointer;
+  text-decoration: none !important;
   transition: background .18s, transform .18s var(--ease), box-shadow .2s;
 }
-.btn-cta:hover { background: var(--accent-hover); color: #fff; text-decoration: none; transform: translateY(-2px); }
+.btn-cta:hover,
+a.btn-cta:hover {
+  background: var(--accent-hover); color: #fff !important;
+  text-decoration: none !important; transform: translateY(-2px);
+}
 .btn-cta:active { transform: translateY(0) scale(.98); }
 .btn-cta.large { padding: 18px 40px; font-size: 17px; min-height: 56px; }
 .btn-cta.full { display: flex; width: 100%; }
@@ -251,14 +266,23 @@ img { max-width: 100%; display: block; }
   50%      { box-shadow: 0 0 0 10px rgba(201,70,26,0); }
 }
 
-.btn-secondary {
+.btn-secondary,
+a.btn-secondary,
+a.btn-secondary:link,
+a.btn-secondary:visited {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  background: #fff; color: var(--primary-deep);
+  background: #fff; color: var(--primary-deep) !important;
   border: 2px solid var(--primary); font-weight: 600;
   padding: 12px 24px; min-height: 46px; border-radius: 40px;
-  font-size: 14px; text-decoration: none; transition: background .18s, color .18s;
+  font-size: 14px;
+  text-decoration: none !important;
+  transition: background .18s, color .18s;
 }
-.btn-secondary:hover { background: var(--primary-light); color: var(--primary-deep); text-decoration: none; }
+.btn-secondary:hover,
+a.btn-secondary:hover {
+  background: var(--primary-light); color: var(--primary-deep) !important;
+  text-decoration: none !important;
+}
 
 /* ============ 追従CTA（スマホ最優先行動 = 見積もりフォーム） ============ */
 .sticky-cta {
@@ -294,14 +318,35 @@ img { max-width: 100%; display: block; }
   transition: opacity .6s var(--ease), transform .6s var(--ease);
 }
 
-/* ============ 吹き出し ============ */
+/* ============ 吹き出し ============
+   .chat-avatar は data-label 属性のテキスト（1〜2文字）を中に表示。
+   例: <div class="chat-avatar" data-label="編"></div>
+   画像を使いたい時は <div class="chat-avatar"><img src="..." alt=""></div> でOK。
+*/
 .chat-bubble { display: flex; gap: 14px; margin: 24px 0; align-items: flex-start; }
 .chat-avatar {
   width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
   background: var(--primary-light); display: grid; place-items: center;
-  font-size: 24px; border: 2px solid var(--primary); overflow: hidden;
+  font-family: inherit; font-size: 18px; font-weight: 700;
+  color: var(--primary-deep);
+  border: 2px solid var(--primary); overflow: hidden;
+  position: relative;
 }
-.chat-avatar.avatar-2 { background: var(--accent-tint); border-color: var(--accent); }
+.chat-avatar::before {
+  content: attr(data-label);
+  font-family: inherit;
+}
+.chat-avatar img {
+  width: 100%; height: 100%; object-fit: cover;
+  position: absolute; inset: 0;
+}
+/* 画像が入っている場合はテキストラベルを隠す */
+.chat-avatar:has(img)::before { content: none; }
+
+.chat-avatar.avatar-2 {
+  background: var(--accent-tint); border-color: var(--accent);
+  color: #8E3512;
+}
 .chat-text {
   background: #fff; border: 1px solid var(--border);
   padding: 14px 18px; border-radius: 4px 16px 16px 16px;
@@ -405,6 +450,29 @@ img { max-width: 100%; display: block; }
 .compare-table tbody tr:hover td { background: #FAFCFD; }
 .compare-table .highlight { background: #FFF8E3; }
 .table-hint { font-size: 12px; color: var(--muted); margin: -14px 0 22px; }
+
+/* 比較表内の企業名リンク（AffLink）は下線＋濃青で常時視認 */
+.compare-table th a[data-aff] {
+  color: var(--primary-deep);
+  text-decoration: underline;
+  text-decoration-color: var(--primary-line);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  font-weight: 700;
+}
+.compare-table th a[data-aff]:hover {
+  color: #0E3D50;
+  text-decoration-color: var(--accent);
+}
+
+/* 比較表内のCTAボタン（レビュー →）は白文字を確実に */
+.compare-table td a.btn-cta,
+.compare-table td a.btn-cta:link,
+.compare-table td a.btn-cta:visited,
+.compare-table td a.btn-cta:hover {
+  color: #fff !important;
+  text-decoration: none !important;
+}
 
 /* 表は必ず横スクロール枠の中で最小幅を持つ（枠の外では持たせない＝画面を押し広げない） */
 .table-scroll, .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
@@ -612,8 +680,9 @@ aside.side .side-rank-num {
   font-size: 12px; font-weight: 700;
 }
 
-/* ============ アフィリエイトリンク（企業名） ============ */
-/* HTMLには data-aff="企業ID" だけ書く。URLは affiliates.js が注入 */
+/* ============ アフィリエイトリンク（企業名） ============
+   HTMLには data-aff="企業ID" だけ書く。URLは AffLink コンポーネントが埋め込む。
+   ボタン内（.btn-cta / .btn-secondary）にある場合は下線を出さない。 */
 a[data-aff] {
   color: var(--primary-deep); font-weight: 600;
   text-decoration: underline; text-decoration-color: var(--primary-line);
@@ -625,6 +694,25 @@ a[data-aff][data-aff-external]::after {
   content: "↗"; font-size: .78em; margin-left: 3px;
   color: var(--muted); text-decoration: none; display: inline-block;
 }
+/* ボタン装飾（.btn-cta / .btn-secondary）が付いた AffLink は下線を消し、白文字を優先 */
+a[data-aff].btn-cta,
+a[data-aff].btn-cta:link,
+a[data-aff].btn-cta:visited,
+a[data-aff].btn-cta:hover {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+a[data-aff].btn-cta[data-aff-external]::after {
+  color: rgba(255,255,255,.85);
+}
+a[data-aff].btn-secondary,
+a[data-aff].btn-secondary:link,
+a[data-aff].btn-secondary:visited,
+a[data-aff].btn-secondary:hover {
+  color: var(--primary-deep) !important;
+  text-decoration: none !important;
+}
+
 /* 未設定（URL空）は内部レビューへ。見た目は同じで事故らない */
 
 /* ============ レスポンシブ ============ */
@@ -708,7 +796,7 @@ a[data-aff][data-aff-external]::after {
   .sticky-cta-text small { display: none; }
   .sticky-cta-text { font-size: 12.5px; }
 
-  .chat-avatar { width: 46px; height: 46px; font-size: 20px; }
+  .chat-avatar { width: 46px; height: 46px; font-size: 16px; }
   .qa-q { padding: 15px 40px 15px 52px; font-size: 14.5px; }
   .qa-a { padding: 14px 18px 18px 52px; }
 }
