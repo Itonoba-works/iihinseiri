@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import StickyCta from '../components/StickyCta.astro';
 import AffLink from '../components/AffLink.astro';
+import SmartImage from '../components/SmartImage.astro';
 import site from '../data/site.json';
 import companies from '../data/companies.json';
 import pages from '../data/pages.json';
@@ -56,7 +57,11 @@ const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '�
       </div>
       <div class="hero-img">
         <div class="decoration"></div>
-        <div class="ph">[ ヒーロー写真: 明るい部屋で片付ける家族の様子 ]</div>
+        <SmartImage
+          src="hero/home.jpg"
+          alt="明るい部屋で片付ける家族の様子"
+          placeholder="[ ヒーロー写真: 明るい部屋で片付ける家族の様子 ]"
+        />
       </div>
     </div>
   </section>
@@ -89,7 +94,14 @@ const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '�
       {top3.map((c, i) => (
         <div class={'ranking-item' + (c.top ? ' top' : '')} id={c.id} data-reveal={String(i)}>
           <div class={'rank-badge rank-' + (i + 1)}><span><span class="no">No.</span><span class="num">{i + 1}</span></span></div>
-          <div class="ranking-thumb"><div class={'ph' + (c.top ? ' warm' : '')}>[ {c.name}<br />サービス写真 ]</div></div>
+          <div class="ranking-thumb">
+            <SmartImage
+              src={'companies/' + (c.image || c.id + '.jpg')}
+              alt={c.name}
+              placeholder={'[ ' + c.name + '\nサービス写真 ]'}
+              warm={c.top}
+            />
+          </div>
           <div class="ranking-info">
             <h3><AffLink id={c.id} pos={'rank-' + (i + 1) + '-name'}>{c.name}</AffLink></h3>
             <div class="ranking-catch">{c.catch}</div>
@@ -125,7 +137,11 @@ const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '�
         <a href={'/articles/' + a.slug + '.html'} class="article-card" data-reveal={String(i)}>
           <div class="thumb">
             <span class="tag">{cardTag[a.slug] || a.catTag}</span>
-            <div class="ph">[ {a.catTag} ]</div>
+            <SmartImage
+              src={'categories/' + (a.image || a.slug + '.jpg')}
+              alt={a.h1}
+              placeholder={'[ ' + (cardTag[a.slug] || a.catTag) + ' ]'}
+            />
           </div>
           <div class="body">
             <h3>{a.h1}</h3>
@@ -137,7 +153,11 @@ const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '�
         <a href="/rankings/cleaning.html" class="article-card" data-reveal="5">
           <div class="thumb">
             <span class="tag">ハウスクリーニング</span>
-            <div class="ph">[ 清掃 ]</div>
+            <SmartImage
+              src={'categories/' + (cleaning.image || 'cleaning.jpg')}
+              alt={cleaning.h1}
+              placeholder="[ 清掃 ]"
+            />
           </div>
           <div class="body">
             <h3>{cleaning.h1}</h3>

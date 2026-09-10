@@ -1,0 +1,52 @@
+---
+/**
+ * SmartImage.astro
+ * 画像ファイルが存在すれば <img> を、無ければ既存プレースホルダー <div class="ph">〜</div> を表示する。
+ *
+ * 使い方:
+ *   <SmartImage src="companies/ihinnoseiriyasan.jpg" alt="遺品の整理屋さん" placeholder="遺品の整理屋さん 公式サイト画像" />
+ *
+ * src は public/images/ からの相対パス。
+ * 画像を後から public/images/companies/xxx.jpg に置くだけで自動で切り替わる。
+ */
+
+import fs from 'node:fs';
+import path from 'node:path';
+
+const {
+  src = '',
+  alt = '',
+  placeholder = '',
+  className = '',
+  warm = false,
+  loading = 'lazy'
+} = Astro.props;
+
+// public/images/ 配下に実ファイルがあるかをビルド時にチェック
+let exists = false;
+if (src) {
+  try {
+    const abs = path.resolve(process.cwd(), 'public', 'images', src);
+    exists = fs.existsSync(abs);
+  } catch (e) {
+    exists = false;
+  }
+}
+
+const publicUrl = '/images/' + src;
+---
+{exists ? (
+  <img
+    src={publicUrl}
+    alt={alt}
+    class={className}
+    loading={loading}
+    style="width:100%; height:100%; object-fit:cover; display:block;"
+  />
+) : (
+  <div class={'ph' + (warm ? ' warm' : '') + (className ? ' ' + className : '')}>
+    {placeholder ? placeholder.split('\n').map((line, i, arr) => (
+      <>{line}{i < arr.length - 1 && <br />}</>
+    )) : alt}
+  </div>
+)}
