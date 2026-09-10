@@ -1,0 +1,26 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import pages from '../../data/pages.json';
+
+const bodies = import.meta.glob('../../content/articles/*.html', { query: '?raw', import: 'default', eager: true });
+
+export function getStaticPaths() {
+  return pages
+    .filter((p) => p.type === 'article')
+    .map((p) => ({ params: { slug: p.slug }, props: { page: p } }));
+}
+
+const { page } = Astro.props;
+const key = Object.keys(bodies).find((k) => k.endsWith('/' + page.slug + '.html'));
+const body = key ? bodies[key] : '';
+const active = page.slug === 'ihin-price' || page.slug === 'huyouhin' ? 'price' : 'nayami';
+const category = page.slug === 'huyouhin' ? 'ihin' : 'ihin';
+---
+<ArticleLayout
+  page={page}
+  body={body}
+  active={active}
+  category={category}
+  pageCss="page-article.css"
+  breadcrumb={[{ label: page.catTag || '記事' }]}
+/>

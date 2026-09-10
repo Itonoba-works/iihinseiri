@@ -1,0 +1,48 @@
+---
+import Base from './Base.astro';
+import Sidebar from '../components/Sidebar.astro';
+import StickyCta from '../components/StickyCta.astro';
+
+const {
+  page,
+  body = '',
+  active = '',
+  pageCss = 'page-article.css',
+  category = 'ihin',
+  breadcrumb = [],
+  cta = {}
+} = Astro.props;
+---
+<Base title={page.title} description={page.description} active={active} pageCss={pageCss}>
+  <div class="breadcrumb" slot="breadcrumb">
+    <a href="/">HOME</a>
+    {breadcrumb.map((b) => (
+      <>
+        <span class="sep">›</span>
+        {b.href ? <a href={b.href}>{b.label}</a> : <span>{b.label}</span>}
+      </>
+    ))}
+  </div>
+
+  <div class="article-layout" data-screen-label={page.h1}>
+    <div>
+      <div class="article-title-block">
+        {page.catTag && <span class="cat-tag">{page.catTag}</span>}
+        <h1>{page.h1}</h1>
+        <div class="article-meta-line">
+          {page.meta.map((m) => <span>{m}</span>)}
+        </div>
+      </div>
+
+      <div class="article-main article-body">
+        <slot name="before-body" />
+        <div set:html={body} />
+        <slot />
+      </div>
+    </div>
+
+    <Sidebar keyPoints={page.keyPoints} category={category} currentSlug={page.slug} />
+  </div>
+
+  <StickyCta slot="cta" {...cta} />
+</Base>

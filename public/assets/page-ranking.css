@@ -1,0 +1,286 @@
+/* ページ種別「ranking」専用スタイル（旧HTMLのインライン<style>を統合・重複除去） */
+
+.article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 30px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.article-title-block {
+  background: transparent;
+  padding: 20px 0 20px;
+  border-radius: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.article-title-block .cat-tag {
+  display: inline-block;
+  color: var(--primary-dark);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.article-title-block h1 {
+  font-family: inherit;
+  font-size: 26px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.article-meta-line {
+  display: flex;
+  gap: 20px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.article-main {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* サイドバー */
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 100px;
+  align-self: start;
+}
+
+.side-block {
+  background: transparent;
+  border: none;
+  padding: 0 0 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.side-block h4 {
+  font-size: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary);
+  margin-bottom: 14px;
+  color: var(--primary-dark);
+}
+
+.side-rank-item {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px dotted var(--border);
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.side-rank-item:last-child { border-bottom: none; }
+
+.side-rank-item:hover { text-decoration: none; color: var(--primary-dark); }
+
+.side-rank-num {
+  width: 28px; height: 28px;
+  background: #fff;
+  color: var(--primary-dark);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.side-rank-num.gold { background: #D4A32A; color:white; }
+
+.side-rank-num.silver { background: #9AA6B0; color:white; }
+
+.side-rank-num.bronze { background: #B07850; color:white; }
+
+.side-rank-item .n { font-size: 13px; font-weight: 700; }
+
+.side-rank-item .s { font-size: 11px; color: var(--muted); }
+
+/* 記事内ランキングブロック */
+.company-block {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding: 24px 20px 32px;
+  margin: 0 0 24px;
+  position: relative;
+}
+
+.company-block.top {
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.company-block-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed var(--border);
+  margin-bottom: 20px;
+}
+
+.company-block-head h3 {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.company-block-head .catch-copy {
+  color: var(--accent-dark);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.company-body-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.company-body-grid .thumb {
+  aspect-ratio: 4/3;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.company-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 20px;
+  font-size: 13px;
+}
+
+.company-feat-item {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.company-feat-item::before {
+  content: "・";
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.rating-line { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+
+.rating-line b { font-size: 20px; color: var(--text); font-family: inherit; }
+
+.company-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 20px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.company-info-table th, .company-info-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.company-info-table tr:last-child th, .company-info-table tr:last-child td { border-bottom: none; }
+
+.company-info-table th {
+  background: #fff;
+  color: var(--text-sub);
+  font-weight: 700;
+  width: 30%;
+}
+
+.company-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* 料金相場表 */
+.price-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+.price-table th, .price-table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+
+.price-table th:last-child, .price-table td:last-child { border-right: none; }
+
+.price-table thead th {
+  background: var(--primary);
+  color: white;
+}
+
+.price-table tbody th {
+  background: #fff;
+  color: var(--text);
+  text-align: left;
+  font-weight: 700;
+}
+
+.price-table .price-cell { font-weight: 700; color: var(--accent-dark); }
+
+/* 表全体を横スクロール可能に */
+.table-wrap { overflow-x: auto; margin: 16px -12px; padding: 0 12px; }
+
+@media (max-width: 900px) {
+  .article-layout { grid-template-columns: 1fr; padding: 12px; }
+
+.article-title-block, .article-main { padding: 24px 20px; }
+
+.article-title-block h1 { font-size: 22px; }
+
+.side { position: static; }
+
+.company-body-grid { grid-template-columns: 1fr; }
+
+.company-block { padding: 20px 18px; }
+
+.company-block-head { grid-template-columns: auto 1fr; }
+
+.company-actions { grid-template-columns: 1fr; }
+
+.company-features { grid-template-columns: 1fr; }
+
+@media (max-width: 900px) {
+  .article-layout { grid-template-columns: 1fr; padding: 12px; }
+  .article-title-block, .article-main { padding: 24px 20px; }
+  .article-title-block h1 { font-size: 22px; }
+  .side { position: static; }
+  .company-body-grid { grid-template-columns: 1fr; }
+  .company-block { padding: 20px 18px; }
+  .company-block-head { grid-template-columns: auto 1fr; }
+  .company-actions { grid-template-columns: 1fr; }
+  .company-features { grid-template-columns: 1fr; }
+}

@@ -1,158 +1,118 @@
-# くらしの整理ナビ
+# くらしの整理ナビ（Astro版）
 
-遺品整理・不用品回収・ハウスクリーニングのサービス比較情報メディア。各社の公式サイトの公表情報をもとに、料金・対応エリア・特徴を整理して紹介するアフィリエイト目的のサイトです。
+## セットアップ
 
-## サイト構成
-
-### ページ一覧（14ページ）
-
-| URL | ページ | 説明 |
-|-----|--------|------|
-| `/` | トップページ | サイト全体の入口。3案切替可能なTweaks付き |
-| `/rankings/ihin.html` | 遺品整理・不用品回収 比較 | 6社の詳細比較記事 |
-| `/rankings/cleaning.html` | ハウスクリーニング 比較 | 5社の詳細比較記事 |
-| `/reviews/ihinnoseiriyasan.html` | 遺品の整理屋さん レビュー | 個別業者レビュー |
-| `/reviews/777fukujin.html` | ゴミ屋敷片付け七福神 レビュー | 個別業者レビュー |
-| `/reviews/liferesetro.html` | ライフリセット レビュー | 個別業者レビュー |
-| `/reviews/migakuru.html` | ミガクる レビュー | 個別業者レビュー |
-| `/reviews/osoujikakumei.html` | おそうじ革命 レビュー | 個別業者レビュー |
-| `/reviews/osoujihonpo.html` | おそうじ本舗 レビュー | 個別業者レビュー |
-| `/articles/akutoku.html` | 悪徳業者の見分け方 | 情報記事 |
-| `/articles/ihin-price.html` | 遺品整理の料金相場 | 情報記事 |
-| `/articles/seizen.html` | 50代からの生前整理 | 情報記事 |
-| `/articles/huyouhin.html` | 不用品回収の相場 | 情報記事 |
-| `/articles/gomiyashiki.html` | ゴミ屋敷の片付け費用 | 情報記事 |
-
-### ディレクトリ構造
-
-```
-/
-├── index.html                      # トップページ
-├── assets/
-│   ├── styles.css                  # 共通CSS
-│   ├── app.jsx                     # トップページのReactロジック（Tweaks A/B/C）
-│   └── tweaks_panel.jsx            # TweaksパネルUI
-├── rankings/                       # カテゴリ別比較ランキング
-│   ├── ihin.html                   # 遺品整理・不用品回収 6社
-│   └── cleaning.html               # ハウスクリーニング 5社
-├── reviews/                        # 個別業者レビュー（6本）
-│   ├── ihinnoseiriyasan.html
-│   ├── 777fukujin.html
-│   ├── liferesetro.html
-│   ├── migakuru.html
-│   ├── osoujikakumei.html
-│   └── osoujihonpo.html
-├── articles/                       # 情報記事（5本）
-│   ├── akutoku.html
-│   ├── ihin-price.html
-│   ├── seizen.html
-│   ├── huyouhin.html
-│   └── gomiyashiki.html
-├── _headers                        # CloudFlare Pagesヘッダー設定
-├── _redirects                      # CloudFlare Pagesリダイレクト設定
-├── .gitignore
-├── README.md                       # このファイル
-└── AFFILIATE_LINKS.md              # AFFリンク挿入ガイド
+```bash
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # → dist/ に静的HTMLを出力
 ```
 
-## デザインシステム
+## Cloudflare Pages の設定変更
 
-### カラー
-- **Primary**：`#4FB4D8`（水色）、`#2E8AB0`（濃い水色）
-- **Accent**：`#FF8B5A`（オレンジ・CTA）
-- **Text**：`#2C3E50`（濃紺）、`#556A76`（サブ）
-- **Background**：`#FBF9F5`（アイボリー）
+| 項目 | 変更後 |
+|---|---|
+| Framework preset | Astro |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+| Node version | 20 以上（環境変数 `NODE_VERSION=20`） |
 
-### タイポグラフィ
-- 本文：Noto Sans JP（500 weight・16px）
-- 見出し：Zen Maru Gothic
+## 日常の作業はこの2つだけ
 
-### 主要コンポーネント
-- ヘッダー（スティッキー、水色×白）
-- 業者ランキングカード（金/銀/銅バッジ、料金表、CTA）
-- サイドバー（ランキング + 関連記事 + 公式サイトブロック）
-- 追従下部CTA
-- 情報ボックス、Q&Aアコーディオン、吹き出し
+### 企業を追加する（例：21社目）
 
-## CloudFlare Pages にデプロイ
+`src/data/companies.json` に1件足すだけです。
 
-### 前提
-- GitHubアカウント
-- CloudFlareアカウント
+```json
+{
+  "id": "newcompany",
+  "name": "新しい会社",
+  "category": "ihin",
+  "rank": 7,
+  "top": false,
+  "catch": "キャッチコピー",
+  "serviceType": "自社施工",
+  "intro": "紹介文（HTMLタグ可）",
+  "features": ["特徴1", "特徴2"],
+  "specs": [
+    { "label": "料金目安（公式）", "value": "1K 20,000円〜" },
+    { "label": "対応エリア", "value": "全国" }
+  ],
+  "shortType": "自社施工",
+  "shortPrice": "1K 20,000円〜",
+  "shortArea": "全国",
+  "shortFeature": "短い特徴",
+  "hasReview": false,
+  "affUrl": "",
+  "asp": ""
+}
+```
 
-### 手順
+これだけで自動的に反映される場所：
 
-1. **GitHubにpush**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin git@github.com:{USER}/{REPO}.git
-   git push -u origin main
-   ```
+- `/rankings/ihin.html` の比較表に1行
+- 同ページの詳細ブロック
+- `/reviews/newcompany.html` が新規生成（料金表とCTAだけのページ）
+- 全ページのサイドバーのランキング
+- 見出しの「6社」が「7社」に
 
-2. **CloudFlare Pages でプロジェクト作成**
-   - CloudFlare ダッシュボード → Pages → Create a project → Connect to Git
-   - リポジトリを選択
-   - **ビルド設定**：
-     - Framework preset: `None`
-     - Build command: 空欄（静的サイトなので不要）
-     - Build output directory: `/`（プロジェクトルート）
+文章を足したいときは `src/content/reviews/newcompany.html` を作り、
+`hasReview` を `true` にします。
 
-3. **カスタムドメイン設定**
-   - Pages プロジェクト → Custom domains → Set up a domain
-   - CloudFlare 管理下のドメインを追加
+### アフィリエイトリンクを設定する
 
-4. **確認事項**
-   - `_redirects` / `_headers` が自動で読み込まれる
-   - `docs/` `_backup/` などは `.gitignore` で除外済み
-   - 各種`href="#"` は `AFFILIATE_LINKS.md` を参照してASP計測URLに差し替え
+`companies.json` の `affUrl` にASPの計測URLを入れるだけです。
 
-## 開発フロー
+- `affUrl: ""` → 自社レビュー記事への内部リンク（リンク切れゼロ）
+- `affUrl` に値あり → 外部リンク + `rel="sponsored nofollow noopener"` + `target="_blank"` を自動付与
 
-### ローカル編集
-1. GitHubからclone
-2. お好きなエディタで直接HTML/CSS/JSX編集
-3. VSCode Live Server 等で `index.html` をローカルで確認
-4. git commit / push で自動デプロイ
+**旧版との違い**：以前は `affiliates.js` がブラウザ上でリンクを書き換えていたため、
+検索エンジンからはリンクが空に見えていました。Astro版はビルド時に本物の `<a href>` になります。
 
-### AI（Claude Code、Cursor 等）で編集する場合
-1. リポジトリをcloneまたはWebアクセスさせる
-2. `README.md` および `AFFILIATE_LINKS.md` を参照
-3. サイトツリーはREADMEに記載の構造に沿って変更
+## ディレクトリ構成
 
-### コンテンツ更新チェックリスト
-- [ ] 料金・対応エリア・特徴：**各社公式サイトを最終確認**
-- [ ] 「最終確認日」を更新（現在: 2026年9月8日）
-- [ ] AFFリンクの計測タグが有効か確認（ASP管理画面）
-- [ ] 全ページで免責文が表示されているか確認
+```
+src/
+  data/
+    site.json          サイト名・ナビ・フッター・アセットのバージョン
+    companies.json     ★企業データ（ここが唯一の情報源）
+    pages.json         各ページのタイトル・公開日・要点
+  layouts/
+    Base.astro         <head>・ヘッダー・フッター・スクリプト
+    ArticleLayout.astro 記事レイアウト（本文＋サイドバー）
+  components/
+    Header.astro / Footer.astro / StickyCta.astro
+    AffLink.astro      ★企業名リンクはすべてこれ経由
+    CompareTable.astro 比較表を自動生成
+    CompanyBlock.astro ランキング詳細ブロックを自動生成
+    Sidebar.astro / KeyPoints.astro
+  content/
+    articles/*.html    記事本文
+    reviews/*.html     レビュー本文
+    rankings/*.intro.html / *.outro.html   ランキングの前後の文章
+  pages/
+    index.astro
+    rankings/[slug].astro   ihin / cleaning
+    reviews/[slug].astro    ★companies.json の全社分を自動生成
+    articles/[slug].astro
+public/
+  assets/styles.css    共通CSS
+  assets/home.css      トップページ専用
+  assets/site.js       日付自動更新・ドロワー・スクロール演出・計測
+```
 
-## AFFリンク管理
+## URL は旧版と同一
 
-**`AFFILIATE_LINKS.md`** に、各ページのAFFリンク挿入位置一覧と、ASP契約手順を記載しています。実装時は必ずこのファイルを参照してください。
+`build.format: 'file'` を指定しているため、`/articles/akutoku.html` のような
+既存のURLがそのまま維持されます。リダイレクト設定は不要です。
 
-主な対象業者（11社）：
-- 遺品整理・不用品回収（6社）：遺品の整理屋さん、ゴミ屋敷片付け七福神、ライフリセット、遺品整理110番、みんなの遺品整理、EMEAO
-- ハウスクリーニング（5社）：ミガクる、おそうじ革命、おそうじ本舗、ユアマイスター、カジタク
+## 移行時にリポジトリから削除するもの
 
-各HTMLの `<body>` タグ直下に AFFリンク挿入箇所リストのコメントが埋め込まれています。
+```
+index.html
+rankings/  reviews/  articles/
+assets/styles.css  assets/site.js  assets/affiliates.js  assets/home.css
+assets/app.jsx  assets/tweaks_panel.jsx
+```
 
-## コンテンツポリシー
-
-本サイトの掲載内容は **すべて各社公式サイトの公表情報をベース** としており、以下を厳守しています：
-
-- ★スコアなど推定評価は表示しない
-- 「編集部が実際に問い合わせ」等の架空表現は使用しない
-- 料金は必ず「公式サイト掲載の参考価格」であることを明示
-- 各ページ最上部・末尾に「最終確認日：2026年9月8日」を明記
-- 料金・特徴が変動する旨と、依頼前の公式確認を推奨する免責文を全ページに掲載
-
-## ライセンス・アフィリエイト表記
-
-- 本サイトはアフィリエイトプログラムに参加しています。
-- 掲載情報は執筆時点のもので、依頼前に必ず公式サイトで最新情報をご確認ください。
-
-## 連絡先
-
-サイト運営者情報・お問い合わせページは今後追加予定です（現状 `href="#"` のプレースホルダー）。
+（このフォルダの中身がすべて置き換えます）

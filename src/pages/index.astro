@@ -1,0 +1,156 @@
+---
+import Base from '../layouts/Base.astro';
+import StickyCta from '../components/StickyCta.astro';
+import AffLink from '../components/AffLink.astro';
+import site from '../data/site.json';
+import companies from '../data/companies.json';
+import pages from '../data/pages.json';
+
+const top3 = companies.filter((c) => c.category === 'ihin').slice(0, 3);
+const articles = pages.filter((p) => p.type === 'article');
+const cleaning = pages.find((p) => p.type === 'ranking' && p.slug === 'cleaning');
+
+const topics = [
+  { href: '/rankings/ihin.html', title: '遺品整理', desc: '故人の遺品を丁寧に' },
+  { href: '/articles/seizen.html', title: '生前整理', desc: '元気なうちに始める' },
+  { href: '/articles/huyouhin.html', title: '不用品回収', desc: '大量処分もOK' },
+  { href: '/rankings/cleaning.html', title: 'ハウスクリーニング', desc: '空き家・引越し前に' }
+];
+
+const worries = [
+  '実家の遺品整理、何から手をつけていいかわからない',
+  '業者の相場がわからず、ぼったくられそうで不安',
+  '仕事があって現地に行けない・遠方に住んでいる',
+  '故人の思い出の品を大切に扱ってほしい',
+  '大量の不用品を一気に処分したい',
+  '女性スタッフに対応してもらいたい'
+];
+
+const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '生前整理', huyouhin: '不用品回収', gomiyashiki: 'ゴミ屋敷' };
+---
+<Base
+  title="くらしの整理ナビ｜遺品整理・生前整理・不用品回収の総合まとめサイト"
+  active="home"
+  pageCss="home.css"
+  ogType="website"
+>
+  <div class="breadcrumb" slot="breadcrumb">
+    <a href="/">HOME</a>
+    <span class="sep">›</span>
+    <span>総合トップ</span>
+  </div>
+
+  <section class="hero" data-screen-label="Hero">
+    <div class="hero-inner">
+      <div>
+        <span class="hero-tag" data-today="最新更新："></span>
+        <h1>
+          <mark>遺品整理・生前整理・不用品回収</mark><br />
+          の信頼できる業者を厳選して比較しました
+        </h1>
+        <p>「どこに頼めばいいの？」「料金が不安…」そんなお悩みに、料金・対応エリア・特徴を各社公式サイトの公表情報から整理して比較しました。</p>
+        <div class="hero-btns">
+          <a href="/rankings/ihin.html" class="btn-cta">ランキングを見る<span class="arrow">→</span></a>
+          <a href="/articles/ihin-price.html" class="btn-secondary">料金相場をチェック</a>
+        </div>
+      </div>
+      <div class="hero-img">
+        <div class="decoration"></div>
+        <div class="ph">[ ヒーロー写真: 明るい部屋で片付ける家族の様子 ]</div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="section-head" data-reveal="0"><h2>お悩み別に探す</h2></div>
+    <div class="topic-list">
+      {topics.map((t, i) => (
+        <a href={t.href} class="topic-list-item" data-reveal={String(i)}>
+          <div class="title">{t.title}</div>
+          <div class="desc">{t.desc}</div>
+        </a>
+      ))}
+    </div>
+
+    <div class="worries" data-reveal="0">
+      <h3>こんなお悩み、ありませんか？</h3>
+      <div class="worry-list">
+        {worries.map((w) => <div class="worry-item">{w}</div>)}
+      </div>
+      <p class="worries-note">料金・対応エリア・特徴の3点で比較すれば、依頼先は絞り込めます。</p>
+    </div>
+
+    <div class="section-head" data-reveal="0">
+      <h2>おすすめ業者ランキング</h2>
+      <p>料金・対応エリア・特徴を各社公式サイトの公表情報から整理して比較</p>
+    </div>
+
+    <div class="ranking-list">
+      {top3.map((c, i) => (
+        <div class={'ranking-item' + (c.top ? ' top' : '')} id={c.id} data-reveal={String(i)}>
+          <div class={'rank-badge rank-' + (i + 1)}><span><span class="no">No.</span><span class="num">{i + 1}</span></span></div>
+          <div class="ranking-thumb"><div class={'ph' + (c.top ? ' warm' : '')}>[ {c.name}<br />サービス写真 ]</div></div>
+          <div class="ranking-info">
+            <h3><AffLink id={c.id} pos={'rank-' + (i + 1) + '-name'}>{c.name}</AffLink></h3>
+            <div class="ranking-catch">{c.catch}</div>
+            {c.features.length > 0 && (
+              <div class="ranking-features">
+                {c.features.map((f) => <span class="feat-tag">{f}</span>)}
+              </div>
+            )}
+            <dl class="ranking-detail">
+              <dt>サービス形態</dt><dd>{c.shortType || c.serviceType}</dd>
+              <dt>対応エリア</dt><dd>{c.shortArea || c.area}</dd>
+            </dl>
+          </div>
+          <div class="ranking-actions">
+            <div class="ranking-price">
+              料金目安（公式掲載）
+              <strong>{c.shortPrice || c.price}</strong>
+            </div>
+            {c.hasReview && <a href={'/reviews/' + c.id + '.html'} class="btn-cta">詳細レビュー<span class="arrow">→</span></a>}
+            <AffLink id={c.id} class="btn-secondary" pos={'rank-' + (i + 1) + '-btn'}>公式サイトを見る</AffLink>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="ranking-more">
+      <a href="/rankings/ihin.html" class="btn-secondary">4位以降も見る →</a>
+    </div>
+
+    <div class="section-head" data-reveal="0"><h2>新着・人気記事</h2></div>
+    <div class="article-grid">
+      {articles.map((a, i) => (
+        <a href={'/articles/' + a.slug + '.html'} class="article-card" data-reveal={String(i)}>
+          <div class="thumb">
+            <span class="tag">{cardTag[a.slug] || a.catTag}</span>
+            <div class="ph">[ {a.catTag} ]</div>
+          </div>
+          <div class="body">
+            <h3>{a.h1}</h3>
+            <div class="meta"><span>{a.meta[0] || ''}</span></div>
+          </div>
+        </a>
+      ))}
+      {cleaning && (
+        <a href="/rankings/cleaning.html" class="article-card" data-reveal="5">
+          <div class="thumb">
+            <span class="tag">ハウスクリーニング</span>
+            <div class="ph">[ 清掃 ]</div>
+          </div>
+          <div class="body">
+            <h3>{cleaning.h1}</h3>
+            <div class="meta"><span data-today="最終確認："></span></div>
+          </div>
+        </a>
+      )}
+    </div>
+
+    <p class="disclaimer">
+      掲載している料金・対応エリア・特徴は、すべて各社公式サイトの公表情報をもとに整理したものです。内容は変動する場合がありますので、依頼前に必ず公式サイトで最新情報をご確認ください。
+    </p>
+  </main>
+
+  <StickyCta slot="cta" />
+</Base>

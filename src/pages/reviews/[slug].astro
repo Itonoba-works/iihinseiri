@@ -1,0 +1,60 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import AffLink from '../../components/AffLink.astro';
+import pages from '../../data/pages.json';
+import companies from '../../data/companies.json';
+
+const bodies = import.meta.glob('../../content/reviews/*.html', { query: '?raw', import: 'default', eager: true });
+
+export function getStaticPaths() {
+  /* companies.json に載っている全社分を生成。本文(.html)が無い社も
+     料金表とCTAだけのページとして成立する */
+  return companies.map((c) => {
+    const meta = pages.find((p) => p.type === 'review' && p.slug === c.id);
+    const page = meta || {
+      slug: c.id,
+      type: 'review',
+      title: c.name + 'の料金・特徴・対応エリアを整理【公式情報ベース】',
+      description: c.name + 'の料金・対応エリア・特徴を公式サイトの公表情報をもとに整理しました。',
+      catTag: c.category === 'cleaning' ? 'ハウスクリーニング' : '遺品整理・不用品回収',
+      h1: c.name + 'の料金・特徴・対応エリアを整理',
+      meta: [],
+      keyPoints: []
+    };
+    return { params: { slug: c.id }, props: { page, company: c } };
+  });
+}
+
+const { page, company } = Astro.props;
+const key = Object.keys(bodies).find((k) => k.endsWith('/' + page.slug + '.html'));
+const body = key ? bodies[key] : '';
+const keyPoints = (page.keyPoints && page.keyPoints.length)
+  ? page.keyPoints
+  : [company.shortType && 'サービス形態：' + company.shortType, company.shortPrice && '料金目安：' + company.shortPrice, company.shortArea && '対応エリア：' + company.shortArea].filter(Boolean);
+---
+<ArticleLayout
+  page={{ ...page, keyPoints }}
+  body={body}
+  active={company.category}
+  category={company.category}
+  pageCss="page-review.css"
+  breadcrumb={[
+    { label: page.catTag, href: '/rankings/' + company.category + '.html' },
+    { label: company.name }
+  ]}
+  cta={{ text: company.name, small: '公式サイトの公表情報をもとに整理', label: '公式サイトを見る', affId: company.id }}
+>
+  <section slot="before-body" class="info-box">
+    <div class="label">この会社の要点</div>
+    <table class="company-info-table" style="margin:8px 0 0;">
+      <tbody>
+        {company.specs.map((r) => (<tr><th>{r.label}</th><td>{r.value}</td></tr>))}
+      </tbody>
+    </table>
+  </section>
+
+  <div class="company-actions" style="margin-top:28px;">
+    <a href={'/rankings/' + company.category + '.html'} class="btn-secondary">他社と比較する</a>
+    <AffLink id={company.id} class="btn-cta pulse" pos="review-bottom">公式サイトを見る<span class="arrow">→</span></AffLink>
+  </div>
+</ArticleLayout>

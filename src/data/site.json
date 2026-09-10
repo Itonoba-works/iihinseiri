@@ -1,0 +1,114 @@
+{
+  "name": "くらしの整理ナビ",
+  "nameEn": "KURASHI SEIRI NAVI",
+  "tagline": "遺品整理・不用品回収・ハウスクリーニングの料金と対応エリアを比較",
+  "description": "遺品整理・生前整理・不用品回収・ハウスクリーニングの料金と対応エリアを、各社公式サイトの公表情報をもとに整理して比較しています。",
+  "assetVersion": "20260910d",
+  "estimateUrl": "",
+  "nav": [
+    {
+      "href": "/",
+      "label": "ホーム",
+      "key": "home"
+    },
+    {
+      "href": "/rankings/ihin.html",
+      "label": "遺品整理・不用品回収",
+      "key": "ihin"
+    },
+    {
+      "href": "/rankings/cleaning.html",
+      "label": "ハウスクリーニング",
+      "key": "cleaning"
+    },
+    {
+      "href": "/articles/ihin-price.html",
+      "label": "料金相場",
+      "key": "price"
+    },
+    {
+      "href": "/articles/akutoku.html",
+      "label": "お悩み解決",
+      "key": "nayami"
+    }
+  ],
+  "drawer": [
+    {
+      "href": "/",
+      "label": "ホーム"
+    },
+    {
+      "href": "/rankings/ihin.html",
+      "label": "遺品整理・不用品回収"
+    },
+    {
+      "href": "/rankings/cleaning.html",
+      "label": "ハウスクリーニング"
+    },
+    {
+      "href": "/articles/ihin-price.html",
+      "label": "料金相場"
+    },
+    {
+      "href": "/articles/akutoku.html",
+      "label": "悪徳業者の見分け方"
+    },
+    {
+      "href": "/articles/seizen.html",
+      "label": "生前整理"
+    }
+  ],
+  "footer": [
+    {
+      "head": "比較する",
+      "links": [
+        {
+          "href": "/rankings/ihin.html",
+          "label": "遺品整理・不用品回収"
+        },
+        {
+          "href": "/rankings/cleaning.html",
+          "label": "ハウスクリーニング"
+        }
+      ]
+    },
+    {
+      "head": "お役立ち情報",
+      "links": [
+        {
+          "href": "/articles/ihin-price.html",
+          "label": "遺品整理の料金相場"
+        },
+        {
+          "href": "/articles/huyouhin.html",
+          "label": "不用品回収の相場"
+        },
+        {
+          "href": "/articles/akutoku.html",
+          "label": "悪徳業者の見分け方"
+        },
+        {
+          "href": "/articles/seizen.html",
+          "label": "50代からの生前整理"
+        },
+        {
+          "href": "/articles/gomiyashiki.html",
+          "label": "ゴミ屋敷の片付け費用"
+        }
+      ]
+    },
+    {
+      "head": "サイト情報",
+      "links": [
+        {
+          "href": "/about.html",
+          "label": "運営者情報"
+        },
+        {
+          "href": "/sitemap.html",
+          "label": "サイトマップ"
+        }
+      ]
+    }
+  ]
+}

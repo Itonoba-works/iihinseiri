@@ -1,0 +1,24 @@
+---
+import site from '../data/site.json';
+---
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <span class="logo-mark">整</span>
+        <span>{site.name}</span>
+      </div>
+      <p>{site.description}</p>
+    </div>
+    {site.footer.map((col) => (
+      <div>
+        <h4>{col.head}</h4>
+        <ul>
+          {col.links.map((l) => (<li><a href={l.href}>{l.label}</a></li>))}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  <div class="footer-bottom">© 2026 {site.name} All Rights Reserved. / 本サイトはアフィリエイトプログラムに参加しています。</div>
+</footer>

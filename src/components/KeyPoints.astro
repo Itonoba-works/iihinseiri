@@ -1,0 +1,12 @@
+---
+const { points = [], title = 'この記事の要点', note = '' } = Astro.props;
+---
+{points.length > 0 && (
+  <section class="key-points" aria-label={title}>
+    <h4 class="kp-head">{title}</h4>
+    <ol>
+      {points.map((p) => <li>{p}</li>)}
+    </ol>
+    {note && <p class="kp-foot">{note}</p>}
+  </section>
+)}

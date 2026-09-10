@@ -1,0 +1,336 @@
+/* ページ種別「review」専用スタイル（旧HTMLのインライン<style>を統合・重複除去） */
+
+.article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 30px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* サービス概要ボックス */
+.service-hero {
+  background: transparent;
+  border-radius: 0;
+  padding: 28px 24px;
+  margin: 24px 0 32px;
+  border: none;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.service-hero-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.service-logo-area {
+  aspect-ratio: 4/3;
+  border-radius: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.service-info h1 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.service-catch {
+  color: var(--accent-dark);
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 14px;
+}
+
+.rating-big {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.rating-big .num {
+  font-family: inherit;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  line-height: 1;
+}
+
+.rating-big .max { font-size: 14px; color: var(--muted); }
+
+.rating-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.rating-detail {
+  background: transparent;
+  border-radius: 0;
+  padding: 10px 0;
+  text-align: center;
+  border: none;
+  border-right: 1px solid var(--border);
+}
+
+.rating-detail:last-child { border-right: none; }
+
+.rating-detail .l { font-size: 10px; color: var(--muted); }
+
+.rating-detail .v { font-weight: 700; color: var(--primary-dark); font-size: 16px; font-family: inherit; }
+
+.service-cta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* PR タグ */
+.pr-badge {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.pr-badge::before { content: "["; }
+
+.pr-badge::after { content: "]"; }
+
+/* メリット・デメリット */
+.pros-cons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 24px 0;
+}
+
+.pros-box, .cons-box {
+  border-radius: 0;
+  padding: 4px 0 0;
+  background: transparent;
+  border: none;
+}
+
+.pros-box h4, .cons-box h4 {
+  font-size: 16px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.pros-box h4 { color: var(--success); }
+
+.cons-box h4 { color: var(--accent-dark); }
+
+.pros-box ul, .cons-box ul {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.pros-box li, .cons-box li {
+  padding: 6px 0 6px 26px;
+  position: relative;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.pros-box li::before {
+  content: "○";
+  position: absolute;
+  left: 0;
+  color: var(--success);
+  font-weight: 700;
+}
+
+.cons-box li::before {
+  content: "△";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* サイドバー（ranking.htmlと共通） */
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 100px;
+  align-self: start;
+}
+
+.side-block {
+  background: transparent;
+  border: none;
+  padding: 0 0 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.side-block h4 {
+  font-size: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary);
+  margin-bottom: 14px;
+  color: var(--primary-dark);
+}
+
+/* 記事タイトルブロック（共通） */
+.article-title-block {
+  background: transparent;
+  padding: 20px 0 20px;
+  border-radius: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.article-title-block .cat-tag {
+  display: inline-block;
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.article-title-block h1 {
+  font-family: inherit;
+  font-size: 26px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.article-meta-line {
+  display: flex;
+  gap: 20px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.article-main {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* 口コミボックス */
+.review-item {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding: 22px 20px;
+  margin-bottom: 0;
+}
+
+.review-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.review-avatar { display: none; }
+
+.review-user { font-weight: 700; font-size: 13px; }
+
+.review-meta { font-size: 11px; color: var(--muted); }
+
+.review-title { font-weight: 700; margin-bottom: 6px; font-size: 15px; }
+
+.review-body { font-size: 13px; color: var(--text-sub); line-height: 1.8; }
+
+.review-item.negative { background: transparent; }
+
+/* 手順ステップ */
+.step-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.step-item {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 20px 16px;
+  text-align: center;
+  position: relative;
+}
+
+.step-num {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 28px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+}
+
+.step-item h5 {
+  font-size: 14px;
+  margin: 8px 0 6px;
+  color: var(--text);
+}
+
+.step-item p {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.step-icon { display: none; }
+
+@media (max-width: 900px) {
+  .article-layout { grid-template-columns: 1fr; padding: 12px; }
+
+.article-title-block, .article-main { padding: 24px 20px; }
+
+.article-title-block h1 { font-size: 20px; }
+
+.side { position: static; }
+
+.service-hero-grid { grid-template-columns: 1fr; }
+
+.rating-details { grid-template-columns: repeat(2, 1fr); }
+
+.pros-cons { grid-template-columns: 1fr; }
+
+.service-cta-row { grid-template-columns: 1fr; }
+
+.step-list { grid-template-columns: repeat(2, 1fr); }
+
+@media (max-width: 900px) {
+  .article-layout { grid-template-columns: 1fr; padding: 12px; }
+  .article-title-block, .article-main { padding: 24px 20px; }
+  .article-title-block h1 { font-size: 20px; }
+  .side { position: static; }
+  .service-hero-grid { grid-template-columns: 1fr; }
+  .rating-details { grid-template-columns: repeat(2, 1fr); }
+  .pros-cons { grid-template-columns: 1fr; }
+  .service-cta-row { grid-template-columns: 1fr; }
+  .step-list { grid-template-columns: repeat(2, 1fr); }
+}

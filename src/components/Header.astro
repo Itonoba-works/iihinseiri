@@ -1,0 +1,47 @@
+---
+import site from '../data/site.json';
+const { active = '' } = Astro.props;
+---
+<header class="site-header" data-screen-label="Header">
+  <div class="header-top">
+    <div class="header-top-inner">
+      <span class="tagline">{site.tagline}</span>
+      <time class="updated" data-today="最終確認："></time>
+    </div>
+  </div>
+
+  <div class="header-inner">
+    <a href="/" class="site-logo">
+      <span class="logo-mark">整</span>
+      <span class="logo-text">
+        <span class="logo-name">{site.name}</span>
+        <span class="logo-sub">{site.nameEn}</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      {site.nav.map((n) => (
+        <a href={n.href} class={n.key === active ? 'active' : undefined}>{n.label}</a>
+      ))}
+    </nav>
+
+    <a href="#estimate" class="header-cta pulse" data-estimate>無料で見積もり<span class="arrow">→</span></a>
+
+    <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="navDrawer">
+      <i></i><i></i><i></i>
+    </button>
+  </div>
+</header>
+
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-panel">
+    <div class="nav-drawer-head">
+      <span class="t">カテゴリを選ぶ</span>
+      <button class="nav-drawer-close" type="button" aria-label="メニューを閉じる">×</button>
+    </div>
+    {site.drawer.map((n) => (
+      <a href={n.href} class="d-item">{n.label}<span class="chev">›</span></a>
+    ))}
+    <a href="#estimate" class="btn-cta full drawer-cta pulse" data-estimate>無料で見積もり<span class="arrow">→</span></a>
+  </div>
+</div>

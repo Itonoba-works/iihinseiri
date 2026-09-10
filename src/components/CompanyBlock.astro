@@ -1,0 +1,63 @@
+---
+/* ランキング詳細ブロック。companies.json から自動生成 */
+import AffLink from './AffLink.astro';
+const { company: c, index } = Astro.props;
+const rank = index + 1;
+---
+<div class={'company-block' + (c.top ? ' top' : '')} id={c.id} data-reveal={String(Math.min(index, 5))}>
+  <div class="company-block-head">
+    <div class={'rank-badge rank-' + rank}><span><span class="no">No.</span><span class="num">{rank}</span></span></div>
+    <div>
+      <h3><AffLink id={c.id} pos={'rank-' + rank + '-name'}>{c.name}</AffLink></h3>
+      <div class="catch-copy">{c.catch}</div>
+    </div>
+    {c.serviceType && (
+      <div style="text-align:right;">
+        <div style="font-weight:600; font-size:13px; color:var(--muted);">サービス形態</div>
+        <div style="font-weight:700; font-size:16px; color:var(--primary-deep);">{c.serviceType}</div>
+      </div>
+    )}
+  </div>
+
+  <div class="company-body-grid">
+    <div class="thumb"><div class={'ph' + (c.top ? ' warm' : '')}>[ {c.name}<br />公式サイト画像 ]</div></div>
+    <div>
+      {c.intro && <p style="margin-bottom:14px; font-size:14px;" set:html={c.intro} />}
+      {c.features.length > 0 && (
+        <div class="company-features">
+          {c.features.map((f) => <div class="company-feat-item">{f}</div>)}
+        </div>
+      )}
+    </div>
+  </div>
+
+  {c.specs.length > 0 && (
+    <div class="table-wrap">
+      <table class="company-info-table">
+        <tbody>
+          {c.specs.map((r) => (
+            <tr>
+              <th>{r.label}</th>
+              <td class={/料金/.test(r.label) ? 'price-cell' : undefined}>{r.value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+
+  {c.editorNote && (
+    <div class="chat-bubble">
+      <div class="chat-avatar avatar-2"></div>
+      <div class="chat-text">
+        <div class="chat-name">編集部コメント</div>
+        {c.editorNote}
+      </div>
+    </div>
+  )}
+
+  <div class="company-actions">
+    {c.hasReview && <a href={'/reviews/' + c.id + '.html'} class="btn-secondary">詳細レビューを見る</a>}
+    <AffLink id={c.id} class="btn-cta" pos={'rank-' + rank + '-btn'}>公式サイトを見る<span class="arrow">→</span></AffLink>
+  </div>
+</div>

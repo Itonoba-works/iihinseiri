@@ -1,0 +1,25 @@
+---
+import companies from '../data/companies.json';
+const { text = '複数社の料金をまとめて比較', small = '入力1分・無料', label = '無料で見積もり', affId = '' } = Astro.props;
+const c = affId ? companies.find((x) => x.id === affId) : null;
+const external = c && c.affUrl ? c.affUrl : '';
+let href = '#estimate';
+if (c) href = external || (c.hasReview ? '/reviews/' + c.id + '.html' : '/rankings/' + c.category + '.html#' + c.id);
+---
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text">
+      {text}
+      {small && <small>{small}</small>}
+    </div>
+    <a
+      href={href}
+      class="btn-cta pulse"
+      data-aff={c ? c.id : undefined}
+      data-estimate={c ? undefined : true}
+      data-aff-pos="sticky"
+      rel={external ? 'sponsored nofollow noopener' : undefined}
+      target={external ? '_blank' : undefined}
+    >{label}<span class="arrow">→</span></a>
+  </div>
+</div>

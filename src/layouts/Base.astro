@@ -1,0 +1,47 @@
+---
+import site from '../data/site.json';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const {
+  title,
+  description = site.description,
+  active = '',
+  pageCss = '',
+  ogType = 'article'
+} = Astro.props;
+
+const v = '?v=' + site.assetVersion;
+const fullTitle = title.indexOf(site.name) === -1 ? title + ' - ' + site.name : title;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="format-detection" content="telephone=no" />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={site.name} />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href={'/assets/styles.css' + v} />
+{pageCss && <link rel="stylesheet" href={'/assets/' + pageCss + v} />}
+</head>
+<body>
+<Header active={active} />
+<slot name="breadcrumb" />
+<slot />
+<Footer />
+<slot name="cta" />
+<script src={'/assets/site.js' + v} defer></script>
+</body>
+</html>

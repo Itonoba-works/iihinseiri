@@ -1,0 +1,38 @@
+---
+import companies from '../data/companies.json';
+import pages from '../data/pages.json';
+import KeyPoints from './KeyPoints.astro';
+import AffLink from './AffLink.astro';
+
+const { keyPoints = [], category = 'ihin', currentSlug = '' } = Astro.props;
+const ranked = companies.filter((c) => c.category === category).slice(0, 8);
+const catLabel = category === 'cleaning' ? 'ハウスクリーニング' : '遺品整理・不用品回収';
+const related = pages.filter((p) => p.type === 'article' && p.slug !== currentSlug).slice(0, 4);
+---
+<aside class="side">
+  <div class="side-sticky">
+    <KeyPoints points={keyPoints} />
+
+    <div class="side-block">
+      <h4>{catLabel} {ranked.length}社</h4>
+      {ranked.map((c, i) => (
+        <AffLink id={c.id} class="side-rank-item" pos="sidebar">
+          <div class="side-rank-num">{i + 1}</div>
+          <div>
+            <div class="n">{c.name}</div>
+            <div class="s">{c.shortPrice || c.price}</div>
+          </div>
+        </AffLink>
+      ))}
+    </div>
+
+    <div class="side-block">
+      <h4>関連記事</h4>
+      {related.map((p) => (
+        <a href={'/articles/' + p.slug + '.html'} class="side-rank-item" style="grid-template-columns:1fr;">
+          <div class="n">{p.h1}</div>
+        </a>
+      ))}
+    </div>
+  </div>
+</aside>

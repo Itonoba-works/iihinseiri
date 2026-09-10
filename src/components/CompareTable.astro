@@ -1,0 +1,37 @@
+---
+/* 比較表は companies.json から自動生成。20社になっても列は変わらない */
+import companies from '../data/companies.json';
+const { category = 'ihin' } = Astro.props;
+const list = companies.filter((c) => c.category === category);
+---
+<div class="table-wrap">
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th style="min-width:140px;">サービス名</th>
+        <th style="min-width:100px;">サービス形態</th>
+        <th style="min-width:170px;">料金の目安（公式掲載）</th>
+        <th style="min-width:140px;">対応エリア</th>
+        <th style="min-width:130px;">主な特徴</th>
+        <th style="min-width:110px;">詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+      {list.map((c) => (
+        <tr class={c.top ? 'highlight' : undefined}>
+          <th style="text-align:left; padding-left:14px;">{c.name}</th>
+          <td>{c.shortType || c.serviceType}</td>
+          <td class="price-cell">{c.shortPrice || c.price}</td>
+          <td>{c.shortArea || c.area}</td>
+          <td>{c.shortFeature || (c.features[0] || '')}</td>
+          <td>
+            {c.hasReview
+              ? <a href={'/reviews/' + c.id + '.html'} class="btn-cta" style="padding:8px 14px; font-size:12px;">レビュー →</a>
+              : <span style="font-size:12px; color:var(--muted);">—</span>}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+<p class="table-hint">※料金は各社公式サイト掲載の参考価格です。物量・階数・地域・時期などにより変動します。</p>

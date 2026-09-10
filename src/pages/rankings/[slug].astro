@@ -1,0 +1,41 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import CompareTable from '../../components/CompareTable.astro';
+import CompanyBlock from '../../components/CompanyBlock.astro';
+import pages from '../../data/pages.json';
+import companies from '../../data/companies.json';
+
+const intros = import.meta.glob('../../content/rankings/*.intro.html', { query: '?raw', import: 'default', eager: true });
+const outros = import.meta.glob('../../content/rankings/*.outro.html', { query: '?raw', import: 'default', eager: true });
+
+export function getStaticPaths() {
+  return pages
+    .filter((p) => p.type === 'ranking')
+    .map((p) => ({ params: { slug: p.slug }, props: { page: p } }));
+}
+
+const { page } = Astro.props;
+const intro = intros[Object.keys(intros).find((k) => k.endsWith('/' + page.slug + '.intro.html'))] || '';
+const outro = outros[Object.keys(outros).find((k) => k.endsWith('/' + page.slug + '.outro.html'))] || '';
+const list = companies.filter((c) => c.category === page.slug);
+const catLabel = page.slug === 'cleaning' ? 'ハウスクリーニング' : '遺品整理・不用品回収';
+---
+<ArticleLayout
+  page={page}
+  active={page.slug}
+  category={page.slug}
+  pageCss="page-ranking.css"
+  breadcrumb={[{ label: catLabel + 'サービス比較' }]}
+  cta={{ text: '複数社の料金をまとめて比較', small: '入力1分・無料', label: '無料で見積もり' }}
+>
+  <div set:html={intro} />
+
+  <h2 id="compare">{list.length}社の比較表</h2>
+  <p>公式サイトの公表情報をもとに、料金・サービス形態・対応エリア・特徴で整理しました。<strong>横スクロールで全項目を確認できます。</strong></p>
+  <CompareTable category={page.slug} />
+
+  <h2 id="ranking">{catLabel}サービス{list.length}社の詳細</h2>
+  {list.map((c, i) => <CompanyBlock company={c} index={i} />)}
+
+  <div set:html={outro} />
+</ArticleLayout>
