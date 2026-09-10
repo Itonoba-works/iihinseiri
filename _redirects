@@ -1,0 +1,22 @@
+# CloudFlare Pages リダイレクト設定
+# 旧URL（フラットな構成）→ 新URL（サブフォルダ構成）への301リダイレクト
+# フォーマット: <FROM_PATH> <TO_PATH> <STATUS_CODE>
+
+# --- カテゴリランキング ---
+/ranking.html            /rankings/ihin.html              301
+/ranking-cleaning.html   /rankings/cleaning.html          301
+
+# --- 業者レビュー ---
+/review.html                        /reviews/ihinnoseiriyasan.html   301
+/review-777fukujin.html             /reviews/777fukujin.html         301
+/review-liferesetro.html            /reviews/liferesetro.html        301
+/review-migakuru.html               /reviews/migakuru.html           301
+/review-osoujikakumei.html          /reviews/osoujikakumei.html      301
+/review-osoujihonpo.html            /reviews/osoujihonpo.html        301
+
+# --- 情報記事 ---
+/article-akutoku.html          /articles/akutoku.html          301
+/article-ihin-price.html       /articles/ihin-price.html       301
+/article-seizen.html           /articles/seizen.html           301
+/article-huyouhin.html         /articles/huyouhin.html         301
+/article-gomiyashiki.html      /articles/gomiyashiki.html      301

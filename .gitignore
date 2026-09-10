@@ -1,0 +1,38 @@
+# --- OS / エディタ関連 ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# --- Genspark Designer 内部ファイル ---
+*.srcmap.json
+.thumbnail.jpg
+.gitattributes
+
+# --- 旧ファイル・開発用（本番デプロイ対象外） ---
+_backup/
+design_handoff_kurashi_seiri_navi/
+design_handoff_assets.md
+screenshots/
+
+# --- 旧トップレベルHTML（新パスに移行済み、リダイレクトで対応）---
+# 削除するとローカルプレビューに影響するため、gitignoreで対応
+# ranking.html
+# ranking-cleaning.html
+# review.html
+# review-*.html
+# article-*.html
+# app.jsx（トップレベル、assets/app.jsx に移行）
+# styles.css（トップレベル、assets/styles.css に移行）
+# tweaks_panel.jsx（トップレベル、assets/tweaks_panel.jsx に移行）
+
+# --- Node（今後導入する場合）---
+node_modules/
+package-lock.json
+yarn.lock
+
+# --- ローカル環境変数 ---
+.env
+.env.local
