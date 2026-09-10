@@ -1,668 +1,614 @@
-/* ============================================================
-   くらしの整理ナビ 共通スタイル v2 (2026-09-10)
-   変更点: コントラスト改訂 / 3段レスポンシブ / ドロワー / アニメーション
-   旧 styles.css を丸ごと差し替えてください
-============================================================ */
-
-:root {
-  /* --- 青: 塗りに使う濃い青と、装飾専用の明るい青を分離 --- */
-  --primary:        #24748F;  /* 白文字 5.3:1 */
-  --primary-deep:   #15546C;  /* 白文字 7.9:1 / 見出し・リンク */
-  --primary-bright: #4FB4D8;  /* 装飾専用: 罫線・アイコン・ホバー枠 */
-  --primary-line:   #7FC4DD;
-  --primary-light:  #E8F5FA;
-  --primary-pale:   #F1F7FA;
-
-  /* --- CTA: 系統は同じ暖色、明度だけ下げて可読に --- */
-  --accent:        #C9461A;   /* 白文字 4.8:1 */
-  --accent-hover:  #A8380F;
-  --accent-bright: #FF8B5A;   /* 装飾専用 */
-  --accent-tint:   #F7EFE8;
-
-  --gold: #B8891F; --silver: #7E8A96; --bronze: #A6754A;
-
-  --warm-bg: #F7F4EE;
-  --text:     #1F2E3B;  /* 13.4:1 */
-  --text-sub: #4A5A68;  /*  7.1:1 */
-  --muted:    #64737F;  /*  5.0:1 */
-  --border: #E4EAEE;
-  --border-warm: #E0DAD0;
-  --border-strong: #C4D6DE;
-  --danger: #C4342F;
-  --success: #2F7D57;
-
-  --shadow-sm: 0 1px 3px rgba(21,84,108,.07);
-  --shadow-md: 0 4px 16px rgba(21,84,108,.09);
-  --shadow-lg: 0 14px 34px rgba(21,84,108,.14);
-  --radius: 10px; --radius-sm: 6px; --radius-lg: 18px;
-
-  --header-h: 68px;
-  --ease: cubic-bezier(.2,.8,.2,1);
-}
-
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-html, body {
-  margin: 0; padding: 0;
-  font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont,
-    "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, sans-serif;
-  color: var(--text);
-  background: var(--warm-bg);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.85;
-  -webkit-font-smoothing: antialiased;
-  overflow-wrap: break-word;
-}
-body { padding-bottom: 84px; }
-
-h1, h2, h3, h4, h5 {
-  font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
-  font-weight: 700; line-height: 1.45; margin: 0;
-  color: var(--text); letter-spacing: .01em;
-  text-wrap: pretty;
-}
-
-p, li, dd, dt, td, th { color: var(--text); }
-
-/* --- リンク: 色だけに頼らず常時下線。下線色だけ水色 --- */
-a { color: var(--primary-deep); text-decoration: none; }
-a:hover { color: #0E3D50; }
-.article-body a:not(.btn-cta):not(.btn-secondary),
-.lead a, .info-box a, .qa-a a, aside.side a {
-  text-decoration: underline;
-  text-decoration-color: var(--primary-line);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-  font-weight: 700;
-}
-.article-body a:hover { text-decoration-color: var(--accent); }
-a:focus-visible, button:focus-visible {
-  outline: 3px solid var(--primary-line); outline-offset: 2px; border-radius: 4px;
-}
-
-img { max-width: 100%; display: block; }
-
-/* ============ ヘッダー ============ */
-.site-header {
-  background: #fff;
-  border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 60;
-  transition: box-shadow .25s var(--ease);
-}
-.site-header.is-scrolled { box-shadow: 0 4px 18px rgba(21,84,108,.12); }
-.site-header.is-scrolled .header-top { max-height: 0; opacity: 0; overflow: hidden; }
-
-.header-top {
-  background: var(--primary-pale);
-  border-bottom: 1px solid #DDE7EC;
-  font-size: 12px; color: var(--text-sub);
-  max-height: 40px; overflow: hidden;
-  transition: max-height .25s var(--ease), opacity .2s;
-}
-.header-top-inner {
-  max-width: 1160px; margin: 0 auto; padding: 7px 20px;
-  display: flex; justify-content: space-between; align-items: center; gap: 16px;
-}
-.header-top .updated { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
-.header-top .updated::before {
-  content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--success);
-}
-
-.header-inner {
-  max-width: 1160px; margin: 0 auto; padding: 13px 20px;
-  display: flex; align-items: center; justify-content: space-between; gap: 28px;
-}
-.site-logo {
-  display: flex; align-items: center; gap: 11px;
-  color: var(--text); text-decoration: none; flex: 0 0 auto;
-}
-.site-logo:hover { text-decoration: none; }
-.logo-mark {
-  width: 42px; height: 42px; flex: 0 0 auto;
-  background: linear-gradient(140deg, #3E9BBE, var(--primary-deep));
-  border-radius: 11px; display: grid; place-items: center;
-  color: #fff; font-family: "Zen Maru Gothic", sans-serif; font-weight: 700; font-size: 19px;
-}
-.logo-text { line-height: 1.2; }
-.logo-name {
-  display: block; font-family: "Zen Maru Gothic", sans-serif;
-  font-size: 21px; font-weight: 700; white-space: nowrap;
-}
-.logo-sub {
-  display: block; font-size: 10px; font-weight: 500;
-  color: var(--muted); letter-spacing: .16em;
-}
-
-.site-nav { display: flex; gap: 26px; align-items: center; flex: 1 1 auto; justify-content: center; }
-.site-nav a {
-  position: relative; font-size: 14px; font-weight: 700;
-  color: var(--text); text-decoration: none; padding: 9px 0; white-space: nowrap;
-  transition: color .18s;
-}
-.site-nav a::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
-  background: var(--primary-line); border-radius: 2px;
-  transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease);
-}
-.site-nav a:hover { color: var(--primary-deep); }
-.site-nav a:hover::after { transform: scaleX(1); }
-.site-nav a.active { color: var(--primary-deep); }
-.site-nav a.active::after { background: var(--primary); transform: scaleX(1); }
-
-.header-cta {
-  flex: 0 0 auto; background: var(--accent); color: #fff;
-  font-weight: 700; font-size: 14px; padding: 12px 22px;
-  border-radius: 26px; text-decoration: none;
-  display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
-  transition: background .18s, transform .18s var(--ease);
-}
-.header-cta:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); text-decoration: none; }
-.header-cta:active { transform: translateY(0) scale(.98); }
-
-/* --- ハンバーガー / ドロワー --- */
-.nav-toggle {
-  display: none; width: 44px; height: 44px; flex: 0 0 auto;
-  background: #fff; border: 1px solid var(--border-strong); border-radius: 10px;
-  cursor: pointer; padding: 0; place-items: center; align-content: center; gap: 4px;
-}
-.nav-toggle i {
-  display: block; width: 18px; height: 2px; background: var(--primary-deep);
-  border-radius: 2px; transition: transform .25s var(--ease), opacity .2s;
-}
-.nav-toggle[aria-expanded="true"] i:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-.nav-toggle[aria-expanded="true"] i:nth-child(2) { opacity: 0; }
-.nav-toggle[aria-expanded="true"] i:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-
-.nav-drawer { display: none; }
-
-/* ============ パンくず ============ */
-.breadcrumb {
-  max-width: 1160px; margin: 0 auto; padding: 14px 20px;
-  font-size: 12px; color: var(--muted);
-  display: flex; flex-wrap: wrap; gap: 6px;
-}
-.breadcrumb a { color: var(--text-sub); }
-.breadcrumb .sep { color: var(--border-strong); }
-
-/* ============ コンテナ ============ */
-.container { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
-.container-narrow { max-width: 780px; margin: 0 auto; padding: 0 20px; }
-
-/* ============ セクション見出し ============ */
-.section-head { text-align: center; margin: 60px 0 32px; }
-.section-head .ja {
-  display: inline-block; font-size: 12px; color: var(--primary-deep);
-  font-weight: 700; letter-spacing: .28em; margin-bottom: 8px;
-}
-.section-head h2 { font-size: 28px; position: relative; display: inline-block; }
-.section-head h2::after {
-  content: ""; display: block; width: 42px; height: 3px;
-  background: var(--primary); border-radius: 2px; margin: 12px auto 0;
-}
-.section-head p { color: var(--text-sub); font-size: 14px; margin-top: 12px; }
-
-/* ============ ランキングバッジ ============ */
-.rank-badge {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 56px; height: 56px; border-radius: 50%;
-  font-family: "Zen Maru Gothic", sans-serif; font-weight: 700; font-size: 20px;
-  color: #fff; position: relative; flex-shrink: 0;
-}
-.rank-badge::before {
-  content: ""; position: absolute; inset: 4px; border-radius: 50%;
-  border: 2px solid rgba(255,255,255,.45);
-}
-.rank-badge span { position: relative; z-index: 1; }
-.rank-badge.rank-1 { background: linear-gradient(140deg, #D9A32C, #96690F); }
-.rank-badge.rank-2 { background: linear-gradient(140deg, #A3AEB8, #6C7783); }
-.rank-badge.rank-3 { background: linear-gradient(140deg, #BE8A5E, #8A5C33); }
-.rank-badge.rank-4, .rank-badge.rank-5, .rank-badge.rank-6, .rank-badge.rank-7,
-.rank-badge.rank-8, .rank-badge.rank-9 {
-  background: linear-gradient(140deg, var(--primary), var(--primary-deep));
-  width: 48px; height: 48px; font-size: 16px;
-}
-.rank-badge .no { font-size: 11px; font-weight: 700; display: block; line-height: 1; }
-.rank-badge .num { font-size: 22px; line-height: 1; display: block; }
-
-/* ============ CTAボタン ============ */
-.btn-cta {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  background: var(--accent); color: #fff; font-weight: 700;
-  padding: 14px 28px; min-height: 48px; border-radius: 40px; border: none;
-  font-size: 15px; cursor: pointer; text-decoration: none;
-  transition: background .18s, transform .18s var(--ease), box-shadow .2s;
-}
-.btn-cta:hover { background: var(--accent-hover); color: #fff; text-decoration: none; transform: translateY(-2px); }
-.btn-cta:active { transform: translateY(0) scale(.98); }
-.btn-cta.large { padding: 18px 40px; font-size: 17px; min-height: 56px; }
-.btn-cta.full { display: flex; width: 100%; }
-.btn-cta .arrow { transition: transform .2s var(--ease); }
-.btn-cta:hover .arrow { transform: translateX(4px); }
-/* 1ページに1つだけ: 呼吸するリング */
-.btn-cta.pulse { animation: aff-pulse 2.6s ease-in-out infinite; }
-@keyframes aff-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201,70,26,.35); }
-  50%      { box-shadow: 0 0 0 10px rgba(201,70,26,0); }
-}
-
-.btn-secondary {
-  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  background: #fff; color: var(--primary-deep);
-  border: 2px solid var(--primary); font-weight: 700;
-  padding: 12px 24px; min-height: 46px; border-radius: 40px;
-  font-size: 14px; text-decoration: none; transition: background .18s, color .18s;
-}
-.btn-secondary:hover { background: var(--primary-light); color: var(--primary-deep); text-decoration: none; }
-
-/* ============ 追従CTA（スマホ最優先行動 = 見積もりフォーム） ============ */
-.sticky-cta {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
-  background: #fff; border-top: 1px solid var(--border);
-  box-shadow: 0 -4px 20px rgba(21,84,108,.1);
-  padding: 10px 20px calc(10px + env(safe-area-inset-bottom));
-  display: flex; align-items: center; gap: 14px; justify-content: space-between;
-  transform: translateY(110%); transition: transform .3s var(--ease);
-}
-.sticky-cta.is-visible { transform: none; }
-.sticky-cta-inner {
-  max-width: 1160px; margin: 0 auto; width: 100%;
-  display: flex; align-items: center; gap: 14px; justify-content: space-between;
-}
-.sticky-cta-text { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.5; }
-.sticky-cta-text small { display: block; font-size: 11.5px; color: var(--muted); font-weight: 500; }
-.sticky-cta .btn-cta { padding: 12px 22px; font-size: 14.5px; flex-shrink: 0; min-height: 52px; }
-
-/* ============ 読み込みプログレスバー ============ */
-.page-progress {
-  position: fixed; top: 0; left: 0; height: 3px; width: 0;
-  background: linear-gradient(90deg, var(--primary-line), var(--primary-deep));
-  z-index: 200; transition: width .3s var(--ease), opacity .4s;
-  pointer-events: none;
-}
-
-/* ============ スクロールリビール ============ */
-/* JS無効時は表示済みが初期値（.js-reveal は site.js が付与） */
-.js-reveal [data-reveal] { opacity: 0; transform: translateY(18px); }
-.js-reveal [data-reveal].is-in {
-  opacity: 1; transform: none;
-  transition: opacity .6s var(--ease), transform .6s var(--ease);
-}
-
-/* ============ 吹き出し ============ */
-.chat-bubble { display: flex; gap: 14px; margin: 24px 0; align-items: flex-start; }
-.chat-avatar {
-  width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
-  background: var(--primary-light); display: grid; place-items: center;
-  font-size: 24px; border: 2px solid var(--primary); overflow: hidden;
-}
-.chat-avatar.avatar-2 { background: var(--accent-tint); border-color: var(--accent); }
-.chat-text {
-  background: #fff; border: 1px solid var(--border);
-  padding: 14px 18px; border-radius: 4px 16px 16px 16px;
-  font-size: 14.5px; line-height: 1.8; color: var(--text); flex: 1;
-}
-.chat-name { font-size: 11.5px; color: var(--muted); margin-bottom: 4px; font-weight: 700; }
-.chat-bubble.right { flex-direction: row-reverse; }
-.chat-bubble.right .chat-text {
-  border-radius: 16px 4px 16px 16px; background: var(--primary-light); border-color: var(--primary-line);
-}
-
-/* ============ 記事カード ============ */
-.article-card {
-  background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
-  overflow: hidden; display: flex; flex-direction: column;
-  text-decoration: none; color: inherit;
-  transition: transform .22s var(--ease), box-shadow .22s, border-color .22s;
-}
-.article-card:hover {
-  transform: translateY(-4px); box-shadow: var(--shadow-lg);
-  border-color: var(--primary-line); text-decoration: none;
-}
-.article-card:active { transform: scale(.985); }
-.article-card .thumb { aspect-ratio: 16 / 10; background: var(--primary-light); position: relative; overflow: hidden; }
-.article-card .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease); }
-.article-card:hover .thumb img { transform: scale(1.05); }
-.article-card .tag {
-  position: absolute; top: 10px; left: 10px;
-  background: #fff; color: var(--primary-deep);
-  font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 4px;
-}
-.article-card .body { padding: 16px 18px 20px; flex: 1; display: flex; flex-direction: column; }
-.article-card h3 { font-size: 15.5px; line-height: 1.6; margin-bottom: 8px; }
-.article-card .meta {
-  font-size: 11.5px; color: var(--muted); margin-top: auto;
-  display: flex; gap: 12px; padding-top: 8px;
-}
-
-/* ============ プレースホルダー画像 ============ */
-.ph {
-  width: 100%; height: 100%;
-  background: repeating-linear-gradient(45deg, var(--primary-light), var(--primary-light) 8px, #DDF0F8 8px, #DDF0F8 16px);
-  display: grid; place-items: center; color: var(--primary-deep);
-  font-family: "SF Mono", Consolas, monospace; font-size: 11px;
-  letter-spacing: .05em; text-align: center; padding: 12px;
-}
-.ph.warm { background: repeating-linear-gradient(45deg, #FFF0E5, #FFF0E5 8px, #FFE4D3 8px, #FFE4D3 16px); color: #8E3512; }
-
-/* ============ フッター ============ */
-.site-footer {
-  background: #1B2C38; color: #D3DCE4;
-  padding: 44px 0 0; margin-top: 90px;
-  font-size: 13px; line-height: 1.85;
-}
-.footer-inner {
-  max-width: 1160px; margin: 0 auto; padding: 0 20px 32px;
-  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 36px;
-}
-.footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-.footer-brand .logo-mark { width: 36px; height: 36px; font-size: 17px; border-radius: 10px; }
-.footer-brand span { font-family: "Zen Maru Gothic", sans-serif; font-size: 18px; font-weight: 700; color: #fff; }
-.footer-inner p { font-size: 12.5px; color: #B9C6D0; margin: 0; }
-.footer-inner h4 {
-  color: #fff; font-size: 13.5px; margin: 0 0 14px;
-  padding-bottom: 9px; border-bottom: 2px solid #3E9BBE; display: inline-block;
-}
-.footer-inner ul { list-style: none; padding: 0; margin: 0; }
-.footer-inner li { margin: 0; }
-.footer-inner li a {
-  display: block; color: #D3DCE4; text-decoration: none;
-  font-size: 12.5px; padding: 5px 0; transition: color .15s, padding-left .15s;
-}
-.footer-inner li a:hover { color: #fff; padding-left: 5px; text-decoration: none; }
-
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,.08);
-  padding: 15px 20px; text-align: center; font-size: 11.5px; color: #9DACB8;
-}
-
-/* ============ 比較表 ============ */
-.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 24px 0; }
-.compare-table {
-  width: 100%; min-width: 640px; border-collapse: separate; border-spacing: 0;
-  background: #fff; border-radius: var(--radius); overflow: hidden;
-  border: 1px solid var(--border); font-size: 14px;
-}
-.compare-table th, .compare-table td {
-  padding: 14px 12px; text-align: center;
-  border-bottom: 1px solid var(--border); border-right: 1px solid var(--border);
-}
-.compare-table th:last-child, .compare-table td:last-child { border-right: none; }
-.compare-table thead th {
-  background: var(--primary-deep); color: #fff; font-weight: 700; font-size: 13px;
-  position: sticky; top: 0;
-}
-.compare-table tbody tr:last-child td { border-bottom: none; }
-.compare-table tbody th {
-  background: var(--primary-pale); color: var(--text); font-weight: 700;
-  text-align: left; padding-left: 16px; position: sticky; left: 0;
-}
-.compare-table tbody tr:hover td { background: #FAFCFD; }
-.compare-table .highlight { background: #FFF8E3; }
-.table-hint { font-size: 12px; color: var(--muted); margin: -14px 0 22px; }
-
-.stars { color: #B8891F; letter-spacing: 2px; font-size: 15px; }
-.stars .off { color: #CBD3D9; }
-
-/* ============ 注意ボックス ============ */
-.info-box {
-  background: var(--primary-pale); border-left: 4px solid var(--primary);
-  padding: 18px 22px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  margin: 24px 0; font-size: 14.5px;
-}
-.info-box .label {
-  font-weight: 700; color: var(--primary-deep); margin-bottom: 6px;
-  display: flex; align-items: center; gap: 6px;
-}
-.warn-box { background: var(--accent-tint); border-left-color: var(--accent); }
-.warn-box .label { color: #8E3512; }
-
-/* ============ Q&A ============ */
-.qa-item {
-  background: #fff; border: 1px solid var(--border);
-  border-radius: var(--radius); margin-bottom: 12px; overflow: hidden;
-}
-.qa-q {
-  padding: 16px 44px 16px 56px; font-weight: 700; font-size: 15px;
-  position: relative; cursor: pointer; color: var(--text); list-style: none;
-}
-.qa-q::-webkit-details-marker { display: none; }
-.qa-q::before {
-  content: "Q"; position: absolute; left: 18px; top: 15px;
-  width: 28px; height: 28px; background: var(--primary); color: #fff;
-  border-radius: 50%; display: grid; place-items: center;
-  font-family: "Zen Maru Gothic", sans-serif; font-size: 15px; font-weight: 700;
-}
-.qa-q::after {
-  content: ""; position: absolute; right: 20px; top: 24px;
-  width: 9px; height: 9px; border-right: 2px solid var(--primary-deep);
-  border-bottom: 2px solid var(--primary-deep);
-  transform: rotate(45deg); transition: transform .25s var(--ease);
-}
-.qa-item[open] .qa-q::after { transform: rotate(-135deg); }
-.qa-a {
-  padding: 16px 20px 20px 56px; border-top: 1px solid var(--border);
-  background: var(--primary-pale); font-size: 14.5px; color: var(--text-sub); position: relative;
-  animation: qa-open .3s var(--ease);
-}
-@keyframes qa-open { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-.qa-a::before {
-  content: "A"; position: absolute; left: 18px; top: 15px;
-  width: 28px; height: 28px; background: var(--accent); color: #fff;
-  border-radius: 50%; display: grid; place-items: center;
-  font-family: "Zen Maru Gothic", sans-serif; font-size: 15px; font-weight: 700;
-}
-
-/* ============ 記事本文 ============ */
-.article-title-block {
-  background: #fff; padding: 32px 40px 24px;
-  border: 1px solid var(--border); border-bottom: none;
-  border-radius: var(--radius) var(--radius) 0 0;
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>不用品回収の相場と安く抑えるコツ｜自治体との違いも比較【2026年最新】 - くらしの整理ナビ</title>
+<meta name="description" content="不用品回収の相場を単品・軽トラ積み放題・部屋丸ごとまで徹底解説。自治体の粗大ごみ回収との違い、悪徳業者を避けるポイント、費用を数千〜数万円下げる7つのコツを、環境省・自治体の公表データをもとにご紹介します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css?v=20260910c">
+<style>
+.article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 40px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 20px;
 }
 .article-title-block .cat-tag {
-  display: inline-block; color: var(--primary-deep);
-  font-size: 13px; font-weight: 700; margin-bottom: 10px;
+  display: inline-block;
+  color: var(--primary-dark);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
-.article-title-block h1 { font-size: 27px; line-height: 1.55; margin-bottom: 12px; }
-.article-meta-line { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 12.5px; color: var(--muted); }
+.article-meta-line {
+  display: flex;
+  gap: 20px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.lead {
+  font-size: 16px;
+  line-height: 1.95;
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+.data-highlight {
+  background: var(--primary-pale);
+  border-radius: 4px;
+  padding: 24px 20px;
+  margin: 24px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  border: 1px solid var(--border);
+}
+.data-cell {
+  text-align: center;
+  border-right: 1px solid var(--border);
+  padding-right: 20px;
+}
+.data-cell:last-child { border-right: none; padding-right: 0; }
+.data-cell .num {
+  font-family: inherit;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  line-height: 1.2;
+}
+.data-cell .unit {
+  font-size: 14px;
+  color: var(--text-sub);
+}
+.data-cell .label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.source-note {
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: -8px;
+  margin-bottom: 20px;
+}
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: sticky;
+  top: 100px;
+  align-self: start;
+}
+.table-wrap { overflow-x: auto; margin: 16px -4px; padding: 0 4px; }
+.article-cta {
+  margin: 32px 0;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, var(--primary-pale) 0%, #fff 100%);
+  border: 2px solid var(--primary);
+  border-radius: 4px;
+}
+.article-cta p { margin-bottom: 12px; font-size: 15px; }
+.column-box {
+  background: var(--primary-pale);
+  border-left: 4px solid var(--primary);
+  padding: 16px 22px;
+  margin: 24px 0;
+  color: var(--text-sub);
+  border-radius: 4px;
+}
+.column-box .clabel {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 6px;
+}
+.column-box p { margin: 0 0 8px; font-size: 14px; }
+@media (max-width: 900px) {
+  .article-layout { grid-template-columns: 1fr; padding: 12px; }
+  .side { position: static; }
+  .data-highlight { grid-template-columns: 1fr; gap: 12px; }
+  .data-cell { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 12px; padding-right: 0; }
+  .data-cell:last-child { border-bottom: none; }
+  .data-cell .num { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+<!--
+  ============================================================
+  【AFFリンク挿入箇所リスト】このページ: 不用品回収の相場
+  ============================================================
+  以下の href="#" 部分をASP発行の計測リンクに差し替えてください。
+  詳細は AFFILIATE_LINKS.md を参照。
 
-.article-main, .article-body {
-  background: #fff; padding: 32px 40px 48px;
-  border: 1px solid var(--border); border-top: none;
-  border-radius: 0 0 var(--radius) var(--radius);
-}
-.article-body h2 {
-  font-size: 24px; border-bottom: 3px solid var(--primary);
-  padding: 0 0 10px; margin: 48px 0 24px;
-}
-.article-body h2:first-child { margin-top: 0; }
-.article-body h3 {
-  font-size: 19px; color: var(--primary-deep);
-  border-bottom: 2px dotted var(--primary-line); padding-bottom: 6px; margin: 36px 0 18px;
-}
-.article-body p { margin: 0 0 18px; font-size: 16.5px; line-height: 1.95; }
-.article-body ul, .article-body ol { padding-left: 22px; margin: 16px 0; }
-.article-body li { margin-bottom: 9px; font-size: 16.5px; line-height: 1.85; }
-.article-body strong {
-  color: #8E3512; background: linear-gradient(transparent 58%, #FFE0C4 58%);
-  font-weight: 700; padding: 0 2px;
-}
-.lead { font-size: 15.5px; line-height: 1.95; margin-bottom: 32px; }
+    * ゴミ屋敷片付け七福神 (id: 777fukujin) — サイドバー上位, 追従バー
+    * 遺品の整理屋さん (id: ihinnoseiriyasan) — サイドバー
+    * ライフリセット (id: liferesetro) — サイドバー
+  ============================================================
+-->
 
-.article-body .toc {
-  background: var(--primary-pale); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 20px 24px; margin: 24px 0 40px;
-}
-.article-body .toc-title {
-  font-weight: 700; color: var(--primary-deep); margin-bottom: 12px;
-  font-size: 14.5px; display: flex; align-items: center; gap: 6px;
-}
-.article-body .toc ol { padding-left: 20px; margin: 0; font-size: 14.5px; line-height: 2; }
-.article-body .toc a { color: var(--text); text-decoration: none; font-weight: 500; }
-.article-body .toc a:hover { color: var(--primary-deep); text-decoration: underline; }
+<header class="site-header" data-screen-label="Header">
+  <div class="header-top">
+    <div class="header-top-inner">
+      <span class="tagline">遺品整理・不用品回収・ハウスクリーニングの料金と対応エリアを比較</span>
+      <time class="updated" data-today="最終確認："></time>
+    </div>
+  </div>
 
-.author-box {
-  display: flex; gap: 14px; align-items: center;
-  background: var(--primary-pale); border-radius: var(--radius);
-  padding: 14px 18px; margin: 24px 0 30px; font-size: 13px;
-}
-.author-box .ava {
-  width: 48px; height: 48px; border-radius: 50%;
-  background: var(--primary); color: #fff; display: grid; place-items: center;
-  font-weight: 700; font-size: 20px; flex-shrink: 0;
-}
-.author-box .name { font-weight: 700; }
-.author-box .desc { color: var(--muted); font-size: 12.5px; }
+  <div class="header-inner">
+    <a href="/" class="site-logo">
+      <span class="logo-mark">整</span>
+      <span class="logo-text">
+        <span class="logo-name">くらしの整理ナビ</span>
+        <span class="logo-sub">KURASHI SEIRI NAVI</span>
+      </span>
+    </a>
 
-/* ============ サイドバー ============ */
-aside.side .side-block {
-  background: #fff; border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 20px 22px; margin-bottom: 20px;
-}
-aside.side .side-block h4 {
-  font-size: 15px; color: var(--text); font-weight: 700;
-  padding-bottom: 10px; margin: 0 0 14px; border-bottom: 2px solid var(--primary);
-}
-aside.side .side-block ul { list-style: none; padding: 0; margin: 0; }
-aside.side .side-block li { font-size: 14px; line-height: 1.8; margin-bottom: 8px; }
-aside.side .side-rank-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 12px 0; border-bottom: 1px dotted var(--border);
-  text-decoration: none; color: var(--text);
-}
-aside.side .side-rank-item:last-child { border-bottom: none; }
-aside.side .side-rank-item .n { font-size: 14px; font-weight: 700; color: var(--text); }
-aside.side .side-rank-item .s { font-size: 12.5px; color: var(--muted); }
-aside.side .side-rank-num {
-  width: 24px; height: 24px; flex: 0 0 auto;
-  display: inline-flex; align-items: center; justify-content: center;
-  background: var(--primary); color: #fff; border-radius: 50%;
-  font-size: 12px; font-weight: 700;
-}
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      <a href="/">ホーム</a>
+      <a href="/rankings/ihin.html">遺品整理・不用品回収</a>
+      <a href="/rankings/cleaning.html">ハウスクリーニング</a>
+      <a href="/articles/ihin-price.html" class="active">料金相場</a>
+      <a href="/articles/akutoku.html">お悩み解決</a>
+    </nav>
 
-/* ============ アフィリエイトリンク（企業名） ============ */
-/* HTMLには data-aff="企業ID" だけ書く。URLは affiliates.js が注入 */
-a[data-aff] {
-  color: var(--primary-deep); font-weight: 700;
-  text-decoration: underline; text-decoration-color: var(--primary-line);
-  text-decoration-thickness: 2px; text-underline-offset: 3px;
-  transition: color .15s, text-decoration-color .15s;
-}
-a[data-aff]:hover { color: #0E3D50; text-decoration-color: var(--accent); }
-a[data-aff][data-aff-external]::after {
-  content: "↗"; font-size: .78em; margin-left: 3px;
-  color: var(--muted); text-decoration: none; display: inline-block;
-}
-/* 未設定（URL空）は内部レビューへ。見た目は同じで事故らない */
+    <a href="#estimate" class="header-cta" data-estimate>無料で見積もり<span class="arrow">→</span></a>
 
-/* ============ レスポンシブ ============ */
-@media (max-width: 1024px) {
-  .site-nav { gap: 16px; }
-  .site-nav a { font-size: 13px; }
-  .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
-  .article-title-block, .article-main, .article-body { padding-left: 28px; padding-right: 28px; }
-}
+    <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="navDrawer">
+      <i></i><i></i><i></i>
+    </button>
+  </div>
+</header>
 
-@media (max-width: 768px) {
-  body { font-size: 16px; padding-bottom: 88px; }
-  .header-inner { padding: 10px 16px; gap: 10px; }
-  .header-top-inner { padding: 6px 16px; justify-content: center; font-size: 11.5px; }
-  .header-top-inner .tagline { display: none; }
-  .logo-mark { width: 36px; height: 36px; font-size: 16px; border-radius: 9px; }
-  .logo-name { font-size: 17px; }
-  .logo-sub { display: none; }
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-panel">
+    <div class="nav-drawer-head">
+      <span class="t">カテゴリを選ぶ</span>
+      <button class="nav-drawer-close" type="button" aria-label="メニューを閉じる">×</button>
+    </div>
+    <a href="/" class="d-item">ホーム<span class="chev">›</span></a>
+    <a href="/rankings/ihin.html" class="d-item">遺品整理・不用品回収<span class="chev">›</span></a>
+    <a href="/rankings/cleaning.html" class="d-item">ハウスクリーニング<span class="chev">›</span></a>
+    <a href="/articles/ihin-price.html" class="d-item">料金相場<span class="chev">›</span></a>
+    <a href="/articles/akutoku.html" class="d-item">悪徳業者の見分け方<span class="chev">›</span></a>
+    <a href="/articles/seizen.html" class="d-item">生前整理<span class="chev">›</span></a>
+    <a href="#estimate" class="btn-cta full drawer-cta pulse" data-estimate>無料で見積もり<span class="arrow">→</span></a>
+  </div>
+</div>
 
-  .site-nav { display: none; }
-  .header-cta { display: none; }
-  .nav-toggle { display: grid; }
+<div class="breadcrumb">
+  <a href="../index.html">HOME</a>
+  <span class="sep">›</span>
+  <a href="#">料金相場</a>
+  <span class="sep">›</span>
+  <span>不用品回収の相場</span>
+</div>
 
-  /* ドロワー */
-  .nav-drawer {
-    display: block; position: fixed; inset: 0; z-index: 100;
-    background: rgba(20,35,48,.5); opacity: 0; pointer-events: none;
-    transition: opacity .25s;
-  }
-  .nav-drawer.is-open { opacity: 1; pointer-events: auto; }
-  .nav-drawer-panel {
-    position: absolute; top: 0; right: 0; bottom: 0;
-    width: min(86vw, 340px); background: #fff;
-    padding: 16px 18px calc(24px + env(safe-area-inset-bottom));
-    overflow-y: auto; transform: translateX(100%);
-    transition: transform .28s var(--ease);
-    box-shadow: -8px 0 30px rgba(20,35,48,.2);
-  }
-  .nav-drawer.is-open .nav-drawer-panel { transform: none; }
-  .nav-drawer-head {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-bottom: 12px; border-bottom: 1px solid var(--border);
-  }
-  .nav-drawer-head .t { font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(--muted); }
-  .nav-drawer-close {
-    width: 44px; height: 44px; border: 1px solid var(--border-strong);
-    border-radius: 10px; background: #fff; color: var(--primary-deep);
-    font-size: 20px; cursor: pointer; display: grid; place-items: center;
-  }
-  .nav-drawer a.d-item {
-    display: flex; align-items: center; justify-content: space-between;
-    min-height: 52px; padding: 0 4px; border-bottom: 1px solid var(--border);
-    text-decoration: none; color: var(--text); font-size: 14.5px; font-weight: 700;
-  }
-  .nav-drawer a.d-item::before {
-    content: ""; width: 3px; height: 16px; background: var(--primary-line);
-    border-radius: 2px; margin-right: 10px;
-  }
-  .nav-drawer a.d-item span.chev { color: var(--primary); font-size: 16px; margin-left: auto; }
-  .nav-drawer .drawer-cta {
-    margin-top: 16px; width: 100%; min-height: 52px; font-size: 15px;
-  }
-  body.drawer-open { overflow: hidden; }
+<div class="article-layout" data-screen-label="記事：不用品回収の相場">
+  <div>
+    <div class="article-title-block">
+      <span class="cat-tag">料金相場／不用品回収</span>
+      <h1>不用品回収の相場と安く抑えるコツ｜自治体との違いも比較【2026年最新】</h1>
+      <div class="article-meta-line">
+        <span>公開：2026年8月25日</span>
+        <span>更新：2026年9月8日</span>
+        <span>閲覧数：6,742</span>
+      </div>
+    </div>
 
-  .section-head { margin: 44px 0 24px; }
-  .section-head h2 { font-size: 22px; }
-  .article-title-block { padding: 20px 18px 16px; border-radius: var(--radius-sm) var(--radius-sm) 0 0; }
-  .article-title-block h1 { font-size: 21px; }
-  .article-main, .article-body { padding: 20px 18px 36px; }
-  .article-body h2 { font-size: 20px; margin: 36px 0 18px; }
-  .article-body h3 { font-size: 17px; margin: 28px 0 14px; }
-  .article-body p, .article-body li { font-size: 16px; }
-  .footer-inner { padding-left: 18px; padding-right: 18px; }
-  .site-footer { margin-top: 60px; }
+    <div class="article-main article-body">
 
-  .sticky-cta { padding: 8px 14px calc(8px + env(safe-area-inset-bottom)); }
-  .sticky-cta-text small { display: none; }
-  .sticky-cta-text { font-size: 12.5px; }
+      <div class="author-box">
+        <div class="ava">田</div>
+        <div>
+          <div class="name">監修：田中 みどり（遺品整理士 上級認定）</div>
+          <div class="desc">遺品整理士歴12年／500件以上の現場を担当／一般社団法人 遺品整理士認定協会 認定講師</div>
+        </div>
+      </div>
 
-  .chat-avatar { width: 46px; height: 46px; font-size: 20px; }
-  .qa-q { padding: 15px 40px 15px 52px; font-size: 14.5px; }
-  .qa-a { padding: 14px 18px 18px 52px; }
-}
+      <p class="lead">引越しや大掃除、実家の片付けで一気に出た不用品をどう処分するか──「自治体の粗大ごみか、業者に頼むか、どちらが得なのか」で迷う方は多いはずです。この記事では、環境省の廃棄物処理データと、業界大手の公表料金をもとに、不用品回収の相場・自治体との違い・費用を数千〜数万円下げる具体的なコツをまとめました。</p>
 
-@media (max-width: 480px) {
-  .footer-inner { grid-template-columns: 1fr; gap: 22px; }
-  .logo-name { font-size: 16px; }
-  .section-head h2 { font-size: 20px; }
-  .article-body p, .article-body li { font-size: 15.5px; line-height: 1.9; }
-  .rank-badge { width: 46px; height: 46px; font-size: 16px; }
-  .sticky-cta-text { display: none; }
-  .sticky-cta .btn-cta { width: 100%; }
-  .btn-cta.large { padding: 16px 24px; font-size: 15.5px; }
-}
+      <div class="data-highlight">
+        <div class="data-cell">
+          <div class="num">3,000<span class="unit">円〜</span></div>
+          <div class="label">単品回収の相場（1点あたり）</div>
+        </div>
+        <div class="data-cell">
+          <div class="num">15,000<span class="unit">円〜</span></div>
+          <div class="label">軽トラック積み放題プラン</div>
+        </div>
+        <div class="data-cell">
+          <div class="num">3〜5<span class="unit">倍</span></div>
+          <div class="label">自治体と業者の料金差（品目次第）</div>
+        </div>
+      </div>
+      <p class="source-note">出典：業界大手10社の公式サイト公表料金（2026年8月時点）、環境省「一般廃棄物処理実態調査」および主要自治体の粗大ごみ処理手数料表をもとに編集部作成</p>
 
-/* ============ アクセシビリティ: 動きを減らす設定を尊重 ============ */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: .001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .001ms !important;
-  }
-  .js-reveal [data-reveal] { opacity: 1 !important; transform: none !important; }
-}
+      <div class="toc">
+        <div class="toc-title">目次</div>
+        <ol>
+          <li><a href="#basic">不用品回収の料金体系【全体像】</a></li>
+          <li><a href="#tanpin">単品回収の料金相場【品目別】</a></li>
+          <li><a href="#plan">軽トラ・2t車の積み放題プラン相場</a></li>
+          <li><a href="#jichitai">自治体の粗大ごみ回収との違いを比較</a></li>
+          <li><a href="#choice">どちらを選ぶべきか？状況別の判断基準</a></li>
+          <li><a href="#save">費用を安く抑える7つのコツ</a></li>
+          <li><a href="#kaden">家電リサイクル法対象品の注意点</a></li>
+          <li><a href="#akutoku">悪徳業者を避けるためのポイント</a></li>
+          <li><a href="#faq">よくある質問</a></li>
+          <li><a href="#summary">まとめ：品目と量で使い分けるのが賢い</a></li>
+        </ol>
+      </div>
 
-/* ============ 印刷 ============ */
-@media print {
-  .site-header, .sticky-cta, .nav-drawer, .page-progress, .btn-cta { display: none !important; }
-  body { padding-bottom: 0; background: #fff; }
-}
+      <h2 id="basic">不用品回収の料金体系【全体像】</h2>
+
+      <p>不用品回収業者の料金は、大きく分けて<strong>3つの体系</strong>があります。それぞれに向いているケースが異なるため、自分の状況にどれが合うかを最初に整理しましょう。</p>
+
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>料金体系</th>
+              <th>料金の目安</th>
+              <th>向いているケース</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th>単品回収</th><td>1,000〜30,000円／点</td><td>不用品が1〜3点だけ</td></tr>
+            <tr><th>積み放題プラン</th><td>15,000〜80,000円／回</td><td>不用品が10点以上、部屋単位</td></tr>
+            <tr><th>部屋丸ごとパック</th><td>40,000〜300,000円</td><td>引越し・実家片付け・遺品整理</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>単品でも数点なら業者に依頼するより<strong>自治体の粗大ごみが安い</strong>ケースが大半です。一方で、量が多い・大型家電・階段搬出などが絡むと、業者のプラン料金の方が結果的に安く済むことも珍しくありません。</p>
+
+      <h2 id="tanpin">単品回収の料金相場【品目別】</h2>
+
+      <p>業界大手の公表料金をまとめると、単品回収の相場はおよそ以下のとおりです。地域や業者、階数（階段作業の有無）によって上下します。</p>
+
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>品目</th>
+              <th>業者相場</th>
+              <th>自治体粗大ごみ（参考）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th>ソファ（2〜3人掛け）</th><td>3,000〜8,000円</td><td>1,000〜2,000円</td></tr>
+            <tr><th>ベッド・マットレス</th><td>4,000〜10,000円</td><td>1,500〜3,000円</td></tr>
+            <tr><th>タンス・食器棚</th><td>3,000〜8,000円</td><td>800〜2,000円</td></tr>
+            <tr><th>洗濯機</th><td>5,000〜10,000円</td><td>家電リサイクル対象（別途料金）</td></tr>
+            <tr><th>冷蔵庫（大型）</th><td>7,000〜15,000円</td><td>家電リサイクル対象（別途料金）</td></tr>
+            <tr><th>テレビ</th><td>4,000〜8,000円</td><td>家電リサイクル対象（別途料金）</td></tr>
+            <tr><th>エアコン（取外し含む）</th><td>8,000〜18,000円</td><td>家電リサイクル対象（別途料金）</td></tr>
+            <tr><th>電子レンジ・炊飯器</th><td>1,500〜3,500円</td><td>200〜500円</td></tr>
+            <tr><th>自転車</th><td>2,000〜4,000円</td><td>500〜1,000円</td></tr>
+            <tr><th>ピアノ（アップライト）</th><td>15,000〜50,000円</td><td>対象外（専門業者へ）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="source-note">出典：業界大手10社の公式サイト公表料金、および東京23区・大阪市・名古屋市・横浜市の粗大ごみ処理手数料表を編集部にて集計（2026年8月時点）</p>
+
+      <div class="column-box">
+        <div class="clabel">豆知識</div>
+        <p>自治体の粗大ごみ回収は基本的に<strong>安い</strong>のですが、大きな家電（冷蔵庫・洗濯機・テレビ・エアコン）は<strong>家電リサイクル法の対象</strong>となり、自治体で回収してもらえないケースがほとんどです。この場合は購入店に引き取ってもらうか、指定引取場所に自分で持ち込むか、業者に依頼することになります。</p>
+      </div>
+
+      <h2 id="plan">軽トラ・2t車の積み放題プラン相場</h2>
+
+      <p>不用品が10点以上、または大型家具が複数ある場合は、<strong>積み放題プラン</strong>が便利です。トラックのサイズごとの相場は以下のとおりです。</p>
+
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>プラン</th>
+              <th>料金相場</th>
+              <th>積載目安</th>
+              <th>間取り目安</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th>軽トラック積み放題</th><td>15,000〜30,000円</td><td>不用品10〜20点</td><td>1R・1K</td></tr>
+            <tr><th>1.5tトラック積み放題</th><td>30,000〜50,000円</td><td>不用品20〜35点</td><td>1DK・1LDK</td></tr>
+            <tr><th>2tトラック積み放題</th><td>50,000〜80,000円</td><td>不用品35〜60点</td><td>2DK・2LDK</td></tr>
+            <tr><th>2tロング積み放題</th><td>80,000〜120,000円</td><td>不用品60〜80点</td><td>3DK・3LDK</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>「積み放題」と言っても、<strong>プランに含まれない品目</strong>があることには注意が必要です。とくに家電リサイクル対象品、金庫、ピアノ、消火器、バイクなどは別料金または対象外となる業者が多いので、見積もりの段階で必ず確認してください。</p>
+
+      <h2 id="jichitai">自治体の粗大ごみ回収との違いを比較</h2>
+
+      <p>「自治体と業者、結局どちらが得なの？」──これを整理するために、両者を8つの観点で比較します。</p>
+
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>比較項目</th>
+              <th>自治体の粗大ごみ</th>
+              <th>不用品回収業者</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th>料金</th><td>◎ 安い（1点数百円〜）</td><td>△ 相対的に高い</td></tr>
+            <tr><th>回収スピード</th><td>△ 予約から1〜4週間</td><td>◎ 最短即日〜数日</td></tr>
+            <tr><th>搬出</th><td>× 自分で指定場所まで運ぶ</td><td>◎ 部屋の中から搬出</td></tr>
+            <tr><th>対応品目</th><td>△ 家電リサイクル法対象品は不可</td><td>◎ ほぼ全て対応</td></tr>
+            <tr><th>回収日の柔軟性</th><td>× 平日日中が中心</td><td>◎ 土日・夜間対応の業者も</td></tr>
+            <tr><th>買取</th><td>× 一切なし</td><td>◎ 状態が良ければ買取相殺</td></tr>
+            <tr><th>まとめて処分</th><td>△ 数に上限がある自治体も</td><td>◎ 積み放題プランで一括</td></tr>
+            <tr><th>環境負荷</th><td>◎ 適正処理・リサイクル</td><td>△ 業者選定で大きく変わる</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="choice">どちらを選ぶべきか？状況別の判断基準</h2>
+
+      <p>比較表だけだと迷うので、状況別に<strong>どちらが向いているか</strong>をご提案します。</p>
+
+      <h3>自治体の粗大ごみが向いているケース</h3>
+      <ul>
+        <li>不用品が<strong>1〜3点程度</strong>と少ない</li>
+        <li><strong>階段作業が不要</strong>で、指定場所まで自分で運べる</li>
+        <li>回収まで<strong>1週間以上待てる</strong>時間的余裕がある</li>
+        <li>費用をとにかく安く抑えたい</li>
+      </ul>
+
+      <h3>不用品回収業者が向いているケース</h3>
+      <ul>
+        <li>不用品が<strong>10点以上</strong>、または部屋単位で処分したい</li>
+        <li><strong>大型家電（冷蔵庫・洗濯機など）</strong>を含む</li>
+        <li>引越し・退去期日が迫っていて<strong>すぐに処分</strong>したい</li>
+        <li>階段のみ・エレベーターなし・高齢で搬出が難しい</li>
+        <li>買取可能なブランド家具や骨董品がある</li>
+      </ul>
+
+      <div class="column-box">
+        <div class="clabel">現場のヒント</div>
+        <p>実は<strong>「自治体と業者を併用」</strong>するのが最もお得なケースも多くあります。運びやすい小型品は自治体で、階段搬出が必要な大型家具は業者で──と分けることで、費用を2〜3割節約できます。</p>
+      </div>
+
+      <h2 id="save">費用を安く抑える7つのコツ</h2>
+
+      <h3>コツ①：3社以上から相見積もりを取る</h3>
+      <p>もっとも効果的な節約術です。同じ物量でも、業者によって<strong>1〜3万円の差</strong>が出ることは珍しくありません。電話一本、あるいはWebフォームで概算だけでも取れる業者が多いので、面倒でも比較しましょう。</p>
+
+      <h3>コツ②：買取サービスのある業者を選ぶ</h3>
+      <p>10年以内の家電、ブランド家具、貴金属、骨董品などは<strong>その場で買い取ってくれる業者</strong>を選ぶと、処分費から買取額が差し引かれます。1万円以上安くなることも珍しくありません。</p>
+
+      <h3>コツ③：自分で運べるものは自治体を利用する</h3>
+      <p>小型家具や本、衣類などは自治体の粗大ごみ・可燃/不燃ごみで処分すれば、業者の見積もり金額を大きく下げられます。</p>
+
+      <h3>コツ④：繁忙期を避ける</h3>
+      <p>引越しシーズンの<strong>3月〜5月と9月〜11月</strong>は業者も自治体も混雑し、料金が上がりやすい時期です。可能なら1月・6月・7月・12月に依頼すると、通常料金かつ日程調整もしやすくなります。</p>
+
+      <h3>コツ⑤：Web申込みキャンペーンを活用する</h3>
+      <p>多くの業者が公式サイトの申込みで<strong>5〜15%割引</strong>を実施しています。電話で依頼する前に、Webサイトの割引情報を必ずチェックしましょう。</p>
+
+      <h3>コツ⑥：階段搬出・エレベーターの有無を事前に伝える</h3>
+      <p>「聞かれなかったから言わなかった」ケースで当日追加請求されるのを防ぐため、<strong>物件の状況を最初に伝える</strong>のが結果的に安くなります。まっとうな業者は事前に把握して料金に組み込みます。</p>
+
+      <h3>コツ⑦：積み放題プランは物量の見極めが重要</h3>
+      <p>「軽トラで足りると思ったら1.5tになった」というケースが最も費用オーバーの原因になります。<strong>物量にやや余裕を持たせたプランを選ぶ</strong>方が、当日の追加請求リスクを避けられます。</p>
+
+      <h2 id="kaden">家電リサイクル法対象品の注意点</h2>
+
+      <p>家電リサイクル法によって、以下の4品目は<strong>自治体では回収してもらえません</strong>。処分にはリサイクル料金＋収集運搬料金が別途必要です。</p>
+
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>品目</th>
+              <th>リサイクル料金の目安</th>
+              <th>収集運搬料金の目安</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th>エアコン</th><td>990〜2,000円</td><td>2,000〜5,000円</td></tr>
+            <tr><th>テレビ（15型以下）</th><td>1,320〜3,100円</td><td>1,500〜4,000円</td></tr>
+            <tr><th>テレビ（16型以上）</th><td>2,420〜3,700円</td><td>1,500〜4,000円</td></tr>
+            <tr><th>冷蔵庫（170L以下）</th><td>3,740〜5,600円</td><td>2,500〜5,000円</td></tr>
+            <tr><th>冷蔵庫（171L以上）</th><td>4,730〜6,200円</td><td>2,500〜5,000円</td></tr>
+            <tr><th>洗濯機・衣類乾燥機</th><td>2,530〜3,300円</td><td>2,000〜4,500円</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="source-note">出典：一般財団法人 家電製品協会「家電リサイクル料金一覧表」、および主要家電量販店の収集運搬料金表（2026年8月時点）</p>
+
+      <p>処分方法は主に4つあります。</p>
+      <ol>
+        <li>買い替え時に<strong>販売店に引き取ってもらう</strong>（もっとも一般的）</li>
+        <li>過去の購入店に<strong>引取依頼</strong>する</li>
+        <li>自治体が案内する<strong>指定引取場所に自分で持ち込む</strong>（収集運搬料が不要）</li>
+        <li>不用品回収業者に依頼する（<strong>許可を持つ業者に限る</strong>）</li>
+      </ol>
+
+      <div class="column-box">
+        <div class="clabel">注意</div>
+        <p>「無料回収」を謳って街を巡回する業者に家電を渡すのは危険です。家電リサイクル法違反の可能性が高く、<strong>不法投棄や不適正な海外輸出</strong>につながるケースが国民生活センターにも多く報告されています。必ず一般廃棄物収集運搬業の許可を持つ業者に依頼してください。</p>
+      </div>
+
+      <h2 id="akutoku">悪徳業者を避けるためのポイント</h2>
+
+      <p>不用品回収業界は許可がない業者による違法回収・不当請求が後を絶ちません。信頼できる業者を見分けるチェック項目は以下のとおりです。</p>
+
+      <ul>
+        <li><strong>一般廃棄物収集運搬業</strong>または<strong>古物商許可</strong>の許可番号を公式サイトに明記している</li>
+        <li>訪問見積もりに<strong>無料で対応</strong>してくれる</li>
+        <li>見積書に<strong>作業費・処分費・車両費などの内訳</strong>が記載されている</li>
+        <li>「無料回収」を謳っていない（無料回収は違法の可能性）</li>
+        <li>契約書を交わし、<strong>クーリング・オフ制度</strong>にも対応</li>
+      </ul>
+
+      <p>より詳しい悪徳業者の見分け方は、以下の記事で解説しています。</p>
+
+      <div class="article-cta">
+        <p>不用品回収でも遺品整理でも、業者選びは同じ視点でチェックできます。国民生活センターの相談事例を交えた見分け方の完全ガイドを併せてご覧ください。</p>
+        <a href="../articles/akutoku.html" class="btn-cta">悪徳業者を見分ける7つのポイント<span class="arrow">→</span></a>
+        <a href="../rankings/ihin.html" class="btn-secondary" style="margin-left:8px;">おすすめ業者ランキング</a>
+      </div>
+
+      <h2 id="faq">よくある質問</h2>
+
+      <div class="qa-item">
+        <div class="qa-q">見積もりだけ依頼して断ってもいいですか？</div>
+        <div class="qa-a">はい、まっとうな業者であれば見積もり後のキャンセルは無料です。「見積もり無料・キャンセル無料」を公式サイトに明記していない業者は避けましょう。</div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">当日、見積もりより高額を請求されました。どうすればいいですか？</div>
+        <div class="qa-a">まず<strong>その場で追加払いに応じない</strong>ことが大切です。契約書に記載のない追加請求は、消費者ホットライン<strong>188</strong>で相談できます。訪問販売として契約した場合、契約書面を受け取ってから8日以内であればクーリング・オフが適用できるケースもあります。</div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">「無料回収」のトラックに家電を渡してしまいました…</div>
+        <div class="qa-a">無料を謳う巡回業者は多くが<strong>一般廃棄物収集運搬業の許可を持たない違法業者</strong>で、不法投棄や有害物質を含む部品の海外流出などにつながっている例が報告されています。もし引き渡してしまった場合は、業者の車両ナンバー・特徴を控えて、お住まいの自治体の環境事業所に相談してください。</div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">粗大ごみに出した家具を業者に有料で買い取ってもらうことはできますか？</div>
+        <div class="qa-a">状態や年式次第で可能です。ブランド家具、10年以内の家電、状態のよい木製タンスなどは<strong>買取＋処分をワンストップで対応</strong>してくれる業者に相談すると、処分費と相殺できることがあります。</div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">積み放題プランで「載せきれなかった」場合はどうなりますか？</div>
+        <div class="qa-a">通常は<strong>その場でワンサイズ上のプランに切り替え</strong>できますが、業者によっては別途料金がかかります。あらかじめ物量にやや余裕を持たせたプランを選ぶ方が、結果的に安く済むケースが多いです。</div>
+      </div>
+
+      <h2 id="summary">まとめ：品目と量で使い分けるのが賢い</h2>
+
+      <p>不用品回収は「業者一択」でも「自治体一択」でもなく、<strong>品目と量に応じて使い分ける</strong>のが最も賢い方法です。</p>
+
+      <ul>
+        <li>不用品が数点なら → <strong>自治体の粗大ごみ</strong></li>
+        <li>大型家電を含むなら → <strong>販売店の引取または業者</strong></li>
+        <li>部屋単位・引越し前の一括処分なら → <strong>積み放題プラン</strong></li>
+        <li>時間がなく即日対応が必要なら → <strong>不用品回収業者</strong></li>
+      </ul>
+
+      <p>迷ったときは、無料見積もりを2〜3社取ってから判断するのが失敗しないコツです。相見積もりだけで数千〜数万円下がることも珍しくありません。</p>
+
+      <div class="article-cta">
+        <p>くらしの整理ナビでは、不用品回収・遺品整理の両方に対応する信頼できる業者を、公表情報をもとに整理してご紹介しています。まずは見積もりを取って比較してみてください。</p>
+        <a href="../rankings/ihin.html" class="btn-cta">業者ランキングを見る<span class="arrow">→</span></a>
+        <a href="../reviews/ihinnoseiriyasan.html" class="btn-secondary" style="margin-left:8px;">1位業者の詳細</a>
+      </div>
+
+      <p style="font-size:12px; color:var(--muted); border-top:1px dotted var(--border); padding-top:16px; margin-top:32px;">※料金相場データは、業界大手10社の公式サイト公表料金、環境省「一般廃棄物処理実態調査」、一般財団法人 家電製品協会「家電リサイクル料金一覧表」、および主要4自治体（東京23区・大阪市・名古屋市・横浜市）の粗大ごみ処理手数料表をもとに編集部が集計したものです（2026年8月時点）。<br>※本記事にはアフィリエイトリンクが含まれています。</p>
+
+    </div>
+  </div>
+
+  <aside class="side">
+    <div class="side-block">
+      <h4>この記事の要点</h4>
+      <ul style="padding-left: 18px; margin: 0;">
+        <li>単品は自治体が安い（数百円〜）</li>
+        <li>10点以上は積み放題プランがお得</li>
+        <li>大型家電はリサイクル料金が別途必要</li>
+        <li>「無料回収」の巡回業者は違法の可能性</li>
+        <li>相見積もりで数千〜数万円節約</li>
+      </ul>
+    </div>
+
+    <div class="side-block">
+      <h4>業者ランキング</h4>
+      <a href="../reviews/ihinnoseiriyasan.html" class="side-rank-item">
+        <div class="side-rank-num">1</div>
+        <div><div class="n">遺品の整理屋さん</div><div class="s">15,000円〜</div></div>
+      </a>
+      <a href="../rankings/ihin.html" class="side-rank-item">
+        <div class="side-rank-num">2</div>
+        <div><div class="n">みんなの遺品整理</div><div class="s">17,000円〜</div></div>
+      </a>
+      <a href="../rankings/ihin.html" class="side-rank-item">
+        <div class="side-rank-num">3</div>
+        <div><div class="n">ゴミ屋敷片付け七福神</div><div class="s">20,000円〜（要問合せ）</div></div>
+      </a>
+      <a href="../rankings/ihin.html" class="side-rank-item">
+        <div class="side-rank-num">4</div>
+        <div><div class="n">EMEAO</div><div class="s">要見積</div></div>
+      </a>
+      <a href="../rankings/ihin.html" class="side-rank-item">
+        <div class="side-rank-num">5</div>
+        <div><div class="n">遺品整理110番</div><div class="s">要問合せ</div></div>
+      </a>
+    </div>
+
+    <div class="side-block">
+      <h4>関連記事</h4>
+      <a href="../articles/ihin-price.html" class="side-rank-item" style="grid-template-columns:1fr;"><div class="n">遺品整理の料金相場は？間取り別に解説</div></a>
+      <a href="../articles/akutoku.html" class="side-rank-item" style="grid-template-columns:1fr;"><div class="n">悪徳業者を見分ける7つのポイント</div></a>
+      <a href="../articles/seizen.html" class="side-rank-item" style="grid-template-columns:1fr;"><div class="n">50代から始める生前整理のはじめ方</div></a>
+      <a href="#" class="side-rank-item" style="grid-template-columns:1fr;"><div class="n">ゴミ屋敷の片付け費用まとめ</div></a>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <span class="logo-mark">整</span>
+        <span>くらしの整理ナビ</span>
+      </div>
+      <p>遺品整理・生前整理・不用品回収・ハウスクリーニングの料金と対応エリアを、各社公式サイトの公表情報をもとに整理して掲載しています。</p>
+    </div>
+    <div>
+      <h4>比較する</h4>
+      <ul>
+        <li><a href="/rankings/ihin.html">遺品整理・不用品回収</a></li>
+        <li><a href="/rankings/cleaning.html">ハウスクリーニング</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>お役立ち情報</h4>
+      <ul>
+        <li><a href="/articles/ihin-price.html">遺品整理の料金相場</a></li>
+        <li><a href="/articles/huyouhin.html">不用品回収の相場</a></li>
+        <li><a href="/articles/akutoku.html">悪徳業者の見分け方</a></li>
+        <li><a href="/articles/seizen.html">50代からの生前整理</a></li>
+        <li><a href="/articles/gomiyashiki.html">ゴミ屋敷の片付け費用</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>サイト情報</h4>
+      <ul>
+        <li><a href="/about.html">運営者情報</a></li>
+        <li><a href="/sitemap.html">サイトマップ</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">© 2026 くらしの整理ナビ All Rights Reserved. / 本サイトはアフィリエイトプログラムに参加しています。</div>
+</footer>
+
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text">
+      不用品回収・遺品整理の無料見積もり
+    <small>編集部おすすめ「遺品の整理屋さん」</small>
+    </div>
+    <a href="#estimate" class="btn-cta pulse" data-estimate data-aff-pos="sticky">無料見積もり<span class="arrow">→</span></a>
+  </div>
+</div>
+
+<script src="/assets/affiliates.js?v=20260910c"></script>
+<script src="/assets/site.js?v=20260910c" defer></script>
+
+</body>
+</html>

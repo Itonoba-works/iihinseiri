@@ -139,6 +139,29 @@
     });
   }
 
-  function init() { stampDate(); drawer(); onScroll(); reveal(); affiliates(); progress(); }
+  /* ---------- 表の横スクロール枠を自動付与 ---------- */
+  function wrapTables() {
+    Array.prototype.forEach.call(d.querySelectorAll("table"), function (t) {
+      if (t.closest(".table-wrap, .table-scroll")) return;
+      var w = d.createElement("div");
+      w.className = "table-scroll";
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    });
+  }
+
+  /* ---------- 画面を横に押し広げている要素を検出（開発用） ---------- */
+  function overflowCheck() {
+    if (!/[?&]debug/.test(location.search)) return;
+    var w = d.documentElement.clientWidth;
+    Array.prototype.forEach.call(d.querySelectorAll("*"), function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.right > w + 1 || r.left < -1) {
+        console.warn("[overflow]", Math.round(r.left) + "→" + Math.round(r.right), el);
+      }
+    });
+  }
+
+  function init() { stampDate(); drawer(); onScroll(); wrapTables(); reveal(); affiliates(); progress(); overflowCheck(); }
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", init); else init();
 })();
