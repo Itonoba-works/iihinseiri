@@ -155,6 +155,22 @@ img { max-width: 100%; display: block; }
 .header-cta:active { transform: translateY(0) scale(.98); }
 .header-cta.pulse { animation: aff-pulse 2.6s ease-in-out infinite; }
 
+/* CTAがアフィリエイトリンクのとき: 下線を消して白文字を維持 */
+a[data-aff].header-cta,
+a[data-aff].header-cta:link,
+a[data-aff].header-cta:visited,
+a[data-aff].header-cta:hover {
+  color: #fff !important; text-decoration: none !important;
+}
+a[data-aff].header-cta[data-aff-external]::after { color: rgba(255,255,255,.85); }
+
+/* 広告であることの明示（ステマ規制対応） */
+.pr {
+  font-size: 10px; font-weight: 700; letter-spacing: .06em; line-height: 1;
+  background: rgba(255,255,255,.22); color: #fff;
+  padding: 3px 5px; border-radius: 3px; flex: 0 0 auto;
+}
+
 /* --- ハンバーガー / ドロワー --- */
 .nav-toggle {
   display: none; width: 44px; height: 44px; flex: 0 0 auto;

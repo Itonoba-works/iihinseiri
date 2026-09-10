@@ -1,12 +1,21 @@
 ---
 import site from '../data/site.json';
+import companies from '../data/companies.json';
 const { active = '' } = Astro.props;
+
+// 一括見積もりCTAの遷移先を companies.json から解決
+// URLの管理場所は companies.json の該当社の affUrl 1箇所だけ
+const est = companies.find((c) => c.id === site.estimateAffId);
+const estUrl = est && est.affUrl ? est.affUrl : '';
+const estHref = estUrl
+  ? estUrl
+  : (est ? (est.hasReview ? '/reviews/' + est.id + '.html' : '/rankings/' + est.category + '.html#' + est.id) : '/rankings/ihin.html');
 ---
 <header class="site-header" data-screen-label="Header">
   <div class="header-top">
     <div class="header-top-inner">
       <span class="tagline">{site.tagline}</span>
-      <time class="updated" data-today="更新日："></time>
+      <time class="updated" data-today="最終確認："></time>
     </div>
   </div>
 
@@ -26,7 +35,15 @@ const { active = '' } = Astro.props;
       ))}
     </nav>
 
-    <a href="#estimate" class="header-cta pulse" data-estimate>無料で見積もり<span class="arrow">→</span></a>
+    <a
+      href={estHref}
+      class="header-cta pulse"
+      data-aff={est ? est.id : undefined}
+      data-aff-external={estUrl ? true : undefined}
+      data-aff-pos="header"
+      rel={estUrl ? 'sponsored nofollow noopener' : undefined}
+      target={estUrl ? '_blank' : undefined}
+    >{estUrl && <span class="pr">PR</span>}{site.estimateLabel}<span class="arrow">→</span></a>
 
     <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="navDrawer">
       <i></i><i></i><i></i>
@@ -43,6 +60,14 @@ const { active = '' } = Astro.props;
     {site.drawer.map((n) => (
       <a href={n.href} class="d-item">{n.label}<span class="chev">›</span></a>
     ))}
-    <a href="#estimate" class="btn-cta full drawer-cta pulse" data-estimate>無料で見積もり<span class="arrow">→</span></a>
+    <a
+      href={estHref}
+      class="btn-cta full drawer-cta pulse"
+      data-aff={est ? est.id : undefined}
+      data-aff-external={estUrl ? true : undefined}
+      data-aff-pos="drawer"
+      rel={estUrl ? 'sponsored nofollow noopener' : undefined}
+      target={estUrl ? '_blank' : undefined}
+    >{estUrl && <span class="pr">PR</span>}{site.estimateLabel}<span class="arrow">→</span></a>
   </div>
 </div>
