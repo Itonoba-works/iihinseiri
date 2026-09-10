@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
 <title>ミガクるの料金・特徴・対応エリアを整理【公式情報ベース】2026年9月最終確認 - くらしの整理ナビ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/styles.css?v=1788861529570">
+<link rel="stylesheet" href="/assets/styles.css?v=20260910">
 <style>
 .article-layout {
   display: grid;
@@ -298,28 +299,54 @@
   ============================================================
 -->
 
-<header class="site-header">
+<header class="site-header" data-screen-label="Header">
   <div class="header-top">
     <div class="header-top-inner">
-      <span>24時間365日 電話受付中 / 全国対応</span>
-      <span>2026年9月8日 更新</span>
+      <span class="tagline">遺品整理・不用品回収・ハウスクリーニングの料金と対応エリアを比較</span>
+      <time class="updated" data-today="最終確認："></time>
     </div>
   </div>
+
   <div class="header-inner">
-    <a href="../index.html" class="site-logo">
+    <a href="/" class="site-logo">
       <span class="logo-mark">整</span>
-      <span>くらしの整理ナビ<span class="logo-sub" style="display:block;">KURASHI SEIRI NAVI</span></span>
+      <span class="logo-text">
+        <span class="logo-name">くらしの整理ナビ</span>
+        <span class="logo-sub">KURASHI SEIRI NAVI</span>
+      </span>
     </a>
-    <nav class="site-nav">
-      <a href="../index.html">ホーム</a>
-      <a href="../rankings/ihin.html">遺品整理・不用品回収</a>
-      <a href="../rankings/cleaning.html" class="active">ハウスクリーニング</a>
-      <a href="../articles/akutoku.html">お悩み解決</a>
-      <a href="../articles/ihin-price.html">料金相場</a>
+
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      <a href="/">ホーム</a>
+      <a href="/rankings/ihin.html">遺品整理・不用品回収</a>
+      <a href="/rankings/cleaning.html" class="active">ハウスクリーニング</a>
+      <a href="/articles/ihin-price.html">料金相場</a>
+      <a href="/articles/akutoku.html">お悩み解決</a>
     </nav>
-    <a href="../rankings/ihin.html" class="header-cta">業者を比較</a>
+
+    <a href="#estimate" class="header-cta" data-estimate>無料で見積もり<span class="arrow">→</span></a>
+
+    <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="navDrawer">
+      <i></i><i></i><i></i>
+    </button>
   </div>
 </header>
+
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-panel">
+    <div class="nav-drawer-head">
+      <span class="t">カテゴリを選ぶ</span>
+      <button class="nav-drawer-close" type="button" aria-label="メニューを閉じる">×</button>
+    </div>
+    <a href="/" class="d-item">ホーム<span class="chev">›</span></a>
+    <a href="/rankings/ihin.html" class="d-item">遺品整理・不用品回収<span class="chev">›</span></a>
+    <a href="/rankings/cleaning.html" class="d-item">ハウスクリーニング<span class="chev">›</span></a>
+    <a href="/articles/ihin-price.html" class="d-item">料金相場<span class="chev">›</span></a>
+    <a href="/articles/akutoku.html" class="d-item">悪徳業者の見分け方<span class="chev">›</span></a>
+    <a href="/articles/seizen.html" class="d-item">生前整理<span class="chev">›</span></a>
+    <a href="#estimate" class="btn-cta full drawer-cta pulse" data-estimate>無料で見積もり<span class="arrow">→</span></a>
+  </div>
+</div>
 
 <div class="breadcrumb">
   <a href="../index.html">HOME</a>
@@ -586,50 +613,53 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div>
-      <div class="site-logo" style="color:white; margin-bottom:14px;">
+      <div class="footer-brand">
         <span class="logo-mark">整</span>
-        <span style="color:white;">くらしの整理ナビ</span>
+        <span>くらしの整理ナビ</span>
       </div>
-      <p style="font-size:12px; line-height:1.9;">遺品整理・生前整理・不用品回収・ハウスクリーニングなど、「くらしの整理」に関する信頼できる情報をお届けするメディアです。</p>
+      <p>遺品整理・生前整理・不用品回収・ハウスクリーニングの料金と対応エリアを、各社公式サイトの公表情報をもとに整理して掲載しています。</p>
     </div>
     <div>
-      <h4>カテゴリ</h4>
+      <h4>比較する</h4>
       <ul>
-        <li><a href="../rankings/ihin.html">遺品整理・不用品回収</a></li>
-        <li><a href="../rankings/cleaning.html">ハウスクリーニング</a></li>
-        <li><a href="../articles/seizen.html">生前整理</a></li>
-        <li><a href="../articles/gomiyashiki.html">ゴミ屋敷片付け</a></li>
+        <li><a href="/rankings/ihin.html">遺品整理・不用品回収</a></li>
+        <li><a href="/rankings/cleaning.html">ハウスクリーニング</a></li>
       </ul>
     </div>
     <div>
       <h4>お役立ち情報</h4>
       <ul>
-        <li><a href="../articles/ihin-price.html">料金相場</a></li>
-        <li><a href="../articles/akutoku.html">悪徳業者の見分け方</a></li>
-        <li><a href="../articles/huyouhin.html">不用品回収の相場</a></li>
+        <li><a href="/articles/ihin-price.html">遺品整理の料金相場</a></li>
+        <li><a href="/articles/huyouhin.html">不用品回収の相場</a></li>
+        <li><a href="/articles/akutoku.html">悪徳業者の見分け方</a></li>
+        <li><a href="/articles/seizen.html">50代からの生前整理</a></li>
+        <li><a href="/articles/gomiyashiki.html">ゴミ屋敷の片付け費用</a></li>
       </ul>
     </div>
     <div>
       <h4>サイト情報</h4>
       <ul>
-        <li><a href="#">運営者情報</a></li>
-        <li><a href="#">プライバシーポリシー</a></li>
-        <li><a href="#">お問い合わせ</a></li>
+        <li><a href="/about.html">運営者情報</a></li>
+        <li><a href="/sitemap.html">サイトマップ</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    © 2026 くらしの整理ナビ All Rights Reserved. / 本サイトはアフィリエイトプログラムに参加しています。
-  </div>
+
+  <div class="footer-bottom">© 2026 くらしの整理ナビ All Rights Reserved. / 本サイトはアフィリエイトプログラムに参加しています。</div>
 </footer>
 
-<div class="sticky-cta">
-  <div class="sticky-cta-text">
-    ミガクる
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text">
+      ミガクる
     <small>公式サイトの公表情報ベース・最終確認 2026年9月8日</small>
+    </div>
+    <a class="btn-cta pulse" data-aff="migakuru" data-aff-pos="sticky">公式サイトを見る<span class="arrow">→</span></a>
   </div>
-  <a href="#" class="btn-cta">公式サイトを見る<span class="arrow">→</span></a>
 </div>
+
+<script src="/assets/affiliates.js?v=20260910"></script>
+<script src="/assets/site.js?v=20260910" defer></script>
 
 </body>
 </html>

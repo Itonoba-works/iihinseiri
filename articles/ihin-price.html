@@ -3,582 +3,500 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>遺品整理業者の料金相場は？間取り別・地域別に徹底解説【2026年最新】 - くらしの整理ナビ</title>
-<meta name="description" content="遺品整理業者の料金相場を、間取り別・地域別・状況別に徹底解説。実際の見積もりデータから算出した相場感と、料金を安く抑える具体的なコツをまとめました。">
-<link rel="stylesheet" href="../assets/styles.css?v=1788861529570">
+<meta name="format-detection" content="telephone=no">
+<title>くらしの整理ナビ｜遺品整理・生前整理・不用品回収の総合まとめサイト</title>
+<meta name="description" content="遺品整理・生前整理・不用品回収・ハウスクリーニングの料金と対応エリアを、各社公式サイトの公表情報をもとに整理して比較しています。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/assets/styles.css?v=20260910">
+
 <style>
-.article-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  gap: 40px;
-  max-width: 1160px;
-  margin: 0 auto;
-  padding: 20px;
+/* ============================================================
+   トップページ専用レイアウト（このページだけで使うもの）
+   旧 .variant-a / .variant-b / .variant-c は全廃し、採用案のみ残しています
+============================================================ */
+
+/* --- ヒーロー --- */
+.hero { background:#fff; border-bottom:1px solid var(--border); padding:44px 0 52px; }
+.hero-inner {
+  max-width:1160px; margin:0 auto; padding:0 20px;
+  display:grid; grid-template-columns:1.15fr 1fr; gap:40px; align-items:center;
+}
+.hero-tag {
+  display:inline-block; color:var(--primary-deep); font-size:13px; font-weight:700;
+  margin-bottom:14px; padding-left:12px; border-left:3px solid var(--primary);
+}
+.hero h1 { font-size:33px; line-height:1.55; margin-bottom:18px; }
+.hero h1 mark { background:transparent; color:var(--primary-deep); padding:0; }
+.hero p { color:var(--text-sub); font-size:15.5px; margin-bottom:24px; line-height:1.95; }
+.hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
+.hero-img { aspect-ratio:4/3; border-radius:var(--radius); overflow:hidden; position:relative; }
+.hero-img .decoration {
+  position:absolute; top:-20px; right:-20px; width:120px; height:120px;
+  background:var(--accent-bright); border-radius:50%; opacity:.18; z-index:1;
 }
 
-.article-title-block {
-  background: white;
-  padding: 32px 40px 24px;
-  border: 1px solid var(--border);
-  border-bottom: none;
-  border-radius: 4px 4px 0 0;
-  margin-bottom: 0;
+/* --- お悩み別に探す --- */
+.topic-list {
+  display:grid; grid-template-columns:repeat(4,1fr); margin:0 0 40px;
+  background:#fff; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
 }
-.article-title-block .cat-tag {
-  display: inline-block;
-  color: var(--primary-dark);
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  font-family: inherit;
+.topic-list-item {
+  padding:20px; border-right:1px solid var(--border); text-decoration:none; color:var(--text);
+  display:block; transition:background .18s, transform .18s var(--ease);
 }
-.article-title-block h1 {
-  font-size: 28px;
-  line-height: 1.6;
-  margin-bottom: 14px;
-  font-weight: 600;
+.topic-list-item:last-child { border-right:none; }
+.topic-list-item:hover { background:var(--primary-pale); text-decoration:none; }
+.topic-list-item:active { transform:scale(.985); }
+.topic-list-item .title { font-size:15.5px; font-weight:700; margin-bottom:4px; color:var(--text); }
+.topic-list-item .desc { font-size:12.5px; color:var(--muted); line-height:1.6; }
+
+/* --- お悩みブロック --- */
+.worries { background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:36px 40px; margin:40px 0; }
+.worries h3 { text-align:center; font-size:20px; margin-bottom:24px; }
+.worry-list { display:grid; grid-template-columns:repeat(2,1fr); gap:12px 28px; }
+.worry-item { display:flex; gap:12px; align-items:flex-start; font-size:15px; color:var(--text); }
+.worry-item::before {
+  content:"✓"; color:var(--primary); font-weight:700; font-size:18px;
+  line-height:1; margin-top:5px; flex:0 0 auto;
 }
-.article-meta-line {
-  display: flex;
-  gap: 20px;
-  font-size: 12px;
-  color: var(--muted);
-  font-family: inherit;
+.worries-note { text-align:center; margin:22px 0 0; font-size:14px; color:var(--text-sub); }
+
+/* --- ランキング（縦リスト） --- */
+.ranking-list { display:flex; flex-direction:column; gap:20px; margin-bottom:28px; }
+.ranking-item {
+  background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:24px;
+  display:grid; grid-template-columns:auto 190px 1fr 190px; gap:24px; align-items:center;
+  position:relative; transition:transform .22s var(--ease), box-shadow .22s, border-color .22s;
 }
-.article-main {
-  background: white;
-  padding: 32px 40px 48px;
-  border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0 0 4px 4px;
+.ranking-item:hover { transform:translateY(-3px); box-shadow:var(--shadow-lg); border-color:var(--primary-line); }
+.ranking-item.top { border:2px solid var(--gold); padding-top:32px; }
+.ranking-item.top::before {
+  content:"編集部イチオシ"; position:absolute; top:-2px; left:-2px;
+  background:var(--gold); color:#fff; font-size:11.5px; font-weight:700;
+  padding:4px 12px; border-radius:var(--radius) 0 var(--radius) 0;
+}
+.ranking-thumb { aspect-ratio:4/3; border-radius:var(--radius-sm); overflow:hidden; }
+.ranking-info h3 { font-size:20px; margin-bottom:6px; }
+.ranking-info h3 a { text-decoration:none; }
+.ranking-catch { color:#8E3512; font-size:13.5px; font-weight:700; margin-bottom:10px; line-height:1.7; }
+.ranking-features { display:flex; flex-wrap:wrap; gap:0 8px; margin-bottom:10px; }
+.feat-tag { font-size:12.5px; color:var(--text-sub); font-weight:500; }
+.feat-tag::before { content:"・"; color:var(--muted); }
+.ranking-detail {
+  display:grid; grid-template-columns:auto 1fr; gap:4px 14px;
+  font-size:12.5px; color:var(--text-sub); margin:0;
+}
+.ranking-detail dt { font-weight:700; color:var(--muted); }
+.ranking-detail dd { margin:0; }
+.ranking-actions { display:flex; flex-direction:column; gap:10px; }
+.ranking-price { text-align:center; font-size:12.5px; color:var(--text-sub); line-height:1.6; }
+.ranking-price strong { display:block; color:#8E3512; font-size:18px; font-weight:700; }
+.ranking-more { text-align:center; margin-bottom:8px; }
+
+/* --- 記事グリッド --- */
+.article-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:8px; }
+
+/* --- 免責 --- */
+.disclaimer {
+  margin:44px 0 0; font-size:12.5px; color:var(--muted); line-height:1.9;
+  border-top:1px solid var(--border); padding-top:20px;
 }
 
-/* 導入リード */
-.lead {
-  font-size: 15px;
-  line-height: 2;
-  color: var(--text-sub);
-  margin-bottom: 32px;
-  padding: 0;
+/* --- レスポンシブ --- */
+@media (max-width:1024px) {
+  .hero h1 { font-size:28px; }
+  .ranking-item { grid-template-columns:auto 1fr; gap:16px 20px; }
+  .ranking-thumb { display:none; }
+  .ranking-actions { grid-column:1 / -1; flex-direction:row; align-items:center; justify-content:space-between; }
+  .article-grid { grid-template-columns:repeat(2,1fr); }
 }
-
-/* データボックス */
-.data-highlight {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 28px 24px;
-  margin: 24px 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+@media (max-width:768px) {
+  .hero { padding:28px 0 36px; }
+  .hero-inner { grid-template-columns:1fr; gap:26px; }
+  .hero h1 { font-size:24px; line-height:1.6; }
+  .hero p { font-size:15px; }
+  .hero-btns .btn-cta, .hero-btns .btn-secondary { flex:1 1 100%; }
+  .topic-list { grid-template-columns:repeat(2,1fr); }
+  .topic-list-item { border-right:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .topic-list-item:nth-child(2n) { border-right:none; }
+  .topic-list-item:nth-last-child(-n+2) { border-bottom:none; }
+  .worries { padding:24px 20px; margin:28px 0; }
+  .worries h3 { font-size:18px; }
+  .worry-list { grid-template-columns:1fr; }
+  .ranking-item { grid-template-columns:1fr; gap:14px; padding:20px 18px; }
+  .ranking-item.top { padding-top:30px; }
+  .ranking-info h3 { font-size:18px; }
+  .ranking-actions { flex-direction:column; }
+  .ranking-actions .btn-cta, .ranking-actions .btn-secondary { width:100%; }
+  .article-grid { grid-template-columns:1fr; }
 }
-.data-cell {
-  text-align: center;
-  border-right: 1px solid var(--border);
-  padding-right: 20px;
+@media (max-width:480px) {
+  .topic-list { grid-template-columns:1fr; }
+  .topic-list-item { border-right:none; }
+  .topic-list-item:nth-last-child(-n+2) { border-bottom:1px solid var(--border); }
+  .topic-list-item:last-child { border-bottom:none; }
 }
-.data-cell:last-child { border-right: none; padding-right: 0; }
-.data-cell .num {
-  font-family: inherit;
-  font-size: 32px;
-  font-weight: 600;
-  color: var(--primary-dark);
-  line-height: 1.2;
-  letter-spacing: 0;
-}
-.data-cell .unit {
-  font-size: 14px;
-  color: var(--text-sub);
-  font-family: inherit;
-}
-.data-cell .label {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 6px;
-  font-family: inherit;
-}
-
-.source-note {
-  font-size: 11px;
-  color: var(--muted);
-  font-style: italic;
-  margin-top: -8px;
-  margin-bottom: 20px;
-  font-family: inherit;
-}
-
-/* サイドバー */
-.side {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  position: sticky;
-  top: 100px;
-  align-self: start;
-}
-.side-block {
-  padding: 0 0 24px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid var(--border);
-}
-.side-block:last-child { border-bottom: none; }
-.side-block h4 {
-  font-size: 14px;
-  padding-bottom: 8px;
-  margin-bottom: 12px;
-  color: var(--text);
-  border-bottom: 2px solid var(--primary);
-  display: inline-block;
-  font-family: inherit;
-  font-weight: 700;
-}
-.side-rank-item {
-  display: grid;
-  grid-template-columns: 24px 1fr;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px dotted var(--border);
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-  font-family: inherit;
-}
-.side-rank-item:last-child { border-bottom: none; }
-.side-rank-item:hover { text-decoration: none; color: var(--primary-dark); }
-.side-rank-num {
-  color: var(--muted);
-  font-weight: 700;
-  font-size: 13px;
-  font-family: inherit;
-}
-.side-rank-item .n { font-size: 13px; font-weight: 700; }
-.side-rank-item .s { font-size: 11px; color: var(--muted); }
-
-/* 本文内テーブル横スクロール */
-.table-wrap { overflow-x: auto; margin: 16px -4px; padding: 0 4px; }
-
-/* 記事内CTAブロック */
-.article-cta {
-  margin: 32px 0;
-  padding: 28px 20px;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.article-cta p { margin-bottom: 12px; font-size: 15px; }
-
-/* コラム */
-.column-box {
-  border-left: 3px solid var(--muted);
-  padding: 4px 0 4px 16px;
-  margin: 24px 0;
-  color: var(--text-sub);
-}
-.column-box .clabel {
-  font-family: inherit;
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  font-weight: 700;
-  color: var(--muted);
-  margin-bottom: 6px;
-}
-.column-box p { margin: 0 0 8px; font-size: 14px; }
-
-@media (max-width: 900px) {
-  .article-layout { grid-template-columns: 1fr; padding: 12px; }
-  .article-title-block h1 { font-size: 22px; }
-  .side { position: static; }
-  .data-highlight { grid-template-columns: 1fr; gap: 12px; }
-  .data-cell { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 12px; padding-right: 0; }
-  .data-cell:last-child { border-bottom: none; }
-  .data-cell .num { font-size: 26px; }
-}
-
-
 </style>
 </head>
 <body>
 <!--
   ============================================================
-  【AFFリンク挿入箇所リスト】このページ: 遺品整理の料金相場
+  【AFFリンク挿入箇所リスト】このページ: トップページ
   ============================================================
-  以下の href="#" 部分をASP発行の計測リンクに差し替えてください。
-  詳細は AFFILIATE_LINKS.md を参照。
-
-    * 遺品の整理屋さん (id: ihinnoseiriyasan) — サイドバー1位, 追従バー, 記事内おすすめブロック
-    * ゴミ屋敷片付け七福神 (id: 777fukujin) — サイドバー2位
-    * ライフリセット (id: liferesetro) — サイドバー3位
-    * 遺品整理110番 (id: ihin110) — サイドバー4位
-    * みんなの遺品整理 (id: minnano) — サイドバー5位
+  ★ このページに href="#" のAFFリンクはありません。
+    企業名・CTAはすべて <a data-aff="企業ID"> 形式です。
+    URLの差し替えは /assets/affiliates.js の1箇所だけで完結します。
+    見積もりCTAは data-estimate 属性 → window.ESTIMATE_URL を参照。
   ============================================================
 -->
 
-<header class="site-header">
+<!-- =============== ヘッダー =============== -->
+<header class="site-header" data-screen-label="Header">
   <div class="header-top">
     <div class="header-top-inner">
-      <span>24時間365日 電話受付中／全国対応</span>
-      <span>2026年9月8日 更新</span>
+      <span class="tagline">遺品整理・不用品回収・ハウスクリーニングの料金と対応エリアを比較</span>
+      <time class="updated" data-today="最終確認："></time>
     </div>
   </div>
+
   <div class="header-inner">
-    <a href="../index.html" class="site-logo">
+    <a href="/" class="site-logo">
       <span class="logo-mark">整</span>
-      <span>くらしの整理ナビ</span>
+      <span class="logo-text">
+        <span class="logo-name">くらしの整理ナビ</span>
+        <span class="logo-sub">KURASHI SEIRI NAVI</span>
+      </span>
     </a>
-    <nav class="site-nav">
-      <a href="../index.html">ホーム</a>
-      <a href="../rankings/ihin.html">遺品整理・不用品回収</a>
-      <a href="../rankings/cleaning.html">ハウスクリーニング</a>
-      <a href="../articles/akutoku.html">お悩み解決</a>
-      <a href="../articles/ihin-price.html" class="active">料金相場</a>
+
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      <a href="/" class="active">ホーム</a>
+      <a href="/rankings/ihin.html">遺品整理・不用品回収</a>
+      <a href="/rankings/cleaning.html">ハウスクリーニング</a>
+      <a href="/articles/ihin-price.html">料金相場</a>
+      <a href="/articles/akutoku.html">お悩み解決</a>
     </nav>
-    <a href="../rankings/ihin.html" class="header-cta">業者を比較</a>
+
+    <a href="#estimate" class="header-cta" data-estimate>無料で見積もり<span class="arrow">→</span></a>
+
+    <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="navDrawer">
+      <i></i><i></i><i></i>
+    </button>
   </div>
 </header>
 
-<div class="breadcrumb">
-  <a href="../index.html">HOME</a>
-  <span class="sep">›</span>
-  <a href="#">料金相場</a>
-  <span class="sep">›</span>
-  <span>遺品整理の料金相場</span>
+<!-- スマホ用ドロワー -->
+<div class="nav-drawer" id="navDrawer">
+  <div class="nav-drawer-panel">
+    <div class="nav-drawer-head">
+      <span class="t">カテゴリを選ぶ</span>
+      <button class="nav-drawer-close" type="button" aria-label="メニューを閉じる">×</button>
+    </div>
+    <a href="/" class="d-item">ホーム<span class="chev">›</span></a>
+    <a href="/rankings/ihin.html" class="d-item">遺品整理・不用品回収<span class="chev">›</span></a>
+    <a href="/rankings/cleaning.html" class="d-item">ハウスクリーニング<span class="chev">›</span></a>
+    <a href="/articles/ihin-price.html" class="d-item">料金相場<span class="chev">›</span></a>
+    <a href="/articles/akutoku.html" class="d-item">悪徳業者の見分け方<span class="chev">›</span></a>
+    <a href="/articles/seizen.html" class="d-item">生前整理<span class="chev">›</span></a>
+    <a href="#estimate" class="btn-cta full drawer-cta pulse" data-estimate>無料で見積もり<span class="arrow">→</span></a>
+  </div>
 </div>
 
-<div class="article-layout" data-screen-label="記事：遺品整理の料金相場">
-  <div>
-    <div class="article-title-block">
-      <span class="cat-tag">料金相場</span>
-      <h1>遺品整理業者の料金相場は？間取り別・地域別に徹底解説【2026年最新】</h1>
-      <div class="article-meta-line">
-        <span>公開：2026年9月5日</span>
-        <span>更新：2026年9月8日</span>
-        <span>閲覧数：12,543</span>
+<!-- =============== パンくず =============== -->
+<div class="breadcrumb">
+  <a href="/">HOME</a>
+  <span class="sep">›</span>
+  <span>総合トップ</span>
+</div>
+
+<!-- =============== ヒーロー =============== -->
+<section class="hero" data-screen-label="Hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-tag" data-today="最新更新："></span>
+      <h1>
+        <mark>遺品整理・生前整理・不用品回収</mark><br>
+        の信頼できる業者を厳選して比較しました
+      </h1>
+      <p>「どこに頼めばいいの？」「料金が不安…」そんなお悩みに、本当におすすめできる業者だけを、料金・対応・口コミから丁寧に比較しました。</p>
+      <div class="hero-btns">
+        <a href="/rankings/ihin.html" class="btn-cta">ランキングを見る<span class="arrow">→</span></a>
+        <a href="/articles/ihin-price.html" class="btn-secondary">料金相場をチェック</a>
       </div>
     </div>
-
-    <div class="article-main article-body">
-
-      <div class="author-box">
-        <div class="ava">田</div>
-        <div>
-          <div class="name">監修：田中 みどり（遺品整理士 上級認定）</div>
-          <div class="desc">遺品整理士歴12年／500件以上の現場を担当／一般社団法人 遺品整理士認定協会 認定講師</div>
-        </div>
-      </div>
-
-      <p class="lead">「遺品整理を業者に頼みたいけれど、いくらかかるのか見当がつかない」——多くの方が最初にぶつかる不安です。この記事では、一般社団法人 遺品整理士認定協会の公表資料と、業界大手10社が公式サイトで公表している料金レンジをもとに、間取り別・地域別・状況別の料金相場を整理してご紹介します。あわせて、料金を数万円単位で下げるための具体的なコツもまとめました。</p>
-
-      <div class="data-highlight">
-        <div class="data-cell">
-          <div class="num">8.1<span class="unit">万円</span></div>
-          <div class="label">1LDK・平均費用</div>
-        </div>
-        <div class="data-cell">
-          <div class="num">21.4<span class="unit">万円</span></div>
-          <div class="label">3LDK・平均費用</div>
-        </div>
-        <div class="data-cell">
-          <div class="num">2.8<span class="unit">倍</span></div>
-          <div class="label">最安と最高の料金差</div>
-        </div>
-      </div>
-      <p class="source-note">出典：業界大手10社の公式サイト公表料金（2026年8月時点）／一般社団法人 遺品整理士認定協会 公表資料</p>
-
-      <div class="toc">
-        <div class="toc-title">目次</div>
-        <ol>
-          <li><a href="#basic">遺品整理業者の料金相場【全体像】</a></li>
-          <li><a href="#madori">間取り別の料金相場と作業時間の目安</a></li>
-          <li><a href="#area">地域別の料金相場（東京・大阪・地方の比較）</a></li>
-          <li><a href="#breakdown">料金の内訳は？何にお金がかかっているのか</a></li>
-          <li><a href="#cost-up">料金が高くなる5つのケース</a></li>
-          <li><a href="#save">料金を安く抑える7つのコツ</a></li>
-          <li><a href="#akutoku">悪徳業者の相場から外れた料金に要注意</a></li>
-          <li><a href="#faq">よくある質問</a></li>
-          <li><a href="#summary">まとめ：まずは3社に見積もりを</a></li>
-        </ol>
-      </div>
-
-      <h2 id="basic">遺品整理業者の料金相場【全体像】</h2>
-
-      <p>複数の遺品整理業者が公式サイトで公表している料金を集計すると、料金の全体レンジは<strong>3万円〜80万円</strong>と非常に幅広く分布しています。この差は主に、間取りの広さ、物量、対応するオプション（特殊清掃・遺品供養・買取など）によって生まれています。</p>
-
-      <p>ただし、間取り別に平均をとると、実は<strong>ある程度予測可能な相場</strong>が見えてきます。次章で詳しく見ていきます。</p>
-
-      <div class="column-box">
-        <div class="clabel">補足データ</div>
-        <p>一般社団法人 遺品整理士認定協会の公表資料によれば、認定業者は全国におよそ6,000社以上存在し、市場規模は年間4,000億円規模と推計されています。市場の急拡大に伴い、参入業者の質もばらつきが大きくなっているのが現状です。</p>
-      </div>
-
-      <h2 id="madori">間取り別の料金相場と作業時間の目安</h2>
-
-      <p>もっとも参考にしていただきたいのが、この間取り別の相場です。実際に依頼する際の予算感の起点になります。</p>
-
-      <div class="table-wrap">
-        <table class="compare-table">
-          <thead>
-            <tr>
-              <th>間取り</th>
-              <th>作業員数</th>
-              <th>作業時間</th>
-              <th>料金相場（下限〜上限）</th>
-              <th>平均費用</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><th>1R・1K</th><td>1〜2名</td><td>1〜3時間</td><td>30,000〜80,000円</td><td>約4.9万円</td></tr>
-            <tr><th>1DK</th><td>2〜3名</td><td>2〜4時間</td><td>50,000〜120,000円</td><td>約6.8万円</td></tr>
-            <tr><th>1LDK・2DK</th><td>2〜4名</td><td>2〜6時間</td><td>70,000〜200,000円</td><td>約8.1万円</td></tr>
-            <tr><th>2LDK・3DK</th><td>3〜5名</td><td>4〜8時間</td><td>120,000〜300,000円</td><td>約14.7万円</td></tr>
-            <tr><th>3LDK・4DK</th><td>4〜6名</td><td>6〜10時間</td><td>170,000〜500,000円</td><td>約21.4万円</td></tr>
-            <tr><th>4LDK以上</th><td>5〜8名</td><td>1〜2日</td><td>220,000〜800,000円</td><td>約32.6万円</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="source-note">出典：遺品の整理屋さん、ゴミ屋敷片付け七福神、ライフリセット、遺品整理110番、みんなの遺品整理、EMEAO 各社公式サイトの公表料金を編集部にて集計（最終確認日：2026年9月8日）</p>
-
-      <p>ここで注目していただきたいのは、<strong>下限と上限の差が2〜4倍もある</strong>という点です。同じ2LDKでも、12万円で終わるケースと30万円かかるケースがある。この差はどこから来るのでしょうか。次の章で内訳を分解します。</p>
-
-      <h3>間取り別・料金の分布を見る</h3>
-
-      <p>1Kであれば、単身者の一人暮らしを想定した物量なので、比較的少ない作業員・短時間で完了します。一方で、3LDK以上になると家族4人分の家財が対象になるため、作業員・車両ともに規模が大きくなり、費用も跳ね上がります。</p>
-
-      <p>「実家の3LDKの整理で20万円台なら妥当」「1Kのアパートで15万円と提示されたら疑うべき」というのが、経験的な目安になります。</p>
-
-      <h2 id="area">地域別の料金相場（東京・大阪・地方の比較）</h2>
-
-      <p>遺品整理の料金は、地域によっても差が生じます。具体的な料金差は公表データが限られるため一律に示すことは難しいですが、次のような要因が料金に影響することが一般的に指摘されています。</p>
-
-      <ul>
-        <li><strong>処分場までの距離</strong>：自治体の廃棄物処理施設や産廃処分場までの搬出距離が長いほど、車両費・時間が加算されます。</li>
-        <li><strong>業者数と競争度合い</strong>：業者密度の高い首都圏・関西圏では、価格競争が働き相場が下がる傾向が指摘されています。</li>
-        <li><strong>離島・過疎地の出張費</strong>：業者拠点からの移動コストが料金に転嫁され、追加費用が発生することがあります。</li>
-        <li><strong>階段・搬出経路</strong>：地域よりもむしろ物件の条件（エレベーターなし、狭小地）の影響が大きいケースが多くあります。</li>
-      </ul>
-
-      <p>実際の料金差は、同じ間取りでも業者・条件により大きく異なります。<strong>「都心＝高い、地方＝安い」と一概には言えず</strong>、各社の公式サイトで自分の地域の料金を確認したうえで、必ず2〜3社から相見積もりを取ることをおすすめします。</p>
-
-      <h2 id="breakdown">料金の内訳は？何にお金がかかっているのか</h2>
-
-      <p>「見積書に書かれた金額」を鵜呑みにする前に、その内訳を理解しておくと、比較検討がぐっとやりやすくなります。</p>
-
-      <div class="table-wrap">
-        <table class="compare-table">
-          <thead>
-            <tr><th>費用項目</th><th>全体に占める割合</th><th>内容</th></tr>
-          </thead>
-          <tbody>
-            <tr><th>人件費</th><td>約35〜45%</td><td>作業員の日当・現場管理費</td></tr>
-            <tr><th>処分費</th><td>約25〜35%</td><td>廃棄物の処理費用（自治体の処理場・産廃業者への支払い）</td></tr>
-            <tr><th>車両・運搬費</th><td>約15〜20%</td><td>2tトラック・4tトラックの費用</td></tr>
-            <tr><th>諸経費・利益</th><td>約10〜15%</td><td>会社運営費と業者の利益</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p>つまり<strong>料金の6〜8割が「人件費と処分費」</strong>で占められており、この2つは物量に比例して増えていきます。作業員が半日で終わる部屋と、まる2日かかる部屋では、費用が2〜4倍違うのは当然というわけです。</p>
-
-      <div class="column-box">
-        <div class="clabel">豆知識</div>
-        <p>環境省の廃棄物処理施設のデータによれば、家庭ごみの処分単価は自治体によって1kgあたり15円〜60円と、実に4倍以上の開きがあります。同じ物量でも、処分場が近い業者と遠い業者で料金差が出るのはこのためです。</p>
-      </div>
-
-      <h2 id="cost-up">料金が高くなる5つのケース</h2>
-
-      <p>相場より2〜3倍の見積もりが出ることもあります。その多くには理由があり、事前に知っておけば「不当に高いのか、妥当なのか」を判断できるようになります。</p>
-
-      <h3>① 特殊清掃が必要なケース</h3>
-      <p>孤独死や病気による長期療養があった部屋では、体液・臭気の除去、害虫駆除などの特殊清掃が必要になり、通常料金に加えて<strong>15万円〜80万円</strong>が上乗せされます。これは避けられない費用です。</p>
-
-      <h3>② 大型家電・家具が多数あるケース</h3>
-      <p>冷蔵庫・洗濯機・エアコン・テレビは家電リサイクル法の対象で、1台あたり<strong>3,000〜6,000円</strong>のリサイクル料金が別途発生します。ピアノやマッサージチェアなど、特殊な運搬が必要な大型家具も追加費用の対象になります。</p>
-
-      <h3>③ エレベーターなし・階段作業が必要</h3>
-      <p>集合住宅でエレベーターがない、あるいは大型家具が階段を通らない場合、<strong>1万円〜3万円の階段作業費</strong>や、業者によってはクレーン搬出費（10万円〜）が追加されることがあります。</p>
-
-      <h3>④ ゴミ屋敷状態になっているケース</h3>
-      <p>床が見えないほど物が積まれている状態では、通常の1.5〜3倍の作業員と時間が必要になり、料金も相応に跳ね上がります。同じ2LDKでも、通常なら15万円のところ、ゴミ屋敷状態だと40〜50万円になることも珍しくありません。</p>
-
-      <h3>⑤ 遠方対応・出張費</h3>
-      <p>業者の拠点から現場までの距離が遠い場合、<strong>出張費として1万円〜5万円</strong>が上乗せされます。全国対応を謳う業者でも、実際は地元の提携業者に委託していて、その分の手数料が乗るケースがあります。</p>
-
-      <h2 id="save">料金を安く抑える7つのコツ</h2>
-
-      <p>料金の内訳と高くなるケースがわかれば、次はいよいよ「どうすれば安くなるか」です。ちょっとした準備と工夫で、<strong>5〜15万円ほどの節約</strong>は十分に可能です。</p>
-
-      <h3>コツ①：必ず3社以上から相見積もりを取る</h3>
-      <p>もっとも効果的な節約術です。同じ間取り・同じ物量でも、業者によって<strong>数万円〜十数万円の差</strong>が生じることがあります。国民生活センターも「複数の事業者から見積もりを取り、内訳を確認すること」を消費者向けに繰り返し呼びかけています。</p>
-
-      <h3>コツ②：買取サービスのある業者を選ぶ</h3>
-      <p>家電・家具・貴金属・骨董品などをその場で買い取ってくれる業者を選ぶと、作業費から買取額が差し引かれます。うまくいけば実質<strong>作業費が半額</strong>になることもあります。特に、リサイクル需要の高い10年以内の家電や、ブランド食器などは値がつきやすいです。</p>
-
-      <h3>コツ③：自分で仕分けできるものは事前に仕分ける</h3>
-      <p>「明らかに処分するもの」「取っておくもの」を事前に仕分けておくと、作業時間が短縮され、人件費が減ります。特に衣類や書類の仕分けは、業者にとっては時間がかかる作業です。ここを自分でやるだけで、<strong>数万円の節約</strong>につながります。</p>
-
-      <h3>コツ④：繁忙期を避ける</h3>
-      <p>遺品整理業界の繁忙期は<strong>3月〜5月と9月〜11月</strong>（引越しシーズンと相続整理の集中期）です。この時期を避けて、1月・6月・7月あたりに依頼すると、繁忙期料金を回避できるほか、担当者もじっくり対応してくれる余裕があります。</p>
-
-      <h3>コツ⑤：不用品回収と一緒に依頼する</h3>
-      <p>遺品整理と一緒に、家全体の不用品回収も一括で依頼すると、車両費・出張費が共通化され、別々に頼むより<strong>2〜3割安くなる</strong>ことがあります。</p>
-
-      <h3>コツ⑥：自治体の粗大ごみ回収を併用する</h3>
-      <p>一部の大型家具は自治体の粗大ごみ回収を利用すれば、業者に頼むより<strong>1点あたり数百円〜数千円</strong>で処分できます。時間に余裕があるならこちらを併用しましょう。</p>
-
-      <h3>コツ⑦：Web申込みキャンペーンを活用する</h3>
-      <p>多くの業者が、Webフォームからの申込みで<strong>5〜15%割引</strong>のキャンペーンを実施しています。電話で問い合わせる前に、公式サイトの割引情報をチェックしましょう。</p>
-
-      <h2 id="akutoku">悪徳業者の相場から外れた料金に要注意</h2>
-
-      <p>残念ながら、遺品整理の市場拡大に伴い、相場を大きく外した悪質な業者も増えています。特に注意すべき料金パターンは以下の3つです。</p>
-
-      <h3>パターン①：「1K・9,800円〜」など極端に安い見積り</h3>
-      <p>相場（1Kで3万円〜）を大幅に下回る料金には裏があります。実際は当日に<strong>「予想より物量が多かった」「処分費が別途必要」</strong>と次々に追加料金を請求され、最終的に相場の2〜3倍の金額になるケースが典型です。</p>
-
-      <h3>パターン②：見積書を出さない・内訳が不明</h3>
-      <p>「一式◯万円」としか書かれていない見積書は要注意です。人件費・処分費・車両費の内訳が示されている業者を選びましょう。まっとうな業者なら、口頭で聞けば必ず答えられます。</p>
-
-      <h3>パターン③：契約を急がせる</h3>
-      <p>「今日中に契約すれば半額」「他社は必ず高くなる」など、決断を急がせる業者は避けたほうが賢明です。まっとうな業者は、比較検討の時間を尊重してくれます。</p>
-
-      <div class="column-box">
-        <div class="clabel">相談窓口</div>
-        <p>もし遺品整理業者とのトラブルに遭遇した場合は、消費者ホットライン（電話番号「188」）に相談できます。国民生活センターにも過去の類似事例が集約されており、対処法を教えてもらえます。</p>
-      </div>
-
-      <h2 id="faq">よくある質問</h2>
-
-      <div class="qa-item">
-        <div class="qa-q">見積もりだけ依頼して断ってもいいですか？</div>
-        <div class="qa-a">はい、まっとうな業者であれば、見積もり後のキャンセルは無料です。むしろ「見積もり無料・キャンセル無料」を明記していない業者は避けたほうが安心です。</div>
-      </div>
-      <div class="qa-item">
-        <div class="qa-q">現地に行かずに電話だけで見積もりを出せますか？</div>
-        <div class="qa-a">概算は電話やLINEでも出せますが、正確な見積もりのためには<strong>現地確認が必須</strong>です。訪問見積もりを渋る業者、または「電話だけで確定料金を出せる」と言う業者は疑ってかかりましょう。</div>
-      </div>
-      <div class="qa-item">
-        <div class="qa-q">現金一括払いしか対応していないと言われました。大丈夫でしょうか？</div>
-        <div class="qa-a">現金のみを強く要求する業者は、税務上の記録を残したくない可能性があります。銀行振込やクレジットカード決済にも対応している業者を選ぶほうが安心です。</div>
-      </div>
-      <div class="qa-item">
-        <div class="qa-q">遠方に住んでいて立ち会えません。それでも依頼できますか？</div>
-        <div class="qa-a">可能です。多くの業者は、鍵の受け渡しから作業完了までを写真・動画で報告してくれます。事前に「作業風景の記録」「重要品の取り扱い」を書面で確認しておくと安心です。</div>
-      </div>
-      <div class="qa-item">
-        <div class="qa-q">遺品の中から現金や貴金属が出てきたらどうなりますか？</div>
-        <div class="qa-a">遺品整理士が在籍する信頼できる業者では、作業前に「捜索リスト」を作成し、現金・通帳・印鑑・貴金属・重要書類などが見つかり次第、依頼者に確認・報告する仕組みになっています。</div>
-      </div>
-
-      <h2 id="summary">まとめ：まずは3社に見積もりを</h2>
-
-      <p>遺品整理の料金は、間取り・物量・地域・オプションによって大きく変動しますが、この記事で示した相場感を持っていれば、業者の見積もりが妥当かどうか判断できるようになります。</p>
-
-      <p>もっとも大切なのは、<strong>面倒でも必ず3社以上から見積もりを取る</strong>ことです。相見積もりを取ることで、内訳の妥当性や追加料金の有無を比較できるようになります。</p>
-
-      <p>くらしの整理ナビでは、知名度と実績のある業者を、公表情報をもとに整理してご紹介しています。「どこに問い合わせればいいかわからない」という方は、まず候補上位の業者から見積もりを取ってみてください。</p>
-
-      <div class="article-cta">
-        <p><strong>「遺品の整理屋さん」</strong>は、公式サイトで料金表を公開している自社施工型サービスです。遺品整理・買取・仕分け・搬出・清掃までワンストップで対応でき、対応実績3万件超を掲げています。料金は1K 27,000円〜／1DK 49,800円〜／1LDK 64,800円〜と公表されており、初めての方にも予算感が立てやすいのが特徴です。詳細やキャンペーン情報は公式サイトでご確認ください。</p>
-        <a href="../reviews/ihinnoseiriyasan.html" class="btn-cta">遺品の整理屋さんの詳細を見る<span class="arrow">→</span></a>
-        <a href="../rankings/ihin.html" class="btn-secondary" style="margin-left:8px;">業者ランキングを見る</a>
-      </div>
-
-      <p style="font-size:12px; color:var(--muted); border-top:1px dotted var(--border); padding-top:16px; margin-top:32px; font-family:inherit;">※本記事の料金相場データは、一般社団法人 遺品整理士認定協会の公表資料、および業界大手10社（遺品整理の整理屋さん、みんなの遺品整理、遺品整理110番、ゴミ屋敷片付け七福神、EMEAO、ミガクる、ライフリセット ほか）の公式サイト公表料金を編集部にて集計したものです（2026年8月時点）。市場動向・時期・個別条件により実際の料金は変動しますので、最新の見積もりは各業者にお問い合わせください。<br>※本記事にはアフィリエイトリンクが含まれています。</p>
-
+    <div class="hero-img">
+      <div class="decoration"></div>
+      <div class="ph">[ ヒーロー写真: 明るい部屋で片付ける家族の様子 ]</div>
     </div>
   </div>
+</section>
 
-  <aside class="side">
-    <div class="side-block">
-      <h4>この記事の要点</h4>
-      <ul style="padding-left: 18px; margin: 0; font-size: 13px; line-height: 1.9;">
-        <li>1LDKの相場は8.1万円</li>
-        <li>3LDKの相場は21.4万円</li>
-        <li>3社以上から相見積もりを取ると比較しやすい</li>
-        <li>買取活用で実質半額も可能</li>
-        <li>繁忙期（3〜5月、9〜11月）は避ける</li>
-      </ul>
+<main class="container">
+
+  <!-- =============== お悩み別に探す =============== -->
+  <div class="section-head" data-reveal="0">
+    <h2>お悩み別に探す</h2>
+  </div>
+  <div class="topic-list">
+    <a href="/rankings/ihin.html" class="topic-list-item" data-reveal="0">
+      <div class="title">遺品整理</div>
+      <div class="desc">故人の遺品を丁寧に</div>
+    </a>
+    <a href="/articles/seizen.html" class="topic-list-item" data-reveal="1">
+      <div class="title">生前整理</div>
+      <div class="desc">元気なうちに始める</div>
+    </a>
+    <a href="/articles/huyouhin.html" class="topic-list-item" data-reveal="2">
+      <div class="title">不用品回収</div>
+      <div class="desc">大量処分もOK</div>
+    </a>
+    <a href="/rankings/cleaning.html" class="topic-list-item" data-reveal="3">
+      <div class="title">ハウスクリーニング</div>
+      <div class="desc">空き家・引越し前に</div>
+    </a>
+  </div>
+
+  <!-- =============== お悩みリスト =============== -->
+  <div class="worries" data-reveal="0">
+    <h3>こんなお悩み、ありませんか？</h3>
+    <div class="worry-list">
+      <div class="worry-item">実家の遺品整理、何から手をつけていいかわからない</div>
+      <div class="worry-item">業者の相場がわからず、ぼったくられそうで不安</div>
+      <div class="worry-item">仕事があって現地に行けない・遠方に住んでいる</div>
+      <div class="worry-item">故人の思い出の品を大切に扱ってほしい</div>
+      <div class="worry-item">大量の不用品を一気に処分したい</div>
+      <div class="worry-item">女性スタッフに対応してもらいたい</div>
+    </div>
+    <p class="worries-note">当サイトなら、あなたにぴったりの業者がきっと見つかります。</p>
+  </div>
+
+  <!-- =============== ランキング =============== -->
+  <div class="section-head" data-reveal="0">
+    <h2>おすすめ業者ランキング</h2>
+    <p>料金・対応エリア・特徴を各社公式サイトの公表情報から整理して比較</p>
+  </div>
+
+  <div class="ranking-list">
+
+    <!-- 1位 -->
+    <div class="ranking-item top" data-reveal="0" id="ihinnoseiriyasan">
+      <div class="rank-badge rank-1"><span><span class="no">No.</span><span class="num">1</span></span></div>
+      <div class="ranking-thumb"><div class="ph warm">[ 遺品の整理屋さん<br>サービス写真 ]</div></div>
+      <div class="ranking-info">
+        <h3><a data-aff="ihinnoseiriyasan" data-aff-pos="rank-1-name">遺品の整理屋さん</a></h3>
+        <div class="ranking-catch">遺品整理・買取・清掃をワンストップで対応（自社施工）</div>
+        <div class="ranking-features">
+          <span class="feat-tag">遺品整理・買取・清掃</span>
+          <span class="feat-tag">料金表を公式公開</span>
+          <span class="feat-tag">対応実績3万件超</span>
+          <span class="feat-tag">広域対応</span>
+        </div>
+        <dl class="ranking-detail">
+          <dt>対応エリア</dt><dd>広域対応（要確認）</dd>
+          <dt>受付時間</dt><dd>公式サイトを確認</dd>
+        </dl>
+      </div>
+      <div class="ranking-actions">
+        <div class="ranking-price">
+          料金目安（公式掲載）
+          <strong>1K 27,000円〜</strong>
+        </div>
+        <a href="/reviews/ihinnoseiriyasan.html" class="btn-cta">詳細レビュー<span class="arrow">→</span></a>
+        <a class="btn-secondary" data-aff="ihinnoseiriyasan" data-aff-pos="rank-1-btn">公式サイトを見る</a>
+      </div>
     </div>
 
-    <div class="side-block">
-      <h4>業者ランキング</h4>
-      <a href="../reviews/ihinnoseiriyasan.html" class="side-rank-item">
-        <div class="side-rank-num">1</div>
-        <div><div class="n">遺品の整理屋さん</div><div class="s">15,000円〜</div></div>
-      </a>
-      <a href="../rankings/ihin.html" class="side-rank-item">
-        <div class="side-rank-num">2</div>
-        <div><div class="n">みんなの遺品整理</div><div class="s">17,000円〜</div></div>
-      </a>
-      <a href="../rankings/ihin.html" class="side-rank-item">
-        <div class="side-rank-num">3</div>
-        <div><div class="n">ゴミ屋敷片付け七福神</div><div class="s">20,000円〜（要問合せ）</div></div>
-      </a>
-      <a href="../rankings/ihin.html" class="side-rank-item">
-        <div class="side-rank-num">4</div>
-        <div><div class="n">EMEAO</div><div class="s">要見積</div></div>
-      </a>
-      <a href="../rankings/ihin.html" class="side-rank-item">
-        <div class="side-rank-num">5</div>
-        <div><div class="n">遺品整理110番</div><div class="s">要問合せ</div></div>
-      </a>
+    <!-- 2位 -->
+    <div class="ranking-item" data-reveal="1" id="777fukujin">
+      <div class="rank-badge rank-2"><span><span class="no">No.</span><span class="num">2</span></span></div>
+      <div class="ranking-thumb"><div class="ph">[ ゴミ屋敷片付け七福神<br>サービス写真 ]</div></div>
+      <div class="ranking-info">
+        <h3><a data-aff="777fukujin" data-aff-pos="rank-2-name">ゴミ屋敷片付け七福神</a></h3>
+        <div class="ranking-catch">ゴミ屋敷・不用品回収・清掃の対応範囲が広い（自社施工）</div>
+        <div class="ranking-features">
+          <span class="feat-tag">ゴミ屋敷対応</span>
+          <span class="feat-tag">単品〜4LDK</span>
+          <span class="feat-tag">追加料金なし訴求</span>
+          <span class="feat-tag">遺品整理も対応</span>
+        </div>
+        <dl class="ranking-detail">
+          <dt>対応エリア</dt><dd>関東・関西・中部・東北など</dd>
+          <dt>受付時間</dt><dd>公式サイトを確認</dd>
+        </dl>
+      </div>
+      <div class="ranking-actions">
+        <div class="ranking-price">
+          料金目安（公式掲載）
+          <strong>1R/1K 14,900円〜</strong>
+        </div>
+        <a href="/reviews/777fukujin.html" class="btn-cta">詳細レビュー<span class="arrow">→</span></a>
+        <a class="btn-secondary" data-aff="777fukujin" data-aff-pos="rank-2-btn">公式サイトを見る</a>
+      </div>
     </div>
 
-    <div class="side-block">
-      <h4>関連記事</h4>
-      <a href="#" class="side-rank-item" style="grid-template-columns:1fr;"><div class="n">悪徳業者を見分ける7つのポイント</div></a>
-      <a href="#" class="side-rank-item" style="grid-template-columns:1fr;"><div class="n">50代から始める生前整理のはじめ方</div></a>
-      <a href="#" class="side-rank-item" style="grid-template-columns:1fr;"><div class="n">不用品回収の相場と自治体との比較</div></a>
-      <a href="#" class="side-rank-item" style="grid-template-columns:1fr;"><div class="n">ゴミ屋敷の片付け費用まとめ</div></a>
+    <!-- 3位 -->
+    <div class="ranking-item" data-reveal="2" id="liferesetro">
+      <div class="rank-badge rank-3"><span><span class="no">No.</span><span class="num">3</span></span></div>
+      <div class="ranking-thumb"><div class="ph">[ ライフリセット<br>サービス写真 ]</div></div>
+      <div class="ranking-info">
+        <h3><a data-aff="liferesetro" data-aff-pos="rank-3-name">ライフリセット</a></h3>
+        <div class="ranking-catch">最低料金が明確・見積もり／出張費／キャンセル料 無料訴求</div>
+        <div class="ranking-features">
+          <span class="feat-tag">遺品整理・特殊清掃</span>
+          <span class="feat-tag">見積もり無料</span>
+          <span class="feat-tag">出張費無料</span>
+          <span class="feat-tag">キャンセル料無料</span>
+        </div>
+        <dl class="ranking-detail">
+          <dt>対応エリア</dt><dd>全国（要確認）</dd>
+          <dt>受付時間</dt><dd>公式サイトを確認</dd>
+        </dl>
+      </div>
+      <div class="ranking-actions">
+        <div class="ranking-price">
+          料金目安（公式掲載）
+          <strong>1K 22,000円〜</strong>
+        </div>
+        <a href="/reviews/liferesetro.html" class="btn-cta">詳細レビュー<span class="arrow">→</span></a>
+        <a class="btn-secondary" data-aff="liferesetro" data-aff-pos="rank-3-btn">公式サイトを見る</a>
+      </div>
     </div>
-  </aside>
-</div>
 
+  </div>
+
+  <div class="ranking-more">
+    <a href="/rankings/ihin.html" class="btn-secondary">4位以降も見る →</a>
+  </div>
+
+  <!-- =============== 記事一覧 =============== -->
+  <div class="section-head" data-reveal="0">
+    <h2>新着・人気記事</h2>
+  </div>
+  <div class="article-grid">
+    <a href="/articles/ihin-price.html" class="article-card" data-reveal="0">
+      <div class="thumb">
+        <span class="tag">遺品整理</span>
+        <div class="ph">[ 料金 ]</div>
+      </div>
+      <div class="body">
+        <h3>遺品整理業者の料金相場は？間取り別・地域別に徹底解説【2026年最新】</h3>
+        <div class="meta"><span>2026.09.05</span></div>
+      </div>
+    </a>
+    <a href="/articles/akutoku.html" class="article-card" data-reveal="1">
+      <div class="thumb">
+        <span class="tag">選び方</span>
+        <div class="ph">[ 選び方 ]</div>
+      </div>
+      <div class="body">
+        <h3>悪徳業者に注意！信頼できる遺品整理業者を見分ける7つのポイント</h3>
+        <div class="meta"><span>2026.09.01</span></div>
+      </div>
+    </a>
+    <a href="/articles/seizen.html" class="article-card" data-reveal="2">
+      <div class="thumb">
+        <span class="tag">生前整理</span>
+        <div class="ph">[ 生前整理 ]</div>
+      </div>
+      <div class="body">
+        <h3>50代から始める生前整理｜家族に迷惑をかけない終活のはじめ方</h3>
+        <div class="meta"><span>2026.08.28</span></div>
+      </div>
+    </a>
+    <a href="/articles/huyouhin.html" class="article-card" data-reveal="3">
+      <div class="thumb">
+        <span class="tag">不用品回収</span>
+        <div class="ph">[ コスト ]</div>
+      </div>
+      <div class="body">
+        <h3>不用品回収の相場と安く抑えるコツ。自治体との違いも比較</h3>
+        <div class="meta"><span>2026.08.25</span></div>
+      </div>
+    </a>
+    <a href="/articles/gomiyashiki.html" class="article-card" data-reveal="4">
+      <div class="thumb">
+        <span class="tag">ゴミ屋敷</span>
+        <div class="ph">[ 料金 ]</div>
+      </div>
+      <div class="body">
+        <h3>ゴミ屋敷の片付け費用はいくら？1K〜4LDKまで料金目安まとめ</h3>
+        <div class="meta"><span>2026.08.20</span></div>
+      </div>
+    </a>
+    <a href="/rankings/cleaning.html" class="article-card" data-reveal="5">
+      <div class="thumb">
+        <span class="tag">ハウスクリーニング</span>
+        <div class="ph">[ 清掃 ]</div>
+      </div>
+      <div class="body">
+        <h3>ハウスクリーニングサービス比較5社｜引越し前後・空室・水回りを整理</h3>
+        <div class="meta"><span data-today="最終確認："></span></div>
+      </div>
+    </a>
+  </div>
+
+  <p class="disclaimer">
+    掲載している料金・対応エリア・特徴は、すべて各社公式サイトの公表情報をもとに整理したものです。内容は変動する場合がありますので、依頼前に必ず公式サイトで最新情報をご確認ください。
+  </p>
+
+</main>
+
+<!-- =============== フッター =============== -->
 <footer class="site-footer">
   <div class="footer-inner">
     <div>
-      <div class="site-logo" style="color:white; margin-bottom:14px;">
+      <div class="footer-brand">
         <span class="logo-mark">整</span>
-        <span style="color:white;">くらしの整理ナビ</span>
+        <span>くらしの整理ナビ</span>
       </div>
-      <p style="font-size:12px; line-height:1.9;">遺品整理・生前整理・不用品回収・ハウスクリーニングなど、「くらしの整理」に関する信頼できる情報をお届けするメディアです。</p>
+      <p>遺品整理・生前整理・不用品回収・ハウスクリーニングの料金と対応エリアを、各社公式サイトの公表情報をもとに整理して掲載しています。</p>
     </div>
     <div>
-      <h4>カテゴリ</h4>
+      <h4>比較する</h4>
       <ul>
-        <li><a href="#">遺品整理</a></li>
-        <li><a href="#">生前整理</a></li>
-        <li><a href="#">不用品回収</a></li>
-        <li><a href="#">ハウスクリーニング</a></li>
+        <li><a href="/rankings/ihin.html">遺品整理・不用品回収</a></li>
+        <li><a href="/rankings/cleaning.html">ハウスクリーニング</a></li>
       </ul>
     </div>
     <div>
       <h4>お役立ち情報</h4>
       <ul>
-        <li><a href="../rankings/ihin.html">業者比較ランキング</a></li>
-        <li><a href="#">料金相場一覧</a></li>
-        <li><a href="#">失敗しない選び方</a></li>
+        <li><a href="/articles/ihin-price.html">遺品整理の料金相場</a></li>
+        <li><a href="/articles/huyouhin.html">不用品回収の相場</a></li>
+        <li><a href="/articles/akutoku.html">悪徳業者の見分け方</a></li>
+        <li><a href="/articles/seizen.html">50代からの生前整理</a></li>
+        <li><a href="/articles/gomiyashiki.html">ゴミ屋敷の片付け費用</a></li>
       </ul>
     </div>
     <div>
       <h4>サイト情報</h4>
       <ul>
-        <li><a href="#">運営者情報</a></li>
-        <li><a href="#">プライバシーポリシー</a></li>
-        <li><a href="#">お問い合わせ</a></li>
+        <li><a href="/about.html">運営者情報</a></li>
+        <li><a href="/sitemap.html">サイトマップ</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    © 2026 くらしの整理ナビ All Rights Reserved. / 本サイトはアフィリエイトプログラムに参加しています。
-  </div>
+
+  <div class="footer-bottom">© 2026 くらしの整理ナビ All Rights Reserved. / 本サイトはアフィリエイトプログラムに参加しています。</div>
 </footer>
 
-<div class="sticky-cta">
-  <div class="sticky-cta-text">
-    無料見積もり受付中
-    <small>編集部おすすめ「遺品の整理屋さん」</small>
+<!-- =============== 追従CTA =============== -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text">
+      複数社の料金をまとめて比較
+      <small>入力1分・無料</small>
+    </div>
+    <a href="#estimate" class="btn-cta pulse" data-estimate data-aff-pos="sticky">無料で見積もり<span class="arrow">→</span></a>
   </div>
-  <a href="../reviews/ihinnoseiriyasan.html" class="btn-cta">無料見積もり<span class="arrow">→</span></a>
 </div>
+
+<!-- =============== 共通スクリプト =============== -->
+<script src="/assets/affiliates.js?v=20260910"></script>
+<script src="/assets/site.js?v=20260910" defer></script>
 
 </body>
 </html>
