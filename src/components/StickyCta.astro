@@ -3,7 +3,6 @@ import site from '../data/site.json';
 import companies from '../data/companies.json';
 const {
   text = '認定業者を一括で比較',
-  small = '提携サイトへ移動します',
   label = site.estimateLabel,
   affId = site.estimateAffId
 } = Astro.props;
@@ -26,6 +25,6 @@ if (c) href = external || (c.hasReview ? '/reviews/' + c.id + '.html' : '/rankin
       data-aff-pos="sticky"
       rel={external ? 'sponsored nofollow noopener' : undefined}
       target={external ? '_blank' : undefined}
-    >{external && <span class="pr">PR</span>}{label}<span class="arrow">→</span></a>
+    >{external && <span class="pr">PR</span>}{label}</a>
   </div>
 </div>
