@@ -2,6 +2,8 @@
 import Base from './Base.astro';
 import Sidebar from '../components/Sidebar.astro';
 import StickyCta from '../components/StickyCta.astro';
+import companies from '../data/companies.json';
+import site from '../data/site.json';
 
 const {
   page,
@@ -12,6 +14,14 @@ const {
   breadcrumb = [],
   cta = {}
 } = Astro.props;
+
+/* companies.json に affUrl が1件でも入っていればアフィリエイト稼働と判定し、
+   全記事の見出し横に PR、末尾に免責表記を自動表示する。
+   site.json の "affiliateActive": true / false で手動上書きも可能。 */
+const hasAff = companies.some((c) => c.affUrl);
+const affActive = site.affiliateActive === undefined ? hasAff : site.affiliateActive;
+const disclosure = site.affiliateDisclosure
+  || '本サイトはアフィリエイトプログラムに参加しており、掲載リンクを経由したお申し込みにより運営者が報酬を受け取る場合があります。掲載順位や内容は報酬の有無によって操作していません。';
 ---
 <Base title={page.title} description={page.description} active={active} pageCss={pageCss}>
   <div class="breadcrumb" slot="breadcrumb">
@@ -29,15 +39,19 @@ const {
       <div class="article-title-block">
         {page.catTag && <span class="cat-tag">{page.catTag}</span>}
         <h1>{page.h1}</h1>
-        <div class="article-meta-line">
-          {page.meta.map((m) => <span>{m}</span>)}
-        </div>
+        {(page.meta.length > 0 || affActive) && (
+          <div class="article-meta-line">
+            {page.meta.map((m) => <span>{m}</span>)}
+            {affActive && <span class="pr-tag">PR</span>}
+          </div>
+        )}
       </div>
 
       <div class="article-main article-body">
         <slot name="before-body" />
         <div set:html={body} />
         <slot />
+        {affActive && <p class="aff-disclosure">{disclosure}</p>}
       </div>
     </div>
 
