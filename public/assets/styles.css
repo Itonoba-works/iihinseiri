@@ -172,19 +172,6 @@ a[data-aff].header-cta[data-aff-external]::after { color: rgba(255,255,255,.85);
   padding: 3px 5px; border-radius: 3px; flex: 0 0 auto;
 }
 
-/* 記事メタ行・本文内のPR表記（白背景用） */
-.pr-tag {
-  display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .06em; line-height: 1;
-  background: var(--primary-pale); color: var(--primary-deep);
-  border: 1px solid var(--border-strong); padding: 3px 5px; border-radius: 3px;
-}
-
-/* 記事末尾のアフィリエイト免責表記 */
-.aff-disclosure {
-  font-size: 11px; color: var(--muted); line-height: 1.9;
-  border-top: 1px dotted var(--border); padding-top: 14px; margin-top: 32px;
-}
-
 /* --- ハンバーガー / ドロワー --- */
 .nav-toggle {
   display: none; width: 44px; height: 44px; flex: 0 0 auto;
@@ -359,6 +346,12 @@ a.btn-secondary:hover {
 }
 /* 画像が入っている場合はテキストラベルを隠す */
 .chat-avatar:has(img)::before { content: none; }
+/* アイコンSVGを入れる場合（円を埋めずに中央に置く） */
+.chat-avatar.icon img { position: static; inset: auto; width: 34px; height: 34px; object-fit: contain; }
+.author-box .ava img { width: 28px; height: 28px; object-fit: contain; }
+/* アイコンを入れた場合は淡色の丸に（グレーのアイコンが沈まないよう） */
+.author-box .ava:has(img) { background: var(--primary-light); border: 2px solid var(--primary); }
+@media (max-width: 768px) { .chat-avatar.icon img { width: 28px; height: 28px; } }
 
 .chat-avatar.avatar-2 {
   background: var(--accent-tint); border-color: var(--accent);

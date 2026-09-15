@@ -1,7 +1,6 @@
 ---
 /* ランキング詳細ブロック。companies.json から自動生成 */
 import AffLink from './AffLink.astro';
-import SmartImage from './SmartImage.astro';
 const { company: c, index } = Astro.props;
 const rank = index + 1;
 ---
@@ -21,14 +20,7 @@ const rank = index + 1;
   </div>
 
   <div class="company-body-grid">
-    <div class="thumb">
-      <SmartImage
-        src={'companies/' + (c.image || c.id + '.jpg')}
-        alt={c.name}
-        placeholder={'[ ' + c.name + '\n公式サイト画像 ]'}
-        warm={c.top}
-      />
-    </div>
+    <div class="thumb"><div class={'ph' + (c.top ? ' warm' : '')}>[ {c.name}<br />公式サイト画像 ]</div></div>
     <div>
       {c.intro && <p style="margin-bottom:14px; font-size:14px;" set:html={c.intro} />}
       {c.features.length > 0 && (
@@ -56,9 +48,9 @@ const rank = index + 1;
 
   {c.editorNote && (
     <div class="chat-bubble">
-      <div class="chat-avatar avatar-2" data-label="編"></div>
+      <div class="chat-avatar avatar-2 icon"><img src="/images/icons/note.svg" alt="" width="34" height="34"></div>
       <div class="chat-text">
-        <div class="chat-name">編集部コメント</div>
+        <div class="chat-name">補足</div>
         {c.editorNote}
       </div>
     </div>
