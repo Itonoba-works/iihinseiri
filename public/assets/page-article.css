@@ -61,22 +61,27 @@
 }
 
 .data-highlight {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 28px 24px;
-  margin: 24px 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 24px 0 0;
+  padding: 20px 0;
+  background: var(--primary-pale);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
 }
 
 .data-cell {
-  text-align: center;
-  border-right: 1px solid var(--border);
-  padding-right: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  border-right: 1px solid var(--border-strong);
+  padding: 0 24px;
 }
 
-.data-cell:last-child { border-right: none; padding-right: 0; }
+.data-cell:last-child { border-right: none; }
 
 .data-cell .num {
   font-family: inherit;
@@ -94,19 +99,31 @@
 }
 
 .data-cell .label {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--primary-deep);
+  letter-spacing: .02em;
+  margin: 0;
   font-family: inherit;
 }
 
 .source-note {
-  font-size: 11px;
+  font-size: 9.5px;
   color: var(--muted);
   font-style: italic;
-  margin-top: -8px;
-  margin-bottom: 20px;
+  margin-top: 6px;
+  margin-bottom: 24px;
   font-family: inherit;
+}
+
+/* データ帯の直下にくる出典は帯に接続して見せる */
+.data-highlight + .source-note {
+  margin-top: 0;
+  padding: 9px 24px 10px;
+  background: var(--primary-pale);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 }
 
 .side {
@@ -480,11 +497,11 @@
 }
 
 .source-note {
-  font-size: 11px;
+  font-size: 9.5px;
   color: var(--muted);
   font-style: italic;
-  margin-top: -8px;
-  margin-bottom: 20px;
+  margin-top: 6px;
+  margin-bottom: 24px;
 }
 
 .article-cta {

@@ -8,6 +8,7 @@
   /* --- 青: 塗りに使う濃い青と、装飾専用の明るい青を分離 --- */
   --primary:        #24748F;  /* 白文字 5.3:1 */
   --primary-deep:   #15546C;  /* 白文字 7.9:1 / 見出し・リンク */
+  --primary-dark:   #15546C;  /* --primary-deep の別名（既存マークアップ互換） */
   --primary-bright: #4FB4D8;  /* 装飾専用: 罫線・アイコン・ホバー枠 */
   --primary-line:   #7FC4DD;
   --primary-light:  #E8F5FA;
@@ -169,6 +170,19 @@ a[data-aff].header-cta[data-aff-external]::after { color: rgba(255,255,255,.85);
   font-size: 10px; font-weight: 700; letter-spacing: .06em; line-height: 1;
   background: rgba(255,255,255,.22); color: #fff;
   padding: 3px 5px; border-radius: 3px; flex: 0 0 auto;
+}
+
+/* 記事メタ行・本文内のPR表記（白背景用） */
+.pr-tag {
+  display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .06em; line-height: 1;
+  background: var(--primary-pale); color: var(--primary-deep);
+  border: 1px solid var(--border-strong); padding: 3px 5px; border-radius: 3px;
+}
+
+/* 記事末尾のアフィリエイト免責表記 */
+.aff-disclosure {
+  font-size: 11px; color: var(--muted); line-height: 1.9;
+  border-top: 1px dotted var(--border); padding-top: 14px; margin-top: 32px;
 }
 
 /* --- ハンバーガー / ドロワー --- */
