@@ -617,11 +617,12 @@ img, video, iframe, table, pre, code { max-width: 100%; }
   font-size: 19px; color: var(--primary-deep);
   border-bottom: 2px dotted var(--primary-line); padding-bottom: 6px; margin: 36px 0 18px;
 }
-.article-body p { margin: 0 0 22px; font-size: 16.5px; line-height: 1.95; }
-.article-body ul, .article-body ol { padding-left: 24px; margin: 22px 0 26px; }
-.article-body li { margin-bottom: 11px; font-size: 16.5px; line-height: 1.85; }
+.article-body p { margin: 0 0 32px; font-size: 16.5px; line-height: 1.85; }
+.article-body ul, .article-body ol { padding-left: 24px; margin: 28px 0 34px; }
+.article-body li { margin-bottom: 16px; font-size: 16.5px; line-height: 1.8; }
+.article-body li:last-child { margin-bottom: 0; }
 .article-body strong {
-  color: #8E3512; background: linear-gradient(transparent 58%, #FFE0C4 58%);
+  color: var(--text); background: linear-gradient(transparent 58%, #FFF0A8 58%);
   font-weight: 700; padding: 0 2px;
 }
 .lead { font-size: 15.5px; line-height: 1.95; margin-bottom: 32px; }
@@ -830,9 +831,11 @@ a[data-aff].btn-secondary:hover {
   .article-title-block h1 { font-size: 21px; }
   .article-main, .article-body { padding: 26px 20px 40px; }
   .table-wrap, .table-scroll { margin: 22px -4px; }
-  .article-body h2 { font-size: 20px; margin: 36px 0 18px; }
-  .article-body h3 { font-size: 17px; margin: 28px 0 14px; }
+  .article-body h2 { font-size: 20px; margin: 44px 0 20px; }
+  .article-body h3 { font-size: 17px; margin: 34px 0 14px; }
   .article-body p, .article-body li { font-size: 16px; }
+  .article-body p { margin-bottom: 26px; }
+  .article-body li { margin-bottom: 14px; }
   .footer-inner { padding-left: 18px; padding-right: 18px; }
   .site-footer { margin-top: 60px; }
 
