@@ -1,0 +1,111 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+// 送信先は src/data/site.json の formspreeEndpoint 1箇所で管理
+const endpoint = site.formspreeEndpoint;
+---
+<Base
+  title="お問い合わせ"
+  description="くらしの整理ナビへのお問い合わせ、掲載情報の訂正・更新に関するご連絡はこちらのフォームから。"
+  ogType="website"
+>
+  <div class="breadcrumb" slot="breadcrumb">
+    <a href="/">HOME</a>
+    <span class="sep">›</span>
+    <span>お問い合わせ</span>
+  </div>
+
+  <main class="container">
+    <div class="page-doc" style="max-width:760px;">
+      <h1>お問い合わせ</h1>
+      <p>くらしの整理ナビへのお問い合わせ、掲載情報の訂正・更新に関するご連絡などは、以下のフォームよりお願いいたします。</p>
+
+      <form id="contactForm" action={endpoint} method="POST" novalidate>
+        <div class="form-group">
+          <label for="name">お名前</label>
+          <input type="text" id="name" name="name" autocomplete="name" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">メールアドレス<span class="required">必須</span></label>
+          <input type="email" id="email" name="email" autocomplete="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="message">お問い合わせ内容<span class="required">必須</span></label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+
+        <div class="hp-field" aria-hidden="true">
+          <label for="company">会社名（入力しないでください）</label>
+          <input type="text" id="company" name="_gotcha" tabindex="-1" autocomplete="off" />
+        </div>
+        <input type="hidden" name="ts" id="formTs" />
+        <input type="hidden" name="_subject" value="【くらしの整理ナビ】お問い合わせ" />
+
+        <div class="privacy-note">
+          ご入力いただいた情報は、お問い合わせへの回答および必要なご連絡のために利用します。その他の目的で利用したり、法令に基づく場合を除き第三者に提供したりすることはありません。
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-cta" id="submitBtn">送信する</button>
+        </div>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </main>
+
+  <script is:inline>
+    (function () {
+      var f = document.getElementById('contactForm');
+      if (!f) return;
+      var st = document.getElementById('formStatus');
+      var btn = document.getElementById('submitBtn');
+      document.getElementById('formTs').value = String(Date.now());
+
+      f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        st.className = 'form-status';
+        st.textContent = '';
+
+        var email = f.email.value.trim();
+        var message = f.message.value.trim();
+        if (!email || !message) {
+          st.className = 'form-status ng';
+          st.textContent = 'メールアドレスとお問い合わせ内容を入力してください。';
+          return;
+        }
+
+        if (Date.now() - Number(f.ts.value || 0) < 3000) {
+          st.className = 'form-status ng';
+          st.textContent = '送信が早すぎます。少し時間をおいてお試しください。';
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = '送信中…';
+
+        fetch(f.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(f)
+        })
+          .then(function (r) {
+            if (!r.ok) throw new Error('送信に失敗しました。');
+            f.reset();
+            document.getElementById('formTs').value = String(Date.now());
+            st.className = 'form-status ok';
+            st.textContent = '送信しました。お問い合わせありがとうございます。';
+          })
+          .catch(function (err) {
+            st.className = 'form-status ng';
+            st.textContent = err.message + '　お手数ですが時間をおいて再度お試しください。';
+          })
+          .then(function () {
+            btn.disabled = false;
+            btn.textContent = '送信する';
+          });
+      });
+    })();
+  </script>
+</Base>
