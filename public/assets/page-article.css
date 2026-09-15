@@ -118,7 +118,7 @@
 
 /* データ帯の直下にくる出典は帯に接続して見せる */
 .data-highlight + .source-note {
-  margin-top: 0;
+  margin-top: -32px;
   padding: 9px 24px 10px;
   background: var(--primary-pale);
   border: 1px solid var(--border);
@@ -467,14 +467,18 @@
 }
 
 .data-highlight {
-  background: var(--primary-pale);
-  border-radius: 4px;
-  padding: 24px 20px;
-  margin: 24px 0;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 28px 26px;
+  margin: 32px 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
   border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+@media (max-width: 600px) {
+  .data-highlight { padding: 22px 18px; margin: 26px 0; gap: 16px; }
 }
 
 .data-cell .num {
@@ -496,12 +500,15 @@
   margin-top: 6px;
 }
 
-.source-note {
+.source-note,
+.article-body p.source-note,
+.article-body .source-note {
   font-size: 9.5px;
   color: var(--muted);
   font-style: italic;
   margin-top: 6px;
   margin-bottom: 24px;
+  line-height: 1.7;
 }
 
 .article-cta {

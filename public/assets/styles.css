@@ -73,18 +73,32 @@ p, li, dd, dt, td, th { color: var(--text); }
 /* --- リンク: 色だけに頼らず常時下線。下線色だけ水色 --- */
 a { color: var(--primary-deep); text-decoration: none; }
 a:hover { color: #0E3D50; }
-.article-body a:not(.btn-cta):not(.btn-secondary):not([data-aff]),
+.article-body a:not(.btn-cta):not(.btn-secondary),
 .lead a:not(.btn-cta):not(.btn-secondary),
 .info-box a:not(.btn-cta):not(.btn-secondary),
-.qa-a a:not(.btn-cta):not(.btn-secondary),
-aside.side a:not(.btn-cta):not(.btn-secondary) {
-  text-decoration: underline;
-  text-decoration-color: var(--primary-line);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
+.qa-a a:not(.btn-cta):not(.btn-secondary) {
+  color: var(--primary-deep);
+  text-decoration: none;
   font-weight: 600;
 }
-.article-body a:not(.btn-cta):not(.btn-secondary):hover { text-decoration-color: var(--accent); }
+.article-body a:not(.btn-cta):not(.btn-secondary):hover,
+.lead a:not(.btn-cta):not(.btn-secondary):hover,
+.info-box a:not(.btn-cta):not(.btn-secondary):hover,
+.qa-a a:not(.btn-cta):not(.btn-secondary):hover { color: #0E3D50; }
+
+/* サイドバー：常時は下線なし。ホバーで細いグレーの下線が左から伸びる */
+aside.side a:not(.btn-cta):not(.btn-secondary) {
+  text-decoration: none; color: var(--text);
+  background-image: linear-gradient(var(--muted), var(--muted));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  transition: background-size .28s var(--ease);
+}
+aside.side a:not(.btn-cta):not(.btn-secondary):hover { background-size: 100% 1px; }
+@media (prefers-reduced-motion: reduce) {
+  aside.side a:not(.btn-cta):not(.btn-secondary) { transition: none; }
+}
 a:focus-visible, button:focus-visible {
   outline: 3px solid var(--primary-line); outline-offset: 2px; border-radius: 4px;
 }
@@ -198,7 +212,7 @@ a[data-aff].header-cta[data-aff-external]::after { color: rgba(255,255,255,.85);
 .breadcrumb .sep { color: var(--border-strong); }
 
 /* ============ コンテナ ============ */
-.container { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+.container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
 .container-narrow { max-width: 780px; margin: 0 auto; padding: 0 20px; }
 
 /* ============ セクション見出し ============ */
@@ -261,8 +275,6 @@ a.btn-cta:hover {
 .btn-cta:active { transform: translateY(0) scale(.98); }
 .btn-cta.large { padding: 18px 40px; font-size: 17px; min-height: 56px; }
 .btn-cta.full { display: flex; width: 100%; }
-.btn-cta .arrow { transition: transform .2s var(--ease); }
-.btn-cta:hover .arrow { transform: translateX(4px); }
 /* 1ページに1つだけ: 呼吸するリング */
 .btn-cta.pulse { animation: aff-pulse 2.6s ease-in-out infinite; }
 @keyframes aff-pulse {
@@ -442,6 +454,7 @@ a.btn-secondary:hover {
   width: 100%; border-collapse: separate; border-spacing: 0;
   background: #fff; border-radius: var(--radius); overflow: hidden;
   border: 1px solid var(--border); font-size: 14px;
+  box-shadow: var(--shadow-md);
 }
 .compare-table th, .compare-table td {
   padding: 14px 12px; text-align: center;
@@ -459,21 +472,13 @@ a.btn-secondary:hover {
 }
 .compare-table tbody tr:hover td { background: #FAFCFD; }
 .compare-table .highlight { background: #FFF8E3; }
-.table-hint { font-size: 12px; color: var(--muted); margin: -14px 0 22px; }
+.table-hint { font-size: 12px; color: var(--muted); margin: -4px 0 28px; line-height: 1.7; }
 
 /* 比較表内の企業名リンク（AffLink）は下線＋濃青で常時視認 */
 .compare-table th a[data-aff] {
-  color: var(--primary-deep);
-  text-decoration: underline;
-  text-decoration-color: var(--primary-line);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-  font-weight: 700;
+  color: var(--primary-deep); text-decoration: none; font-weight: 700;
 }
-.compare-table th a[data-aff]:hover {
-  color: #0E3D50;
-  text-decoration-color: var(--accent);
-}
+.compare-table th a[data-aff]:hover { color: #0E3D50; }
 
 /* 比較表内のCTAボタン（レビュー →）は白文字を確実に */
 .compare-table td a.btn-cta,
@@ -485,7 +490,10 @@ a.btn-secondary:hover {
 }
 
 /* 表は必ず横スクロール枠の中で最小幅を持つ（枠の外では持たせない＝画面を押し広げない） */
-.table-scroll, .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+.table-scroll, .table-wrap {
+  overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%;
+  margin: 28px 0; padding: 4px 4px 8px;
+}
 .table-scroll .compare-table, .table-wrap .compare-table { min-width: 640px; }
 
 /* ============ はみ出しガード（全ページ共通） ============ */
@@ -508,11 +516,12 @@ img, video, iframe, table, pre, code { max-width: 100%; }
 /* ============ 注意ボックス ============ */
 .info-box {
   background: #fff; border: 1px solid var(--border-strong); border-top: none;
-  border-radius: 0; margin: 30px 0; font-size: 14.5px;
-  padding: 0 20px 18px;
+  border-radius: 0; margin: 34px 0; font-size: 14.5px;
+  padding: 0 22px 20px;
+  box-shadow: var(--shadow-md);
 }
 .info-box .label {
-  display: block; margin: 0 -20px 16px;
+  display: block; margin: 0 -22px 18px;
   background: var(--primary-deep); color: #fff;
   font-size: 12.5px; font-weight: 700; letter-spacing: .08em; line-height: 1.5;
   padding: 9px 18px;
@@ -521,14 +530,15 @@ img, video, iframe, table, pre, code { max-width: 100%; }
 .warn-box { border-color: var(--accent); }
 .warn-box .label { background: var(--accent); color: #fff; }
 @media (max-width: 480px) {
-  .info-box { padding: 0 16px 16px; }
+  .info-box { padding: 0 16px 16px; margin: 26px 0; }
   .info-box .label { margin: 0 -16px 14px; padding: 9px 14px; letter-spacing: .04em; }
 }
 
 /* ============ Q&A ============ */
 .qa-item {
   background: #fff; border: 1px solid var(--border);
-  border-radius: var(--radius); margin-bottom: 12px; overflow: hidden;
+  border-radius: var(--radius); margin-bottom: 14px; overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 .qa-q {
   padding: 16px 44px 16px 56px; font-weight: 600; font-size: 15px;
@@ -575,7 +585,7 @@ img, video, iframe, table, pre, code { max-width: 100%; }
 .article-meta-line { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 12.5px; color: var(--muted); }
 
 .article-main, .article-body {
-  background: #fff; padding: 32px 40px 48px;
+  background: #fff; padding: 40px 48px 56px;
   border: 1px solid var(--border); border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
 }
@@ -588,9 +598,9 @@ img, video, iframe, table, pre, code { max-width: 100%; }
   font-size: 19px; color: var(--primary-deep);
   border-bottom: 2px dotted var(--primary-line); padding-bottom: 6px; margin: 36px 0 18px;
 }
-.article-body p { margin: 0 0 18px; font-size: 16.5px; line-height: 1.95; }
-.article-body ul, .article-body ol { padding-left: 22px; margin: 16px 0; }
-.article-body li { margin-bottom: 9px; font-size: 16.5px; line-height: 1.85; }
+.article-body p { margin: 0 0 22px; font-size: 16.5px; line-height: 1.95; }
+.article-body ul, .article-body ol { padding-left: 24px; margin: 22px 0 26px; }
+.article-body li { margin-bottom: 11px; font-size: 16.5px; line-height: 1.85; }
 .article-body strong {
   color: #8E3512; background: linear-gradient(transparent 58%, #FFE0C4 58%);
   font-weight: 700; padding: 0 2px;
@@ -599,7 +609,8 @@ img, video, iframe, table, pre, code { max-width: 100%; }
 
 .article-body .toc {
   background: var(--primary-pale); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 20px 24px; margin: 24px 0 40px;
+  border-radius: var(--radius); padding: 22px 26px; margin: 30px 0 42px;
+  box-shadow: var(--shadow-sm);
 }
 .article-body .toc-title {
   font-weight: 600; color: var(--primary-deep); margin-bottom: 12px;
@@ -607,12 +618,13 @@ img, video, iframe, table, pre, code { max-width: 100%; }
 }
 .article-body .toc ol { padding-left: 20px; margin: 0; font-size: 14.5px; line-height: 2; }
 .article-body .toc a { color: var(--text); text-decoration: none; font-weight: 500; }
-.article-body .toc a:hover { color: var(--primary-deep); text-decoration: underline; }
+.article-body .toc a:hover { color: var(--primary-deep); }
 
 .author-box {
   display: flex; gap: 14px; align-items: center;
-  background: var(--primary-pale); border-radius: var(--radius);
-  padding: 14px 18px; margin: 24px 0 30px; font-size: 13px;
+  background: var(--primary-pale); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow-sm);
+  padding: 16px 20px; margin: 26px 0 32px; font-size: 13px;
 }
 .author-box .ava {
   width: 48px; height: 48px; border-radius: 50%;
@@ -702,9 +714,8 @@ aside.side .side-rank-num {
    ボタン内（.btn-cta / .btn-secondary）にある場合は下線を出さない。 */
 a[data-aff] {
   color: var(--primary-deep); font-weight: 600;
-  text-decoration: underline; text-decoration-color: var(--primary-line);
-  text-decoration-thickness: 2px; text-underline-offset: 3px;
-  transition: color .15s, text-decoration-color .15s;
+  text-decoration: none;
+  transition: color .15s;
 }
 a[data-aff]:hover { color: #0E3D50; text-decoration-color: var(--accent); }
 a[data-aff][data-aff-external]::after {
@@ -738,7 +749,7 @@ a[data-aff].btn-secondary:hover {
   .site-nav { gap: 16px; }
   .site-nav a { font-size: 13px; }
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
-  .article-title-block, .article-main, .article-body { padding-left: 28px; padding-right: 28px; }
+  .article-title-block, .article-main, .article-body { padding-left: 32px; padding-right: 32px; }
 }
 
 @media (max-width: 900px) {
@@ -802,7 +813,8 @@ a[data-aff].btn-secondary:hover {
   .section-head h2 { font-size: 22px; }
   .article-title-block { padding: 20px 18px 16px; border-radius: var(--radius-sm) var(--radius-sm) 0 0; }
   .article-title-block h1 { font-size: 21px; }
-  .article-main, .article-body { padding: 20px 18px 36px; }
+  .article-main, .article-body { padding: 26px 20px 40px; }
+  .table-wrap, .table-scroll { margin: 22px -4px; }
   .article-body h2 { font-size: 20px; margin: 36px 0 18px; }
   .article-body h3 { font-size: 17px; margin: 28px 0 14px; }
   .article-body p, .article-body li { font-size: 16px; }

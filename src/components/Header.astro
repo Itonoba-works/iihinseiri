@@ -1,32 +1,22 @@
 ---
 import site from '../data/site.json';
-import companies from '../data/companies.json';
 const { active = '' } = Astro.props;
-
-// 一括見積もりCTAの遷移先を companies.json から解決
-// URLの管理場所は companies.json の該当社の affUrl 1箇所だけ
-const est = companies.find((c) => c.id === site.estimateAffId);
-const estUrl = est && est.affUrl ? est.affUrl : '';
-const estHref = estUrl
-  ? estUrl
-  : (est ? (est.hasReview ? '/reviews/' + est.id + '.html' : '/rankings/' + est.category + '.html#' + est.id) : '/rankings/ihin.html');
 ---
 <header class="site-header" data-screen-label="Header">
   <div class="header-top">
     <div class="header-top-inner">
       <span class="tagline">{site.tagline}</span>
-      <time class="updated" data-today="更新日："></time>
+      <time class="updated" data-today="更新日：></time>
     </div>
   </div>
 
   <div class="header-inner">
-    <a href="/" class="site-logo" aria-label={site.name}>
-      <img
-        src={`/images/brand/logo.png?v=${site.assetVersion}`}
-        alt={site.name}
-        width="2170" height="725"
-        fetchpriority="high" decoding="async"
-      />
+    <a href="/" class="site-logo">
+      <span class="logo-mark">整</span>
+      <span class="logo-text">
+        <span class="logo-name">{site.name}</span>
+        <span class="logo-sub">{site.nameEn}</span>
+      </span>
     </a>
 
     <nav class="site-nav" aria-label="メインナビゲーション">
@@ -35,15 +25,7 @@ const estHref = estUrl
       ))}
     </nav>
 
-    <a
-      href={estHref}
-      class="header-cta pulse"
-      data-aff={est ? est.id : undefined}
-      data-aff-external={estUrl ? true : undefined}
-      data-aff-pos="header"
-      rel={estUrl ? 'sponsored nofollow noopener' : undefined}
-      target={estUrl ? '_blank' : undefined}
-   >{estUrl && <span class="pr">PR</span>}{site.estimateLabel}</a>
+    <a href="#estimate" class="header-cta pulse" data-estimate>無料で見積もり</a>
 
     <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="navDrawer">
       <i></i><i></i><i></i>
@@ -60,14 +42,6 @@ const estHref = estUrl
     {site.drawer.map((n) => (
       <a href={n.href} class="d-item">{n.label}<span class="chev">›</span></a>
     ))}
-    <a
-      href={estHref}
-      class="btn-cta full drawer-cta pulse"
-      data-aff={est ? est.id : undefined}
-      data-aff-external={estUrl ? true : undefined}
-      data-aff-pos="drawer"
-      rel={estUrl ? 'sponsored nofollow noopener' : undefined}
-      target={estUrl ? '_blank' : undefined}
-    >{estUrl && <span class="pr">PR</span>}{site.estimateLabel}</a>
+    <a href="#estimate" class="btn-cta full drawer-cta pulse" data-estimate>無料で見積もり</a>
   </div>
 </div>

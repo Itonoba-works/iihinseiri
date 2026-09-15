@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import StickyCta from '../components/StickyCta.astro';
 import AffLink from '../components/AffLink.astro';
-import SmartImage from '../components/SmartImage.astro';
 import site from '../data/site.json';
 import companies from '../data/companies.json';
 import pages from '../data/pages.json';
@@ -44,24 +43,19 @@ const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '�
   <section class="hero" data-screen-label="Hero">
     <div class="hero-inner">
       <div>
-        <span class="hero-tag" data-today="最新更新："></span>
         <h1>
           <mark>遺品整理・生前整理・不用品回収</mark><br />
           の信頼できる業者を厳選して比較しました
         </h1>
         <p>「どこに頼めばいいの？」「料金が不安…」そんなお悩みに、料金・対応エリア・特徴を各社公式サイトの公表情報から整理して比較しました。</p>
         <div class="hero-btns">
-          <a href="/rankings/ihin.html" class="btn-cta">ランキングを見る<span class="arrow">→</span></a>
+          <a href="/rankings/ihin.html" class="btn-cta">ランキングを見る</a>
           <a href="/articles/ihin-price.html" class="btn-secondary">料金相場をチェック</a>
         </div>
       </div>
       <div class="hero-img">
         <div class="decoration"></div>
-        <SmartImage
-          src="hero/home.jpg"
-          alt="明るい部屋で片付ける家族の様子"
-          placeholder="[ ヒーロー写真: 明るい部屋で片付ける家族の様子 ]"
-        />
+        <div class="ph">[ ヒーロー写真: 明るい部屋で片付ける家族の様子 ]</div>
       </div>
     </div>
   </section>
@@ -94,14 +88,7 @@ const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '�
       {top3.map((c, i) => (
         <div class={'ranking-item' + (c.top ? ' top' : '')} id={c.id} data-reveal={String(i)}>
           <div class={'rank-badge rank-' + (i + 1)}><span><span class="no">No.</span><span class="num">{i + 1}</span></span></div>
-          <div class="ranking-thumb">
-            <SmartImage
-              src={'companies/' + (c.image || c.id + '.jpg')}
-              alt={c.name}
-              placeholder={'[ ' + c.name + '\nサービス写真 ]'}
-              warm={c.top}
-            />
-          </div>
+          <div class="ranking-thumb"><div class={'ph' + (c.top ? ' warm' : '')}>[ {c.name}<br />サービス写真 ]</div></div>
           <div class="ranking-info">
             <h3><AffLink id={c.id} pos={'rank-' + (i + 1) + '-name'}>{c.name}</AffLink></h3>
             <div class="ranking-catch">{c.catch}</div>
@@ -120,7 +107,7 @@ const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '�
               料金目安（公式掲載）
               <strong>{c.shortPrice || c.price}</strong>
             </div>
-            {c.hasReview && <a href={'/reviews/' + c.id + '.html'} class="btn-cta">詳細レビュー<span class="arrow">→</span></a>}
+            {c.hasReview && <a href={'/reviews/' + c.id + '.html'} class="btn-cta">詳細レビュー</a>}
             <AffLink id={c.id} class="btn-secondary" pos={'rank-' + (i + 1) + '-btn'}>公式サイトを見る</AffLink>
           </div>
         </div>
@@ -128,7 +115,7 @@ const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '�
     </div>
 
     <div class="ranking-more">
-      <a href="/rankings/ihin.html" class="btn-secondary">4位以降も見る →</a>
+      <a href="/rankings/ihin.html" class="btn-secondary">4位以降も見る</a>
     </div>
 
     <div class="section-head" data-reveal="0"><h2>新着・人気記事</h2></div>
@@ -137,11 +124,7 @@ const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '�
         <a href={'/articles/' + a.slug + '.html'} class="article-card" data-reveal={String(i)}>
           <div class="thumb">
             <span class="tag">{cardTag[a.slug] || a.catTag}</span>
-            <SmartImage
-              src={'categories/' + (a.image || a.slug + '.jpg')}
-              alt={a.h1}
-              placeholder={'[ ' + (cardTag[a.slug] || a.catTag) + ' ]'}
-            />
+            <div class="ph">[ {a.catTag} ]</div>
           </div>
           <div class="body">
             <h3>{a.h1}</h3>
@@ -153,15 +136,11 @@ const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '�
         <a href="/rankings/cleaning.html" class="article-card" data-reveal="5">
           <div class="thumb">
             <span class="tag">ハウスクリーニング</span>
-            <SmartImage
-              src={'categories/' + (cleaning.image || 'cleaning.jpg')}
-              alt={cleaning.h1}
-              placeholder="[ 清掃 ]"
-            />
+            <div class="ph">[ 清掃 ]</div>
           </div>
           <div class="body">
             <h3>{cleaning.h1}</h3>
-            <div class="meta"><span data-today="最終確認："></span></div>
+            <div class="meta"><span data-today="更新日：></span></div>
           </div>
         </a>
       )}

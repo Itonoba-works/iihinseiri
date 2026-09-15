@@ -1,17 +1,13 @@
 ---
 /* 企業名・公式サイトリンクはすべてこのコンポーネント経由。
-   URL の差し替えは src/data/companies.json の affUrl だけ。
-   affUrl が入ると、ボタン型リンクには PR ラベルが自動で付く。 */
+   リンク先は affUrl → officialUrl → サイト内 の順で解決。
+   アフィリエイト提携後は companies.json の affUrl を埋めるだけで差し替わる。 */
 import companies from '../data/companies.json';
-const { id, class: cls, pos = '', style = '', pr } = Astro.props;
+const { id, class: cls, pos = '', style = '' } = Astro.props;
 const c = companies.find((x) => x.id === id);
 if (!c) throw new Error('[AffLink] companies.json に未登録の企業ID: ' + id);
-const external = c.affUrl || '';
+const external = c.affUrl || c.officialUrl || '';
 const href = external || (c.hasReview ? '/reviews/' + c.id + '.html' : '/rankings/' + c.category + '.html#' + c.id);
-// ボタン型（btn-cta / btn-secondary / header-cta）のときだけ PR を付ける。
-// pr={true} / pr={false} で個別に上書きできる。
-const isButton = /btn|header-cta/.test(cls || '');
-const showPr = pr === undefined ? Boolean(external) && isButton : Boolean(pr);
 ---
 <a
   href={href}
@@ -22,4 +18,4 @@ const showPr = pr === undefined ? Boolean(external) && isButton : Boolean(pr);
   data-aff-external={external ? '1' : undefined}
   rel={external ? 'sponsored nofollow noopener' : undefined}
   target={external ? '_blank' : undefined}
->{showPr && <span class="pr">PR</span>}<slot>{c.name}</slot></a>
+><slot>{c.name}</slot></a>
