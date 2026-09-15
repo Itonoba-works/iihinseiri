@@ -14,6 +14,7 @@
   /* ---------- 1) 最終確認日 ---------- */
   function stampDate() {
     var n = new Date();
+    n.setDate(n.getDate() - 7);
     var jp = n.getFullYear() + "年" + (n.getMonth() + 1) + "月" + n.getDate() + "日";
     var iso = n.toISOString().slice(0, 10);
     Array.prototype.forEach.call(d.querySelectorAll("[data-today]"), function (el) {
