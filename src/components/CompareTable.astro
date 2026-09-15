@@ -11,10 +11,10 @@ const list = companies.filter((c) => c.category === category);
       <tr>
         <th style="min-width:140px;">サービス名</th>
         <th style="min-width:100px;">サービス形態</th>
+        <th style="min-width:118px;">公式</th>
         <th style="min-width:170px;">料金の目安（公式掲載）</th>
         <th style="min-width:140px;">対応エリア</th>
         <th style="min-width:130px;">主な特徴</th>
-        <th style="min-width:118px;">公式</th>
       </tr>
     </thead>
     <tbody>
@@ -22,12 +22,12 @@ const list = companies.filter((c) => c.category === category);
         <tr class={c.top ? 'highlight' : undefined}>
           <th style="text-align:left; padding-left:14px;"><AffLink id={c.id} pos="compare-name">{c.name}</AffLink></th>
           <td>{c.shortType || c.serviceType}</td>
-          <td class="price-cell">{c.shortPrice || c.price}</td>
-          <td>{c.shortArea || c.area}</td>
-          <td>{c.shortFeature || (c.features[0] || '')}</td>
           <td>
             <AffLink id={c.id} class="btn-cta" pos="compare-btn" style="padding:9px 16px; font-size:12.5px; white-space:nowrap;">公式サイト</AffLink>
           </td>
+          <td class="price-cell">{c.shortPrice || c.price}</td>
+          <td>{c.shortArea || c.area}</td>
+          <td>{c.shortFeature || (c.features[0] || '')}</td>
         </tr>
       ))}
     </tbody>

@@ -1,9 +1,15 @@
 ---
+import site from '../data/site.json';
 import companies from '../data/companies.json';
-const { text = '複数社の料金をまとめて比較', small = '入力1分・無料', label = '無料で見積もり', affId = '' } = Astro.props;
+const {
+  text = '複数社の料金をまとめて比較',
+  small = '入力1分・無料',
+  label = site.estimateLabel,
+  affId = site.estimateAffId
+} = Astro.props;
 const c = affId ? companies.find((x) => x.id === affId) : null;
-const external = c && c.affUrl ? c.affUrl : '';
-let href = '#estimate';
+const external = c ? (c.affUrl || c.officialUrl || '') : '';
+let href = '/rankings/ihin.html';
 if (c) href = external || (c.hasReview ? '/reviews/' + c.id + '.html' : '/rankings/' + c.category + '.html#' + c.id);
 ---
 <div class="sticky-cta" id="stickyCta">
@@ -16,10 +22,10 @@ if (c) href = external || (c.hasReview ? '/reviews/' + c.id + '.html' : '/rankin
       href={href}
       class="btn-cta pulse"
       data-aff={c ? c.id : undefined}
-      data-estimate={c ? undefined : true}
+      data-aff-external={external ? true : undefined}
       data-aff-pos="sticky"
       rel={external ? 'sponsored nofollow noopener' : undefined}
       target={external ? '_blank' : undefined}
-    >{label}</a>
+    >{external && <span class="pr">PR</span>}{label}</a>
   </div>
 </div>

@@ -5,8 +5,12 @@ import site from '../data/site.json';
   <div class="footer-inner">
     <div>
       <div class="footer-brand">
-        <span class="logo-mark">整</span>
-        <span>{site.name}</span>
+        <img
+          src={`/images/brand/logo-white.png?v=${site.assetVersion}`}
+          alt={site.name}
+          width="2170" height="725"
+          loading="lazy" decoding="async"
+        />
       </div>
       <p>{site.description}</p>
     </div>

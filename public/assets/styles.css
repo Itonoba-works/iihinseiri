@@ -86,18 +86,22 @@ a:hover { color: #0E3D50; }
 .info-box a:not(.btn-cta):not(.btn-secondary):hover,
 .qa-a a:not(.btn-cta):not(.btn-secondary):hover { color: #0E3D50; }
 
-/* サイドバー：常時は下線なし。ホバーで細いグレーの下線が左から伸びる */
-aside.side a:not(.btn-cta):not(.btn-secondary) {
-  text-decoration: none; color: var(--text);
+/* サイドバー：常時は下線なし。ホバーで細いグレーの下線が文字の下だけに伸びる */
+aside.side a:not(.btn-cta):not(.btn-secondary) { text-decoration: none; color: var(--text); }
+aside.side .side-rank-item .n,
+aside.side .side-block li > a {
+  display: inline;
   background-image: linear-gradient(var(--muted), var(--muted));
   background-repeat: no-repeat;
   background-position: 0 100%;
   background-size: 0 1px;
   transition: background-size .28s var(--ease);
 }
-aside.side a:not(.btn-cta):not(.btn-secondary):hover { background-size: 100% 1px; }
+aside.side .side-rank-item:hover .n,
+aside.side .side-block li > a:hover { background-size: 100% 1px; }
 @media (prefers-reduced-motion: reduce) {
-  aside.side a:not(.btn-cta):not(.btn-secondary) { transition: none; }
+  aside.side .side-rank-item .n,
+  aside.side .side-block li > a { transition: none; }
 }
 a:focus-visible, button:focus-visible {
   outline: 3px solid var(--primary-line); outline-offset: 2px; border-radius: 4px;
@@ -717,11 +721,7 @@ a[data-aff] {
   text-decoration: none;
   transition: color .15s;
 }
-a[data-aff]:hover { color: #0E3D50; text-decoration-color: var(--accent); }
-a[data-aff][data-aff-external]::after {
-  content: "↗"; font-size: .78em; margin-left: 3px;
-  color: var(--muted); text-decoration: none; display: inline-block;
-}
+a[data-aff]:hover { color: #0E3D50; }
 /* ボタン装飾（.btn-cta / .btn-secondary）が付いた AffLink は下線を消し、白文字を優先 */
 a[data-aff].btn-cta,
 a[data-aff].btn-cta:link,
