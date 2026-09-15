@@ -306,25 +306,6 @@
 
 @media (max-width: 900px) {
   .article-layout { grid-template-columns: 1fr; padding: 12px; }
-
-.article-title-block, .article-main { padding: 24px 20px; }
-
-.article-title-block h1 { font-size: 20px; }
-
-.side { position: static; }
-
-.service-hero-grid { grid-template-columns: 1fr; }
-
-.rating-details { grid-template-columns: repeat(2, 1fr); }
-
-.pros-cons { grid-template-columns: 1fr; }
-
-.service-cta-row { grid-template-columns: 1fr; }
-
-.step-list { grid-template-columns: repeat(2, 1fr); }
-
-@media (max-width: 900px) {
-  .article-layout { grid-template-columns: 1fr; padding: 12px; }
   .article-title-block, .article-main { padding: 24px 20px; }
   .article-title-block h1 { font-size: 20px; }
   .side { position: static; }

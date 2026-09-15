@@ -118,7 +118,7 @@
 
 /* データ帯の直下にくる出典は帯に接続して見せる */
 .data-highlight + .source-note {
-  margin-top: -32px;
+  margin-top: -30px;
   padding: 9px 24px 10px;
   background: var(--primary-pale);
   border: 1px solid var(--border);
@@ -277,21 +277,6 @@
 }
 
 .checklist li strong { font-weight: 700; color: var(--text); }
-
-@media (max-width: 900px) {
-  .article-layout { grid-template-columns: 1fr; padding: 12px; }
-
-.article-title-block h1 { font-size: 22px; }
-
-.side { position: static; }
-
-.data-highlight { grid-template-columns: 1fr; gap: 12px; }
-
-.data-cell { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 12px; padding-right: 0; }
-
-.data-cell:last-child { border-bottom: none; }
-
-.data-cell .num { font-size: 26px; }
 
 @media (max-width: 900px) {
   .article-layout { grid-template-columns: 1fr; padding: 12px; }

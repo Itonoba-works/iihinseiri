@@ -256,25 +256,6 @@
 
 @media (max-width: 900px) {
   .article-layout { grid-template-columns: 1fr; padding: 12px; }
-
-.article-title-block, .article-main { padding: 24px 20px; }
-
-.article-title-block h1 { font-size: 22px; }
-
-.side { position: static; }
-
-.company-body-grid { grid-template-columns: 1fr; }
-
-.company-block { padding: 20px 18px; }
-
-.company-block-head { grid-template-columns: auto 1fr; }
-
-.company-actions { grid-template-columns: 1fr; }
-
-.company-features { grid-template-columns: 1fr; }
-
-@media (max-width: 900px) {
-  .article-layout { grid-template-columns: 1fr; padding: 12px; }
   .article-title-block, .article-main { padding: 24px 20px; }
   .article-title-block h1 { font-size: 22px; }
   .side { position: static; }
