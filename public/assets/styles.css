@@ -349,8 +349,9 @@ a.btn-secondary:hover {
 /* アイコンSVGを入れる場合（円を埋めずに中央に置く） */
 .chat-avatar.icon img { position: static; inset: auto; width: 34px; height: 34px; object-fit: contain; }
 .author-box .ava img { width: 28px; height: 28px; object-fit: contain; }
-/* アイコンを入れた場合は淡色の丸に（グレーのアイコンが沈まないよう） */
-.author-box .ava:has(img) { background: var(--primary-light); border: 2px solid var(--primary); }
+/* アイコン入りの丸はQ&Aと同じ配色でベタ塗り・枠線なし */
+.chat-avatar.icon { background: var(--primary); border: none; }
+.chat-avatar.avatar-2.icon { background: var(--accent); border: none; }
 @media (max-width: 768px) { .chat-avatar.icon img { width: 28px; height: 28px; } }
 
 .chat-avatar.avatar-2 {
@@ -506,16 +507,23 @@ img, video, iframe, table, pre, code { max-width: 100%; }
 
 /* ============ 注意ボックス ============ */
 .info-box {
-  background: var(--primary-pale); border-left: 4px solid var(--primary);
-  padding: 18px 22px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  margin: 24px 0; font-size: 14.5px;
+  background: #fff; border: 1px solid var(--border-strong); border-top: none;
+  border-radius: 0; margin: 30px 0; font-size: 14.5px;
+  padding: 0 20px 18px;
 }
 .info-box .label {
-  font-weight: 600; color: var(--primary-deep); margin-bottom: 6px;
-  display: flex; align-items: center; gap: 6px;
+  display: block; margin: 0 -20px 16px;
+  background: var(--primary-deep); color: #fff;
+  font-size: 12.5px; font-weight: 700; letter-spacing: .08em; line-height: 1.5;
+  padding: 9px 18px;
 }
-.warn-box { background: var(--accent-tint); border-left-color: var(--accent); }
-.warn-box .label { color: #8E3512; }
+.info-box > *:last-child { margin-bottom: 0; }
+.warn-box { border-color: var(--accent); }
+.warn-box .label { background: var(--accent); color: #fff; }
+@media (max-width: 480px) {
+  .info-box { padding: 0 16px 16px; }
+  .info-box .label { margin: 0 -16px 14px; padding: 9px 14px; letter-spacing: .04em; }
+}
 
 /* ============ Q&A ============ */
 .qa-item {
