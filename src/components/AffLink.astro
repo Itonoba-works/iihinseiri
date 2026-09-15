@@ -1,7 +1,7 @@
 ---
 /* 企業名・公式サイトリンクはすべてこのコンポーネント経由。
    リンク先は affUrl → officialUrl → サイト内 の順で解決。
-   アフィリエイト提携後は companies.json の affUrl を埋めるだけで差し替わる。 */
+   URL の差し替えは companies.json の該当社の affUrl 1箇所だけ。 */
 import companies from '../data/companies.json';
 const { id, class: cls, pos = '', style = '' } = Astro.props;
 const c = companies.find((x) => x.id === id);
