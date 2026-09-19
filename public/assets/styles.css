@@ -91,16 +91,15 @@ aside.side a:not(.btn-cta):not(.btn-secondary) { text-decoration: none; color: v
 aside.side .side-rank-item .n,
 aside.side .side-block li > a {
   display: inline;
-  background-image: linear-gradient(rgba(21,84,108,0), rgba(21,84,108,0));
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 100% 2px;
+  text-decoration: none;
   transition: color .18s var(--ease);
 }
 aside.side .side-rank-item:hover .n,
 aside.side .side-block li > a:hover {
-  background-image: linear-gradient(rgba(21,84,108,1), rgba(21,84,108,1));
   color: var(--primary-deep);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }
 @media (prefers-reduced-motion: reduce) {
   aside.side .side-rank-item .n,
@@ -499,15 +498,13 @@ a.btn-secondary:hover {
 /* 比較表内の企業名リンク（AffLink）は下線＋濃青で常時視認 */
 .compare-table th a[data-aff] {
   color: var(--primary-deep); text-decoration: none; font-weight: 700;
-  background-image: linear-gradient(rgba(21,84,108,0), rgba(21,84,108,0));
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 100% 2px;
   transition: color .18s var(--ease);
 }
 .compare-table th a[data-aff]:hover {
-  background-image: linear-gradient(rgba(21,84,108,1), rgba(21,84,108,1));
   color: var(--primary-deep);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }
 
 /* 比較表内のCTAボタン（レビュー →）は白文字を確実に */
@@ -729,7 +726,7 @@ aside.side .side-block ul { list-style: none; padding: 0; margin: 0; }
 aside.side .side-block li { font-size: 14px; line-height: 1.8; margin-bottom: 8px; }
 aside.side .side-rank-item {
   display: flex; align-items: center; gap: 10px;
-  padding: 12px 0; border-bottom: 1px dotted var(--border);
+  padding: 12px 0; border-bottom: none;
   text-decoration: none; color: var(--text);
 }
 aside.side .side-rank-item:last-child { border-bottom: none; }
@@ -745,18 +742,16 @@ aside.side .side-rank-num {
 /* ============ アフィリエイトリンク（企業名） ============
    HTMLには data-aff="企業ID" だけ書く。URLは AffLink コンポーネントが埋め込む。
    ボタン内（.btn-cta / .btn-secondary）にある場合は下線を出さない。 */
-a[data-aff]:not(.btn-cta):not(.btn-secondary):not(.header-cta) {
+a[data-aff]:not(.btn-cta):not(.btn-secondary):not(.header-cta):not(.side-rank-item) {
   color: var(--primary-deep); font-weight: 600;
   text-decoration: none;
-  background-image: linear-gradient(rgba(21,84,108,0), rgba(21,84,108,0));
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 100% 2px;
   transition: color .18s var(--ease);
 }
-a[data-aff]:not(.btn-cta):not(.btn-secondary):not(.header-cta):hover {
-  background-image: linear-gradient(rgba(21,84,108,1), rgba(21,84,108,1));
+a[data-aff]:not(.btn-cta):not(.btn-secondary):not(.header-cta):not(.side-rank-item):hover {
   color: var(--primary-deep);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }
 /* ボタン装飾（.btn-cta / .btn-secondary）が付いた AffLink は下線を消し、白文字を優先 */
 a[data-aff].btn-cta,
