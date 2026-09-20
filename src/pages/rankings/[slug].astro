@@ -2,6 +2,7 @@
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import CompareTable from '../../components/CompareTable.astro';
 import CompanyBlock from '../../components/CompanyBlock.astro';
+import { resolveAff } from '../../lib/aff.js';  
 import pages from '../../data/pages.json';
 import companies from '../../data/companies.json';
 
@@ -28,7 +29,7 @@ const catLabel = page.slug === 'cleaning' ? 'ハウスクリーニング' : '遺
   breadcrumb={[{ label: catLabel + 'サービス比較' }]}
   cta={{ text: '複数社の料金をまとめて比較', small: '入力1分・無料', label: '無料で見積もり' }}
 >
-  <div set:html={intro} />
+  <div set:html={resolveAff(intro)} />
 
   <h2 id="compare">{list.length}社の比較表</h2>
   <p>公式サイトの公表情報をもとに、料金・サービス形態・対応エリア・特徴で整理しました。<strong>横スクロールで全項目を確認できます。</strong></p>
@@ -37,5 +38,5 @@ const catLabel = page.slug === 'cleaning' ? 'ハウスクリーニング' : '遺
   <h2 id="ranking">{catLabel}サービス{list.length}社の詳細</h2>
   {list.map((c, i) => <CompanyBlock company={c} index={i} />)}
 
-  <div set:html={outro} />
+  <div set:html={resolveAff(outro)} />
 </ArticleLayout>
