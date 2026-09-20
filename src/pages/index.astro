@@ -111,8 +111,8 @@ const cardTag = { 'ihin-price': '遺品整理', trouble: '選び方', seizen: '�
               料金目安（公式掲載）
               <strong>{c.shortPrice || c.price}</strong>
             </div>
-            {c.hasReview && <a href={'/reviews/' + c.id + '.html'} class="btn-cta">詳細レビュー</a>}
-            <AffLink id={c.id} class="btn-secondary" pos={'rank-' + (i + 1) + '-btn'}>公式サイトを見る</AffLink>
+            <AffLink id={c.id} class="btn-cta" pos={'rank-' + (i + 1) + '-btn'}>公式サイトを見る</AffLink>
+            {c.hasReview && <a href={'/reviews/' + c.id + '.html'} class="btn-secondary">詳細レビュー</a>}
           </div>
         </div>
       ))}
