@@ -84,7 +84,12 @@ a:hover { color: #0E3D50; }
 .article-body a:not(.btn-cta):not(.btn-secondary):hover,
 .lead a:not(.btn-cta):not(.btn-secondary):hover,
 .info-box a:not(.btn-cta):not(.btn-secondary):hover,
-.qa-a a:not(.btn-cta):not(.btn-secondary):hover { color: #0E3D50; }
+.qa-a a:not(.btn-cta):not(.btn-secondary):hover {
+  color: #0E3D50;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
 
 /* サイドバー：常時は下線なし。ホバーで細いグレーの下線が文字の下だけに伸びる */
 aside.side a:not(.btn-cta):not(.btn-secondary) { text-decoration: none; color: var(--text); }
@@ -1020,3 +1025,23 @@ a[data-aff].btn-secondary:hover {
 @media (max-width: 860px) {
   .pick-recommend { grid-template-columns: 1fr; }
 }
+
+/* ============ 画像スロット ============
+   各枠は <img> と .ph（未設置時のプレースホルダー）を重ねて持つ。
+   画像が入ると .ph の上に乗り、404 のときは onerror で img が隠れて .ph が見える。 */
+.hero-img, .ranking-thumb, .company-body-grid .thumb,
+.service-logo-area, .article-card .thumb, .pick-thumb { position: relative; }
+.hero-img > img, .ranking-thumb > img, .company-body-grid .thumb > img,
+.service-logo-area > img, .article-card .thumb > img, .pick-thumb > img {
+  position: absolute; inset: 0; z-index: 2;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.pick-thumb {
+  aspect-ratio: 4 / 3;
+  background: var(--primary-light);
+  overflow: hidden;
+}
+
+/* バナー画像（提携通過後）に差し替える枠は全体を収める */
+.pick-thumb.is-banner { background: #fff; }
+.pick-thumb.is-banner > img { object-fit: contain; padding: 10px; }

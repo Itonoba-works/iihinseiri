@@ -26,7 +26,7 @@ const worries = [
   '女性スタッフに対応してもらいたい'
 ];
 
-const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '生前整理', huyouhin: '不用品回収', gomiyashiki: 'ゴミ屋敷' };
+const cardTag = { 'ihin-price': '遺品整理', trouble: '選び方', seizen: '生前整理', huyouhin: '不用品回収', gomiyashiki: 'ゴミ屋敷' };
 ---
 <Base
   title="くらしの整理ナビ｜遺品整理・生前整理・不用品回収の総合まとめサイト"
@@ -55,6 +55,7 @@ const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '�
       </div>
       <div class="hero-img">
         <div class="decoration"></div>
+        <img src="/images/hero.webp" alt="明るい部屋で片付けをする様子" width="1200" height="900" decoding="async" onerror="this.style.display='none'" />
         <div class="ph">[ ヒーロー写真: 明るい部屋で片付ける家族の様子 ]</div>
       </div>
     </div>
@@ -88,7 +89,10 @@ const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '�
       {top3.map((c, i) => (
         <div class={'ranking-item' + (c.top ? ' top' : '')} id={c.id} data-reveal={String(i)}>
           <div class={'rank-badge rank-' + (i + 1)}><span><span class="no">No.</span><span class="num">{i + 1}</span></span></div>
-          <div class="ranking-thumb"><div class={'ph' + (c.top ? ' warm' : '')}>[ {c.name}<br />サービス写真 ]</div></div>
+          <div class="ranking-thumb">
+            <img src={'/images/companies/' + c.id + '.webp'} alt={c.name} width="800" height="600" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+            <div class={'ph' + (c.top ? ' warm' : '')}>[ {c.name}<br />サービス写真 ]</div>
+          </div>
           <div class="ranking-info">
             <h3><AffLink id={c.id} pos={'rank-' + (i + 1) + '-name'}>{c.name}</AffLink></h3>
             <div class="ranking-catch">{c.catch}</div>
@@ -124,6 +128,7 @@ const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '�
         <a href={'/articles/' + a.slug + '.html'} class="article-card" data-reveal={String(i)}>
           <div class="thumb">
             <span class="tag">{cardTag[a.slug] || a.catTag}</span>
+            <img src={'/images/articles/' + a.slug + '.webp'} alt="" width="800" height="500" loading="lazy" decoding="async" onerror="this.style.display='none'" />
             <div class="ph">[ {a.catTag} ]</div>
           </div>
           <div class="body">
@@ -136,6 +141,7 @@ const cardTag = { 'ihin-price': '遺品整理', akutoku: '選び方', seizen: '�
         <a href="/rankings/cleaning.html" class="article-card" data-reveal="5">
           <div class="thumb">
             <span class="tag">ハウスクリーニング</span>
+            <img src="/images/articles/cleaning.webp" alt="" width="800" height="500" loading="lazy" decoding="async" onerror="this.style.display='none'" />
             <div class="ph">[ 清掃 ]</div>
           </div>
           <div class="body">
