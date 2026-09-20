@@ -545,6 +545,14 @@ img, video, iframe, table, pre, code { max-width: 100%; }
 .stars { color: #B8891F; letter-spacing: 2px; font-size: 15px; }
 .stars .off { color: #CBD3D9; }
 
+/* 表・図版の出典行 */
+.source-line {
+  font-size: 13.5px;
+  color: var(--text-sub);
+  margin-top: 10px;
+  line-height: 1.7;
+}
+
 /* ============ 注意ボックス ============ */
 .info-box {
   background: #fff; border: 1px solid var(--border-strong); border-top: none;
