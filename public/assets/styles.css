@@ -974,29 +974,18 @@ a[data-aff].btn-secondary:hover {
 .pick-band {
   max-width: 1160px;
   margin: 0 auto;
-  padding: 0 20px 20px;
+  padding: 0 20px 28px;
 }
 .pick-band .pick-recommend-wrap {
   background: #fff;
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  padding: 36px 48px 40px;
+  padding: 28px 48px 32px;
 }
-.pick-band .pick-recommend-wrap > h2 {
-  font-size: 24px;
-  border-bottom: 3px solid var(--primary);
-  padding: 0 0 10px;
-  margin: 0 0 20px;
-}
-.pick-band .pick-recommend-wrap > p {
-  font-size: 15px;
-  line-height: 1.9;
-  margin: 0 0 8px;
-}
-.pick-band .pick-recommend { margin-bottom: 0; }
+.pick-band .pick-recommend { margin: 0; }
 @media (max-width: 860px) {
-  .pick-band { padding: 0 12px 12px; }
-  .pick-band .pick-recommend-wrap { padding: 26px 20px 32px; }
+  .pick-band { padding: 0 12px 16px; }
+  .pick-band .pick-recommend-wrap { padding: 20px 18px 24px; }
 }
 .pick-recommend {
   display: grid;
@@ -1020,7 +1009,7 @@ a[data-aff].btn-secondary:hover {
 }
 .pick-body h3 {
   font-size: 17px;
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   color: var(--primary-deep);
   border: none; padding: 0;
   line-height: 1.4;
@@ -1042,7 +1031,7 @@ a[data-aff].btn-secondary:hover {
   flex: 1;
 }
 .pick-spec li {
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   color: var(--text-sub);
   padding-left: 12px;
   position: relative;
