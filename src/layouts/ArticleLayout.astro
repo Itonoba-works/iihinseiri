@@ -3,6 +3,7 @@ import Base from './Base.astro';
 import Sidebar from '../components/Sidebar.astro';
 import StickyCta from '../components/StickyCta.astro';
 import { resolveAff } from '../lib/aff.js';
+import companies from '../data/companies.json';
 
 const {
   page,
@@ -13,6 +14,9 @@ const {
   breadcrumb = [],
   cta = {}
 } = Astro.props;
+
+/* アフィリエイトリンクが1社でも有効なら、タイトル下にPR表記を出す */
+const hasAff = companies.some((c) => c.affUrl);
 ---
 <Base title={page.title} description={page.description} active={active} pageCss={pageCss}>
   <div class="breadcrumb" slot="breadcrumb">
@@ -30,6 +34,7 @@ const {
       <div class="article-title-block">
         {page.catTag && <span class="cat-tag">{page.catTag}</span>}
         <h1>{page.h1}</h1>
+        {hasAff && <p>※本記事はプロモーションを含みます。</p>}
         <div class="article-meta-line">
           {page.meta.map((m) => <span>{m}</span>)}
         </div>
