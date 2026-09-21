@@ -11,6 +11,20 @@
   var d = document;
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---------- 0) 3社カードを全幅に出す ----------
+     .article-layout の中（本文カラム）にあるとサイドバー幅ぶん狭くなるため、
+     グリッドの外へ移してページ幅いっぱいで表示する。JSが動かない場合は本文内に残る。 */
+  function liftPickCards() {
+    var layout = d.querySelector(".article-layout");
+    if (!layout) return;
+    var picks = layout.querySelectorAll(".pick-recommend-wrap");
+    if (!picks.length) return;
+    var band = d.createElement("div");
+    band.className = "pick-band";
+    for (var i = 0; i < picks.length; i++) band.appendChild(picks[i]);
+    layout.parentNode.insertBefore(band, layout.nextSibling);
+  }
+
   /* ---------- 1) 最終確認日 ---------- */
   function stampDate() {
     var n = new Date();
@@ -142,6 +156,6 @@
     });
   }
 
-  function init() { stampDate(); drawer(); onScroll(); wrapTables(); reveal(); affiliates(); progress(); overflowCheck(); }
+  function init() { liftPickCards(); stampDate(); drawer(); onScroll(); wrapTables(); reveal(); affiliates(); progress(); overflowCheck(); }
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", init); else init();
 })();

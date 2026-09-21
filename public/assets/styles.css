@@ -970,10 +970,38 @@ a[data-aff].btn-secondary:hover {
 }
 
 /* ============ 特徴別 並列3社カード（順位なし） ============ */
+/* 本文カラムの外に出した3社カードの帯（site.js が移動させる） */
+.pick-band {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 20px 20px;
+}
+.pick-band .pick-recommend-wrap {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 36px 48px 40px;
+}
+.pick-band .pick-recommend-wrap > h2 {
+  font-size: 24px;
+  border-bottom: 3px solid var(--primary);
+  padding: 0 0 10px;
+  margin: 0 0 20px;
+}
+.pick-band .pick-recommend-wrap > p {
+  font-size: 15px;
+  line-height: 1.9;
+  margin: 0 0 8px;
+}
+.pick-band .pick-recommend { margin-bottom: 0; }
+@media (max-width: 860px) {
+  .pick-band { padding: 0 12px 12px; }
+  .pick-band .pick-recommend-wrap { padding: 26px 20px 32px; }
+}
 .pick-recommend {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
   margin: 32px 0 40px;
 }
 .pick-card {
@@ -986,7 +1014,7 @@ a[data-aff].btn-secondary:hover {
 }
 .pick-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
 .pick-body {
-  padding: 18px 20px 20px;
+  padding: 20px 22px 22px;
   display: flex; flex-direction: column;
   flex: 1;
 }
@@ -999,17 +1027,18 @@ a[data-aff].btn-secondary:hover {
 }
 .pick-body h3 a { color: var(--primary-deep); font-weight: 700; }
 .pick-catch {
-  font-size: 13.5px;
-  line-height: 1.75;
-  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 12px;
+  text-wrap: pretty;
   color: var(--text);
 }
 .pick-spec {
   list-style: none;
   padding: 0;
   margin: 0 0 16px;
-  font-size: 12.5px;
-  line-height: 1.7;
+  font-size: 13px;
+  line-height: 1.75;
   flex: 1;
 }
 .pick-spec li {
