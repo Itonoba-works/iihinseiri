@@ -9,7 +9,8 @@
 # --- 業者レビュー ---
 /review.html                        /reviews/ihinnoseiriyasan.html   301
 /review-777fukujin.html             /reviews/777fukujin.html         301
-/review-liferesetro.html            /reviews/liferesetro.html        301
+/review-liferesetro.html            /reviews/lifereset.html        301
+/reviews/liferesetro.html           /reviews/lifereset.html        301
 /review-migakuru.html               /reviews/migakuru.html           301
 /review-osoujikakumei.html          /reviews/osoujikakumei.html      301
 /review-osoujihonpo.html            /reviews/osoujihonpo.html        301

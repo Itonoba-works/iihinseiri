@@ -12,7 +12,7 @@
 |----|--------|---------|------------|
 | `ihinnoseiriyasan` | 遺品の整理屋さん | 遺品整理・不用品回収 | A8.net |
 | `777fukujin` | ゴミ屋敷片付け七福神 | 遺品整理・不用品回収 | 各ASP |
-| `liferesetro` | ライフリセット | 遺品整理・不用品回収 | A8.net |
+| `lifereset` | ライフリセット | 遺品整理・不用品回収 | A8.net |
 | `ihin110` | 遺品整理110番 | 遺品整理・不用品回収 | 各ASP |
 | `minnano` | みんなの遺品整理 | 遺品整理・不用品回収 | 各ASP |
 | `emeao` | EMEAO | 遺品整理・不用品回収 | A8.net |
@@ -43,7 +43,7 @@
 - `href={c.reviewUrl}` — 個別レビュー記事への内部リンク（変更不要）
 - CTAボタン内の追加リンク — **AFFリンクに差し替え対象**
 
-対象業者：ihinnoseiriyasan / 777fukujin / liferesetro / ihin110 / minnano / emeao（6社）
+対象業者：ihinnoseiriyasan / 777fukujin / lifereset / ihin110 / minnano / emeao（6社）
 
 ### 2. 遺品整理・不用品回収 比較記事（`rankings/ihin.html`）
 
@@ -51,7 +51,7 @@
 |--------|---------|
 | `ihinnoseiriyasan` | 比較表1行目「レビュー」ボタン（内部リンク、変更不要）／詳細カードCTA×2／サイドバー1位／FINAL PICK／追従バー |
 | `777fukujin` | 比較表2行目／詳細カードCTA／サイドバー2位 |
-| `liferesetro` | 比較表3行目／詳細カードCTA／サイドバー3位 |
+| `lifereset` | 比較表3行目／詳細カードCTA／サイドバー3位 |
 | `ihin110` | 比較表4行目「公式 →」／詳細カード末尾CTA |
 | `minnano` | 比較表5行目／詳細カードCTA |
 | `emeao` | 比較表6行目／詳細カードCTA |
@@ -74,7 +74,7 @@
 |---------|--------|
 | `reviews/ihinnoseiriyasan.html` | `ihinnoseiriyasan` |
 | `reviews/777fukujin.html` | `777fukujin` |
-| `reviews/liferesetro.html` | `liferesetro` |
+| `reviews/lifereset.html` | `lifereset` |
 | `reviews/migakuru.html` | `migakuru` |
 | `reviews/osoujikakumei.html` | `osoujikakumei` |
 | `reviews/osoujihonpo.html` | `osoujihonpo` |
@@ -91,7 +91,7 @@
 
 | ファイル | サイドバー掲載業者 |
 |---------|-----------------|
-| `articles/akutoku.html` | ihinnoseiriyasan / 777fukujin / liferesetro / ihin110 / minnano |
+| `articles/akutoku.html` | ihinnoseiriyasan / 777fukujin / lifereset / ihin110 / minnano |
 | `articles/ihin-price.html` | 同上 + 記事内おすすめブロック |
 | `articles/seizen.html` | 同上（上位3社まで） |
 | `articles/huyouhin.html` | 777fukujin 中心 |

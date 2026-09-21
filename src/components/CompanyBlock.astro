@@ -20,7 +20,10 @@ const rank = index + 1;
   </div>
 
   <div class="company-body-grid">
-    <div class="thumb"><div class={'ph' + (c.top ? ' warm' : '')}>[ {c.name}<br />公式サイト画像 ]</div></div>
+    <div class="thumb">
+      <img src={'/images/companies/' + c.id + '.webp'} alt={c.name} width="800" height="600" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+      <div class={'ph' + (c.top ? ' warm' : '')}>[ {c.name}<br />公式サイト画像 ]</div>
+    </div>
     <div>
       {c.intro && <p style="margin-bottom:14px; font-size:14px;" set:html={c.intro} />}
       {c.features.length > 0 && (
