@@ -980,22 +980,40 @@ a[data-aff].btn-secondary:hover {
   background: #fff;
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  padding: 28px 48px 32px;
+  padding: 28px 48px 36px;
+  overflow: visible;
 }
 .pick-band .pick-recommend { margin: 0; }
+/* 帯の中に一緒に運ばれた導入文。下向き矢印で3社カードを指す */
 .pick-band .pick-recommend-wrap > p {
-  margin: 0 0 20px;
+  margin: 0 0 6px;
   font-size: 15px;
   line-height: 1.95;
 }
+.pick-band .pick-recommend-wrap > p::after {
+  content: "";
+  display: block;
+  width: 13px; height: 13px;
+  margin: 10px 0 14px 2px;
+  border-right: 3px solid var(--accent);
+  border-bottom: 3px solid var(--accent);
+  transform: rotate(45deg);
+  animation: pick-arrow 1.4s ease-in-out infinite;
+}
+@keyframes pick-arrow {
+  0%, 100% { opacity: 1;  transform: rotate(45deg) translate(0, 0); }
+  50%      { opacity: .25; transform: rotate(45deg) translate(3px, 3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pick-band .pick-recommend-wrap > p::after { animation: none; }
+}
+/* 帯の中の内部リンクブロック。外枠の余白と重ならないよう調整 */
 .pick-band .article-cta {
-  margin: 26px 0 0;
-  padding: 26px 0 0;
-  border-bottom: none;
+  margin: 24px 0 0;
 }
 @media (max-width: 860px) {
   .pick-band { padding: 0 12px 16px; }
-  .pick-band .pick-recommend-wrap { padding: 20px 18px 24px; }
+  .pick-band .pick-recommend-wrap { padding: 20px 18px 28px; }
 }
 .pick-recommend {
   display: grid;
