@@ -33,8 +33,7 @@ src/data/companies.json
 {
   "id": "ihinnoseiriyasan",
   "name": "遺品の整理屋さん",
-  "affUrl": "",        ← ここにASPの計測URLを貼る
-  "asp": ""            ← 管理用メモ（A8.net 等）。出力されない
+  "affUrl": ""         ← ここにASPの計測URLを貼る
 }
 ```
 
@@ -66,7 +65,7 @@ src/data/companies.json
 | `liferesetro` | ライフリセット | 遺品整理 |
 | `ihin110` | 遺品整理110番 | 遺品整理 |
 | `minnano` | みんなの遺品整理 | 遺品整理 |
-| `emeao` | EMEAO（イーミーオ） | 遺品整理 |
+| `emeao` | EMEAO!（エミーオ！） | 遺品整理 |
 | `migakuru` | ミガクる | ハウスクリーニング |
 | `osoujikakumei` | おそうじ革命 | ハウスクリーニング |
 | `osoujihonpo` | おそうじ本舗 | ハウスクリーニング |
@@ -137,8 +136,7 @@ src/data/companies.json
   "shortArea": "全国",
   "shortFeature": "短い特徴",
   "hasReview": false,
-  "affUrl": "",
-  "asp": ""
+  "affUrl": ""
 }
 ```
 
