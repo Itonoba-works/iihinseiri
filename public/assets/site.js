@@ -13,7 +13,10 @@
 
   /* ---------- 0) 3社カードを全幅に出す ----------
      .article-layout の中（本文カラム）にあるとサイドバー幅ぶん狭くなるため、
-     グリッドの外へ移してページ幅いっぱいで表示する。JSが動かない場合は本文内に残る。 */
+     グリッドの外へ移してページ幅いっぱいで表示する。
+     本文での並び（導入文 → 3社カード → 内部リンク）を保つため、
+     直前の導入文と直後の .article-cta も一緒に運ぶ。
+     JSが動かない場合は本文内にその並びのまま残る。 */
   function liftPickCards() {
     var layout = d.querySelector(".article-layout");
     if (!layout) return;
@@ -21,7 +24,14 @@
     if (!picks.length) return;
     var band = d.createElement("div");
     band.className = "pick-band";
-    for (var i = 0; i < picks.length; i++) band.appendChild(picks[i]);
+    for (var i = 0; i < picks.length; i++) {
+      var sec = picks[i];
+      var lead = sec.previousElementSibling;
+      var cta = sec.nextElementSibling;
+      if (lead && lead.tagName === "P") sec.insertBefore(lead, sec.firstChild);
+      if (cta && cta.classList && cta.classList.contains("article-cta")) sec.appendChild(cta);
+      band.appendChild(sec);
+    }
     layout.parentNode.insertBefore(band, layout.nextSibling);
   }
 
