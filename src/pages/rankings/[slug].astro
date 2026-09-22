@@ -2,7 +2,7 @@
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import CompareTable from '../../components/CompareTable.astro';
 import CompanyBlock from '../../components/CompanyBlock.astro';
-import { resolveAff } from '../../lib/aff.js';  
+import { resolveAff } from '../../lib/aff.js';
 import pages from '../../data/pages.json';
 import companies from '../../data/companies.json';
 
@@ -27,6 +27,7 @@ const catLabel = page.slug === 'cleaning' ? 'ハウスクリーニング' : '遺
   category={page.slug}
   pageCss="page-ranking.css"
   breadcrumb={[{ label: catLabel + 'サービス比較' }]}
+  faqHtml={intro + outro}
   cta={{ text: '複数社の料金をまとめて比較', small: '入力1分・無料', label: '無料で見積もり' }}
 >
   <div set:html={resolveAff(intro)} />

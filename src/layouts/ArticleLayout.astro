@@ -3,7 +3,7 @@ import Base from './Base.astro';
 import Sidebar from '../components/Sidebar.astro';
 import StickyCta from '../components/StickyCta.astro';
 import { resolveAff } from '../lib/aff.js';
-import companies from '../data/companies.json';
+import site from '../data/site.json';
 
 const {
   page,
@@ -12,13 +12,69 @@ const {
   pageCss = 'page-article.css',
   category = 'ihin',
   breadcrumb = [],
-  cta = {}
+  cta = {},
+  faqHtml = ''
 } = Astro.props;
 
-/* アフィリエイトリンクが1社でも有効なら、タイトル下にPR表記を出す */
-const hasAff = companies.some((c) => c.affUrl);
+const abs = (href) => new URL(href, Astro.site).href;
+const strip = (s) => s.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+
+/* 本文中の Q&A ブロックから FAQPage 構造化データを生成する */
+function extractFaq(html) {
+  const out = [];
+  const re = /<div class="qa-q">([\s\S]*?)<\/div>\s*<div class="qa-a">([\s\S]*?)<\/div>\s*<\/div>/g;
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    const q = strip(m[1]);
+    const a = strip(m[2]);
+    if (q && a) out.push({ q, a });
+  }
+  return out;
+}
+
+const faq = extractFaq(faqHtml || body);
+
+const crumbItems = [{ label: 'HOME', href: '/' }, ...breadcrumb];
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbItems.map((b, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: b.label,
+      item: abs(b.href || Astro.url.pathname)
+    }))
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: page.h1 || page.title,
+    description: page.description || site.description,
+    mainEntityOfPage: abs(Astro.url.pathname),
+    inLanguage: 'ja',
+    publisher: {
+      '@type': 'Organization',
+      name: site.name,
+      url: abs('/'),
+      logo: { '@type': 'ImageObject', url: abs('/images/brand/logo.png') }
+    }
+  }
+];
+
+if (faq.length) {
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a }
+    }))
+  });
+}
 ---
-<Base title={page.title} description={page.description} active={active} pageCss={pageCss}>
+<Base title={page.title} description={page.description} active={active} pageCss={pageCss} jsonLd={jsonLd}>
   <div class="breadcrumb" slot="breadcrumb">
     <a href="/">HOME</a>
     {breadcrumb.map((b) => (
@@ -34,7 +90,6 @@ const hasAff = companies.some((c) => c.affUrl);
       <div class="article-title-block">
         {page.catTag && <span class="cat-tag">{page.catTag}</span>}
         <h1>{page.h1}</h1>
-        {hasAff && <p>※本記事はプロモーションを含みます。</p>}
         <div class="article-meta-line">
           {page.meta.map((m) => <span>{m}</span>)}
         </div>

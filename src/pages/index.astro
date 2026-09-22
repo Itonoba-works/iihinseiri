@@ -27,12 +27,34 @@ const worries = [
 ];
 
 const cardTag = { 'ihin-price': '遺品整理', trouble: '選び方', seizen: '生前整理', huyouhin: '不用品回収', gomiyashiki: 'ゴミ屋敷' };
+
+const homeUrl = new URL('/', Astro.site).href;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: site.name,
+    alternateName: site.nameEn,
+    url: homeUrl,
+    description: site.description,
+    inLanguage: 'ja'
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: site.name,
+    url: homeUrl,
+    logo: { '@type': 'ImageObject', url: new URL('/images/brand/logo.png', Astro.site).href },
+    description: site.tagline
+  }
+];
 ---
 <Base
   title="くらしの整理ナビ｜遺品整理・生前整理・不用品回収の総合まとめサイト"
   active="home"
   pageCss="home.css"
   ogType="website"
+  jsonLd={jsonLd}
 >
   <div class="breadcrumb" slot="breadcrumb">
     <a href="/">HOME</a>
@@ -152,7 +174,7 @@ const cardTag = { 'ihin-price': '遺品整理', trouble: '選び方', seizen: '�
     </div>
 
     <p class="disclaimer">
-      掲載している料金・対応エリア・特徴は、すべて公表情報をもとに整理したものです。内容は変動する場合がありますので、依頼前に必ずサイトで最新情報をご確認ください。
+      掲載している料金・対応エリア・特徴は、すべて各社公式サイトの公表情報をもとに整理したものです。内容は変動する場合がありますので、依頼前に必ず公式サイトで最新情報をご確認ください。
     </p>
   </main>
 
