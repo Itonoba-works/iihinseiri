@@ -15,7 +15,11 @@ export function GET({ site }) {
     ...pages
       .filter((p) => p.type === 'article')
       .map((p) => ({ loc: '/articles/' + p.slug + '.html', priority: '0.8', changefreq: 'monthly' })),
-    ...companies.map((c) => ({ loc: '/reviews/' + c.id + '.html', priority: '0.7', changefreq: 'monthly' })),
+    /* レビュー本文を持つ社だけ。hasReview=false の社は外部リンク専用で内部からも
+       リンクしていないため、サイトマップにも載せない */
+    ...companies
+      .filter((c) => c.hasReview)
+      .map((c) => ({ loc: '/reviews/' + c.id + '.html', priority: '0.7', changefreq: 'monthly' })),
     { loc: '/about.html', priority: '0.3', changefreq: 'yearly' },
     { loc: '/contact.html', priority: '0.3', changefreq: 'yearly' },
     { loc: '/privacy.html', priority: '0.3', changefreq: 'yearly' }
