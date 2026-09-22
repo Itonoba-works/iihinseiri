@@ -986,25 +986,32 @@ a[data-aff].btn-secondary:hover {
 .pick-band .pick-recommend { margin: 0; }
 /* 帯の中に一緒に運ばれた導入文。下向き矢印で3社カードを指す */
 .pick-band .pick-recommend-wrap > p {
+  position: relative;
   margin: 0 0 6px;
+  padding-bottom: 32px;
   font-size: 15px;
   line-height: 1.95;
 }
+/* 文の左端と右端、2つの矢印で3社カードを指す */
+.pick-band .pick-recommend-wrap > p::before,
 .pick-band .pick-recommend-wrap > p::after {
   content: "";
-  display: block;
+  position: absolute;
+  bottom: 12px;
   width: 13px; height: 13px;
-  margin: 10px 0 14px 2px;
   border-right: 3px solid var(--accent);
   border-bottom: 3px solid var(--accent);
   transform: rotate(45deg);
   animation: pick-arrow 1.4s ease-in-out infinite;
 }
+.pick-band .pick-recommend-wrap > p::before { left: 2px; }
+.pick-band .pick-recommend-wrap > p::after  { right: 8px; animation-delay: .2s; }
 @keyframes pick-arrow {
   0%, 100% { opacity: 1;  transform: rotate(45deg) translate(0, 0); }
   50%      { opacity: .25; transform: rotate(45deg) translate(3px, 3px); }
 }
 @media (prefers-reduced-motion: reduce) {
+  .pick-band .pick-recommend-wrap > p::before,
   .pick-band .pick-recommend-wrap > p::after { animation: none; }
 }
 /* 帯の中の内部リンクブロック。外枠の余白と重ならないよう調整 */
