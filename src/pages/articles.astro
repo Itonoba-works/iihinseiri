@@ -1,0 +1,54 @@
+---
+/* 記事一覧 /articles.html
+   pages.json の type:article を新しい順（後ろほど新しい）にすべて並べる。
+   TOPの「すべての記事を見る」とヘッダーの「記事一覧」のリンク先 */
+import Base from '../layouts/Base.astro';
+import StickyCta from '../components/StickyCta.astro';
+import pages from '../data/pages.json';
+
+const articles = pages.filter((p) => p.type === 'article').slice().reverse();
+const shortTitle = (t) => String(t || '').replace(/【[^】]*】/g, '').trim();
+const abs = (href) => new URL(href, Astro.site).href;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'HOME', item: abs('/') },
+      { '@type': 'ListItem', position: 2, name: '記事一覧', item: abs('/articles.html') }
+    ]
+  }
+];
+---
+<Base
+  title="記事一覧"
+  description="遺品整理・実家の片付け・相続・生前整理・不用品回収・ハウスクリーニングに関する記事の一覧です。"
+  active="articles"
+  pageCss="home.css"
+  jsonLd={jsonLd}
+>
+  <div class="breadcrumb" slot="breadcrumb">
+    <a href="/">HOME</a>
+    <span class="sep">›</span>
+    <span>記事一覧</span>
+  </div>
+
+  <main class="container">
+    <section class="hm-sec" data-screen-label="記事一覧">
+      <div class="section-head" data-reveal="0"><h2>記事一覧</h2></div>
+      <div class="hm-cards hm-cards-all">
+        {articles.map((a, i) => (
+          <a href={'/articles/' + a.slug + '.html'} class="article-card" data-reveal={String(Math.min(i, 5))}>
+            <div class="thumb">
+              <img src={'/images/articles/' + a.slug + '.webp'} alt="" width="800" height="500" loading="lazy" decoding="async" onerror="this.style.display='none'" />
+              <div class="ph">[ {a.catTag} ]</div>
+            </div>
+            <div class="body"><h3>{shortTitle(a.h1)}</h3></div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <StickyCta slot="cta" />
+</Base>

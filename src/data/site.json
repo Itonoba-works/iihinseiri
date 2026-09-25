@@ -3,7 +3,7 @@
   "nameEn": "KURASHI SEIRI NAVI",
   "tagline": "遺品整理・不用品回収・ハウスクリーニングの料金と対応エリアを比較",
   "description": "遺品整理・生前整理・不用品回収・ハウスクリーニングの料金と対応エリアを、各社公式サイトの公表情報をもとに整理して比較しています。",
-  "assetVersion": "20260920k",
+  "assetVersion": "20260925a",
   "estimateAffId": "minnano",
   "formspreeEndpoint": "https://formspree.io/f/xkjndell",
   "estimateLabel": "一括見積はこちら",
@@ -15,23 +15,18 @@
     },
     {
       "href": "/rankings/ihin.html",
-      "label": "遺品整理・不用品回収",
+      "label": "遺品整理の比較",
       "key": "ihin"
     },
     {
       "href": "/rankings/cleaning.html",
-      "label": "ハウスクリーニング",
+      "label": "ハウスクリーニングの比較",
       "key": "cleaning"
     },
     {
-      "href": "/articles/ihin-price.html",
-      "label": "料金相場",
-      "key": "price"
-    },
-    {
-      "href": "/articles/trouble.html",
-      "label": "お悩み解決",
-      "key": "nayami"
+      "href": "/articles.html",
+      "label": "記事一覧",
+      "key": "articles"
     }
   ],
   "drawer": [
@@ -41,23 +36,15 @@
     },
     {
       "href": "/rankings/ihin.html",
-      "label": "遺品整理・不用品回収"
+      "label": "遺品整理の比較"
     },
     {
       "href": "/rankings/cleaning.html",
-      "label": "ハウスクリーニング"
+      "label": "ハウスクリーニングの比較"
     },
     {
-      "href": "/articles/ihin-price.html",
-      "label": "料金相場"
-    },
-    {
-      "href": "/articles/trouble.html",
-      "label": "いい業者の見分け方"
-    },
-    {
-      "href": "/articles/seizen.html",
-      "label": "生前整理"
+      "href": "/articles.html",
+      "label": "記事一覧"
     }
   ],
   "footer": [
