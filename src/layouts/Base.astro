@@ -15,6 +15,10 @@ const {
 const v = '?v=' + site.assetVersion;
 const fullTitle = title.indexOf(site.name) === -1 ? title + ' - ' + site.name : title;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+/* Cloudflare Web Analytics のトークン。
+   Cloudflare の「Web Analytics」→ サイト → 「Manage site」の JS スニペットにある token と同じ値にする */
+const CF_BEACON_TOKEN = '8cce1674fbfd4faaa478fc0e9e07e0a7';
 ---
 <!DOCTYPE html>
 <html lang="ja">
@@ -43,6 +47,37 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 {jsonLd.map((o) => (
   <script type="application/ld+json" set:html={JSON.stringify(o)} />
 ))}
+
+<!-- アクセス解析（Cloudflare Web Analytics）
+     自分のアクセスを除外する仕組み：
+       ・どのページでも URL の末尾に ?notrack=1 を付けて1回開くと、その端末・ブラウザでは以後計測しない
+       ・?notrack=0 を付けて開くと、計測を再開する -->
+<script is:inline define:vars={{ CF_BEACON_TOKEN }}>
+(function () {
+  var KEY = 'kurashi-notrack';
+  var off = false;
+  try {
+    var m = location.search.match(/[?&]notrack=([01])/);
+    if (m) {
+      if (m[1] === '1') localStorage.setItem(KEY, '1'); else localStorage.removeItem(KEY);
+      document.addEventListener('DOMContentLoaded', function () {
+        var n = document.createElement('div');
+        n.textContent = m[1] === '1' ? 'この端末のアクセスを計測しない設定にしました' : 'この端末のアクセス計測を再開しました';
+        n.style.cssText = 'position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:9999;background:#1B2C38;color:#fff;font-size:14px;font-weight:600;padding:12px 18px;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.2)';
+        document.body.appendChild(n);
+        setTimeout(function () { n.remove(); }, 4000);
+      });
+    }
+    off = localStorage.getItem(KEY) === '1';
+  } catch (e) {}
+  if (off || !CF_BEACON_TOKEN) return;
+  var s = document.createElement('script');
+  s.defer = true;
+  s.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+  s.setAttribute('data-cf-beacon', JSON.stringify({ token: CF_BEACON_TOKEN }));
+  document.head.appendChild(s);
+})();
+</script>
 </head>
 <body>
 <Header active={active} />
