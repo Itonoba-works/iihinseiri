@@ -3,7 +3,7 @@
   "nameEn": "KURASHI SEIRI NAVI",
   "tagline": "遺品整理・不用品回収・ハウスクリーニングの料金と対応エリアを比較",
   "description": "遺品整理・生前整理・不用品回収・ハウスクリーニングの料金と対応エリアを、各社公式サイトの公表情報をもとに整理して比較しています。",
-  "assetVersion": "20260925a",
+  "assetVersion": "20260926a",
   "estimateAffId": "minnano",
   "formspreeEndpoint": "https://formspree.io/f/xkjndell",
   "estimateLabel": "一括見積はこちら",
@@ -83,6 +83,18 @@
         {
           "href": "/articles/gomiyashiki.html",
           "label": "ゴミ屋敷の片付け費用"
+        },
+        {
+          "href": "/articles/jikka-enkaku.html",
+          "label": "遠方の実家の片付け方"
+        },
+        {
+          "href": "/articles/souzoku-houki.html",
+          "label": "相続放棄と遺品整理"
+        },
+        {
+          "href": "/articles/jikka-kyoudai.html",
+          "label": "きょうだいで進める実家の片付け"
         }
       ]
     },
