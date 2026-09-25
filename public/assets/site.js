@@ -5,6 +5,7 @@
      3) ヘッダー圧縮 / 追従CTAの出し入れ
      4) スクロールリビール（1回だけ）
      5) data-aff → アフィリリンク解決 + rel/target 自動付与 + GA4計測
+     6) ページ上部へ戻るボタン
 ============================================================ */
 (function () {
   "use strict";
@@ -166,6 +167,24 @@
     });
   }
 
-  function init() { liftPickCards(); stampDate(); drawer(); onScroll(); wrapTables(); reveal(); affiliates(); progress(); overflowCheck(); }
+
+  /* ---------- ページ上部へ戻るボタン ----------
+     600px 以上スクロールしたら右下に表示。押すとページの一番上へ */
+  function toTop() {
+    var btn = d.createElement("button");
+    btn.type = "button";
+    btn.className = "to-top";
+    btn.setAttribute("aria-label", "ページの上部へ戻る");
+    btn.textContent = "TOP";
+    d.body.appendChild(btn);
+    btn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    });
+    function tick() { btn.classList.toggle("is-visible", window.pageYOffset > 600); }
+    tick();
+    window.addEventListener("scroll", function () { window.requestAnimationFrame(tick); }, { passive: true });
+  }
+
+  function init() { liftPickCards(); stampDate(); drawer(); onScroll(); wrapTables(); reveal(); affiliates(); progress(); toTop(); overflowCheck(); }
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", init); else init();
 })();

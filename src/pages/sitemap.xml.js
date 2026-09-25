@@ -15,6 +15,7 @@ export function GET({ site }) {
     ...pages
       .filter((p) => p.type === 'article')
       .map((p) => ({ loc: '/articles/' + p.slug + '.html', priority: '0.8', changefreq: 'monthly' })),
+    { loc: '/articles.html', priority: '0.8', changefreq: 'weekly' },
     /* レビュー本文を持つ社だけ。hasReview=false の社は外部リンク専用で内部からも
        リンクしていないため、サイトマップにも載せない */
     ...companies
