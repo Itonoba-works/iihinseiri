@@ -2,7 +2,7 @@ import companies from '../data/companies.json';
 
 /* 生の HTML 文字列（src/content/**.html）に含まれる data-aff リンクを
    ビルド時に解決する。AffLink.astro と同じ優先順位：
-     affUrl → officialUrl → サイト内ページ
+     affLp[用途]（data-aff-lp がある場合）→ affUrl → officialUrl → サイト内ページ
    提携承認後は companies.json の affUrl を1箇所書き換えるだけで、
    記事・レビュー・3社カードの全リンクが一括で切り替わる。 */
 export function resolveAff(html) {
@@ -11,7 +11,11 @@ export function resolveAff(html) {
     const c = companies.find((x) => x.id === id);
     if (!c) throw new Error('[resolveAff] companies.json に未登録の企業ID: ' + id);
 
-    const external = c.affUrl || c.officialUrl || '';
+    /* data-aff-lp="disposal" などが付いていれば、companies.json の affLp から
+       その用途のLPを使う（無ければ affUrl） */
+    const lpm = (pre + post).match(/data-aff-lp="([^"]+)"/);
+    const lpUrl = lpm && c.affLp ? c.affLp[lpm[1]] : '';
+    const external = lpUrl || c.affUrl || c.officialUrl || '';
     const href = external || (c.hasReview
       ? '/reviews/' + c.id + '.html'
       : '/rankings/' + c.category + '.html#' + c.id);
