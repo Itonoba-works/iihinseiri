@@ -3,10 +3,12 @@
    リンク先は affUrl → officialUrl → サイト内 の順で解決。
    URL の差し替えは companies.json の該当社の affUrl 1箇所だけ。 */
 import companies from '../data/companies.json';
-const { id, class: cls, pos = '', style = '' } = Astro.props;
+const { id, class: cls, pos = '', style = '', lp = '' } = Astro.props;
 const c = companies.find((x) => x.id === id);
 if (!c) throw new Error('[AffLink] companies.json に未登録の企業ID: ' + id);
-const external = c.affUrl || c.officialUrl || '';
+/* lp="disposal" などを渡すと、companies.json の affLp からその用途のLPを使う */
+const lpUrl = lp && c.affLp ? c.affLp[lp] : '';
+const external = lpUrl || c.affUrl || c.officialUrl || '';
 const href = external || (c.hasReview ? '/reviews/' + c.id + '.html' : '/rankings/' + c.category + '.html#' + c.id);
 ---
 <a
@@ -15,6 +17,7 @@ const href = external || (c.hasReview ? '/reviews/' + c.id + '.html' : '/ranking
   style={style || undefined}
   data-aff={c.id}
   data-aff-pos={pos || undefined}
+  data-aff-lp={lpUrl ? lp : undefined}
   data-aff-external={external ? '1' : undefined}
   rel={external ? 'sponsored nofollow noopener' : undefined}
   target={external ? '_blank' : undefined}

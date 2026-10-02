@@ -33,7 +33,7 @@ const catLabel = page.slug === 'cleaning' ? 'ハウスクリーニング' : '遺
   <div set:html={resolveAff(intro)} />
 
   <h2 id="compare">{list.length}社の比較表</h2>
-  <p>公式サイトの公表情報をもとに、料金・サービス形態・対応エリア・特徴で整理しました。<strong>横スクロールで全項目を確認できます。</strong></p>
+  <p>料金・サービス形態・対応エリア・特徴を1つの表にまとめました。<strong>横スクロールで全項目を確認できます。</strong></p>
   <CompareTable category={page.slug} />
 
   <h2 id="ranking">{catLabel}サービス{list.length}社の詳細</h2>

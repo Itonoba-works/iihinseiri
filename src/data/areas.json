@@ -160,7 +160,8 @@
       "type": "all",
       "verified": true,
       "note": "全国（一部地域を除く）。店舗ごとに対応範囲が異なる",
-      "source": "https://www.osoujikakumei.jp/"
+      "source": "https://www.osoujikakumei.jp/",
+      "checked": "2026-09-30"
     },
     "osoujihonpo": {
       "type": "all",
@@ -176,9 +177,17 @@
     },
     "kajitaku": {
       "type": "all",
-      "verified": false,
-      "note": "主要都市が中心（地域は問い合わせ時に要確認）",
-      "source": "https://www.kajitaku.com/"
+      "verified": true,
+      "note": "全国一律料金。見積もり訪問なし",
+      "source": "https://www.kajitaku.com/lp/lp-00008-a",
+      "checked": "2026-10-01"
+    },
+    "curama": {
+      "type": "all",
+      "verified": true,
+      "note": "全国の出店者から選ぶ。地域により選べる出店者の数が異なる",
+      "source": "https://curama.jp/",
+      "checked": "2026-09-30"
     }
   }
 }
