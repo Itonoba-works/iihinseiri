@@ -20,10 +20,10 @@ const rank = index + 1;
   </div>
 
   <div class="company-body-grid">
-    <div class="thumb">
+    <AffLink id={c.id} class="thumb" pos={'rank-' + rank + '-img'}>
       <img src={'/images/companies/' + c.id + '.webp'} alt={c.name} width="300" height="250" loading="lazy" decoding="async" onerror="this.style.display='none'" />
-      <div class={'ph' + (c.top ? ' warm' : '')}>[ {c.name}<br />サービス画像 ]</div>
-    </div>
+      <div class={'ph' + (c.top ? ' warm' : '')} aria-hidden="true">[ {c.name}<br />サービス画像 ]</div>
+    </AffLink>
     <div>
       {c.intro && <p style="margin-bottom:14px; font-size:14px;" set:html={c.intro} />}
       {c.features.length > 0 && (

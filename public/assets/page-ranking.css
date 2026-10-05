@@ -86,7 +86,7 @@
 
 .side-rank-item:last-child { border-bottom: none; }
 
-.side-rank-item:hover { text-decoration: none; color: var(--primary-dark); }
+.side-rank-item:hover { text-decoration: none; color: var(--link); }
 
 .side-rank-num {
   width: 28px; height: 28px;

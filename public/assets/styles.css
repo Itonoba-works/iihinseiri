@@ -13,6 +13,8 @@
   --primary-line:   #7FC4DD;
   --primary-light:  #E8F5FA;
   --primary-pale:   #F1F7FA;
+  --link:           #0066CC;  /* リンク色（サイト全体）。押せる文字はこの青 */
+  --link-hover:     #0052A3;
 
   /* --- CTA: 系統は同じ暖色、明度だけ下げて可読に --- */
   --accent:        #C9461A;   /* 白文字 4.8:1 */
@@ -71,13 +73,13 @@ h1, h2, h3, h4, h5 {
 p, li, dd, dt, td, th { color: var(--text); }
 
 /* --- リンク: 色だけに頼らず常時下線。下線色だけ水色 --- */
-a { color: var(--primary-deep); text-decoration: none; }
-a:hover { color: #0E3D50; }
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-hover); }
 .article-body a:not(.btn-cta):not(.btn-secondary),
 .lead a:not(.btn-cta):not(.btn-secondary),
 .info-box a:not(.btn-cta):not(.btn-secondary),
 .qa-a a:not(.btn-cta):not(.btn-secondary) {
-  color: var(--primary-deep);
+  color: var(--link);
   text-decoration: none;
   font-weight: 600;
 }
@@ -101,7 +103,7 @@ aside.side .side-block li > a {
 }
 aside.side .side-rank-item:hover .n,
 aside.side .side-block li > a:hover {
-  color: var(--primary-deep);
+  color: var(--link);
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
@@ -178,9 +180,9 @@ img { max-width: 100%; display: block; }
   background: var(--primary-line); border-radius: 2px;
   transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease);
 }
-.site-nav a:hover { color: var(--primary-deep); }
+.site-nav a:hover { color: var(--link); }
 .site-nav a:hover::after { transform: scaleX(1); }
-.site-nav a.active { color: var(--primary-deep); font-weight: 700; }
+.site-nav a.active { color: var(--link); font-weight: 700; }
 .site-nav a.active::after { background: var(--primary); transform: scaleX(1); }
 
 .header-cta {
@@ -419,7 +421,7 @@ a.btn-secondary:hover {
   border-color: var(--primary-line); text-decoration: none;
 }
 .article-card:active { transform: scale(.985); }
-.article-card .thumb { aspect-ratio: 16 / 10; background: var(--primary-light); position: relative; overflow: hidden; }
+.article-card .thumb { aspect-ratio: 16 / 10; background: #fff; position: relative; overflow: hidden; }
 .article-card .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease); }
 .article-card:hover .thumb img { transform: scale(1.05); }
 .article-card .tag {
@@ -437,12 +439,12 @@ a.btn-secondary:hover {
 /* ============ プレースホルダー画像 ============ */
 .ph {
   width: 100%; height: 100%;
-  background: repeating-linear-gradient(45deg, var(--primary-light), var(--primary-light) 8px, #DDF0F8 8px, #DDF0F8 16px);
-  display: grid; place-items: center; color: var(--primary-deep);
+  background: #fff;
+  display: grid; place-items: center; color: var(--muted);
   font-family: "SF Mono", Consolas, monospace; font-size: 11px;
   letter-spacing: .05em; text-align: center; padding: 12px;
 }
-.ph.warm { background: repeating-linear-gradient(45deg, #FFF0E5, #FFF0E5 8px, #FFE4D3 8px, #FFE4D3 16px); color: #8E3512; }
+.ph.warm { background: #fff; color: var(--muted); }
 
 /* ============ フッター ============ */
 .site-footer {
@@ -502,11 +504,11 @@ a.btn-secondary:hover {
 
 /* 比較表内の企業名リンク（AffLink）は下線＋濃青で常時視認 */
 .compare-table th a[data-aff] {
-  color: var(--primary-deep); text-decoration: none; font-weight: 700;
+  color: var(--link); text-decoration: none; font-weight: 700;
   transition: color .18s var(--ease);
 }
 .compare-table th a[data-aff]:hover {
-  color: var(--primary-deep);
+  color: var(--link-hover);
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
@@ -660,8 +662,8 @@ img, video, iframe, table, pre, code { max-width: 100%; }
   font-size: 14.5px; display: flex; align-items: center; gap: 6px;
 }
 .article-body .toc ol { padding-left: 20px; margin: 0; font-size: 14.5px; line-height: 2; }
-.article-body .toc a { color: var(--text); text-decoration: none; font-weight: 500; }
-.article-body .toc a:hover { color: var(--primary-deep); }
+.article-body .toc a { color: var(--link); text-decoration: none; font-weight: 500; }
+.article-body .toc a:hover { color: var(--link-hover); }
 
 .author-box {
   display: flex; gap: 14px; align-items: center;
@@ -756,12 +758,12 @@ aside.side .side-rank-num {
    HTMLには data-aff="企業ID" だけ書く。URLは AffLink コンポーネントが埋め込む。
    ボタン内（.btn-cta / .btn-secondary）にある場合は下線を出さない。 */
 a[data-aff]:not(.btn-cta):not(.btn-secondary):not(.header-cta):not(.side-rank-item) {
-  color: var(--primary-deep); font-weight: 600;
+  color: var(--link); font-weight: 600;
   text-decoration: none;
   transition: color .18s var(--ease);
 }
 a[data-aff]:not(.btn-cta):not(.btn-secondary):not(.header-cta):not(.side-rank-item):hover {
-  color: var(--primary-deep);
+  color: var(--link-hover);
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
@@ -918,7 +920,7 @@ a[data-aff].btn-secondary:hover {
   font-size: 17px; line-height: 1.5; letter-spacing: .04em;
 }
 .page-doc p { margin: 0 0 18px; font-size: 16px; }
-.page-doc a { color: var(--primary-deep); font-weight: 600; }
+.page-doc a { color: var(--link); font-weight: 600; }
 .page-doc a:hover { color: #0E3D50; }
 
 .info-table {
@@ -1047,7 +1049,7 @@ a[data-aff].btn-secondary:hover {
   border: none; padding: 0;
   line-height: 1.4;
 }
-.pick-body h3 a { color: var(--primary-deep); font-weight: 700; }
+.pick-body h3 a { color: var(--link); font-weight: 700; }
 .pick-catch {
   font-size: 14px;
   line-height: 1.7;
@@ -1097,7 +1099,7 @@ a[data-aff].btn-secondary:hover {
 }
 .pick-thumb {
   aspect-ratio: 4 / 3;
-  background: var(--primary-light);
+  background: #fff;
   overflow: hidden;
 }
 

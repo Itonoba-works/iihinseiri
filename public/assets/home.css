@@ -13,7 +13,7 @@
 }
 .hm-hero h1 { font-size:28px; line-height:1.5; margin-bottom:10px; }
 .hm-hero-sub { color:var(--text-sub); font-size:15px; margin:0 0 22px; }
-.hm-hero-img { aspect-ratio:4/3; border-radius:var(--radius); overflow:hidden; position:relative; background:var(--primary-light); }
+.hm-hero-img { aspect-ratio:4/3; border-radius:var(--radius); overflow:hidden; position:relative; background:#fff; }
 .hm-hero-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
 
 .hm-area-form label { display:block; font-size:13px; font-weight:700; color:var(--text-sub); margin:0 0 8px; }
@@ -43,7 +43,7 @@
 .hm-sec-head { display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:18px; flex-wrap:wrap; }
 .hm-sec-head h2 { font-size:22px; flex:1 1 auto; min-width:0; }
 .hm-sec-head .hm-sub { flex:1 0 100%; margin:-8px 0 0; font-size:13.5px; color:var(--text-sub); }
-.hm-more { font-size:14px; font-weight:600; color:var(--primary-deep); white-space:nowrap; }
+.hm-more { font-size:14px; font-weight:600; color:var(--link); white-space:nowrap; }
 .hm-more::after { content:" ›"; }
 .hm-more:hover { text-decoration:underline; text-underline-offset:4px; }
 .hm-reset { font-size:13px; color:var(--muted); background:none; border:none; padding:0; font:inherit; cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
@@ -57,27 +57,20 @@
 .hm-cmp-head { padding:14px 20px; text-align:center; background:var(--hm-gray); }
 .hm-cmp-head h3 { font-size:18px; font-weight:700; color:#fff; letter-spacing:.04em; }
 .hm-cmp-head span { font-size:12.5px; color:var(--muted); white-space:nowrap; }
+/* 1行のなかの要素は「青字＝押せる／黒字＝押せない」で塗り分ける。
+   社名＝青字リンク（外部）／料金＝黒字（押せない）／徹底解説＝青字リンク（内部）。
+   サイト全体ですでにリンクは青（--primary-deep）なので、この行だけ黒に落としていた指定を外す。 */
 .hm-cmp-row {
   display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; align-items:center;
   padding:14px 20px; border-bottom:1px solid var(--border-warm);
 }
-.hm-cmp-row .n { display:flex; flex-wrap:wrap; align-items:center; gap:4px 8px; font-size:15px; font-weight:700; line-height:1.45; }
-.hm-cmp-row .n a[data-aff] { color:var(--text); }
-.hm-cmp-row .s { font-size:12.5px; color:var(--text-sub); line-height:1.6; margin-top:2px; }
-.hm-cmp-row .rv { font-size:12.5px; font-weight:600; color:var(--primary-deep); white-space:nowrap; }
-.hm-cmp-row .rv:hover { text-decoration:underline; text-underline-offset:3px; }
-/* グレーのボタン：サイト内の詳細ページへの移動に使う */
-.btn-detail,
-a.btn-detail:link,
-a.btn-detail:visited {
-  display:inline-flex; align-items:center; justify-content:center; gap:4px;
-  min-height:40px; padding:8px 14px 8px 16px;
-  background:var(--hm-gray-tint, #F5F2ED); color:var(--text) !important; border:1px solid var(--hm-gray-line, #E0DAD0); border-radius:var(--radius-sm);
-  font-size:13px; font-weight:600; line-height:1.4; white-space:nowrap; text-decoration:none !important;
-  transition:background .18s, border-color .18s;
-}
-.btn-detail::after { content:"›"; font-size:16px; line-height:1; color:var(--hm-gray, #6E6A63); }
-a.btn-detail:hover { background:#ECE7DF; border-color:#CFC7BA; color:var(--text) !important; }
+.hm-cmp-lead { min-width:0; }
+.hm-cmp-lead .nm { font-size:15px; font-weight:700; line-height:1.45; color:var(--link); }
+.hm-cmp-lead .nm:hover { text-decoration:underline; text-underline-offset:3px; }
+.hm-cmp-lead .s { font-size:12.5px; color:var(--text); line-height:1.6; margin-top:3px; }
+.hm-cmp-row .lnk-explain { font-size:13px; font-weight:700; color:var(--link); text-decoration:underline; text-underline-offset:3px; white-space:nowrap; }
+.hm-cmp-row .lnk-explain::after { content:"›"; display:inline-block; margin-left:3px; }
+.hm-cmp-row .lnk-explain:hover { color:var(--link-hover); }
 .hm-cmp-foot { padding:14px 20px; margin-top:auto; }
 .hm-cmp-foot .btn-secondary { width:100%; }
 .hm-cmp-empty { padding:18px 20px; font-size:14px; color:var(--text-sub); }
@@ -165,8 +158,6 @@ a.btn-detail:hover { background:#ECE7DF; border-color:#CFC7BA; color:var(--text)
 .btn-search:active { transform:translateY(0) scale(.98); }
 
 /* 業者の行：ホバーで背景が薄く変わる */
-.hm-cmp-row { transition:background .18s; }
-.hm-cmp-row:hover { background:#FAF8F4; }
 
 /* 詳細はこちら：ホバーで矢印が右へ */
 .btn-detail::after { transition:transform .2s var(--ease); }

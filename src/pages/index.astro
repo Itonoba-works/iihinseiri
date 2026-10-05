@@ -113,14 +113,11 @@ const jsonLd = [
             <div class="hm-cmp-head"><h3>{b.title}</h3></div>
             {b.list.map((c) => (
               <div class="hm-cmp-row" data-areas={areaAttr(c)}>
-                <div>
-                  <div class="n">
-                    <AffLink id={c.id} pos={'top-' + b.cat + '-name'}>{c.name}</AffLink>
-                    {c.hasReview && <a href={'/reviews/' + c.id + '.html'} class="rv">レビュー</a>}
-                  </div>
+                <div class="hm-cmp-lead">
+                  <AffLink id={c.id} class="nm" pos={'top-' + b.cat + '-name'}>{c.name}</AffLink>
                   <div class="s">{c.shortPrice || c.price}</div>
                 </div>
-                <a href={detailHref(c)} class="btn-detail" data-detail={c.id} data-aff-pos={'top-' + b.cat + '-detail'}>詳細はこちら</a>
+                <a href={detailHref(c)} class="lnk-explain" data-detail={c.id} data-aff-pos={'top-' + b.cat + '-detail'}>徹底解説</a>
               </div>
             ))}
             <div class="hm-cmp-empty" hidden>この地域に対応している掲載業者はありません。</div>
