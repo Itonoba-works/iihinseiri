@@ -6,6 +6,28 @@
 > - GA4/GTM の計測設定は [`docs/GA4計測_設定書.md`](./docs/GA4計測_設定書.md)。
 > - ASP提携の管理は [`AFFILIATE_LINKS.md`](./AFFILIATE_LINKS.md)。
 
+## このリポジトリの作業の渡し方
+
+- 作業は **ローカルのコマンドプロンプト**で行います。GitHub の画面は直接編集しません（GitHub は AI に読ませるための置き場です）。
+- AI に変更を頼むときは、**「`git apply` 用のパッチ1つで出して」**と伝えます。
+- 受け取ったら、次の順で実行します。
+
+```bat
+git pull
+git apply --check パッチファイル名
+git apply パッチファイル名
+git status
+git add -A
+git commit -m "変更の内容"
+git push
+```
+
+- **画像（.webp など）はパッチにできません。** ファイルをそのまま置き換えます。
+- 失敗したときは無理に通さず、エラーをそのまま AI に貼ってください（`patch failed` は安全装置です）。
+- **AIが違う動きをしたら**（GitHubの画面で編集しようとする、全文コピペで上書きしようとする等）、
+  **「`AGENTS.md` を読んで」**と伝えれば軌道修正します。
+- 詳しいルール（AI が守るべきこと・触ると壊れるもの）は [`AGENTS.md`](./AGENTS.md)。
+
 ## セットアップ
 
 ```bash
