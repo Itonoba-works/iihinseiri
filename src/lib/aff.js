@@ -40,3 +40,18 @@ export function resolveAff(html) {
     return '<a ' + attrs.join(' ') + '>';
   });
 }
+
+/* ASP提携済み（affUrl / affLp あり）の企業を先頭、未提携を後ろに並べる。
+   上位ほどクリックされやすいため、収益に直結する提携済み社を上位に固定する。
+   同グループ内は元の並び順を維持する（安定ソート）。 */
+export function affFirst(list) {
+  const hasAff = (c) => !!(c.affUrl || (c.affLp && Object.keys(c.affLp).length));
+  return list
+    .map((c, i) => ({ c, i }))
+    .sort((a, b) => {
+      const d = (hasAff(a.c) ? 0 : 1) - (hasAff(b.c) ? 0 : 1);
+      return d !== 0 ? d : a.i - b.i;
+    })
+    .map((x) => x.c);
+}
+

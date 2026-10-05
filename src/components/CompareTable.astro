@@ -2,8 +2,10 @@
 /* 比較表は companies.json から自動生成。20社になっても列は変わらない */
 import companies from '../data/companies.json';
 import AffLink from './AffLink.astro';
+import { affFirst } from '../lib/aff.js';
 const { category = 'ihin' } = Astro.props;
-const list = companies.filter((c) => (c.categories || [c.category]).includes(category));
+/* 提携済み（affUrl あり）を上位、未提携を下位に固定 */
+const list = affFirst(companies.filter((c) => (c.categories || [c.category]).includes(category)));
 ---
 <div class="table-wrap">
   <table class="compare-table">

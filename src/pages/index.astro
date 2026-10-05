@@ -6,6 +6,7 @@ import site from '../data/site.json';
 import companies from '../data/companies.json';
 import pages from '../data/pages.json';
 import areaData from '../data/areas.json';
+import { affFirst } from '../lib/aff.js';
 
 /* 新着・人気記事：pages.json の後ろほど新しい。最大6件 */
 const NEW_MAX = 6;
@@ -42,7 +43,7 @@ const detailHref = (c) => (c.hasReview ? '/reviews/' + c.id + '.html' : '/rankin
 const blocks = [
   { cat: 'ihin', title: '遺品整理・不用品回収', href: '/rankings/ihin.html' },
   { cat: 'cleaning', title: 'ハウスクリーニング', href: '/rankings/cleaning.html' }
-].map((b) => ({ ...b, list: companies.filter((c) => (c.categories || [c.category]).includes(b.cat)) }));
+].map((b) => ({ ...b, list: affFirst(companies.filter((c) => (c.categories || [c.category]).includes(b.cat))) }));
 
 const homeUrl = new URL('/', Astro.site).href;
 const jsonLd = [

@@ -16,6 +16,10 @@ _backup/
 design_handoff_kurashi_seiri_navi/
 design_handoff_assets.md
 screenshots/
+# 没画像・旧画像の退避フォルダ（public/ の外に置くこと。中に置くと配信されます）
+botu.bak/
+_botu/
+*.bak/
 
 # --- Node（今後導入する場合）---
 node_modules/

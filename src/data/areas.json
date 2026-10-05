@@ -111,8 +111,9 @@
         "静岡県",
         "宮城県"
       ],
-      "note": "掲載外の地域も相談可",
-      "source": "https://777fukujin.com/area/"
+      "note": "掲載19都道府県＋エリア外も相談可。24時間受付・年中無休／出張見積0円・追加請求なし",
+      "source": "https://777fukujin.com/area/",
+      "checked": "2026-10-05"
     },
     "lifereset": {
       "type": "all",
@@ -129,7 +130,7 @@
     "minnano": {
       "type": "all",
       "verified": true,
-      "note": "全国915社の掲載業者から紹介",
+      "note": "全国918社の掲載業者から紹介",
       "source": "https://m-ihinseiri.jp/"
     },
     "emeao": {
@@ -166,8 +167,9 @@
     "osoujihonpo": {
       "type": "all",
       "verified": true,
-      "note": "全国チェーン（一部対応できない地域あり）",
-      "source": "https://www.osoujihonpo.com/"
+      "note": "全国47都道府県に対応（一部対応できない地域あり）",
+      "source": "https://www.osoujihonpo.com/shop/",
+      "checked": "2026-10-05"
     },
     "yourmystar": {
       "type": "all",

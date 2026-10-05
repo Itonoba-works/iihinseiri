@@ -2,7 +2,7 @@
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import CompareTable from '../../components/CompareTable.astro';
 import CompanyBlock from '../../components/CompanyBlock.astro';
-import { resolveAff } from '../../lib/aff.js';
+import { resolveAff, affFirst } from '../../lib/aff.js';
 import pages from '../../data/pages.json';
 import companies from '../../data/companies.json';
 
@@ -18,7 +18,8 @@ export function getStaticPaths() {
 const { page } = Astro.props;
 const intro = intros[Object.keys(intros).find((k) => k.endsWith('/' + page.slug + '.intro.html'))] || '';
 const outro = outros[Object.keys(outros).find((k) => k.endsWith('/' + page.slug + '.outro.html'))] || '';
-const list = companies.filter((c) => (c.categories || [c.category]).includes(page.slug));
+/* 提携済みを上位、未提携を下位に固定（クリックは上から発生するため） */
+const list = affFirst(companies.filter((c) => (c.categories || [c.category]).includes(page.slug)));
 const catLabel = page.slug === 'cleaning' ? 'ハウスクリーニング' : '遺品整理・不用品回収';
 ---
 <ArticleLayout

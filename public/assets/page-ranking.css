@@ -112,15 +112,15 @@
 
 /* 記事内ランキングブロック */
 .company-block {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--border);
+  background: #fff;
+  border: 1px solid var(--border);
   border-radius: 0;
   padding: 24px 20px 32px;
   margin: 0 0 24px;
   position: relative;
 }
 
+/* 順位による見た目の差をなくす。全ブロックを1位と同じ白カードにする */
 .company-block.top {
   border: 1px solid var(--border);
   background: #fff;
@@ -158,6 +158,16 @@
   aspect-ratio: 4/3;
   border-radius: 0;
   overflow: hidden;
+  background: #fff;
+}
+
+/* 300x250 のクリエイティブを切り取らず、比率を保ったまま枠内に縮小して収める。
+   枠のサイズ・レイアウト（200px / 4:3）は変更しない。
+   styles.css 側の `object-fit: cover` を確実に打ち消すため body を付けて特異度を上げる
+   （styles.css と同じ詳細度だと読み込み順で勝てないことがある）。 */
+body .company-body-grid .thumb > img {
+  object-fit: contain;
+  object-position: center;
 }
 
 .company-features {

@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "check": "node scripts/check-aff-links.mjs && node scripts/check-areas.mjs",
+    "check": "node scripts/check-aff-links.mjs && node scripts/check-areas.mjs && node scripts/check-company-images.mjs",
     "build": "node scripts/check-aff-links.mjs && astro build",
     "preview": "astro preview"
   },

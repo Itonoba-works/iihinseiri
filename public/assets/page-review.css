@@ -315,3 +315,12 @@
   .service-cta-row { grid-template-columns: 1fr; }
   .step-list { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* 300x250 のクリエイティブを切り取らず、比率を保ったまま枠内に縮小して収める。
+   枠のサイズ・レイアウト（240px / 4:3）は変更しない。
+   styles.css 側の `object-fit: cover` を確実に打ち消すため body を付けて特異度を上げる。 */
+body .service-logo-area { background: #fff; }
+body .service-logo-area > img {
+  object-fit: contain;
+  object-position: center;
+}
