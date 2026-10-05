@@ -9,6 +9,8 @@ if (!c) throw new Error('[AffLink] companies.json に未登録の企業ID: ' + i
 /* lp="disposal" などを渡すと、companies.json の affLp からその用途のLPを使う */
 const lpUrl = lp && c.affLp ? c.affLp[lp] : '';
 const external = lpUrl || c.affUrl || c.officialUrl || '';
+/* URL の出所。GTM の aff_src としてGA4に送り、ASP計測URLか公式サイト直リンクかを区別する */
+const src = lpUrl ? 'aff-lp' : c.affUrl ? 'aff' : c.officialUrl ? 'official' : 'internal';
 const href = external || (c.hasReview ? '/reviews/' + c.id + '.html' : '/rankings/' + c.category + '.html#' + c.id);
 ---
 <a
@@ -18,6 +20,7 @@ const href = external || (c.hasReview ? '/reviews/' + c.id + '.html' : '/ranking
   data-aff={c.id}
   data-aff-pos={pos || undefined}
   data-aff-lp={lpUrl ? lp : undefined}
+  data-aff-src={src}
   data-aff-external={external ? '1' : undefined}
   rel={external ? 'sponsored nofollow noopener' : undefined}
   target={external ? '_blank' : undefined}

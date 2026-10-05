@@ -16,6 +16,8 @@ export function resolveAff(html) {
     const lpm = (pre + post).match(/data-aff-lp="([^"]+)"/);
     const lpUrl = lpm && c.affLp ? c.affLp[lpm[1]] : '';
     const external = lpUrl || c.affUrl || c.officialUrl || '';
+    /* URL の出所。GTM の aff_src としてGA4に送る（AffLink.astro と同一ロジック） */
+    const src = lpUrl ? 'aff-lp' : c.affUrl ? 'aff' : c.officialUrl ? 'official' : 'internal';
     const href = external || (c.hasReview
       ? '/reviews/' + c.id + '.html'
       : '/rankings/' + c.category + '.html#' + c.id);
@@ -29,6 +31,7 @@ export function resolveAff(html) {
     const attrs = ['href="' + href + '"'];
     if (rest) attrs.push(rest);
     attrs.push('data-aff="' + c.id + '"');
+    attrs.push('data-aff-src="' + src + '"');
     if (external) {
       attrs.push('data-aff-external="1"');
       attrs.push('rel="sponsored nofollow noopener"');
