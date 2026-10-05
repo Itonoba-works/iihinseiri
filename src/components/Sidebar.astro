@@ -5,7 +5,7 @@ import KeyPoints from './KeyPoints.astro';
 import AffLink from './AffLink.astro';
 
 const { keyPoints = [], category = 'ihin', currentSlug = '' } = Astro.props;
-const ranked = companies.filter((c) => c.category === category).slice(0, 8);
+const ranked = companies.filter((c) => (c.categories || [c.category]).includes(category)).slice(0, 8);
 const catLabel = category === 'cleaning' ? 'ハウスクリーニング' : '遺品整理・不用品回収';
 const related = pages.filter((p) => p.type === 'article' && p.slug !== currentSlug).slice(0, 4);
 ---

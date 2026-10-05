@@ -188,6 +188,19 @@
       "note": "全国の出店者から選ぶ。地域により選べる出店者の数が異なる",
       "source": "https://curama.jp/",
       "checked": "2026-09-30"
+    },
+    "rcleaning": {
+      "type": "list",
+      "verified": true,
+      "prefs": [
+        "東京都",
+        "埼玉県",
+        "神奈川県",
+        "千葉県"
+      ],
+      "note": "1都3県の一部市区町村。茨城県・栃木県・群馬県は対象外。エリア外は出張料3,000円〜で相談可",
+      "source": "https://r-cleaning.com/gekitoku3pack/",
+      "checked": "2026-10-05"
     }
   }
 }

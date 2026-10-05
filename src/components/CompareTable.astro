@@ -3,7 +3,7 @@
 import companies from '../data/companies.json';
 import AffLink from './AffLink.astro';
 const { category = 'ihin' } = Astro.props;
-const list = companies.filter((c) => c.category === category);
+const list = companies.filter((c) => (c.categories || [c.category]).includes(category));
 ---
 <div class="table-wrap">
   <table class="compare-table">
