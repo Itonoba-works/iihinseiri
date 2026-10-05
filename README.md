@@ -1,5 +1,11 @@
 # くらしの整理ナビ（Astro版）
 
+> **このリポジトリの読み方**
+> - 人間もAIも、まずこの README が運用マニュアルの「唯一の正」です。
+> - AI・担当者向けの短いルールは [`AGENTS.md`](./AGENTS.md) にあります。
+> - GA4/GTM の計測設定は [`docs/GA4計測_設定書.md`](./docs/GA4計測_設定書.md)。
+> - ASP提携の管理は [`AFFILIATE_LINKS.md`](./AFFILIATE_LINKS.md)。
+
 ## セットアップ
 
 ```bash
@@ -108,11 +114,11 @@ src/data/companies.json
 
 ---
 
-### AFFILIATE_LINKS.md との関係
+### 関連ファイル
 
-`AFFILIATE_LINKS.md` は業者IDとASP候補の管理表として引き続き使えますが、
-同ファイルの「ステップ3: 一括置換（sed 等で）」と「各ページの `href="#"` を差し替える」という手順は
-**現在のAstro版では不要**です。`companies.json` の `affUrl` 1箇所で全ページに反映されます。
+- `AFFILIATE_LINKS.md` … ASP提携の管理表（どの業者をどのASPで提携するか）。**URLはここに書かず**、`companies.json` の `affUrl` に書きます。
+- `docs/GA4計測_設定書.md` … GA4/GTM の計測設定（CTAクリック `aff_click`・アフィリ区分 `aff_src`）。
+- `AGENTS.md` … AI・担当者向けの作業ルール（触ると壊れるもの・コミット前チェック）。
 
 ---
 
@@ -385,4 +391,5 @@ public/
 
 ## URL は旧版と同一
 
-`build.format: 'file'` を指定しているため `/articles/akutoku.html` 形式のURLが維持されます。リダイレクト設定は不要です。
+`build.format: 'file'` を指定しているため、`/articles/trouble.html` のように **.html 付きのURL**になります。
+旧URLからのリダイレクトは `public/_redirects` に書きます（例：旧 `/articles/akutoku.html` → `/articles/trouble.html`）。
