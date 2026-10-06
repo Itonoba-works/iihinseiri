@@ -1,5 +1,18 @@
 ---
 import site from '../data/site.json';
+import companies from '../data/companies.json';
+import { affFirst } from '../lib/aff.js';
+
+/* 「徹底解説」＝企業レビュー（/reviews/<id>.html）への入口。
+   hasReview が true の社だけを並べる（＝ページが実在する社だけ）。
+   companies.json から生成しているので、hasReview を切り替えれば自動で追従する。
+   並び順はサイト全体のルールと同じく提携済み優先（affFirst）。 */
+const reviewed = affFirst(companies.filter((c) => c.hasReview));
+const inCat = (cat) => reviewed.filter((c) => (c.categories || [c.category]).includes(cat));
+const reviewGroups = [
+  { label: '遺品整理・不用品回収', items: inCat('ihin') },
+  { label: 'ハウスクリーニング', items: inCat('cleaning') }
+].filter((g) => g.items.length > 0);
 ---
 <footer class="site-footer">
   <div class="footer-inner">
@@ -22,6 +35,22 @@ import site from '../data/site.json';
         </ul>
       </div>
     ))}
+  </div>
+
+  <div class="footer-reviews">
+    <div class="footer-reviews-inner">
+      <h4>徹底解説</h4>
+      <div class="footer-reviews-grid">
+        {reviewGroups.map((g) => (
+          <div class="fr-col">
+            <p class="fr-sub">{g.label}</p>
+            <ul>
+              {g.items.map((c) => (<li><a href={'/reviews/' + c.id + '.html'}>{c.name}</a></li>))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
   </div>
 
   <div class="footer-bottom">© 2026 {site.name} All Rights Reserved. / 記事の出典注記：2026年8月時点</div>

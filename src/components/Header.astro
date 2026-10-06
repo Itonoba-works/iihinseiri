@@ -1,6 +1,7 @@
 ---
 import site from '../data/site.json';
 import companies from '../data/companies.json';
+import pages from '../data/pages.json';
 const { active = '' } = Astro.props;
 
 // 一括見積もりCTAの遷移先を companies.json から解決
@@ -10,6 +11,22 @@ const estUrl = est ? (est.affUrl || est.officialUrl || '') : '';
 const estHref = estUrl
   ? estUrl
   : (est ? (est.hasReview ? '/reviews/' + est.id + '.html' : '/rankings/' + est.category + '.html#' + est.id) : '/rankings/ihin.html');
+
+/* 「記事一覧」の下にぶら下げる記事ツリー。
+   記事の唯一の正は pages.json なので、そこから生成する。
+   記事を1本足せば site.json を触らなくてもナビに自動で増える。
+   PCではドロップダウン、スマホのドロワーではアコーディオンになる。 */
+const articleTree = pages
+  .filter((p) => p.type === 'article')
+  .slice()
+  .reverse()
+  .map((p) => ({
+    href: '/articles/' + p.slug + '.html',
+    label: String(p.h1 || '').replace(/【[^】]*】/g, '').trim()
+  }));
+
+/* site.json 側の「記事一覧」項目を判別する（key か href のどちらでも一致させる） */
+const isArticles = (n) => n.key === 'articles' || n.href === '/articles.html';
 ---
 <header class="site-header" data-screen-label="Header">
   <div class="header-top">
@@ -30,9 +47,25 @@ const estHref = estUrl
     </a>
 
     <nav class="site-nav" aria-label="メインナビゲーション">
-      {site.nav.map((n) => (
-        <a href={n.href} class={n.key === active ? 'active' : undefined}>{n.label}</a>
-      ))}
+      {site.nav.map((n) =>
+        isArticles(n) ? (
+          <div class="nav-item has-sub">
+            <a
+              href={n.href}
+              class={n.key === active ? 'active' : undefined}
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="navArticleTree"
+            >{n.label}<span class="caret" aria-hidden="true"></span></a>
+            <div class="nav-sub" id="navArticleTree">
+              <a href={n.href} class="nav-sub-all">記事一覧をすべて見る</a>
+              {articleTree.map((a) => (<a href={a.href}>{a.label}</a>))}
+            </div>
+          </div>
+        ) : (
+          <a href={n.href} class={n.key === active ? 'active' : undefined}>{n.label}</a>
+        )
+      )}
     </nav>
 
     <a
@@ -57,9 +90,21 @@ const estHref = estUrl
       <span class="t">カテゴリを選ぶ</span>
       <button class="nav-drawer-close" type="button" aria-label="メニューを閉じる">×</button>
     </div>
-    {site.drawer.map((n) => (
-      <a href={n.href} class="d-item">{n.label}<span class="chev">›</span></a>
-    ))}
+    {site.drawer.map((n) =>
+      isArticles(n) ? (
+        <div class="d-group">
+          <button class="d-item d-toggle" type="button" aria-expanded="false" aria-controls="drawerArticleTree">
+            {n.label}<span class="chev" aria-hidden="true">›</span>
+          </button>
+          <div class="d-sub" id="drawerArticleTree">
+            <a href={n.href} class="d-sub-all">記事一覧をすべて見る</a>
+            {articleTree.map((a) => (<a href={a.href}>{a.label}</a>))}
+          </div>
+        </div>
+      ) : (
+        <a href={n.href} class="d-item">{n.label}<span class="chev">›</span></a>
+      )
+    )}
     <a
       href={estHref}
       class="btn-cta full drawer-cta pulse"

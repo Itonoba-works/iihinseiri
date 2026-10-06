@@ -49,23 +49,57 @@
     });
   }
 
-  /* ---------- 2) ドロワー ---------- */
+  /* ---------- 2) ドロワー / ナビの記事ツリー ---------- */
   function drawer() {
     var btn = d.querySelector(".nav-toggle");
     var dr = d.querySelector(".nav-drawer");
-    if (!btn || !dr) return;
+
     function set(open) {
+      if (!dr) return;
       dr.classList.toggle("is-open", open);
       d.body.classList.toggle("drawer-open", open);
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      if (btn) btn.setAttribute("aria-expanded", open ? "true" : "false");
     }
-    btn.addEventListener("click", function () {
-      set(!dr.classList.contains("is-open"));
+    if (btn && dr) {
+      btn.addEventListener("click", function () {
+        set(!dr.classList.contains("is-open"));
+      });
+      dr.addEventListener("click", function (e) {
+        if (e.target === dr || e.target.closest(".nav-drawer-close") || e.target.closest("a")) set(false);
+      });
+      d.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
+    }
+
+    /* ドロワー内の「記事一覧」アコーディオン */
+    Array.prototype.forEach.call(d.querySelectorAll(".nav-drawer .d-toggle"), function (t) {
+      t.addEventListener("click", function () {
+        var g = t.closest(".d-group");
+        if (!g) return;
+        var open = g.classList.toggle("is-open");
+        t.setAttribute("aria-expanded", open ? "true" : "false");
+      });
     });
-    dr.addEventListener("click", function (e) {
-      if (e.target === dr || e.target.closest(".nav-drawer-close") || e.target.closest("a")) set(false);
+
+    /* PCナビのドロップダウン。hover と click の両方で開く（タッチ・キーボード対応） */
+    Array.prototype.forEach.call(d.querySelectorAll(".site-nav .has-sub"), function (item) {
+      var link = item.querySelector("a[aria-haspopup]");
+      function open(v) {
+        item.classList.toggle("is-open", v);
+        if (link) link.setAttribute("aria-expanded", v ? "true" : "false");
+      }
+      item.addEventListener("mouseenter", function () { open(true); });
+      item.addEventListener("mouseleave", function () { open(false); });
+      item.addEventListener("focusin", function () { open(true); });
+      item.addEventListener("focusout", function (e) {
+        if (!item.contains(e.relatedTarget)) open(false);
+      });
+      if (link) {
+        link.addEventListener("click", function (e) {
+          /* 閉じているときの1クリック目は「開く」だけに使う。2クリック目で記事一覧へ */
+          if (!item.classList.contains("is-open")) { e.preventDefault(); open(true); }
+        });
+      }
     });
-    d.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
   }
 
   /* ---------- 3) ヘッダー圧縮 / 追従CTA ---------- */

@@ -17,6 +17,14 @@ const {
   faqHtml = ''
 } = Astro.props;
 
+/* 本文中の <!--mid-cta--> を境に前後へ分割する。
+   中間CTAは「本文の途中」に置く必要があるが、本文は set:html で流し込む文字列なので
+   コンポーネントを差し込めない。そこで本文側にマーカーだけ置き、
+   レイアウトがそこに <slot name="mid-cta"> を描画する。 */
+const MID_MARK = '<!--mid-cta-->';
+const hasMid = body.includes(MID_MARK);
+const [bodyA, bodyB] = hasMid ? body.split(MID_MARK) : [body, ''];
+
 /* アフィリエイトリンクが1社でも有効なら、タイトル下にPR表記を出す */
 const hasAff = companies.some((c) => c.affUrl);
 
@@ -102,12 +110,16 @@ if (faq.length) {
 
       <div class="article-main article-body">
         <slot name="before-body" />
-        <div set:html={resolveAff(body)} />
+        <div set:html={resolveAff(bodyA)} />
+        {hasMid && <slot name="mid-cta" />}
+        {hasMid && <div set:html={resolveAff(bodyB)} />}
         <slot />
       </div>
     </div>
 
     <Sidebar keyPoints={page.keyPoints} category={category} currentSlug={page.slug} />
+
+    <slot name="closing-cta" />
   </div>
 
   <StickyCta slot="cta" {...cta} />

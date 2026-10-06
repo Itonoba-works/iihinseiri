@@ -1134,3 +1134,103 @@ a[data-aff].btn-secondary:hover {
   .to-top { right: 14px; bottom: calc(88px + env(safe-area-inset-bottom)); width: 48px; height: 48px; }
 }
 @media print { .to-top { display: none !important; } }
+
+/* ============ PCナビ: 「記事一覧」の記事ツリー（ドロップダウン） ============ */
+.site-nav .nav-item { position: relative; display: flex; align-items: center; }
+.site-nav .nav-item > a { display: inline-flex; align-items: center; gap: 7px; }
+.site-nav .nav-item .caret {
+  width: 7px; height: 7px; margin-top: -4px; flex: 0 0 auto;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(45deg); transition: transform .2s var(--ease);
+}
+.site-nav .nav-item.is-open .caret { transform: rotate(-135deg); margin-top: 3px; }
+
+.site-nav .nav-sub {
+  position: absolute; top: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  width: 470px; max-width: 90vw;
+  background: #fff; border: 1px solid var(--border-strong); border-radius: 10px;
+  box-shadow: 0 16px 38px rgba(21,84,108,.18);
+  padding: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .18s var(--ease), transform .18s var(--ease), visibility .18s;
+}
+.site-nav .nav-item.is-open .nav-sub {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.site-nav .nav-sub a {
+  display: block; padding: 9px 12px; border-radius: 6px;
+  font-size: 12.5px; font-weight: 600; line-height: 1.55;
+  color: var(--text); white-space: normal; text-align: left;
+}
+/* 親の下線アニメ（.site-nav a::after）をツリー内では出さない */
+.site-nav .nav-sub a::after { display: none; }
+.site-nav .nav-sub a:hover { background: var(--primary-pale); color: var(--link); }
+.site-nav .nav-sub a.nav-sub-all {
+  grid-column: 1 / -1; color: var(--link); font-weight: 700;
+  border-bottom: 1px solid var(--border); border-radius: 0;
+  margin-bottom: 6px; padding: 6px 12px 12px;
+}
+
+/* ============ フッター: 徹底解説（各社レビューの入口） ============ */
+.footer-reviews { border-top: 1px solid rgba(255,255,255,.08); }
+.footer-reviews-inner { max-width: 1240px; margin: 0 auto; padding: 26px 20px 30px; }
+.footer-reviews h4 {
+  color: #fff; font-size: 13.5px; font-weight: 600; margin: 0 0 16px;
+  padding-bottom: 9px; border-bottom: 2px solid #3E9BBE; display: inline-block;
+}
+.footer-reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 36px; }
+.footer-reviews .fr-sub {
+  margin: 0 0 8px; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; color: #8FB8CC;
+}
+.footer-reviews ul {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px;
+}
+.footer-reviews li { margin: 0; }
+.footer-reviews li a {
+  display: block; color: #D3DCE4; text-decoration: none;
+  font-size: 12.5px; padding: 5px 0; transition: color .15s, padding-left .15s;
+}
+.footer-reviews li a:hover { color: #fff; padding-left: 5px; text-decoration: none; }
+
+/* ============ スマホドロワー: 「記事一覧」アコーディオン ============ */
+@media (max-width: 768px) {
+  .nav-drawer .d-group { border-bottom: 1px solid var(--border); }
+  .nav-drawer button.d-item {
+    display: flex; align-items: center; width: 100%;
+    min-height: 52px; padding: 0 4px; margin: 0;
+    background: none; border: none; border-bottom: none;
+    font-family: inherit; font-size: 14.5px; font-weight: 600;
+    color: var(--text); text-align: left; cursor: pointer;
+  }
+  .nav-drawer button.d-item::before {
+    content: ""; width: 3px; height: 16px; background: var(--primary-line);
+    border-radius: 2px; margin-right: 10px; flex: 0 0 auto;
+  }
+  .nav-drawer button.d-item .chev {
+    color: var(--primary); font-size: 16px; margin-left: auto;
+    transition: transform .2s var(--ease);
+  }
+  .nav-drawer .d-group.is-open button.d-item .chev { transform: rotate(90deg); }
+  .nav-drawer .d-sub {
+    display: none; margin: 0 0 10px 4px; padding-left: 13px;
+    border-left: 2px solid var(--border);
+  }
+  .nav-drawer .d-group.is-open .d-sub { display: block; }
+  .nav-drawer .d-sub a {
+    display: block; padding: 10px 6px; font-size: 13.5px; line-height: 1.6;
+    color: var(--text-sub); text-decoration: none;
+  }
+  .nav-drawer .d-sub a:hover { color: var(--link); }
+  .nav-drawer .d-sub a.d-sub-all { color: var(--link); font-weight: 700; padding-bottom: 12px; }
+}
+
+@media (max-width: 768px) {
+  .footer-reviews-inner { padding: 22px 18px 26px; }
+  .footer-reviews-grid { grid-template-columns: 1fr; gap: 18px; }
+}
+@media (max-width: 480px) {
+  .footer-reviews ul { grid-template-columns: 1fr; }
+}

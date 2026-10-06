@@ -332,3 +332,113 @@ body .service-logo-area > .service-logo-link > img {
   width: 100%; height: 100%;
   object-fit: contain; object-position: center; display: block;
 }
+
+/* ==========================================================================
+   ① レスポンシブ対応（レビューページ）
+   レビューページは page-ranking.css を読み込まないため、
+   .company-info-table / .company-actions の定義がどこにも無く、
+   ブラウザ既定の表レイアウトになっていた（＝左列が見出しごとに潰れて縦積み改行）。
+   ランキングページと同じ見た目をここに持たせて揃える。
+   ========================================================================== */
+.company-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.company-info-table th,
+.company-info-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.7;
+}
+
+.company-info-table tr:last-child th,
+.company-info-table tr:last-child td { border-bottom: none; }
+
+.company-info-table th {
+  background: #fff;
+  color: var(--text-sub);
+  font-weight: 700;
+  width: 30%;
+}
+
+/* 下部CTA（他社と比較する／公式サイトを見る）を等幅2列に並べる。
+   定義が無いとインライン要素として並び、幅がバラバラのまま折り返していた。 */
+.company-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.company-actions > .btn-cta,
+.company-actions > .btn-secondary {
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .company-actions { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .info-box { padding: 0 14px 14px; }
+  .info-box .label { margin: 0 -14px 12px; padding: 9px 12px; }
+  /* 左列（項目名）を潰さない。文字と余白を落として2〜3行に収める */
+  .company-info-table { font-size: 12.5px; }
+  .company-info-table th { width: 36%; padding: 9px 10px; }
+  .company-info-table td { padding: 9px 10px; }
+}
+
+/* ==========================================================================
+   締めのCTA
+   .article-layout の最後の要素として置く。2カラム（PC）では本文カラムの下に収まり、
+   1カラム（スマホ）ではサイドバーの後ろ＝ページの最後に来る。
+   ＝どの幅でも「CTAで締める」形になる。
+   ========================================================================== */
+.closing-cta {
+  grid-column: 1;
+  padding: 22px 20px;
+  background: #fff;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+}
+.closing-cta-lead {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--text-sub);
+}
+.closing-cta .company-actions { margin-top: 0; }
+
+/* ==========================================================================
+   中間CTA（1回だけ）
+   本文の見出しの中間地点に差し込む。末尾CTA・追従CTAと役割を分け、
+   ここは「誘導文＋ボタン1つ」に絞って広告過多に見せない。
+   ========================================================================== */
+.mid-cta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 14px;
+  margin: 34px 0;
+  padding: 18px 20px;
+  background: var(--primary-pale);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.mid-cta-lead { margin: 0; flex: 1 1 240px; font-size: 14px; line-height: 1.8; color: var(--text); }
+.mid-cta .btn-cta { flex: 0 0 auto; padding: 12px 22px; min-height: 46px; font-size: 14px; }
+
+@media (max-width: 480px) {
+  .mid-cta { flex-direction: column; align-items: stretch; }
+  .mid-cta .btn-cta { width: 100%; }
+}

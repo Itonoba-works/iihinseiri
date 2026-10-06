@@ -27,10 +27,30 @@ export function getStaticPaths() {
 
 const { page, company } = Astro.props;
 const key = Object.keys(bodies).find((k) => k.endsWith('/' + page.slug + '.html'));
-const body = key ? bodies[key] : '';
+const rawBody = key ? bodies[key] : '';
 const keyPoints = (page.keyPoints && page.keyPoints.length)
   ? page.keyPoints
   : [company.shortType && 'サービス形態：' + company.shortType, company.shortPrice && '料金目安：' + company.shortPrice, company.shortArea && '対応エリア：' + company.shortArea].filter(Boolean);
+
+/* 中間CTAの位置決め。本文の見出し（h2）の中間地点にマーカーを1つだけ置く。
+   会社ごとに本文の長さが違うので、位置は見出しの数から自動で求める。
+   本文の実際の描画は ArticleLayout が行い、マーカーの位置に
+   <slot name="mid-cta"> を差し込む。 */
+const MID_MARK = '<!--mid-cta-->';
+
+function withMidMarker(html) {
+  if (!html) return html;
+  const hits = [];
+  const re = /<h2[\s>]/g;
+  let m;
+  while ((m = re.exec(html)) !== null) hits.push(m.index);
+  /* 見出しが2つ以下の短い本文には入れない（末尾CTAと近くなりすぎるため） */
+  if (hits.length < 3) return html;
+  const at = hits[Math.floor(hits.length / 2)];
+  return html.slice(0, at) + MID_MARK + html.slice(at);
+}
+
+const body = withMidMarker(rawBody);
 ---
 <ArticleLayout
   page={{ ...page, keyPoints }}
@@ -53,8 +73,18 @@ const keyPoints = (page.keyPoints && page.keyPoints.length)
     </table>
   </section>
 
-  <div class="company-actions" style="margin-top:28px;">
-    <a href={'/rankings/' + company.category + '.html'} class="btn-secondary">他社と比較する</a>
-    <AffLink id={company.id} class="btn-cta pulse" pos="review-bottom">公式サイトを見る</AffLink>
+  <div slot="mid-cta" class="mid-cta">
+    <p class="mid-cta-lead"><strong>{company.name}</strong>の最新の料金・キャンペーンは公式サイトで確認できます。</p>
+    <AffLink id={company.id} class="btn-cta" pos="review-mid">公式サイトを見る</AffLink>
+  </div>
+
+  <div slot="closing-cta" class="closing-cta">
+    <p class="closing-cta-lead">
+      <strong>{company.name}</strong>の料金・キャンペーンは変更されることがあります。申し込み前に公式サイトで最新の内容をご確認ください。
+    </p>
+    <div class="company-actions">
+      <a href={'/rankings/' + company.category + '.html'} class="btn-secondary">他社と比較する</a>
+      <AffLink id={company.id} class="btn-cta pulse" pos="review-bottom">公式サイトを見る</AffLink>
+    </div>
   </div>
 </ArticleLayout>
