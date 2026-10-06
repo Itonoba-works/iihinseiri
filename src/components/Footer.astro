@@ -3,31 +3,48 @@ import site from '../data/site.json';
 import companies from '../data/companies.json';
 import { affFirst } from '../lib/aff.js';
 
-/* 「徹底解説」＝企業レビュー（/reviews/<id>.html）への入口。
-   hasReview が true の社だけを並べる（＝ページが実在する社だけ）。
-   companies.json から生成しているので、hasReview を切り替えれば自動で追従する。
+/* フッターは2層構成。
+   上段 = ブランド帯（ロゴ＋サイト説明）
+   下段 = 4列の横並び（比較する／お役立ち情報／徹底解説／サイト情報）
+   「徹底解説」はサイト内レビュー（/reviews/<id>.html）への入口で、
+   hasReview が true の社から自動生成する（＝ページが実在する社だけ）。
    並び順はサイト全体のルールと同じく提携済み優先（affFirst）。 */
 const reviewed = affFirst(companies.filter((c) => c.hasReview));
-const inCat = (cat) => reviewed.filter((c) => (c.categories || [c.category]).includes(cat));
-const reviewGroups = [
-  { label: '遺品整理・不用品回収', items: inCat('ihin') },
-  { label: 'ハウスクリーニング', items: inCat('cleaning') }
-].filter((g) => g.items.length > 0);
+const reviewCol = {
+  head: '徹底解説',
+  links: reviewed.map((c) => ({ label: c.name, href: `/reviews/${c.id}.html` }))
+};
+/* 「お役立ち情報」はスマホで2列 × 5行＝最大10本まで。
+   11本目からは古い記事を表示から外す（＝新しい10本を残す）。
+   site.json の並びは先頭が古く、新しい記事は末尾に足す運用。
+   上限は site.json の footerArticleMax で変更できる。 */
+const ARTICLE_MAX = site.footerArticleMax || 10;
+const trimArticles = (links) =>
+  links.length > ARTICLE_MAX ? links.slice(links.length - ARTICLE_MAX) : links;
+
+/* 「お役立ち情報」の直後（＝3列目）に差し込む */
+const columns = site.footer.map((c) =>
+  c.head === 'お役立ち情報' ? { ...c, links: trimArticles(c.links) } : c
+);
+const at = columns.findIndex((c) => c.head === 'お役立ち情報');
+if (at >= 0) columns.splice(at + 1, 0, reviewCol);
+else columns.push(reviewCol);
 ---
 <footer class="site-footer">
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand">
-        <img
-          src={`/images/brand/logo-white.png?v=${site.assetVersion}`}
-          alt={site.name}
-          width="2170" height="725"
-          loading="lazy" decoding="async"
-        />
-      </div>
-      <p>{site.description}</p>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img
+        src={`/images/brand/logo-white.png?v=${site.assetVersion}`}
+        alt={site.name}
+        width="2170" height="725"
+        loading="lazy" decoding="async"
+      />
     </div>
-    {site.footer.map((col) => (
+    <p class="footer-desc">{site.description}</p>
+  </div>
+
+  <div class="footer-inner">
+    {columns.map((col) => (
       <div>
         <h4>{col.head}</h4>
         <ul>
@@ -35,22 +52,6 @@ const reviewGroups = [
         </ul>
       </div>
     ))}
-  </div>
-
-  <div class="footer-reviews">
-    <div class="footer-reviews-inner">
-      <h4>徹底解説</h4>
-      <div class="footer-reviews-grid">
-        {reviewGroups.map((g) => (
-          <div class="fr-col">
-            <p class="fr-sub">{g.label}</p>
-            <ul>
-              {g.items.map((c) => (<li><a href={'/reviews/' + c.id + '.html'}>{c.name}</a></li>))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </div>
   </div>
 
   <div class="footer-bottom">© 2026 {site.name} All Rights Reserved. / 記事の出典注記：2026年8月時点</div>

@@ -69,7 +69,6 @@
 .hm-cmp-lead .nm:hover { text-decoration:underline; text-underline-offset:3px; }
 .hm-cmp-lead .s { font-size:12.5px; color:var(--text); line-height:1.6; margin-top:3px; }
 .hm-cmp-row .lnk-explain { font-size:13px; font-weight:700; color:var(--link); text-decoration:underline; text-underline-offset:3px; white-space:nowrap; }
-.hm-cmp-row .lnk-explain::after { content:"›"; display:inline-block; margin-left:3px; }
 .hm-cmp-row .lnk-explain:hover { color:var(--link-hover); }
 .hm-cmp-foot { padding:14px 20px; margin-top:auto; }
 .hm-cmp-foot .btn-secondary { width:100%; }

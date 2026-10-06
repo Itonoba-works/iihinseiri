@@ -438,7 +438,23 @@ body .service-logo-area > .service-logo-link > img {
 .mid-cta-lead { margin: 0; flex: 1 1 240px; font-size: 14px; line-height: 1.8; color: var(--text); }
 .mid-cta .btn-cta { flex: 0 0 auto; padding: 12px 22px; min-height: 46px; font-size: 14px; }
 
+.mid-cta-lead strong { font-weight: 700; }
+
+/* .article-body p { margin-bottom: 26px } に負けて下側だけ余白が付き、
+   テキストが枠の中央より上に見えていた。特異度を上げて打ち消す。 */
+.article-body .mid-cta > .mid-cta-lead,
+.mid-cta > .mid-cta-lead,
+.mid-cta > .btn-cta { margin: 0; }
+
+/* ④ レビュー本文内のCTAセクション: 企業名の表記 */
+.cta-box-head { margin-bottom: 8px; line-height: 1.6; }
+.cta-box-head .c { font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: .02em; }
+.cta-box-head .n { font-size: 20px; font-weight: 700; }
+.cta-box-head .n:hover { color: var(--link); }
+
 @media (max-width: 480px) {
   .mid-cta { flex-direction: column; align-items: stretch; }
   .mid-cta .btn-cta { width: 100%; }
+  .cta-box-head .c { display: block; font-size: 12px; }
+  .cta-box-head .n { font-size: 18px; }
 }
