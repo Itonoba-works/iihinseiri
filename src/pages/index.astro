@@ -1,4 +1,5 @@
 ---
+import { emph } from '../lib/emph.js';
 import Base from '../layouts/Base.astro';
 import StickyCta from '../components/StickyCta.astro';
 import AffLink from '../components/AffLink.astro';
@@ -115,7 +116,7 @@ const jsonLd = [
               <div class="hm-cmp-row" data-areas={areaAttr(c)}>
                 <div class="hm-cmp-lead">
                   <AffLink id={c.id} class="nm" pos={'top-' + b.cat + '-name'}>{c.name}</AffLink>
-                  <div class="s">{c.shortPrice || c.price}</div>
+                  <div class="s" set:html={emph(c.shortPrice || c.price)} />
                 </div>
                 <a href={detailHref(c)} class="lnk-explain" data-detail={c.id} data-aff-pos={'top-' + b.cat + '-detail'}>徹底解説＞＞＞</a>
               </div>

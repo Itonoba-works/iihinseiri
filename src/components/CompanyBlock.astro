@@ -1,4 +1,5 @@
 ---
+import { emph } from '../lib/emph.js';
 /* ランキング詳細ブロック。companies.json から自動生成 */
 import AffLink from './AffLink.astro';
 const { company: c, index } = Astro.props;
@@ -41,7 +42,7 @@ const rank = index + 1;
           {c.specs.map((r) => (
             <tr>
               <th>{r.label}</th>
-              <td class={/料金/.test(r.label) ? 'price-cell' : undefined}>{r.value}</td>
+              <td class={/料金/.test(r.label) ? 'price-cell' : undefined} set:html={emph(r.value)} />
             </tr>
           ))}
         </tbody>

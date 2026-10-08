@@ -1,4 +1,5 @@
 ---
+import { emph } from '../../lib/emph.js';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import AffLink from '../../components/AffLink.astro';
 import pages from '../../data/pages.json';
@@ -65,10 +66,10 @@ const body = withMidMarker(rawBody);
   cta={{ text: company.name, small: company.shortFeature || '', label: '公式サイトを見る', affId: company.id }}
 >
   <section slot="before-body" class="info-box">
-    <div class="label">この会社の要点</div>
+    <div class="label">{company.name}の強み</div>
     <table class="company-info-table" style="margin:8px 0 0;">
       <tbody>
-        {company.specs.map((r) => (<tr><th>{r.label}</th><td>{r.value}</td></tr>))}
+        {company.specs.map((r) => (<tr><th>{r.label}</th><td set:html={emph(r.value)} /></tr>))}
       </tbody>
     </table>
   </section>

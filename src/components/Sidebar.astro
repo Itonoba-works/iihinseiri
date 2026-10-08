@@ -1,4 +1,5 @@
 ---
+import { emph } from '../lib/emph.js';
 import companies from '../data/companies.json';
 import pages from '../data/pages.json';
 import KeyPoints from './KeyPoints.astro';
@@ -21,7 +22,7 @@ const related = pages.filter((p) => p.type === 'article' && p.slug !== currentSl
           <div class="side-rank-num">{i + 1}</div>
           <div>
             <div class="n">{c.name}</div>
-            <div class="s">{c.shortPrice || c.price}</div>
+            <div class="s" set:html={emph(c.shortPrice || c.price)} />
           </div>
         </AffLink>
       ))}
