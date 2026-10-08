@@ -623,3 +623,34 @@
   .article-body li { font-size: 16px; line-height: 1.9; }
   .step-block p, .case-block .case-body, .checklist li { font-size: 15.5px; }
 }
+
+
+/* ── 実例の囲み ────────────────────────────────────────────────
+   「実例だと分かる」ことだけを目的にした軽い区切り。
+   左の縦帯・上部の棒線・枠線は使わない（実例の範囲は囲みの面で示す）。 */
+.case-note {
+  margin: 18px 0 32px;
+  padding: 18px 22px 14px;
+  background: #F8F6F2;
+  border-radius: 8px;
+}
+.case-note__label {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: #EDE7DE;
+  color: #7A6A55;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .08em;
+}
+.case-note--law .case-note__label { background: #E4EDF2; color: var(--primary-deep); }
+.case-note__body > p { margin: 0 0 12px; font-size: 14.5px; line-height: 1.95; }
+.case-note__body > p:last-child { margin-bottom: 0; }
+.case-note__src {
+  margin: 14px 0 0; padding-top: 10px;
+  border-top: 1px solid #E7E1D8;
+  font-size: 11.5px; line-height: 1.7; color: var(--muted); font-style: normal;
+}
+@media (max-width: 560px) {
+  .case-note { margin: 16px 0 26px; padding: 16px 16px 12px; }
+}
