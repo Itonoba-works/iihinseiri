@@ -219,6 +219,41 @@
     window.addEventListener("scroll", function () { window.requestAnimationFrame(tick); }, { passive: true });
   }
 
-  function init() { liftPickCards(); stampDate(); drawer(); onScroll(); wrapTables(); reveal(); affiliates(); progress(); toTop(); overflowCheck(); }
+  /* ---------- 「〇年〇月」を、見ている時点の年月に合わせる ----------
+     対象は次の2つだけ。
+       ・【〇年〇月最新】/【〇年最新】 → 【今月最新】
+       ・フッターの「〇年〇月時点」   → 今月時点
+     本文の「〇年〇月時点」の注記、事例の受付年月、法令の年月には触れない。 */
+  function stampMonths() {
+    var n = new Date();
+    var ym = n.getFullYear() + "年" + (n.getMonth() + 1) + "月";
+    /* 月あり【2026年10月最新】と月なし【2026年最新】の両方を、今月入りに揃える */
+    var newest = function (s) { return s.replace(/【\d{4}年(?:\d{1,2}月)?最新】/g, "【" + ym + "最新】"); };
+
+    /* 【〇年〇月最新】＝ページ見出し・本文・タブのタイトル */
+    var w = d.createTreeWalker(d.body, NodeFilter.SHOW_TEXT, null, false);
+    var node, list = [];
+    while ((node = w.nextNode())) {
+      var pn = node.parentNode;
+      if (pn && /^(SCRIPT|STYLE|NOSCRIPT)$/.test(pn.nodeName)) continue;
+      if (node.nodeValue && node.nodeValue.indexOf("年") !== -1) list.push(node);
+    }
+    for (var i = 0; i < list.length; i++) {
+      var v = list[i].nodeValue, nv = newest(v);
+      if (nv !== v) list[i].nodeValue = nv;
+    }
+    if (d.title) d.title = newest(d.title);
+
+    /* フッターの出典注記「〇年〇月時点」 */
+    Array.prototype.forEach.call(d.querySelectorAll(".footer-bottom"), function (el) {
+      var w2 = d.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false), t2;
+      while ((t2 = w2.nextNode())) {
+        var b = t2.nodeValue, a = b.replace(/(\d{4})年(\d{1,2})月(?=\s*時点)/g, ym);
+        if (a !== b) t2.nodeValue = a;
+      }
+    });
+  }
+
+  function init() { liftPickCards(); stampDate(); stampMonths(); drawer(); onScroll(); wrapTables(); reveal(); affiliates(); progress(); toTop(); overflowCheck(); }
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", init); else init();
 })();
