@@ -655,17 +655,17 @@
   .case-note { margin: 16px 0 26px; padding: 16px 16px 12px; }
 }
 
-/* 中段の広告枠（468×60）。バナーは枠の中で中央に置き、狭い画面では縮小する */
+/* 中段の広告枠。バナーが「広告の枠」として主張しないよう、背景・枠線・余白は付けない。
+   PC用(468×60)とSP用(234×60)は画面幅で出し分け、どちらも中央に置く。 */
 .ad-box {
-  margin: 48px 0;
-  padding: 16px;
-  background: #F8F6F2;
-  border-radius: 8px;
-  text-align: center;
+  margin: 44px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   line-height: 0;
 }
+.ad-box .ad-pc, .ad-box .ad-sp { text-align: center; }
 .ad-box img { max-width: 100%; height: auto; }
-.ad-box p { margin: 0; }
 /* PC用/SP用の出し分け。SP用は初期状態では出さない */
 .ad-box .ad-sp { display: none; }
 @media (max-width: 480px) {
