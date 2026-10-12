@@ -654,3 +654,21 @@
 @media (max-width: 560px) {
   .case-note { margin: 16px 0 26px; padding: 16px 16px 12px; }
 }
+
+/* 中段の広告枠（468×60）。バナーは枠の中で中央に置き、狭い画面では縮小する */
+.ad-box {
+  margin: 48px 0;
+  padding: 16px;
+  background: #F8F6F2;
+  border-radius: 8px;
+  text-align: center;
+  line-height: 0;
+}
+.ad-box img { max-width: 100%; height: auto; }
+.ad-box p { margin: 0; }
+/* PC用/SP用の出し分け。SP用は初期状態では出さない */
+.ad-box .ad-sp { display: none; }
+@media (max-width: 480px) {
+  .ad-box .ad-pc { display: none; }
+  .ad-box .ad-sp { display: block; }
+}
