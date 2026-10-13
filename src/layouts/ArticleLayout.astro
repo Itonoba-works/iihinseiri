@@ -14,7 +14,8 @@ const {
   category = 'ihin',
   breadcrumb = [],
   cta = {},
-  faqHtml = ''
+  faqHtml = '',
+  sideAd = false
 } = Astro.props;
 
 /* 本文中の <!--mid-cta--> を境に前後へ分割する。
@@ -117,7 +118,7 @@ if (faq.length) {
       </div>
     </div>
 
-    <Sidebar keyPoints={page.keyPoints} category={category} currentSlug={page.slug} />
+    <Sidebar keyPoints={page.keyPoints} category={category} currentSlug={page.slug} showSideAd={sideAd} />
 
     <slot name="closing-cta" />
   </div>

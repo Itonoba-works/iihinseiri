@@ -4,9 +4,10 @@ import companies from '../data/companies.json';
 import pages from '../data/pages.json';
 import KeyPoints from './KeyPoints.astro';
 import AffLink from './AffLink.astro';
+import SidebarAd from './SidebarAd.astro';
 import { affFirst } from '../lib/aff.js';
 
-const { keyPoints = [], category = 'ihin', currentSlug = '' } = Astro.props;
+const { keyPoints = [], category = 'ihin', currentSlug = '', showSideAd = false } = Astro.props;
 const ranked = affFirst(companies.filter((c) => (c.categories || [c.category]).includes(category))).slice(0, 8);
 const catLabel = category === 'cleaning' ? 'ハウスクリーニング' : '遺品整理・不用品回収';
 const related = pages.filter((p) => p.type === 'article' && p.slug !== currentSlug).slice(0, 4);
@@ -14,6 +15,8 @@ const related = pages.filter((p) => p.type === 'article' && p.slug !== currentSl
 <aside class="side">
   <div class="side-sticky">
     <KeyPoints points={keyPoints} />
+
+    {showSideAd && <SidebarAd />}
 
     <div class="side-block">
       <h4>{catLabel} {ranked.length}社</h4>

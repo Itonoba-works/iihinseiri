@@ -1,0 +1,16 @@
+---
+import { SIDE_AD_HREF, SIDE_AD_PIXEL, SIDE_AD_IMG } from '../data/article-banners.js';
+
+/* カードとカードの間に入る広告枠。
+   背景・枠線・見出しは付けない（バナーを「広告の枠」として主張させない）。
+   PC用/SP用中段と同じく、ASPのURLは article-banners.js 側で管理する。 */
+const hasAd = !!SIDE_AD_HREF;
+---
+{hasAd && (
+  <div class="side-ad">
+    <a href={SIDE_AD_HREF} rel="sponsored nofollow noopener" target="_blank">
+      <img src={SIDE_AD_IMG} width="240" height="120" alt="" loading="lazy" />
+    </a>
+    {SIDE_AD_PIXEL && <img border="0" width="1" height="1" src={SIDE_AD_PIXEL} alt="" />}
+  </div>
+)}

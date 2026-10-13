@@ -666,6 +666,14 @@
 }
 .ad-box .ad-pc, .ad-box .ad-sp { text-align: center; }
 .ad-box img { max-width: 100%; height: auto; }
+
+/* サイドバーの中段（要点カードと業者リストの間）。カード間の余白に合わせる */
+.side-ad {
+  margin: 0 0 20px;
+  text-align: center;
+  line-height: 0;
+}
+.side-ad img { max-width: 100%; height: auto; }
 /* PC用/SP用の出し分け。SP用は初期状態では出さない */
 .ad-box .ad-sp { display: none; }
 @media (max-width: 480px) {
