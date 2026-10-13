@@ -415,3 +415,6 @@ public/
 
 `build.format: 'file'` を指定しているため、`/articles/trouble.html` のように **.html 付きのURL**になります。
 旧URLからのリダイレクトは `public/_redirects` に書きます（例：旧 `/articles/akutoku.html` → `/articles/trouble.html`）。
+
+- **`_redirects` と `_headers` は `public/` の直下に置きます。** サブフォルダ（例：`public/assets/`）に置くと Cloudflare はファイルを解析せず、リダイレクトもヘッダーも一切効きません。
+- **`public/404.html` は消さないでください。** これが無いと Cloudflare Pages は「SPA（単一ページアプリ）」と判断し、存在しないURLでもトップページを**ステータス200** で返します。

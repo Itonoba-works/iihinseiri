@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<!-- このファイルは削除しないこと。
+     これが無いと Cloudflare Pages は「SPA」と判断し、
+     存在しないURLでもトップページを 200 で返してしまう（＝ソフト404）。 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>ページが見つかりません - くらしの整理ナビ</title>
+<style>
+  :root { --ink:#1B2C38; --muted:#5A6B78; --link:#0066CC; --link-hover:#0052A3; --line:#E3E6E9; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#fff; color:var(--ink); line-height:1.8;
+         font-family:"Noto Sans JP",-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif; }
+  .wrap { max-width:720px; margin:0 auto; padding:56px 20px 72px; }
+  .brand { font-size:15px; font-weight:700; }
+  .brand a { color:var(--ink); text-decoration:none; }
+  h1 { margin:34px 0 10px; font-size:26px; line-height:1.5; }
+  p { margin:0 0 18px; color:var(--muted); font-size:15px; }
+  .code { font-size:13px; letter-spacing:.04em; }
+  ul { margin:28px 0 0; padding:24px 0 0; border-top:1px solid var(--line); list-style:none; }
+  li { margin:0 0 10px; font-size:15px; }
+  a { color:var(--link); text-decoration:none; }
+  a:hover { color:var(--link-hover); text-decoration:underline; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand"><a href="/">くらしの整理ナビ</a></div>
+    <h1>ページが見つかりません</h1>
+    <p>お探しのページは、移動または削除された可能性があります。<br />下のリンクからたどり直してください。</p>
+    <p class="code">404 Not Found</p>
+    <ul>
+      <li><a href="/">ホーム</a></li>
+      <li><a href="/rankings/ihin.html">遺品整理・不用品回収サービスの比較</a></li>
+      <li><a href="/rankings/cleaning.html">ハウスクリーニングサービスの比較</a></li>
+      <li><a href="/articles.html">記事一覧</a></li>
+      <li><a href="/contact.html">お問い合わせ</a></li>
+    </ul>
+  </div>
+</body>
+</html>

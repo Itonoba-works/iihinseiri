@@ -1,0 +1,14 @@
+# Cloudflare Pages HTTPヘッダー設定
+#
+# ※ このファイルは「public/ の直下」に置くこと。サブフォルダ（例：public/assets/）に
+#    置くと Cloudflare はファイルを解析せず、ヘッダーは一切適用されません。
+#
+# ※ キャッシュ（Cache-Control）の指定はここに書かない方針です。
+#    Cloudflare 側の設定と二重になり、デプロイ後に古い資産が残る原因になるためです。
+
+# 全ページ共通のセキュリティヘッダー
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
