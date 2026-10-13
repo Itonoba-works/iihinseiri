@@ -22,11 +22,9 @@ export const SP_AD = `<a href="https://px.a8.net/svt/ejp?a8mat=4BCGFP+61B8KY+3UH
 /* ============================================================
    サイドバー用（240×120）  カードとカードの間に入る枠
    ─────────────────────────────────────────────────────────
-   ▼下の2行を埋めると表示される。両方そろわない限り何も出ない（安全）。
-     SIDE_AD_HREF  … A8のクリックURL（<a href="…"> の中身だけを貼る）
-     SIDE_AD_PIXEL … A8の1×1計測タグのURL（無ければ空のままで可）
-   ▼画像は public/images/ads/sidebar-240x120.png に置く（240×120で表示）。
+   ▼リンクは companies.json の該当社の affUrl を使う（ここにはURLを書かない）。
+     企業を変えるときは SIDE_AD_AFF_ID を書き換える。
+   ▼画像は public/images/ads/ に置く。表示は 240×120 固定。
    ============================================================ */
-export const SIDE_AD_HREF = '';
-export const SIDE_AD_PIXEL = '';
-export const SIDE_AD_IMG = '/images/ads/sidebar-240x120.png';
+export const SIDE_AD_AFF_ID = '777fukujin';                        // ゴミ屋敷片付け 七福神
+export const SIDE_AD_IMG    = '/images/ads/777fukujin_sidebar.webp';

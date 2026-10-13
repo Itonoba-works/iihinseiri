@@ -673,7 +673,7 @@
   text-align: center;
   line-height: 0;
 }
-.side-ad img { max-width: 100%; height: auto; }
+.side-ad img { display: block; margin: 0 auto; max-width: 100%; height: auto; }
 /* PC用/SP用の出し分け。SP用は初期状態では出さない */
 .ad-box .ad-sp { display: none; }
 @media (max-width: 480px) {
