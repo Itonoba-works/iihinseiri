@@ -561,7 +561,8 @@ body .service-logo-area > .service-logo-link > img {
   border: 1px dashed var(--border-strong);
   border-radius: var(--radius-sm);
 }
-.camp-coupon .cp-label { font-size: 10.5px; font-weight: 700; color: var(--muted); letter-spacing: .04em; }
+.camp-coupon .cp-label { font-size: 10.5px; font-weight: 700; color: var(--muted); letter-spacing: .04em; line-height: 1.3; }
+.camp-coupon .cp-label small { display: block; margin-top: 2px; font-size: 9.5px; font-weight: 500; letter-spacing: 0; color: var(--text-sub); }
 .camp-coupon code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 13px; font-weight: 700; color: var(--primary-dark);
