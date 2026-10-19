@@ -499,7 +499,7 @@ body .service-logo-area > .service-logo-link > img {
 .camp-period,
 .camp-coupon,
 .camp-cta { margin-left: 13px; margin-right: 13px; }
-.camp-menu { margin-bottom: 10px; padding: 0; list-style: none; font-size: 13px; line-height: 1.5; color: var(--text); }
+.camp-menu { flex: 1 0 auto; margin-bottom: 10px; padding: 0; list-style: none; font-size: 13px; line-height: 1.5; color: var(--text); }
 .camp-menu li { padding: 4px 0; border-bottom: 1px dotted var(--border); }
 .camp-menu li:first-child { padding-top: 0; }
 .camp-menu b { color: var(--accent-dark); white-space: nowrap; }
@@ -560,49 +560,39 @@ body .service-logo-area > .service-logo-link > img {
 }
 
 .camp-coupon {
-  position: relative;
-  display: flex; flex-direction: column; align-items: center;
-  gap: 0;
-  margin: 10px 0 6px; padding: 9px 6px 4px;
-  background: #FFE566;
+  display: flex; flex-wrap: nowrap; align-items: baseline; justify-content: center;
+  gap: 0 9px;
+  margin: 14px 0 6px;
+  padding: 11px 12px 10px;
+  background: #241F1C;
   border: 0;
-  border-radius: var(--radius-sm);
-  box-shadow: none;
-  animation: cp-pulse 2.6s ease-in-out infinite;
+  border-radius: 4px;
 }
-/* 上辺に重なるリボン */
 .camp-coupon .cp-label {
-  position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
-  padding: 3px 16px;
-  background: #E08A00;
-  color: #fff;
-  font-size: 11px; font-weight: 700; letter-spacing: .08em;
+  flex: none;
+  color: #C9C0B8;
+  font-size: 12px; font-weight: 500; letter-spacing: .06em;
   line-height: 1.4; white-space: nowrap;
-  clip-path: polygon(7% 0, 93% 0, 100% 50%, 93% 100%, 7% 100%, 0 50%);
 }
-/* コード本体を最大の主役にする */
 .camp-coupon code {
   font-family: ui-monospace, SFMono-Regular, Menlo, "Roboto Mono", monospace;
-  font-size: 24px; font-weight: 800; line-height: 1.05;
-  color: #1F1B0E;
-  letter-spacing: .05em;
+  font-size: 22px; font-weight: 800; line-height: 1.1;
+  color: #FFFFFF;
+  letter-spacing: .03em;
   text-align: center;
-  word-break: break-all;
+  white-space: nowrap;
 }
-.camp-coupon .cp-note {
-  margin-top: 4px;
-  font-size: 11.5px; line-height: 1.45; color: #5C4A00;
+.camp-coupon-note {
+  display: block;
+  margin-top: 6px;
+  font-size: 11.5px; line-height: 1.45; color: var(--muted);
   letter-spacing: .01em; text-align: center;
-}
-@keyframes cp-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255,190,0,.5); }
-  50%      { box-shadow: 0 0 0 6px rgba(255,190,0,0); }
 }
 @media (max-width: 860px) {
   .camp-coupon code { font-size: 24px; }
+  .camp-coupon .cp-label { font-size: 12.5px; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .camp-coupon { animation: none; }
+}
 }
 /* カード3枚は内容量を揃えて高さを自然に一致させる（min-heightでの空白埋めは廃止） */
 .camp { align-items: stretch; }
