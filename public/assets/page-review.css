@@ -474,7 +474,7 @@ body .service-logo-area > .service-logo-link > img {
 .camp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 26px 0 12px; }
 .camp-card {
   display: flex; flex-direction: column;
-  padding: 18px 16px 16px;
+  padding: 15px 15px 13px;
   background: #fff;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -489,7 +489,7 @@ body .service-logo-area > .service-logo-link > img {
   background: var(--accent); color: #fff;
   font-size: 11px; font-weight: 700; letter-spacing: .04em; white-space: nowrap;
 }
-.camp-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.camp-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
 .camp-no { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .08em; }
 .camp-tag {
   padding: 2px 9px; border-radius: 999px;
@@ -502,20 +502,20 @@ body .service-logo-area > .service-logo-link > img {
   font-size: 11px; font-weight: 700;
 }
 .camp-deadline.is-urgent { background: #FDECEC; color: var(--danger); }
-.camp-title { font-size: 15.5px; font-weight: 700; line-height: 1.5; color: var(--text); }
-.camp-price { margin: 8px 0 10px; font-size: 30px; font-weight: 700; color: var(--accent-dark); line-height: 1.1; letter-spacing: -.01em; }
+.camp-title { font-size: 15px; font-weight: 700; line-height: 1.4; color: var(--text); }
+.camp-price { margin: 5px 0 7px; font-size: 26px; font-weight: 700; color: var(--accent-dark); line-height: 1.1; letter-spacing: -.01em; }
 .camp-price .yen { font-size: 14px; font-weight: 700; margin-left: 2px; }
 .camp-plus { display: block; margin-top: 4px; font-size: 12px; font-weight: 700; color: var(--text-sub); }
-.camp-desc { margin: 0 0 10px; font-size: 12.5px; line-height: 1.75; color: var(--text-sub); }
-.camp-list { margin: 0 0 14px; padding: 0; list-style: none; font-size: 12.5px; line-height: 1.9; color: var(--text-sub); }
-.camp-list li { border-top: 1px dotted var(--border); padding: 4px 0; }
+.camp-desc { margin: 0 0 8px; font-size: 12.5px; line-height: 1.7; color: var(--text-sub); }
+.camp-list { margin: 0 0 10px; padding: 0; list-style: none; font-size: 12.5px; line-height: 1.6; color: var(--text-sub); }
+.camp-list li { border-top: 1px dotted var(--border); padding: 3px 0; }
 .camp-list b { color: var(--text); }
 .camp-cta {
   display: flex; align-items: center; justify-content: space-between;
   gap: 6px;
   margin-top: auto;
-  min-height: 58px;
-  padding: 10px 12px 10px 14px;
+  min-height: 44px;
+  padding: 9px 12px 9px 14px;
   background: var(--accent); color: #fff !important;
   border-radius: var(--radius-sm);
   font-size: 12.5px; font-weight: 700; line-height: 1.45;
@@ -525,7 +525,7 @@ body .service-logo-area > .service-logo-link > img {
 }
 .camp-cta:hover { background: var(--accent-hover); }
 .camp-cta .arw { font-size: 18px; line-height: 1; margin-left: 8px; }
-.camp-note { margin: 8px 0 0; font-size: 11px; color: var(--muted); text-align: center; }
+.camp-note { margin: 6px 0 0; font-size: 10.5px; color: var(--muted); text-align: center; }
 .camp-foot { margin: 14px 0 0; font-size: 13px; line-height: 1.8; color: var(--text-sub); }
 
 .flow-list { margin: 20px 0 0; padding: 0; list-style: none; counter-reset: flow; }
@@ -556,7 +556,7 @@ body .service-logo-area > .service-logo-link > img {
 
 .camp-coupon {
   display: flex; align-items: center; justify-content: space-between; gap: 8px;
-  margin: 0 0 12px; padding: 8px 10px;
+  margin: 0 0 10px; padding: 6px 10px;
   background: var(--primary-pale);
   border: 1px dashed var(--border-strong);
   border-radius: var(--radius-sm);
@@ -567,16 +567,13 @@ body .service-logo-area > .service-logo-link > img {
   font-size: 13px; font-weight: 700; color: var(--primary-dark);
   letter-spacing: .02em; word-break: break-all;
 }
-/* カード3枚の高さとボタン位置を揃える */
+/* カード3枚は内容量を揃えて高さを自然に一致させる（min-heightでの空白埋めは廃止） */
 .camp { align-items: stretch; }
 .camp-card { height: 100%; }
-.camp-desc { min-height: 3.5em; }
-.camp-list { min-height: 5.7em; }
 
 @media (max-width: 860px) {
   .camp-card.is-main { margin-top: 12px; }
-  .camp-desc, .camp-list { min-height: 0; }
-  .camp-cta { min-height: 52px; font-size: 13px; }
+  .camp-cta { min-height: 48px; font-size: 13px; }
 }
 
 /* ==========================================================================
