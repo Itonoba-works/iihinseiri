@@ -29,10 +29,11 @@
 }
 
 .service-logo-area {
-  aspect-ratio: 4/3;
+  aspect-ratio: 300/250;
   border-radius: 0;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 0;
+  background: transparent;
 }
 
 .service-info h1 {
@@ -319,7 +320,7 @@
 /* 300x250 のクリエイティブを切り取らず、比率を保ったまま枠内に縮小して収める。
    枠のサイズ・レイアウト（240px / 4:3）は変更しない。
    styles.css 側の `object-fit: cover` を確実に打ち消すため body を付けて特異度を上げる。 */
-body .service-logo-area { background: #fff; }
+body .service-logo-area { background: transparent; }
 /* v1 で画像を <a class="service-logo-link"> の中に入れたため、直下セレクタ（> img）が
    届かなくなり、幅・高さ・object-fit の指定がすべて外れていた（＝比率が崩れる）。
    リンクを挟んだ img にも同じ寸法・同じ contain を当てる。 */
