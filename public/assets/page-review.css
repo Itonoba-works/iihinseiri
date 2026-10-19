@@ -555,53 +555,50 @@ body .service-logo-area > .service-logo-link > img {
 }
 
 .camp-coupon {
-  position: relative; overflow: hidden;
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
-  margin: 0 0 10px; padding: 7px 10px;
-  background: linear-gradient(135deg, #FFF3B0 0%, #FFE24D 55%, #FFD21E 100%);
-  border: 1px solid #E8B400;
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0;
+  margin: 20px 0 10px; padding: 16px 8px 9px;
+  background: linear-gradient(180deg, #FFFCE8 0%, #FFF4C2 55%, #FFE986 100%);
+  border: 2px solid #FFD21E;
   border-radius: var(--radius-sm);
-  box-shadow: 0 0 0 0 rgba(255, 205, 0, .55);
-  animation: cp-pulse 2.4s ease-in-out infinite;
+  box-shadow: 0 2px 10px rgba(255, 190, 0, .28);
+  animation: cp-pulse 2.6s ease-in-out infinite;
 }
-/* 光が左から右へ流れる */
-.camp-coupon::after {
-  content: "";
-  position: absolute; top: 0; bottom: 0; left: -60%;
-  width: 55%;
-  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.85) 50%, transparent 100%);
-  transform: skewX(-18deg);
-  animation: cp-sweep 3.6s ease-in-out infinite;
-  pointer-events: none;
+/* 上辺に重なるリボン */
+.camp-coupon .cp-label {
+  position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+  padding: 3px 18px;
+  background: #F5A300;
+  color: #fff;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+  line-height: 1.4; white-space: nowrap;
+  clip-path: polygon(7% 0, 93% 0, 100% 50%, 93% 100%, 7% 100%, 0 50%);
+}
+/* コード本体を最大の主役にする */
+.camp-coupon code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, "Roboto Mono", monospace;
+  font-size: 27px; font-weight: 800; line-height: 1.05;
+  color: #1F1B0E;
+  letter-spacing: .05em;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .9);
+  word-break: break-all;
+}
+.camp-coupon .cp-note {
+  margin-top: 5px;
+  font-size: 9.5px; line-height: 1.5; color: #7A6410;
+  letter-spacing: .01em; text-align: center;
 }
 @keyframes cp-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 205, 0, .5); }
-  50%      { box-shadow: 0 0 0 5px rgba(255, 205, 0, 0); }
+  0%, 100% { box-shadow: 0 2px 10px rgba(255,190,0,.28), 0 0 0 0 rgba(255,205,0,.45); }
+  50%      { box-shadow: 0 2px 10px rgba(255,190,0,.28), 0 0 0 6px rgba(255,205,0,0); }
 }
-@keyframes cp-sweep {
-  0%   { left: -60%; }
-  45%  { left: 115%; }
-  100% { left: 115%; }
-}
-.camp-coupon .cp-label { position: relative; z-index: 1; font-size: 10.5px; font-weight: 700; color: #6B4E00; letter-spacing: .04em; line-height: 1.3; }
-.camp-coupon .cp-label small { display: block; margin-top: 2px; font-size: 9.5px; font-weight: 600; letter-spacing: 0; color: #8A6A10; }
-.camp-coupon code {
-  position: relative; z-index: 1;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 13.5px; font-weight: 700; color: #3A2A00;
-  letter-spacing: .04em; word-break: break-all;
-  padding: 2px 7px;
-  background: rgba(255, 255, 255, .72);
-  border-radius: 4px;
-  animation: cp-blink 2.4s ease-in-out infinite;
-}
-@keyframes cp-blink {
-  0%, 100% { background: rgba(255,255,255,.72); }
-  50%      { background: #fff; }
+@media (max-width: 860px) {
+  .camp-coupon code { font-size: 28px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .camp-coupon, .camp-coupon::after, .camp-coupon code { animation: none; }
-  .camp-coupon::after { display: none; }
+  .camp-coupon { animation: none; }
 }
 /* カード3枚は内容量を揃えて高さを自然に一致させる（min-heightでの空白埋めは廃止） */
 .camp { align-items: stretch; }
