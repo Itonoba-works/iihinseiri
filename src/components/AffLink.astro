@@ -7,10 +7,12 @@ const { id, class: cls, pos = '', style = '', lp = '' } = Astro.props;
 const c = companies.find((x) => x.id === id);
 if (!c) throw new Error('[AffLink] companies.json に未登録の企業ID: ' + id);
 /* lp="disposal" などを渡すと、companies.json の affLp からその用途のLPを使う */
-const lpUrl = lp && c.affLp ? c.affLp[lp] : '';
+const affLpUrl = lp && c.affLp ? (c.affLp[lp] || '') : '';
+const offLpUrl = lp && c.officialLp ? (c.officialLp[lp] || '') : '';
+const lpUrl = affLpUrl || offLpUrl;
 const external = lpUrl || c.affUrl || c.officialUrl || '';
 /* URL の出所。GTM の aff_src としてGA4に送り、ASP計測URLか公式サイト直リンクかを区別する */
-const src = lpUrl ? 'aff-lp' : c.affUrl ? 'aff' : c.officialUrl ? 'official' : 'internal';
+const src = affLpUrl ? 'aff-lp' : offLpUrl ? 'official-lp' : c.affUrl ? 'aff' : c.officialUrl ? 'official' : 'internal';
 const href = external || (c.hasReview ? '/reviews/' + c.id + '.html' : '/rankings/' + c.category + '.html#' + c.id);
 ---
 <a

@@ -576,10 +576,56 @@
     "shortFeature": "初回1,100円OFF・WAON POINTが貯まる"
   },
   {
+    "id": "tokyogas",
+    "name": "東京ガスのハウスクリーニング",
+    "category": "cleaning",
+    "rank": 6,
+    "top": false,
+    "catch": "事前見積なし・注文時に料金確定。エアコンは2台目以降9,900円〜",
+    "serviceType": "自社サービス",
+    "intro": "東京ガス株式会社が提供するハウスクリーニング。<strong>事前の見積もり訪問がなく、注文した時点で料金が確定</strong>するため、見積もりのために在宅する必要がありません。壁掛けエアコンは<strong>一度にまとめて注文すると2台目以降が9,900円（税込）〜</strong>になり、水まわりは単品のほか3点〜5点のセットメニューも用意されています。最短3日後から訪問可能です。",
+    "features": [
+      "事前見積もり不要・注文時に料金確定",
+      "エアコンは2台目以降9,900円（税込）〜",
+      "最短3日後から訪問可能・Webで注文完結",
+      "自社研修施設のテストに合格したスタッフが訪問",
+      "水まわり3点〜5点のセットメニューあり"
+    ],
+    "specs": [
+      { "label": "料金目安（エアコン）", "value": "壁掛け 13,200円〜（2台目以降9,900円〜）／お掃除機能付き 22,000円（2台目以降16,500円）" },
+      { "label": "料金目安（水まわり）", "value": "レンジフード 17,600円／浴室＆レンジフードA 33,440円／水まわりセット 44,000円〜" },
+      { "label": "サービス区分", "value": "自社サービス（東京ガス株式会社）" },
+      { "label": "対応エリア", "value": "東京23区・多摩地域／神奈川県／千葉県／埼玉県と、群馬県・茨城県の一部（対象外のメニューあり）" },
+      { "label": "注文方法", "value": "Webで完結（カレンダーから希望日時を選択）。最短3日後から訪問" },
+      { "label": "備考", "value": "利用者アンケートで約95%が満足と回答（2022年4月1日〜2026年9月30日・回答55,558件・東京ガス調べ）。料金は2026年10月19日時点の掲載内容" }
+    ],
+    "price": "壁掛けエアコン 13,200円〜（2台目以降9,900円〜）／レンジフード 17,600円／水まわりセット 44,000円〜",
+    "area": "東京23区・多摩地域・神奈川・千葉・埼玉と、群馬・茨城の一部（対象外のメニューあり）",
+    "editorNote": "見積もりに来てもらう手間がなく、注文した時点で総額が決まるので、日程と予算を先に固めたい人に向いています。エアコンは1台だけより2台まとめたほうが1台あたりが安くなるため、寝室や子ども部屋の分も一緒に頼むと割安です。対応エリアは1都3県が中心で、群馬・茨城の一部では頼めるメニューが限られます。",
+    "hasReview": true,
+    "officialUrl": "https://kaji.tokyo-gas.co.jp/housecleaning/",
+    "officialLp": {
+      "set10": "https://kaji.tokyo-gas.co.jp/special/2set-10off",
+      "hayawari": "https://kaji.tokyo-gas.co.jp/special/oosouji-hayawari/",
+      "ac": "https://kaji.tokyo-gas.co.jp/special/airconditioner-1100off"
+    },
+    "affUrl": "https://t.afi-b.com/visit.php?a=R15270v-p7484330_i&p=o994667m",
+    "affLp": {
+      "hayawari": "https://t.afi-b.com/visit.php?a=R15270v-p7484330_i&p=o994667m",
+      "set10": "https://t.afi-b.com/visit.php?a=R15270v-L7484379_0&p=o994667m",
+      "ac": "https://t.afi-b.com/visit.php?a=R15270v-G7484380_N&p=o994667m"
+    },
+    "officialUrl": "https://kaji.tokyo-gas.co.jp/housecleaning/",
+    "shortType": "自社サービス",
+    "shortPrice": "壁掛けエアコン 13,200円〜",
+    "shortArea": "1都3県（群馬・茨城は一部）",
+    "shortFeature": "事前見積なし・注文時に料金確定"
+  },
+  {
     "id": "osoujihonpo",
     "name": "おそうじ本舗",
     "category": "cleaning",
-    "rank": 6,
+    "rank": 7,
     "top": false,
     "catch": "全国展開の大手ブランド・訪問見積もり無料",
     "serviceType": "自社サービス",
@@ -628,7 +674,7 @@
       "cleaning",
       "ihin"
     ],
-    "rank": 7,
+    "rank": 8,
     "top": false,
     "catch": "不用品回収とハウスクリーニングをまとめて依頼できる。1都3県は出張費0円",
     "serviceType": "自社施工",

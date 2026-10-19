@@ -14,10 +14,13 @@ export function resolveAff(html) {
     /* data-aff-lp="disposal" などが付いていれば、companies.json の affLp から
        その用途のLPを使う（無ければ affUrl） */
     const lpm = (pre + post).match(/data-aff-lp="([^"]+)"/);
-    const lpUrl = lpm && c.affLp ? c.affLp[lpm[1]] : '';
+    /* 用途別LP: ASPの affLp が入っていればそれを優先し、無ければ公式の officialLp を使う */
+    const affLpUrl = lpm && c.affLp ? (c.affLp[lpm[1]] || '') : '';
+    const offLpUrl = lpm && c.officialLp ? (c.officialLp[lpm[1]] || '') : '';
+    const lpUrl = affLpUrl || offLpUrl;
     const external = lpUrl || c.affUrl || c.officialUrl || '';
     /* URL の出所。GTM の aff_src としてGA4に送る（AffLink.astro と同一ロジック） */
-    const src = lpUrl ? 'aff-lp' : c.affUrl ? 'aff' : c.officialUrl ? 'official' : 'internal';
+    const src = affLpUrl ? 'aff-lp' : offLpUrl ? 'official-lp' : c.affUrl ? 'aff' : c.officialUrl ? 'official' : 'internal';
     const href = external || (c.hasReview
       ? '/reviews/' + c.id + '.html'
       : '/rankings/' + c.category + '.html#' + c.id);

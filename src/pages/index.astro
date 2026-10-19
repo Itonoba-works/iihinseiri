@@ -154,7 +154,6 @@ const jsonLd = [
           <a href={'/articles/' + a.slug + '.html'} class="article-card" data-reveal={String(i)}>
             <div class="thumb">
               <img src={'/images/articles/' + a.slug + '.webp'} alt="" width="800" height="500" loading="lazy" decoding="async" onerror="this.style.display='none'" />
-              <div class="ph">[ {a.catTag} ]</div>
             </div>
             <div class="body"><h3>{shortTitle(a.h1)}</h3></div>
           </a>

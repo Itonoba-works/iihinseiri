@@ -458,3 +458,148 @@ body .service-logo-area > .service-logo-link > img {
   .cta-box-head .c { display: block; font-size: 12px; }
   .cta-box-head .n { font-size: 18px; }
 }
+
+/* ==========================================================================
+   東京ガス用：LP型レビューページのパーツ
+   ・hero-note / lp-lead：結論を早く伝える導入
+   ・camp-*：キャンペーン3枚（クリック想起のため本文中に独立配置）
+   ・flow-list：注文の流れ
+   ========================================================================== */
+.hero-note { margin: 10px 0 0; font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+.lp-lead { font-size: 15.5px; line-height: 2; }
+
+.price-cell { color: var(--accent-dark); font-weight: 700; }
+.save-cell { color: var(--success); font-weight: 700; }
+
+.camp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 26px 0 12px; }
+.camp-card {
+  display: flex; flex-direction: column;
+  padding: 18px 16px 16px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.camp-card.is-main { border-color: var(--accent); box-shadow: var(--shadow-md); }
+.camp-card.is-main::before {
+  content: "いちばん人気";
+  position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+  padding: 3px 12px; border-radius: 999px;
+  background: var(--accent); color: #fff;
+  font-size: 11px; font-weight: 700; letter-spacing: .04em; white-space: nowrap;
+}
+.camp-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.camp-no { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .08em; }
+.camp-tag {
+  padding: 2px 9px; border-radius: 999px;
+  background: var(--accent-tint); color: var(--accent-dark);
+  font-size: 11px; font-weight: 700;
+}
+.camp-deadline {
+  margin-left: auto; padding: 2px 9px; border-radius: 999px;
+  background: var(--primary-pale); color: var(--primary-dark);
+  font-size: 11px; font-weight: 700;
+}
+.camp-deadline.is-urgent { background: #FDECEC; color: var(--danger); }
+.camp-title { font-size: 15.5px; font-weight: 700; line-height: 1.5; color: var(--text); }
+.camp-price { margin: 8px 0 10px; font-size: 30px; font-weight: 700; color: var(--accent-dark); line-height: 1.1; letter-spacing: -.01em; }
+.camp-price .yen { font-size: 14px; font-weight: 700; margin-left: 2px; }
+.camp-plus { display: block; margin-top: 4px; font-size: 12px; font-weight: 700; color: var(--text-sub); }
+.camp-desc { margin: 0 0 10px; font-size: 12.5px; line-height: 1.75; color: var(--text-sub); }
+.camp-list { margin: 0 0 14px; padding: 0; list-style: none; font-size: 12.5px; line-height: 1.9; color: var(--text-sub); }
+.camp-list li { border-top: 1px dotted var(--border); padding: 4px 0; }
+.camp-list b { color: var(--text); }
+.camp-cta {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 6px;
+  margin-top: auto;
+  min-height: 58px;
+  padding: 10px 12px 10px 14px;
+  background: var(--accent); color: #fff !important;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px; font-weight: 700; line-height: 1.45;
+  text-align: left;
+  text-decoration: none !important;
+  transition: background .2s var(--ease);
+}
+.camp-cta:hover { background: var(--accent-hover); }
+.camp-cta .arw { font-size: 18px; line-height: 1; margin-left: 8px; }
+.camp-note { margin: 8px 0 0; font-size: 11px; color: var(--muted); text-align: center; }
+.camp-foot { margin: 14px 0 0; font-size: 13px; line-height: 1.8; color: var(--text-sub); }
+
+.flow-list { margin: 20px 0 0; padding: 0; list-style: none; counter-reset: flow; }
+.flow-list li { position: relative; padding: 0 0 18px 42px; margin: 0; }
+.flow-list li::before {
+  counter-increment: flow; content: counter(flow);
+  position: absolute; left: 0; top: 0;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--primary); color: #fff;
+  font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+}
+.flow-list li::after {
+  content: ""; position: absolute; left: 13px; top: 28px; bottom: 2px;
+  border-left: 1px dotted var(--border-strong);
+}
+.flow-list li:last-child::after { display: none; }
+.flow-list b { display: block; font-size: 14px; }
+.flow-list span { display: block; margin-top: 3px; font-size: 12.5px; color: var(--text-sub); line-height: 1.7; }
+
+.closing-cta-sub { margin-top: 10px; font-size: 12px; color: var(--muted); }
+.disclaimer { font-size: 12px; color: var(--muted); border-top: 1px dotted var(--border); padding-top: 20px; margin-top: 34px; }
+
+@media (max-width: 860px) {
+  .camp { grid-template-columns: 1fr; }
+  .camp-card.is-main::before { top: -11px; }
+  .camp-price { font-size: 26px; }
+}
+
+.camp-coupon {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  margin: 0 0 12px; padding: 8px 10px;
+  background: var(--primary-pale);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+}
+.camp-coupon .cp-label { font-size: 10.5px; font-weight: 700; color: var(--muted); letter-spacing: .04em; }
+.camp-coupon code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px; font-weight: 700; color: var(--primary-dark);
+  letter-spacing: .02em; word-break: break-all;
+}
+/* カード3枚の高さとボタン位置を揃える */
+.camp { align-items: stretch; }
+.camp-card { height: 100%; }
+.camp-desc { min-height: 3.5em; }
+.camp-list { min-height: 5.7em; }
+
+@media (max-width: 860px) {
+  .camp-card.is-main { margin-top: 12px; }
+  .camp-desc, .camp-list { min-height: 0; }
+  .camp-cta { min-height: 52px; font-size: 13px; }
+}
+
+/* ==========================================================================
+   東京ガス 中段バナー（960×318 の実画像 /images/ads/tokyogas_oosouji.webp）
+   ・列幅に合わせて縮小。アスペクト比 960:318 は width/height 指定で確保
+   ・リンクは画像全体。ホバーで僅かに反応させる
+   ========================================================================== */
+.tg-banner { margin: 40px 0; }
+.tg-banner-link {
+  display: block;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  line-height: 0;
+  box-shadow: var(--shadow-md);
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.tg-banner-link:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.tg-banner-link img { display: block; width: 100%; height: auto; }
+
+@media (max-width: 620px) {
+  .tg-banner { margin: 28px 0; }
+  .tg-banner-link:hover { transform: none; }
+}

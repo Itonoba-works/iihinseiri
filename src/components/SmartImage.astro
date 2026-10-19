@@ -35,18 +35,10 @@ if (src) {
 
 const publicUrl = '/images/' + src;
 ---
-{exists ? (
-  <img
+<img
     src={publicUrl}
     alt={alt}
-    class={className}
+    class={className || undefined}
     loading={loading}
     style="width:100%; height:100%; object-fit:cover; display:block;"
   />
-) : (
-  <div class={'ph' + (warm ? ' warm' : '') + (className ? ' ' + className : '')}>
-    {placeholder ? placeholder.split('\n').map((line, i, arr) => (
-      <>{line}{i < arr.length - 1 && <br />}</>
-    )) : alt}
-  </div>
-)}
