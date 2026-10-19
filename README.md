@@ -8,25 +8,43 @@
 
 ## このリポジトリの作業の渡し方
 
-- 作業は **ローカルのコマンドプロンプト**で行います。GitHub の画面は直接編集しません（GitHub は AI に読ませるための置き場です）。
-- AI に変更を頼むときは、**「`git apply` 用のパッチ1つで出して」**と伝えます。
-- 受け取ったら、次の順で実行します。
+**2026-10-19 から、AI が本番（`main`）まで push します。** 人間はパッチを当てる作業をしません。
 
-```bat
-git pull
-git apply --check パッチファイル名
-git apply パッチファイル名
-git status
-git add -A
-git commit -m "変更の内容"
-git push
+- 変更の依頼は **チャットで日本語で伝えるだけ**。パッチの受け渡しは行いません。
+- AI は次の順で作業し、最後に本番へ push します。
+
+```
+git pull --rebase           # 最新の main を取り込む
+（編集）
+npm run check && npm run build   # 検証。NG なら push しない
+git add -A && git commit -m "変更の内容"
+git push origin main        # ← ここまで AI が実行
 ```
 
-- **画像（.webp など）はパッチにできません。** ファイルをそのまま置き換えます。
-- 失敗したときは無理に通さず、エラーをそのまま AI に貼ってください（`patch failed` は安全装置です）。
-- **AIが違う動きをしたら**（GitHubの画面で編集しようとする、全文コピペで上書きしようとする等）、
-  **「`AGENTS.md` を読んで」**と伝えれば軌道修正します。
+- **push 後に Cloudflare Pages が自動でビルド・公開**します（数十秒〜数分）。
+- **画像（.webp など）も AI が直接置いてコミットできます。** パッチ運用時の「画像は渡せない」制約はなくなります。
+- 失敗したとき（`patch failed` / ビルド NG / push 拒否）は、AI が原因を報告して止まります。
+  勝手に別の方法へ切り替えません。
+- **`main` への直 push が本番反映**です。戻したいときは `git revert <コミット>` を AI に依頼してください。
 - 詳しいルール（AI が守るべきこと・触ると壊れるもの）は [`AGENTS.md`](./AGENTS.md)。
+
+### AI に push させるための認証（初回のみ・各セッションで必要）
+
+AI の作業環境（使い捨てのサンドボックス）には、この PC の git 認証情報がありません。
+そのため **Fine-grained PAT** を渡します。
+
+1. GitHub → 右上アイコン → **Settings** → 左メニュー最下部 **Developer settings**
+2. **Personal access tokens** → **Fine-grained tokens** → **Generate new token**
+3. 設定値
+   - Token name: `iihinseiri-push`
+   - Expiration: `90 days`（好みで短くても可）
+   - Repository access: **Only select repositories** → `Itonoba-works/iihinseiri`
+   - Permissions → Repository permissions → **Contents: Read and write**（`Metadata: Read-only` は自動で付く）
+4. 生成された `github_pat_…` をチャットに貼る
+
+- トークンは**そのリポジトリの Contents 以外を触れません**。不要になったら同画面で **Revoke** すれば即無効です。
+- サンドボックスはセッションごとに作り直されるため、**新しいセッションでは再度渡す**必要があります。
+- チャット履歴に残る点が気になる場合は、**90日より短い期限**にするか、作業後に Revoke してください。
 
 ## セットアップ
 
