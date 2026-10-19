@@ -474,7 +474,7 @@ body .service-logo-area > .service-logo-link > img {
 .camp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 26px 0 12px; }
 .camp-card {
   display: flex; flex-direction: column;
-  padding: 15px 15px 13px;
+  padding: 0 0 13px;
   background: #fff;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -488,43 +488,53 @@ body .service-logo-area > .service-logo-link > img {
   padding: 3px 12px; border-radius: 999px;
   background: var(--accent); color: #fff;
   font-size: 11px; font-weight: 700; letter-spacing: .04em; white-space: nowrap;
+  z-index: 2;
 }
-.camp-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.camp-no { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .08em; }
-.camp-tag {
-  padding: 2px 9px; border-radius: 999px;
-  background: var(--accent-tint); color: var(--accent-dark);
-  font-size: 11px; font-weight: 700;
+.camp-head {
+  display: flex; flex-direction: column; gap: 7px;
+  padding: 11px 15px 12px;
+  background: linear-gradient(180deg, #FFF7E0 0%, #FFEFC7 100%);
+  border-bottom: 1px solid #F2DFAC;
+  border-radius: calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px) 0 0;
+  margin-bottom: 12px;
 }
 .camp-deadline {
-  margin-left: auto; padding: 2px 9px; border-radius: 999px;
-  background: var(--primary-pale); color: var(--primary-dark);
-  font-size: 11px; font-weight: 700;
+  align-self: flex-end;
+  padding: 2px 9px; border-radius: 999px;
+  background: #fff; color: var(--primary-dark);
+  border: 1px solid #F2DFAC;
+  font-size: 10.5px; font-weight: 700;
 }
-.camp-deadline.is-urgent { background: #FDECEC; color: var(--danger); }
-.camp-title { font-size: 15px; font-weight: 700; line-height: 1.4; color: var(--text); }
-.camp-price { margin: 5px 0 7px; font-size: 26px; font-weight: 700; color: var(--accent-dark); line-height: 1.1; letter-spacing: -.01em; }
-.camp-price .yen { font-size: 14px; font-weight: 700; margin-left: 2px; }
-.camp-plus { display: block; margin-top: 4px; font-size: 12px; font-weight: 700; color: var(--text-sub); }
+.camp-deadline.is-urgent { background: #FDECEC; border-color: #F0C0C0; color: var(--danger); }
+.camp-title {
+  font-size: 14.5px; font-weight: 800; line-height: 1.45; color: var(--text);
+  min-height: 2.9em;
+  display: flex; align-items: center;
+  letter-spacing: .01em;
+}
+.camp-body { display: flex; flex-direction: column; flex: 1; padding: 0 15px; }
+.camp-price { margin: 0 0 8px; font-size: 26px; font-weight: 700; color: var(--accent-dark); line-height: 1.1; letter-spacing: -.01em; }
+.camp-price .yen { font-size: 13px; font-weight: 700; margin-left: 2px; }
+.camp-plus { display: block; margin-top: 4px; font-size: 11.5px; font-weight: 700; color: var(--text-sub); }
 .camp-desc { margin: 0 0 8px; font-size: 12.5px; line-height: 1.7; color: var(--text-sub); }
 .camp-list { margin: 0 0 10px; padding: 0; list-style: none; font-size: 12.5px; line-height: 1.6; color: var(--text-sub); }
 .camp-list li { border-top: 1px dotted var(--border); padding: 3px 0; }
 .camp-list b { color: var(--text); }
 .camp-cta {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; justify-content: center;
   gap: 6px;
   margin-top: auto;
   min-height: 44px;
-  padding: 9px 12px 9px 14px;
+  padding: 9px 12px;
   background: var(--accent); color: #fff !important;
   border-radius: var(--radius-sm);
-  font-size: 12.5px; font-weight: 700; line-height: 1.45;
-  text-align: left;
+  font-size: 13px; font-weight: 700; line-height: 1.45;
+  text-align: center;
   text-decoration: none !important;
   transition: background .2s var(--ease);
 }
 .camp-cta:hover { background: var(--accent-hover); }
-.camp-cta .arw { font-size: 18px; line-height: 1; margin-left: 8px; }
+.camp-cta .arw { font-size: 16px; line-height: 1; }
 .camp-note { margin: 6px 0 0; font-size: 10.5px; color: var(--muted); text-align: center; }
 .camp-foot { margin: 14px 0 0; font-size: 13px; line-height: 1.8; color: var(--text-sub); }
 
