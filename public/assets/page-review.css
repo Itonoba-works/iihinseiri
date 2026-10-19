@@ -481,14 +481,17 @@ body .service-logo-area > .service-logo-link > img {
   box-shadow: var(--shadow-sm);
 }
 .camp-title {
-  padding: 7px 12px 6px;
+  padding: 8px 12px 7px;
   margin-bottom: 7px;
-  background: #FFF8E6;
-  border-bottom: 1px solid #F1DCA8;
+  background-color: #D8201F;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M-2 12L12 -2M4 18L18 4' stroke='%23ffffff' stroke-opacity='0.10' stroke-width='3.5'/%3E%3C/svg%3E");
+  border-bottom: 0;
   border-radius: calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px) 0 0;
   font-size: 13px; font-weight: 800; line-height: 1.26;
-  letter-spacing: .005em;
-  color: var(--text);
+  letter-spacing: .01em;
+  color: #FFEF00;
+  text-shadow: 0 1px 0 rgba(120, 0, 0, .45);
+  min-height: 3.3em;
   display: flex; align-items: center;
 }
 .camp-menu,
@@ -560,7 +563,7 @@ body .service-logo-area > .service-logo-link > img {
   display: flex; flex-direction: column; align-items: center;
   gap: 0;
   margin: 10px 0 6px; padding: 9px 6px 4px;
-  background: #FFD84D;
+  background: #FFE566;
   border: 0;
   border-radius: var(--radius-sm);
   box-shadow: none;
