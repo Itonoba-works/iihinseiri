@@ -555,18 +555,53 @@ body .service-logo-area > .service-logo-link > img {
 }
 
 .camp-coupon {
+  position: relative; overflow: hidden;
   display: flex; align-items: center; justify-content: space-between; gap: 8px;
-  margin: 0 0 10px; padding: 6px 10px;
-  background: var(--primary-pale);
-  border: 1px dashed var(--border-strong);
+  margin: 0 0 10px; padding: 7px 10px;
+  background: linear-gradient(135deg, #FFF3B0 0%, #FFE24D 55%, #FFD21E 100%);
+  border: 1px solid #E8B400;
   border-radius: var(--radius-sm);
+  box-shadow: 0 0 0 0 rgba(255, 205, 0, .55);
+  animation: cp-pulse 2.4s ease-in-out infinite;
 }
-.camp-coupon .cp-label { font-size: 10.5px; font-weight: 700; color: var(--muted); letter-spacing: .04em; line-height: 1.3; }
-.camp-coupon .cp-label small { display: block; margin-top: 2px; font-size: 9.5px; font-weight: 500; letter-spacing: 0; color: var(--text-sub); }
+/* 光が左から右へ流れる */
+.camp-coupon::after {
+  content: "";
+  position: absolute; top: 0; bottom: 0; left: -60%;
+  width: 55%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.85) 50%, transparent 100%);
+  transform: skewX(-18deg);
+  animation: cp-sweep 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes cp-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 205, 0, .5); }
+  50%      { box-shadow: 0 0 0 5px rgba(255, 205, 0, 0); }
+}
+@keyframes cp-sweep {
+  0%   { left: -60%; }
+  45%  { left: 115%; }
+  100% { left: 115%; }
+}
+.camp-coupon .cp-label { position: relative; z-index: 1; font-size: 10.5px; font-weight: 700; color: #6B4E00; letter-spacing: .04em; line-height: 1.3; }
+.camp-coupon .cp-label small { display: block; margin-top: 2px; font-size: 9.5px; font-weight: 600; letter-spacing: 0; color: #8A6A10; }
 .camp-coupon code {
+  position: relative; z-index: 1;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 13px; font-weight: 700; color: var(--primary-dark);
-  letter-spacing: .02em; word-break: break-all;
+  font-size: 13.5px; font-weight: 700; color: #3A2A00;
+  letter-spacing: .04em; word-break: break-all;
+  padding: 2px 7px;
+  background: rgba(255, 255, 255, .72);
+  border-radius: 4px;
+  animation: cp-blink 2.4s ease-in-out infinite;
+}
+@keyframes cp-blink {
+  0%, 100% { background: rgba(255,255,255,.72); }
+  50%      { background: #fff; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .camp-coupon, .camp-coupon::after, .camp-coupon code { animation: none; }
+  .camp-coupon::after { display: none; }
 }
 /* カード3枚は内容量を揃えて高さを自然に一致させる（min-heightでの空白埋めは廃止） */
 .camp { align-items: stretch; }
