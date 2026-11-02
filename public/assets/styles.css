@@ -270,7 +270,8 @@ a[data-aff].header-cta[data-aff-external]::after { color: rgba(255,255,255,.85);
 .rank-badge.rank-2 { background: linear-gradient(140deg, #A3AEB8, #6C7783); }
 .rank-badge.rank-3 { background: linear-gradient(140deg, #BE8A5E, #8A5C33); }
 .rank-badge.rank-4, .rank-badge.rank-5, .rank-badge.rank-6, .rank-badge.rank-7,
-.rank-badge.rank-8, .rank-badge.rank-9 {
+.rank-badge.rank-8, .rank-badge.rank-9, .rank-badge.rank-10, .rank-badge.rank-11,
+.rank-badge.rank-12, .rank-badge.rank-13, .rank-badge.rank-14, .rank-badge.rank-15 {
   background: linear-gradient(140deg, var(--primary), var(--primary-deep));
   width: 48px; height: 48px; font-size: 16px;
 }
