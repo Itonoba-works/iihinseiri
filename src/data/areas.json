@@ -221,9 +221,9 @@
     },
     "hakkoudo": {
       "type": "all",
-      "verified": false,
-      "note": "出張買取の対応エリアが公式サイトに明記されていないため要確認。申し込み前に電話で確認を",
-      "source": "https://www.hakkoudo.com/lp/ihin-kaitori-af",
+      "verified": true,
+      "note": "全国47都道府県へ無料出張",
+      "source": "https://www.hakkoudo.com/",
       "checked": "2026-11-02"
     },
     "osoujimaster": {
