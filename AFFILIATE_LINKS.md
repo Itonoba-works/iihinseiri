@@ -29,14 +29,14 @@
 | `hakkoudo` | 古美術 八光堂 | 遺品買取 | 新規提携 | 設定済み（ASP計測URL） |
 | `osoujimaster` | お掃除マスター | ハウスクリーニング | 新規提携 | 設定済み（ASP計測URL） |
 | `housecleaning110` | ハウスクリーニング110番 | ハウスクリーニング | 新規提携 | 設定済み（ASP計測URL） |
-| `machinocleaning` | あなたの町のハウスクリーニング屋さん | ハウスクリーニング | 新規提携 | 設定済み（ASP計測URL） |
+| `machino-housecleaning` | あなたの町のハウスクリーニング屋さん | ハウスクリーニング | 新規提携 | 設定済み（ASP計測URL） |
 
 ※ 設定状況は `src/data/companies.json` の `affUrl` が正です（この表はその写し）。提携・解除が決まったら同じタイミングで更新してください。
 ※ 提携ASPの列は `affUrl` のドメインから判定した表示です（例：`px.a8.net` → A8.net）。
 | `hakkoudo` | 古美術 八光堂 | 遺品買取 | 買取完了 2,537円 |
 | `osoujimaster` | お掃除マスター | ハウスクリーニング | 新規成約 1,500円（確定率83.33%） |
 | `housecleaning110` | ハウスクリーニング110番 | ハウスクリーニング | 新規見積依頼 1,300円（確定率33.33%） |
-| `machinocleaning` | あなたの町のハウスクリーニング屋さん | ハウスクリーニング | 新規見積り依頼 1,500円 |
+| `machino-housecleaning` | あなたの町のハウスクリーニング屋さん | ハウスクリーニング | 新規見積り依頼 1,500円 |
 
 ### 新規4社（2026-11-02 追加）の状況
 
@@ -48,7 +48,7 @@
 | `hakkoudo` | `https://t.afi-b.com/visit.php?a=y15796d-z512267t&p=o994667m` | `https://www.hakkoudo.com/` |
 | `osoujimaster` | `https://px.a8.net/svt/ejp?a8mat=4BERAA+FK8X0Y+36X8+TRVYQ` | `https://osoji-master.info/` |
 | `housecleaning110` | `https://px.a8.net/svt/ejp?a8mat=4BERAA+FDP5DE+39GM+5SDXG2` | `https://aff.life-110.com/?st_site=house_clean` |
-| `machinocleaning` | `https://px.a8.net/svt/ejp?a8mat=4BERAA+G0BMCY+3EMG+25GX8I` | `https://machino-housecleaning.com/` |
+| `machino-housecleaning` | `https://px.a8.net/svt/ejp?a8mat=4BERAA+G0BMCY+3EMG+25GX8I` | `https://machino-housecleaning.com/` |
 
 - 成果報酬（ASPダッシュボード）：八光堂 買取完了2,537円／お掃除マスター 新規成約1,500円（確定率83.33%）／ハウスクリーニング110番 新規見積1,300円（確定率33.33%）／町のハウスクリーニング屋さん 新規見積1,500円
 - `housecleaning110` は「ハウスクリーニング110番」の公式ドメインが別にある可能性があります（`housecleaning110.com` は応答なし）。確認できたら `officialUrl` を差し替えてください。
