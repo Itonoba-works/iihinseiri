@@ -122,8 +122,11 @@ const jsonLd = [
               <h3>{b.title}</h3>
               <ul>
                 {b.list.map((c) => (
-                  <li class="hm-cmp-row" data-areas={areaAttr(c)}>
-                    <AffLink id={c.id} class="nm" pos={'top-' + b.cat + '-name'}>{c.name}</AffLink>
+                  <li class="hm-cmp-row wp-co" data-areas={areaAttr(c)}>
+                    <span class="txt">
+                      <AffLink id={c.id} class="nm" pos={'top-' + b.cat + '-name'}>{c.name}</AffLink>
+                      <span class="pr-line" set:html={emph(c.shortPrice || c.price)} />
+                    </span>
                     <a href={detailHref(c)} class="wp-detail" data-detail={c.id} data-aff-pos={'top-' + b.cat + '-detail'}>徹底解説</a>
                   </li>
                 ))}
