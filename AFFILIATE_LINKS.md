@@ -25,11 +25,35 @@
 | `kajitaku` | カジタク | ハウスクリーニング | A8.net | **設定済み** |
 | `curama` | くらしのマーケット | ハウスクリーニング | afi-b | **設定済み**（用途別 `affLp` 4種） |
 | `rcleaning` | アールクリーニング | ハウスクリーニング | A8.net | **設定済み** |
-| `tokyogas` | 東京ガスのハウスクリーニング | ハウスクリーニング | afi-b | 未設定（AFBの計測URL待ち） |
+| `tokyogas` | 東京ガスのハウスクリーニング | ハウスクリーニング | afi-b | **設定済み** |
+| `hakkoudo` | 古美術 八光堂 | 遺品買取 | 新規提携（ASP不明） | **設定済み**（広告主LP直） |
+| `osoujimaster` | お掃除マスター | ハウスクリーニング | 新規提携（ASP不明） | **設定済み**（広告主LP直） |
+| `housecleaning110` | ハウスクリーニング110番 | ハウスクリーニング | 新規提携（ASP不明） | **設定済み**（アフィリLP） |
+| `machinocleaning` | あなたの町のハウスクリーニング屋さん | ハウスクリーニング | 新規提携（ASP不明） | **設定済み**（広告主LP直） |
 
 ※ 設定状況は `src/data/companies.json` の `affUrl` が正です（この表はその写し）。提携・解除が決まったら同じタイミングで更新してください。
 ※ 提携ASPの列は `affUrl` のドメインから判定した表示です（例：`px.a8.net` → A8.net）。
-※ 最終更新：2026-10-19
+| `hakkoudo` | 古美術 八光堂 | 遺品買取 | 買取完了 2,537円 |
+| `osoujimaster` | お掃除マスター | ハウスクリーニング | 新規成約 1,500円（確定率83.33%） |
+| `housecleaning110` | ハウスクリーニング110番 | ハウスクリーニング | 新規見積依頼 1,300円（確定率33.33%） |
+| `machinocleaning` | あなたの町のハウスクリーニング屋さん | ハウスクリーニング | 新規見積り依頼 1,500円 |
+
+### ⚠️ 新規4社の `affUrl` は「広告主のLP直URL」
+
+2026-11-02 に追加した4社は、ASPのクリック計測URL（`t.afi-b.com/visit.php?...` や `px.a8.net/...`）ではなく、**提携時に案内された広告主側のLP URL**をそのまま `affUrl` に入れています。
+
+| ID | 現在の `affUrl` | 状態 |
+|---|---|---|
+| `hakkoudo` | `https://www.hakkoudo.com/lp/ihin-kaitori-af` | 広告主LP（`-af` 付き） |
+| `osoujimaster` | `https://osoji-master.info/index.html` | 広告主LP |
+| `housecleaning110` | `https://aff.life-110.com/?st_site=house_clean` | アフィリ用LP（`st_site` パラメータ付き＝計測URLの可能性高） |
+| `machinocleaning` | `https://machino-housecleaning.com/` | 広告主LP |
+
+- このままでも遷移はしますが、**ASP側でクリックが計測されない可能性**があります。
+- ASP管理画面に「提携URL」「リンクURL」「計測URL」が別途表示されていれば、そのURLに差し替えてください（`companies.json` の `affUrl` 1行）。
+- `housecleaning110` のように `?st_site=` が付く形式は計測用の可能性が高いので、他3社も同様のパラメータ付きURLが発行されていないか確認するのが確実です。
+
+※ 最終更新：2026-11-02
 
 ※ `tokyogas` は用途別LPの使用を想定しています（`ac`＝エアコンのまとめ注文、`hayawari`＝大掃除早割）。AFBの計測URLが発行されたら、`companies.json` の `affUrl`（メイン用）と `affLp` に設定すると、レビュー内の該当リンクがまとめて切り替わります。
 

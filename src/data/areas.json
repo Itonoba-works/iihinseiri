@@ -207,10 +207,68 @@
     "tokyogas": {
       "type": "list",
       "verified": true,
-      "prefs": ["東京都", "神奈川県", "千葉県", "埼玉県", "群馬県", "茨城県"],
+      "prefs": [
+        "東京都",
+        "神奈川県",
+        "千葉県",
+        "埼玉県",
+        "群馬県",
+        "茨城県"
+      ],
       "note": "東京23区・多摩地域／神奈川／千葉／埼玉と、群馬（前橋市・高崎市など）・茨城（龍ケ崎市・取手市・牛久市・つくば市など）の一部。群馬は一部メニュー、茨城は対象外のメニューあり。ガス・電気の契約がなくても利用可",
       "source": "https://kaji.tokyo-gas.co.jp/housecleaning/",
       "checked": "2026-10-19"
+    },
+    "hakkoudo": {
+      "type": "all",
+      "verified": false,
+      "note": "出張買取の対応エリアが公式サイトに明記されていないため要確認。申し込み前に電話で確認を",
+      "source": "https://www.hakkoudo.com/lp/ihin-kaitori-af",
+      "checked": "2026-11-02"
+    },
+    "osoujimaster": {
+      "type": "all",
+      "verified": true,
+      "note": "日本全国対応。地域の加盟店スタッフが訪問する",
+      "source": "https://osoji-master.info/index.html",
+      "checked": "2026-11-02"
+    },
+    "housecleaning110": {
+      "type": "all",
+      "verified": true,
+      "note": "全国対応・年中無休24時間受付。エリアの加盟店が手配される",
+      "source": "https://aff.life-110.com/?st_site=house_clean",
+      "checked": "2026-11-02"
+    },
+    "machinocleaning": {
+      "type": "list",
+      "verified": true,
+      "prefs": [
+        "北海道",
+        "宮城県",
+        "福島県",
+        "東京都",
+        "神奈川県",
+        "千葉県",
+        "埼玉県",
+        "群馬県",
+        "茨城県",
+        "大阪府",
+        "滋賀県",
+        "兵庫県",
+        "和歌山県",
+        "愛知県",
+        "静岡県",
+        "山梨県",
+        "長崎県",
+        "大分県",
+        "鹿児島県",
+        "宮崎県",
+        "沖縄県"
+      ],
+      "note": "掲載されている対応地域（拡大中）。地域により対応可否が異なる",
+      "source": "https://machino-housecleaning.com/",
+      "checked": "2026-11-02"
     }
   }
 }
