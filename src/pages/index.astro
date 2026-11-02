@@ -3,6 +3,7 @@ import { emph } from '../lib/emph.js';
 import Base from '../layouts/Base.astro';
 import StickyCta from '../components/StickyCta.astro';
 import AffLink from '../components/AffLink.astro';
+import WpSideNav from '../components/WpSideNav.astro';
 import site from '../data/site.json';
 import companies from '../data/companies.json';
 import pages from '../data/pages.json';
@@ -24,9 +25,6 @@ const topics = [
   { href: '/rankings/cleaning.html', title: 'ハウスクリーニング', desc: '空き家・引越し前に', img: 'cleaning' }
 ];
 
-/* サイドバー：記事のタグ（catTag を「／」で分けたもの）。押すとサイト内検索にかかる */
-const tags = [...new Set(pages.filter((p) => p.type === 'article').flatMap((p) => String(p.catTag || '').split('／')).map((t) => t.trim()).filter(Boolean))];
-const reviewed = companies.filter((c) => c.hasReview);
 
 /* 対応エリア：type が list の業者だけ、prefs 以外の県で非表示（outside:consult なら常に表示） */
 const areaAttr = (c) => {
@@ -157,26 +155,7 @@ const jsonLd = [
       <p class="hm-note">料金・対応エリアは変わることがあります。依頼前に各社サイトで最新情報をご確認ください。</p>
     </main>
 
-    <aside class="wp-side">
-      <div class="wp-widget">
-        <h2 class="wp-wh">比較する</h2>
-        <ul class="wp-wlist">
-          {blocks.map((b) => <li><a href={b.href}>{b.title}</a></li>)}
-        </ul>
-      </div>
-      <div class="wp-widget">
-        <h2 class="wp-wh">タグ</h2>
-        <div class="wp-tags">
-          {tags.map((t) => <a href={'/?q=' + encodeURIComponent(t)} data-q={t}>{t}</a>)}
-        </div>
-      </div>
-      <div class="wp-widget wp-pc-only">
-        <h2 class="wp-wh">業者の徹底解説</h2>
-        <ul class="wp-wlist">
-          {reviewed.map((c) => <li><a href={'/reviews/' + c.id + '.html'}>{c.name}</a></li>)}
-        </ul>
-      </div>
-    </aside>
+    <WpSideNav tagSearch={true} />
   </div>
 
   <StickyCta slot="cta" />

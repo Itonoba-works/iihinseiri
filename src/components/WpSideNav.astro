@@ -1,0 +1,33 @@
+---
+/* TOP・記事一覧で共通のサイドバー（比較する／タグ／業者の徹底解説）
+   タグは記事の catTag を「／」で分けたもの。押すとTOPのサイト内検索にかかる */
+import companies from '../data/companies.json';
+import pages from '../data/pages.json';
+const blocks = [
+  { title: '遺品整理・不用品回収', href: '/rankings/ihin.html' },
+  { title: 'ハウスクリーニング', href: '/rankings/cleaning.html' }
+];
+const tags = [...new Set(pages.filter((p) => p.type === 'article').flatMap((p) => String(p.catTag || '').split('／')).map((t) => t.trim()).filter(Boolean))];
+const reviewed = companies.filter((c) => c.hasReview);
+const { tagSearch = false } = Astro.props;
+---
+<aside class="wp-side">
+  <div class="wp-widget">
+    <h2 class="wp-wh">比較する</h2>
+    <ul class="wp-wlist">
+      {blocks.map((b) => <li><a href={b.href}>{b.title}</a></li>)}
+    </ul>
+  </div>
+  <div class="wp-widget">
+    <h2 class="wp-wh">タグ</h2>
+    <div class="wp-tags">
+      {tags.map((t) => <a href={'/?q=' + encodeURIComponent(t)} data-q={tagSearch ? t : undefined}>{t}</a>)}
+    </div>
+  </div>
+  <div class="wp-widget wp-pc-only">
+    <h2 class="wp-wh">業者の徹底解説</h2>
+    <ul class="wp-wlist">
+      {reviewed.map((c) => <li><a href={'/reviews/' + c.id + '.html'}>{c.name}</a></li>)}
+    </ul>
+  </div>
+</aside>

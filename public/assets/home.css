@@ -347,3 +347,7 @@ body:has(.wp-layout) { background:#fff; }
 /* 社名：マウスオーバーで色を反転（黒地＋白字） */
 .wp-co a.nm:hover, .wp-co a.nm:focus-visible { background:var(--primary); border-color:var(--primary); color:#fff !important; }
 .wp-co a.nm:hover::after, .wp-co a.nm:focus-visible::after { color:#fff; }
+/* 記事一覧ページ */
+.wp-page-title { margin-top:0; }
+.wp-search-sm { margin:0 0 24px; }
+.wp-search-sm input { height:44px; }
