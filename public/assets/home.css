@@ -203,3 +203,124 @@ a.btn-detail:hover::after { transform:translateX(3px); }
   /* 記事一覧ページはスマホでも横スクロールにせず縦に並べる */
   .hm-cards.hm-cards-all { display:grid; grid-template-columns:1fr; overflow:visible; margin:0; padding:0; }
 }
+
+/* ============================================================
+   TOP 2026-11：WordPressの標準的なブログ構成（.wp-*）
+   検索・カテゴリ・地域・新着記事＋サイドバー。業者が増えてもTOPは伸びない
+============================================================ */
+body:has(.wp-layout) { background:#fff; }
+
+.wp-hero { background:#F4F8FA; border-bottom:1px solid var(--border); padding:32px 0; }
+.wp-hero h1 { font-size:24px; line-height:1.5; margin:0 0 6px; }
+.wp-hero-sub { margin:0 0 16px; font-size:14.5px; color:var(--text-sub); }
+.wp-search { display:flex; max-width:720px; }
+.wp-search input {
+  flex:1 1 auto; min-width:0; height:50px; padding:0 14px; font:inherit; font-size:16px;
+  border:1px solid #BFC9CF; border-right:0; border-radius:4px 0 0 4px; background:#fff; color:var(--text);
+}
+.wp-search input:focus { outline:2px solid var(--primary-line); outline-offset:-1px; }
+.wp-search button {
+  flex:0 0 auto; padding:0 26px; font:inherit; font-size:15px; font-weight:700; color:#fff;
+  background:var(--primary-deep); border:0; border-radius:0 4px 4px 0; cursor:pointer;
+}
+.wp-search button:hover { background:#0E3D50; }
+
+.wp-layout { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:40px; padding-top:32px; padding-bottom:40px; }
+.wp-main { min-width:0; }
+.wp-sec { margin:0 0 40px; scroll-margin-top:110px; }
+.wp-sec[hidden] { display:none; }
+.wp-h2 { font-size:19px; line-height:1.5; padding:8px 14px; margin:0 0 16px; background:#F3F3F3; border-left:5px solid var(--primary-deep); }
+.wp-more { display:block; margin:14px 0 0; text-align:right; font-size:14px; font-weight:600; }
+.wp-more::after { content:" ›"; }
+
+/* 検索結果 */
+.wp-results { list-style:none; margin:0; padding:0; border-top:1px solid var(--border); }
+.wp-results li { border-bottom:1px solid var(--border); }
+.wp-results a { display:block; padding:12px 4px; color:var(--text); text-decoration:none; }
+.wp-results a:hover .t { text-decoration:underline; color:var(--link); }
+.wp-results .k { display:inline-block; font-size:11px; font-weight:700; color:#fff; background:var(--muted); padding:1px 7px; border-radius:2px; margin-right:8px; vertical-align:2px; }
+.wp-results .t { font-size:15.5px; font-weight:700; color:var(--link); }
+.wp-results .d { display:block; margin-top:4px; font-size:13px; color:var(--text-sub); line-height:1.7; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.wp-results .none { padding:14px 4px; font-size:14px; color:var(--text-sub); }
+.wp-clear { margin-top:10px; background:none; border:0; padding:0; font:inherit; font-size:13px; color:var(--muted); text-decoration:underline; cursor:pointer; }
+
+/* カテゴリ：画像タイル */
+.wp-cats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+.wp-cat { display:block; color:var(--text); text-decoration:none; border:1px solid var(--border); border-radius:4px; overflow:hidden; background:#fff; }
+.wp-cat .thumb { display:block; aspect-ratio:8/5; position:relative; background:#E9EEF1; }
+.wp-cat .thumb img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.wp-cat .label { display:block; padding:8px 10px 0; font-size:15px; font-weight:700; }
+.wp-cat .desc { display:block; padding:0 10px 10px; font-size:12px; color:var(--muted); }
+.wp-cat:hover { text-decoration:none; color:var(--text); }
+.wp-cat:hover .label { color:var(--link); text-decoration:underline; }
+
+/* 地域から探す */
+.wp-area { display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; }
+.wp-area label { flex:0 0 100%; font-size:14px; font-weight:700; }
+.wp-area select {
+  flex:0 1 360px; min-width:0; height:46px; padding:0 40px 0 12px; font:inherit; font-size:16px; color:var(--text);
+  border:1px solid #BFC9CF; border-radius:4px; appearance:none; -webkit-appearance:none; cursor:pointer;
+  background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2315546C' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center;
+}
+.wp-area .hm-reset[hidden] { display:none; }
+.wp-area-help { margin:8px 0 0; font-size:13px; color:var(--muted); }
+.wp-area-result { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; margin-top:16px; }
+.wp-area-result[hidden] { display:none; }
+.wp-area-col h3 { font-size:15px; padding:0 0 6px; border-bottom:2px solid var(--primary-deep); }
+.wp-area-col ul { list-style:none; margin:0; padding:0; }
+.wp-area-col li { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:9px 2px; border-bottom:1px solid var(--border); font-size:14.5px; }
+.wp-area-col li[hidden] { display:none; }
+.wp-area-col .nm { font-weight:700; }
+.wp-detail { flex:0 0 auto; font-size:12.5px; }
+.wp-detail::after { content:" ›"; }
+.wp-area-col .hm-cmp-empty { padding:10px 2px; font-size:13.5px; color:var(--text-sub); }
+.wp-area-col .hm-cmp-empty[hidden] { display:none; }
+
+/* 新着記事：カードの格子 */
+.wp-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px 16px; }
+.wp-card { display:block; color:var(--text); text-decoration:none; }
+.wp-card .thumb { display:block; aspect-ratio:8/5; position:relative; overflow:hidden; background:#E9EEF1; border-radius:3px; }
+.wp-card .thumb img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.wp-card .cat { position:absolute; left:0; top:0; z-index:2; background:var(--primary-deep); color:#fff; font-size:11px; font-weight:700; padding:2px 8px; }
+.wp-card .ttl { display:block; margin-top:8px; font-size:14.5px; font-weight:700; line-height:1.6; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.wp-card:hover { text-decoration:none; color:var(--text); }
+.wp-card:hover .ttl { color:var(--link); text-decoration:underline; }
+
+/* サイドバー */
+.wp-widget { margin:0 0 28px; }
+.wp-wh { font-size:15px; color:#fff; background:var(--primary-deep); padding:8px 12px; margin:0; }
+.wp-wlist { list-style:none; margin:0; padding:0; border:1px solid var(--border); border-top:0; }
+.wp-wlist li { border-top:1px solid var(--border); }
+.wp-wlist li:first-child { border-top:0; }
+.wp-wlist a { display:block; padding:10px 28px 10px 12px; font-size:14px; color:var(--text); text-decoration:none; position:relative; }
+.wp-wlist a::after { content:"›"; position:absolute; right:12px; top:50%; transform:translateY(-50%); color:var(--muted); }
+.wp-wlist a:hover { background:#F4F8FA; color:var(--link); }
+.wp-tags { display:flex; flex-wrap:wrap; gap:6px; padding:12px 0 0; }
+.wp-tags a { font-size:12.5px; color:var(--text); border:1px solid #BFC9CF; border-radius:3px; padding:3px 9px; text-decoration:none; }
+.wp-tags a:hover { border-color:var(--primary-deep); color:var(--primary-deep); }
+
+@media (max-width:1024px) {
+  .wp-layout { grid-template-columns:1fr; gap:8px; }
+  .wp-side { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 20px; }
+}
+@media (max-width:768px) {
+  .wp-hero { padding:20px 0; }
+  .wp-hero h1 { font-size:19px; }
+  .wp-hero-sub { font-size:13.5px; margin-bottom:12px; }
+  .wp-search input { height:46px; font-size:16px; }
+  .wp-search button { padding:0 18px; }
+  .wp-layout { padding-top:22px; }
+  .wp-sec { margin-bottom:30px; }
+  .wp-h2 { font-size:17px; }
+  .wp-cats { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .wp-cat .desc { display:none; }
+  .wp-cat .label { padding-bottom:8px; font-size:14px; }
+  .wp-area select { flex:1 1 100%; }
+  .wp-area-result { grid-template-columns:1fr; }
+  .wp-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 12px; }
+  .wp-card .ttl { font-size:13.5px; }
+  .wp-side { grid-template-columns:1fr; }
+  .wp-pc-only { display:none; }
+}
+
+.hm-cmp.wp-area-col { background:none; border:0; border-radius:0; overflow:visible; }
