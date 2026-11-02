@@ -26,10 +26,10 @@
 | `curama` | くらしのマーケット | ハウスクリーニング | afi-b | **設定済み**（用途別 `affLp` 4種） |
 | `rcleaning` | アールクリーニング | ハウスクリーニング | A8.net | **設定済み** |
 | `tokyogas` | 東京ガスのハウスクリーニング | ハウスクリーニング | afi-b | **設定済み** |
-| `hakkoudo` | 古美術 八光堂 | 遺品買取 | 新規提携（ASP不明） | **設定済み**（広告主LP直） |
-| `osoujimaster` | お掃除マスター | ハウスクリーニング | 新規提携（ASP不明） | **設定済み**（広告主LP直） |
-| `housecleaning110` | ハウスクリーニング110番 | ハウスクリーニング | 新規提携（ASP不明） | **設定済み**（アフィリLP） |
-| `machinocleaning` | あなたの町のハウスクリーニング屋さん | ハウスクリーニング | 新規提携（ASP不明） | **設定済み**（広告主LP直） |
+| `hakkoudo` | 古美術 八光堂 | 遺品買取 | 新規提携 | 未設定（計測URLの発行待ち→公式サイトへ） |
+| `osoujimaster` | お掃除マスター | ハウスクリーニング | 新規提携 | 未設定（計測URLの発行待ち→公式サイトへ） |
+| `housecleaning110` | ハウスクリーニング110番 | ハウスクリーニング | 新規提携 | 未設定（計測URLの発行待ち→公式サイトへ） |
+| `machinocleaning` | あなたの町のハウスクリーニング屋さん | ハウスクリーニング | 新規提携 | 未設定（計測URLの発行待ち→公式サイトへ） |
 
 ※ 設定状況は `src/data/companies.json` の `affUrl` が正です（この表はその写し）。提携・解除が決まったら同じタイミングで更新してください。
 ※ 提携ASPの列は `affUrl` のドメインから判定した表示です（例：`px.a8.net` → A8.net）。
@@ -38,20 +38,20 @@
 | `housecleaning110` | ハウスクリーニング110番 | ハウスクリーニング | 新規見積依頼 1,300円（確定率33.33%） |
 | `machinocleaning` | あなたの町のハウスクリーニング屋さん | ハウスクリーニング | 新規見積り依頼 1,500円 |
 
-### ⚠️ 新規4社の `affUrl` は「広告主のLP直URL」
+### 新規4社（2026-11-02 追加）の状況
 
-2026-11-02 に追加した4社は、ASPのクリック計測URL（`t.afi-b.com/visit.php?...` や `px.a8.net/...`）ではなく、**提携時に案内された広告主側のLP URL**をそのまま `affUrl` に入れています。
+提携時に共有されたのは**サービス紹介用のURL（読み込み用）**で、ASPの計測URL（リンク発行）はまだ受け取っていません。
+そのため `affUrl` は**空**にしてあり、サイト上は `officialUrl`（各社の公式サイト）へ遷移します。計測URLが届いたら `affUrl` に1行入れるだけで全CTAが切り替わります。
 
-| ID | 現在の `affUrl` | 状態 |
+| ID | 提携時に共有されたURL（参考） | 現在の `officialUrl` |
 |---|---|---|
-| `hakkoudo` | `https://www.hakkoudo.com/lp/ihin-kaitori-af` | 広告主LP（`-af` 付き） |
-| `osoujimaster` | `https://osoji-master.info/index.html` | 広告主LP |
-| `housecleaning110` | `https://aff.life-110.com/?st_site=house_clean` | アフィリ用LP（`st_site` パラメータ付き＝計測URLの可能性高） |
-| `machinocleaning` | `https://machino-housecleaning.com/` | 広告主LP |
+| `hakkoudo` | `https://www.hakkoudo.com/lp/ihin-kaitori-af` | `https://www.hakkoudo.com/` |
+| `osoujimaster` | `https://osoji-master.info/index.html` | `https://osoji-master.info/` |
+| `housecleaning110` | `https://aff.life-110.com/?st_site=house_clean` | `https://aff.life-110.com/?st_site=house_clean` |
+| `machinocleaning` | `https://machino-housecleaning.com/` | `https://machino-housecleaning.com/` |
 
-- このままでも遷移はしますが、**ASP側でクリックが計測されない可能性**があります。
-- ASP管理画面に「提携URL」「リンクURL」「計測URL」が別途表示されていれば、そのURLに差し替えてください（`companies.json` の `affUrl` 1行）。
-- `housecleaning110` のように `?st_site=` が付く形式は計測用の可能性が高いので、他3社も同様のパラメータ付きURLが発行されていないか確認するのが確実です。
+- 成果報酬（ASPダッシュボード）：八光堂 買取完了2,537円／お掃除マスター 新規成約1,500円（確定率83.33%）／ハウスクリーニング110番 新規見積1,300円（確定率33.33%）／町のハウスクリーニング屋さん 新規見積1,500円
+- `housecleaning110` は「ハウスクリーニング110番」の公式ドメインが別にある可能性があります（`housecleaning110.com` は応答なし）。確認できたら `officialUrl` を差し替えてください。
 
 ※ 最終更新：2026-11-02
 
