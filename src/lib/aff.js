@@ -31,7 +31,7 @@ export function resolveAff(html) {
       .replace(/\s+/g, ' ')
       .trim();
 
-    const attrs = ['href="' + href + '"'];
+    const attrs = ['href="' + href.replace(/&/g, '&amp;') + '"'];
     if (rest) attrs.push(rest);
     attrs.push('data-aff="' + c.id + '"');
     attrs.push('data-aff-src="' + src + '"');
