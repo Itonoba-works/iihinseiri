@@ -637,3 +637,35 @@ body .service-logo-area > .service-logo-link > img {
   .tg-banner { margin: 28px 0; }
   .tg-banner-link:hover { transform: none; }
 }
+
+/* ============ 料金表（レビュー記事用） ============
+   page-ranking.css の .price-table と同じ見た目を、
+   レビューページでも使えるように読み込み対象へ追加したもの。
+   追加理由：レビュー記事は page-review.css しか読まないため、
+   .price-table を書いても罫線・ヘッダー色が当たらず「表に見えない」状態だった。 */
+.price-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin: 20px 0;
+  font-size: 14px;
+}
+.price-table th, .price-table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.price-table th:last-child, .price-table td:last-child { border-right: none; }
+.price-table thead th { background: var(--primary); color: white; }
+.price-table tbody th {
+  background: #fff; color: var(--text); text-align: left; font-weight: 700;
+}
+.price-table .price-cell { font-weight: 700; color: var(--accent-dark); }
+@media (max-width: 640px) {
+  .price-table { font-size: 12.5px; }
+  .price-table th, .price-table td { padding: 9px 8px; }
+}
