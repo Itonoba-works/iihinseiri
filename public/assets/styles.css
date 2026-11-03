@@ -1374,8 +1374,7 @@ body aside.side .side-sticky { padding-right:2px; }
 body .key-points { border-radius:0; box-shadow:none; }
 body .key-points .kp-head { border-radius:0; }
 
-/* ============================================================
-   メリハリの試作（.mk2 で囲んだ記事だけに効く）2026-11-03
+/* =====================================================   メリハリの試作（.mk2 で囲んだ記事だけに効く）2026-11-03
    マーカーは各見出しの結論だけに絞り、色を濃くする
 ============================================================ */
 body .mk2 strong {
@@ -1395,3 +1394,57 @@ body .mk2 .column-box .clabel {
   background:var(--primary); color:#fff; font-size:13px; font-weight:700; letter-spacing:.06em;
 }
 body .mk2 .column-box p { margin:0; font-size:17.5px; line-height:1.8; font-weight:600; color:var(--text); }
+=======
+   2026-11-03 スマホ表示の修正
+   ① 横幅：左右の余白を詰めて画面幅いっぱいに使う
+   ② 比較ページの社名見出し：3列目（サービス形態）を2段目に回す（縦書き化のバグ）
+   ③ 比較表：スマホ標準の密度（文字12.5px・セル余白8px・行高 約48px）
+   ④ レビュー中段の「公式サイトを見る」枠：縦並び時に謎の空白が出る問題
+============================================================ */
+/* 比較表（ランキング）の列幅：PC */
+.cmp-rank .c-name { min-width:140px; text-align:left; padding-left:14px; }
+.cmp-rank .c-type { min-width:100px; }
+.cmp-rank .c-btn { min-width:118px; }
+.cmp-rank .c-price { min-width:170px; }
+.cmp-rank .c-area { min-width:140px; }
+.cmp-rank .c-feat { min-width:130px; }
+.cmp-rank td.c-btn .btn-cta { padding:9px 16px; font-size:12.5px; white-space:nowrap; }
+
+@media (max-width:768px) {
+  /* ① 横幅 */
+  body .article-layout { padding:8px 10px 12px; }
+  body .article-title-block,
+  body .article-main,
+  body .article-main.article-body { padding-left:14px; padding-right:14px; }
+  body .company-block { padding:16px 0 20px; border-left:0; border-right:0; }
+  body .company-info-table th,
+  body .company-info-table td { padding:9px 10px; }
+  body .company-info-table th { width:36%; }
+
+  /* ② 社名見出し：順位バッジ＋社名を1段目、サービス形態を2段目（左寄せ） */
+  body .company-block-head { grid-template-columns:auto minmax(0,1fr); gap:6px 12px; }
+  body .company-block-head > :nth-child(3) { grid-column:1 / -1; text-align:left !important; display:flex; gap:8px; align-items:baseline; flex-wrap:wrap; }
+  body .company-block-head > :nth-child(3) > div { font-size:13px !important; }
+  body .company-block-head h3 { font-size:20px; }
+
+  /* ③ 比較表 */
+  body .compare-table { font-size:12.5px; line-height:1.5; }
+  body .compare-table th,
+  body .compare-table td { padding:8px 10px; }
+  body .compare-table thead th { font-size:12px; white-space:nowrap; }
+  body .compare-table .pnum { font-size:1.1em; }
+  body .cmp-rank .c-name { min-width:9.5em; padding-left:10px; font-size:13px; }
+  body .cmp-rank .c-type { min-width:0; white-space:nowrap; }
+  body .cmp-rank .c-btn { min-width:0; }
+  body .cmp-rank td.c-btn .btn-cta { min-height:32px; padding:6px 12px; font-size:12px; }
+  body .cmp-rank .c-price { min-width:230px; }
+  body .cmp-rank .c-area { min-width:120px; }
+  body .cmp-rank .c-feat { min-width:210px; }
+  body .table-wrap .cmp-rank { min-width:0; }
+
+  /* ④ 中段CTA：縦並びのとき、文の枠が高さ240pxに伸びないようにする */
+  body .mid-cta-lead { flex:0 0 auto; }
+}
+@media (max-width:480px) {
+  body .mid-cta { flex-direction:column; align-items:stretch; }
+}
