@@ -375,3 +375,11 @@ body:has(.wp-layout) { background:#fff; }
   88% { transform:translateY(0) scale(1,1); }
 }
 @media (prefers-reduced-motion: reduce) { .wp-tab[aria-selected="false"] { animation:none; } }
+/* タブ化で1列になったので、PCでは料金を社名の右に並べる（スマホは縦のまま） */
+@media (min-width:769px) {
+  .wp-co .txt { display:grid; grid-template-columns:15em minmax(0,1fr); align-items:center; gap:4px 20px; }
+  .wp-co .txt .nm { justify-self:start; }
+  .wp-co .pr-line { margin-top:0 !important; }
+}
+/* 徹底解説の ↗ を大きく（11px → 15px） */
+.wp-co .wp-detail::after { width:15px; height:15px; margin-left:5px; vertical-align:-3px; }
