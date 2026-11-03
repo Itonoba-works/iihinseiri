@@ -115,8 +115,15 @@ const jsonLd = [
         </form>
         <p class="wp-area-help" id="gyoushaSub">実家など、お住まいと別の場所でも選べます。</p>
         <div class="wp-area-result" id="cmpWrap" hidden>
-          {blocks.map((b) => (
-            <div class="hm-cmp wp-area-col" data-block={b.cat}>
+          <div class="wp-tabs" role="tablist" aria-label="カテゴリ">
+            {blocks.map((b, i) => (
+              <button type="button" role="tab" class="wp-tab" data-tab={b.cat} aria-selected={i === 0 ? 'true' : 'false'}>
+                {b.title}<span class="cnt" />
+              </button>
+            ))}
+          </div>
+          {blocks.map((b, i) => (
+            <div class="hm-cmp wp-area-col" data-block={b.cat} role="tabpanel" hidden={i !== 0}>
               <h3>{b.title}</h3>
               <ul>
                 {b.list.map((c) => (
@@ -188,6 +195,8 @@ const jsonLd = [
         if (show) { row.style.setProperty('--i', n); n++; }
       });
       block.querySelector('.hm-cmp-empty').hidden = n > 0;
+      var tab = wrap.querySelector('.wp-tab[data-tab="' + block.getAttribute('data-block') + '"] .cnt');
+      if (tab) tab.textContent = '（' + n + '社）';
     });
     if (!first) { void wrap.offsetWidth; wrap.classList.add('is-swap'); }
     first = false;
@@ -199,6 +208,18 @@ const jsonLd = [
   render(sel.value);
 
   function save(v) { try { v ? localStorage.setItem(LS_KEY, v) : localStorage.removeItem(LS_KEY); } catch (e) {} }
+
+  /* タブ：遺品整理／ハウスクリーニングを切り替える。スクロール中はタブだけ上部に残る */
+  var tabs = wrap.querySelector('.wp-tabs');
+  wrap.querySelectorAll('.wp-tab').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var cat = btn.getAttribute('data-tab');
+      wrap.querySelectorAll('.wp-tab').forEach(function (t) { t.setAttribute('aria-selected', t === btn ? 'true' : 'false'); });
+      wrap.querySelectorAll('.wp-area-col').forEach(function (col) { col.hidden = col.getAttribute('data-block') !== cat; });
+      var top = wrap.getBoundingClientRect().top + window.pageYOffset - 60;
+      if (window.pageYOffset > top) window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
 
   form.addEventListener('submit', function (e) { e.preventDefault(); save(sel.value); render(sel.value); });
   sel.addEventListener('change', function () { save(sel.value); render(sel.value); });

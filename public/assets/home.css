@@ -351,3 +351,16 @@ body:has(.wp-layout) { background:#fff; }
 .wp-page-title { margin-top:0; }
 .wp-search-sm { margin:0 0 24px; }
 .wp-search-sm input { height:44px; }
+
+/* 地域の結果：タブで切り替え（スクロール中はタブだけ上部に残る） */
+.wp-area-result { display:block; }
+.wp-area-result[hidden] { display:none; }
+.wp-area-col[hidden] { display:none; }
+.wp-area-col h3 { display:none; }
+.wp-tabs { position:sticky; top:58px; z-index:20; display:grid; grid-template-columns:1fr 1fr; background:#fff; border-bottom:2px solid var(--primary-deep); margin:0 0 4px; }
+.wp-tab { appearance:none; border:0; background:#EEF2F5; color:var(--text-sub); font:inherit; font-size:15px; font-weight:700; padding:12px 8px; cursor:pointer; border-radius:6px 6px 0 0; }
+.wp-tab + .wp-tab { margin-left:6px; }
+.wp-tab[aria-selected="true"] { background:var(--primary-deep); color:#fff; }
+.wp-tab:not([aria-selected="true"]):hover { background:#E1E8ED; color:var(--text); }
+.wp-tab .cnt { font-size:12.5px; font-weight:600; margin-left:2px; }
+@media (max-width:768px) { .wp-tab { font-size:13.5px; padding:11px 4px; } .wp-tab .cnt { display:block; margin:0; font-size:11.5px; } }
