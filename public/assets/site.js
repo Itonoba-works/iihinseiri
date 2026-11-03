@@ -122,7 +122,7 @@
   }
 
   /* ---------- 4) スクロールリビール ----------
-     画面に入る少し手前（下15%）で動き始める。画面の下が空白に見えないようにするため */
+     画面の下端に入った瞬間に動き始める（待ちの空白を作らず、動きは画面内で見える） */
   function reveal() {
     /* 2026-11 セクションごとの動き：主な要素に data-reveal を自動で付ける
        （HTMLを書き換えずに全ページへ効かせる）。並んだカードは順番に少し遅らせて出す */
@@ -152,7 +152,7 @@
         el.classList.add("is-in");
         io.unobserve(el);
       });
-    }, { rootMargin: "0px 0px 15% 0px", threshold: 0 });
+    }, { rootMargin: "0px", threshold: 0 });
     Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
   }
 
