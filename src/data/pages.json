@@ -251,10 +251,10 @@
     ],
     "bodyBytes": 0,
     "related": [
+      "hitorikko",
       "jikka-kyoudai",
       "souzoku-houki",
-      "ihin-price",
-      "trouble"
+      "ihin-price"
     ]
   },
   {
@@ -419,10 +419,57 @@
       "一人暮らしの賃貸は解約までの家賃が期限"
     ],
     "related": [
+      "keiyaku-kaiyaku",
+      "hitorikko",
       "souzoku-houki",
-      "jikka-enkaku",
-      "ihin-price"
+      "jikka-enkaku"
     ],
     "bodyBytes": 23241
+  },
+  {
+    "slug": "keiyaku-kaiyaku",
+    "type": "article",
+    "title": "親が亡くなった後の契約解約｜携帯・電気・ガス・NHKの手続き",
+    "description": "親が亡くなった後の携帯電話（ドコモ・au・ソフトバンク）、電気・ガス・水道、NHKの解約や名義変更の進め方を整理しました。「ご本人様でないと」と言われないための3つの準備、死亡が確認できる書類の例、契約を洗い出す方法、親が元気なうちにできる準備もまとめています。",
+    "catTag": "相続／手続き",
+    "h1": "親が亡くなった後の契約解約｜携帯電話・電気・ガス・NHKで「ご本人様でないと」と言われないための準備",
+    "meta": [],
+    "keyPoints": [
+      "最初に「契約者が亡くなった」と伝える",
+      "死亡が確認できる書類・契約番号・本人確認書類の3つ",
+      "大手3社の携帯は店舗で解約",
+      "電気と水道は片付けが終わってから",
+      "契約は通帳・カード明細・郵便物で洗い出す"
+    ],
+    "related": [
+      "ihin-itsukara",
+      "hitorikko",
+      "souzoku-houki",
+      "jikka-enkaku"
+    ],
+    "bodyBytes": 17590
+  },
+  {
+    "slug": "hitorikko",
+    "type": "article",
+    "title": "一人っ子の実家じまい｜ひとりで抱えないための段取り",
+    "description": "一人っ子の実家じまいは、喪主・手続き・相続の判断・片付けがすべて自分に集まります。一人っ子だからこそ楽になる点と重くなる点、親が元気なうちに決めておくこと、亡くなった直後の2週間、3か月までの判断、片付けを任せる前提の組み方を整理しました。",
+    "catTag": "実家じまい／一人っ子",
+    "h1": "一人っ子の実家じまい｜喪主・手続き・片付けをひとりで抱えないための段取り",
+    "meta": [],
+    "keyPoints": [
+      "相続人がひとりなら遺産分割の話し合いは不要",
+      "親が元気なうちに借金・任せる人・専門家を確認",
+      "最初の2週間は届出に集中",
+      "3か月までの判断は専門家と",
+      "片付けは業者に任せる前提で"
+    ],
+    "related": [
+      "ihin-itsukara",
+      "jikka-enkaku",
+      "souzoku-houki",
+      "keiyaku-kaiyaku"
+    ],
+    "bodyBytes": 16704
   }
 ]
