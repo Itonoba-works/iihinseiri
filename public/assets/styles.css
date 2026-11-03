@@ -1453,3 +1453,17 @@ body .mk2 .column-box p { margin:0; font-size:17.5px; line-height:1.8; font-weig
 @media (max-width:768px) {
   body .article-title-block .pr-note { font-size:14.5px; }
 }
+
+/* 2026-11 セクションの動き：見出しの左の線が下から伸びる（site.js の自動リビールと連動） */
+.js-reveal .article-body h2[data-reveal],
+.js-reveal .wp-sec > .wp-h2[data-reveal] { position:relative; }
+.js-reveal .article-body h2[data-reveal]::before,
+.js-reveal .wp-sec > .wp-h2[data-reveal]::before {
+  content:""; display:block !important; position:absolute; left:-5px; top:0; bottom:0; width:5px;
+  background:var(--primary); transform:scaleY(0); transform-origin:bottom;
+}
+.js-reveal .article-body h2[data-reveal].is-in::before,
+.js-reveal .wp-sec > .wp-h2[data-reveal].is-in::before { transform:scaleY(1); transition:transform .7s var(--ease) .15s; }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .article-body h2[data-reveal]::before, .js-reveal .wp-sec > .wp-h2[data-reveal]::before { transform:none; }
+}

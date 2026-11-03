@@ -123,6 +123,21 @@
 
   /* ---------- 4) スクロールリビール ---------- */
   function reveal() {
+    /* 2026-11 セクションごとの動き：主な要素に data-reveal を自動で付ける
+       （HTMLを書き換えずに全ページへ効かせる）。並んだカードは順番に少し遅らせて出す */
+    var AUTO = [
+      ".article-body h2", ".article-body h3:not(.pick-body h3):not(.company-block h3)", ".article-body .table-wrap", ".article-body .table-scroll",
+      ".article-body .column-box", ".article-body > .chat-bubble", ".article-body .data-highlight",
+      ".article-body .toc", ".article-body .qa-item", ".article-body .info-box",
+      ".company-block", ".pick-card", ".wp-sec > .wp-h2", ".wp-cat", ".wp-card", ".wp-widget",
+      ".tp-sec", ".key-points", "aside.side .side-block"
+    ].join(",");
+    Array.prototype.forEach.call(d.querySelectorAll(AUTO), function (el) {
+      if (el.hasAttribute("data-reveal")) return;
+      var sib = el.parentElement ? Array.prototype.indexOf.call(el.parentElement.children, el) : 0;
+      var grid = el.matches(".pick-card, .wp-cat, .wp-card");
+      el.setAttribute("data-reveal", grid ? String(sib % 6) : "0");
+    });
     var targets = d.querySelectorAll("[data-reveal]");
     if (!targets.length) return;
     if (reduce || !("IntersectionObserver" in window)) return;   // JS/OS設定次第で即表示
