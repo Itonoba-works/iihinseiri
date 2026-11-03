@@ -1374,26 +1374,26 @@ body aside.side .side-sticky { padding-right:2px; }
 body .key-points { border-radius:0; box-shadow:none; }
 body .key-points .kp-head { border-radius:0; }
 
-/* =====================================================   メリハリの試作（.mk2 で囲んだ記事だけに効く）2026-11-03
+/* =====================================================   メリハリ（全記事・レビュー・比較ページ）2026-11-03
    マーカーは各見出しの結論だけに絞り、色を濃くする
 ============================================================ */
-body .mk2 strong {
+body .article-body strong {
   background:linear-gradient(transparent 50%, #FFE45C 50%);
   font-weight:700; color:#111; padding:0 2px;
 }
-body .mk2 b { font-weight:700; color:#111; background:none; }
+body .article-body b { font-weight:700; color:#111; background:none; }
 /* 金額の数字：一回り大きく・濃い青 */
-body .mk2 .pnum { font-size:1.25em; font-weight:800; color:var(--primary-deep); letter-spacing:.01em; }
+body .article-body .pnum { font-size:1.25em; font-weight:800; color:var(--primary-deep); letter-spacing:.01em; }
 /* ポイントの囲み：青い枠＋見出しラベル、本文より少し大きく */
-body .mk2 .column-box {
+body .article-body .column-box {
   position:relative; margin:32px 0; padding:26px 22px 18px;
   border:2px solid var(--primary); border-left-width:2px; border-radius:6px; background:#F1F7FA; color:var(--text);
 }
-body .mk2 .column-box .clabel {
+body .article-body .column-box .clabel {
   position:absolute; top:-13px; left:16px; padding:2px 12px; border-radius:3px;
   background:var(--primary); color:#fff; font-size:13px; font-weight:700; letter-spacing:.06em;
 }
-body .mk2 .column-box p { margin:0; font-size:17.5px; line-height:1.8; font-weight:600; color:var(--text); }
+body .article-body .column-box p { margin:0; font-size:17.5px; line-height:1.8; font-weight:600; color:var(--text); }
 =======
    2026-11-03 スマホ表示の修正
    ① 横幅：左右の余白を詰めて画面幅いっぱいに使う
