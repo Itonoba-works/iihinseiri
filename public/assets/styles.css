@@ -1448,3 +1448,8 @@ body .mk2 .column-box p { margin:0; font-size:17.5px; line-height:1.8; font-weig
 @media (max-width:480px) {
   body .mid-cta { flex-direction:column; align-items:stretch; }
 }
+
+/* 2026-11-03 スマホ：「※本記事はプロモーションを含みます。」を16px→14.5pxに（主張しすぎるため） */
+@media (max-width:768px) {
+  body .article-title-block .pr-note { font-size:14.5px; }
+}
