@@ -1,0 +1,32 @@
+# 毎月1日（日本時間 0:10ごろ）に Cloudflare Pages を再ビルドする。
+# 目的：push が無い月でも、記事タイトルの【〇年〇月最新】（src/middleware.js がビルド時に置換）を今月にする。
+#
+# 必要な設定（1回だけ）：
+#   1) Cloudflare → Workers & Pages → iihinseiri → 設定 → ビルド → 「デプロイフック」を追加（ブランチ：main）
+#   2) 発行されたURLを GitHub → リポジトリ → Settings → Secrets and variables → Actions に
+#      名前 CF_DEPLOY_HOOK で登録する
+# GitHub の「Actions」タブから「Run workflow」で手動実行もできる。
+name: monthly-rebuild
+
+on:
+  schedule:
+    # 毎日 UTC 15:10（日本時間 0:10）に起動し、日本時間で「今日が1日」の時だけ実行する
+    - cron: '10 15 * * *'
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 日本時間の1日だけ実行
+        id: day
+        run: |
+          d=$(TZ=Asia/Tokyo date +%d)
+          echo "jst_day=$d" >> "$GITHUB_OUTPUT"
+      - name: Cloudflare Pages のデプロイフックを呼ぶ
+        if: steps.day.outputs.jst_day == '01' || github.event_name == 'workflow_dispatch'
+        env:
+          HOOK: ${{ secrets.CF_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then echo "CF_DEPLOY_HOOK が未設定です"; exit 1; fi
+          curl -fsS -X POST "$HOOK"

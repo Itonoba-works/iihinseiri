@@ -1,10 +1,11 @@
 import pages from '../data/pages.json';
 import companies from '../data/companies.json';
+import { freshen } from '../lib/freshen.js';
 
 /* /search-index.json を静的生成する（TOPのサイト内検索で使う）。
    記事・比較ページ・レビューは pages.json、業者名と特徴は companies.json から自動で作る。
    ページや業者を追加すれば、検索の対象にも自動で入る。 */
-const strip = (s) => String(s || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+const strip = (s) => freshen(String(s || '')).replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
 
 export function GET() {
   const byId = Object.fromEntries(companies.map((c) => [c.id, c]));
