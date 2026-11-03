@@ -24,9 +24,64 @@
       </div>
       <p class="source-note">出典：法務省「死亡届」／東京都保健医療局「国民健康保険の加入・喪失手続」／大阪市「世帯変更届」／国税庁 タックスアンサー No.4205</p>
 
+      <section class="kigen-tool" id="kigen-tool" aria-label="期限カレンダー">
+        <h2 class="kigen-h">期限カレンダー：亡くなった日を入れると、期限の目安日が並びます</h2>
+        <label class="kigen-label" for="kigenDate">亡くなった日（死亡を知った日）</label>
+        <input type="date" id="kigenDate" class="kigen-input" />
+        <div class="kigen-out" id="kigenOut" hidden>
+          <table class="compare-table kigen-table">
+            <thead><tr><th>手続き</th><th>期限の目安日</th><th>あと何日</th></tr></thead>
+            <tbody id="kigenBody"></tbody>
+          </table>
+          <p class="kigen-note">※日付は目安です。期限の数え方（初日を含めるか、土日祝日の扱いなど）は手続きごとに異なります。正確な期限は届出先・申告先で確認してください。年金の受給停止は「すみやかに」が期限です。</p>
+        </div>
+      </section>
+      <script>
+      (function () {
+        var input = document.getElementById('kigenDate');
+        if (!input) return;
+        var out = document.getElementById('kigenOut'), body = document.getElementById('kigenBody');
+        var W = ['日','月','火','水','木','金','土'];
+        function addDays(d, n) { var x = new Date(d); x.setDate(x.getDate() + n); return x; }
+        function addMonths(d, n) {
+          var x = new Date(d.getFullYear(), d.getMonth() + n, 1);
+          var last = new Date(x.getFullYear(), x.getMonth() + 1, 0).getDate();
+          x.setDate(Math.min(d.getDate(), last)); return x;
+        }
+        function fmt(d) { return d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日（' + W[d.getDay()] + '）'; }
+        var rows = [
+          ['死亡届', function (d) { return addDays(d, 6); }],
+          ['国民健康保険の脱退', function (d) { return addDays(d, 14); }],
+          ['世帯主の変更（残る人が2人以上）', function (d) { return addDays(d, 14); }],
+          ['相続放棄・限定承認', function (d) { return addMonths(d, 3); }],
+          ['準確定申告（必要な場合）', function (d) { return addMonths(d, 4); }],
+          ['相続税の申告・納付（必要な場合）', function (d) { return addMonths(d, 10); }],
+          ['相続登記（不動産がある場合）', function (d) { return addMonths(d, 36); }]
+        ];
+        function render() {
+          var v = input.value;
+          if (!v) { out.hidden = true; return; }
+          var p = v.split('-'), d = new Date(+p[0], +p[1] - 1, +p[2]);
+          var t = new Date(); t.setHours(0, 0, 0, 0);
+          body.innerHTML = rows.map(function (r) {
+            var due = r[1](d), left = Math.round((due - t) / 86400000);
+            var cls = left < 0 ? 'is-over' : left <= 14 ? 'is-near' : '';
+            return '<tr class="' + cls + '"><th>' + r[0] + '</th><td>' + fmt(due) + '</td><td>' + (left < 0 ? '過ぎています' : left === 0 ? '今日' : 'あと' + left + '日') + '</td></tr>';
+          }).join('');
+          out.hidden = false;
+          try { localStorage.setItem('iihinseiri_kigen', v); } catch (e) {}
+        }
+        var td = new Date(); input.max = td.getFullYear() + '-' + ('0' + (td.getMonth() + 1)).slice(-2) + '-' + ('0' + td.getDate()).slice(-2);
+        try { var s = localStorage.getItem('iihinseiri_kigen'); if (s) input.value = s; } catch (e) {}
+        input.addEventListener('change', render);
+        render();
+      })();
+      </script>
+
       <div class="toc">
         <div class="toc-title">目次</div>
         <ol>
+          <li><a href="#kigen-tool">期限カレンダー（亡くなった日を入れるだけ）</a></li>
           <li><a href="#ichiran">親が亡くなった後の手続き（期限の早い順）</a></li>
           <li><a href="#sugu">亡くなってから14日以内にやること</a></li>
           <li><a href="#ihin">遺品整理はいつから始めるか</a></li>
