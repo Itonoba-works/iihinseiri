@@ -1,0 +1,58 @@
+/* 実家じまいチェックリスト（/checklist.html） */
+body:has(main.ck) { background:#fff; }
+.ck { max-width:820px; padding-top:20px; padding-bottom:56px; }
+.ck-pr { font-size:13px; color:var(--muted); margin:0 0 8px; }
+.ck h1 { font-size:28px; line-height:1.5; margin:0 0 14px; }
+.ck-lead { font-size:16px; line-height:1.9; margin:0 0 22px; }
+.ck-lead strong { background:linear-gradient(transparent 50%, #FFE45C 50%); padding:0 2px; }
+.ck-howto { background:#F4F8FA; border-radius:8px; padding:16px 22px; margin:0 0 22px; }
+.ck-howto h2 { font-size:16px; margin:0 0 6px; }
+.ck-howto ol { margin:0; padding-left:20px; }
+.ck-howto li { font-size:15px; line-height:1.8; margin:2px 0; }
+
+.ck-toolbar { position:sticky; top:58px; z-index:15; display:flex; gap:10px; align-items:center; flex-wrap:wrap; background:#fff; padding:10px 0; margin:0 0 18px; border-bottom:1px solid var(--border); }
+.ck-btn { font:inherit; font-size:15px; font-weight:700; border-radius:6px; padding:10px 18px; cursor:pointer; }
+.ck-btn-print { background:var(--primary-deep); color:#fff; border:0; }
+.ck-btn-print:hover { background:#0E3D50; }
+.ck-btn-reset { background:#fff; color:var(--text-sub); border:1px solid #BFC9CF; }
+.ck-progress { flex:1; min-width:180px; }
+.ck-bar { height:10px; background:#E6EAED; border-radius:5px; overflow:hidden; }
+.ck-bar span { display:block; height:100%; width:0; background:#E35F00; transition:width .3s; }
+.ck-count { font-size:13px; color:var(--text-sub); margin-top:2px; }
+
+.ck-group { margin:0 0 26px; }
+.ck-group h2 { font-size:19px; line-height:1.5; padding:9px 14px; margin:0 0 4px; background:#F3F3F3; border-left:5px solid var(--primary-deep); }
+.ck-group h2 small { font-size:13px; font-weight:400; color:var(--text-sub); margin-left:10px; }
+.ck-item { padding:14px 4px; border-bottom:1px solid var(--border); }
+.ck-item label { display:flex; gap:12px; align-items:flex-start; cursor:pointer; font-size:16px; font-weight:700; line-height:1.6; }
+.ck-item input { width:22px; height:22px; margin:2px 0 0; flex:0 0 auto; accent-color:var(--primary-deep); }
+.ck-imp { flex:0 0 auto; font-style:normal; font-size:11.5px; font-weight:700; color:#fff; background:#E35F00; border-radius:3px; padding:1px 7px; margin-top:3px; }
+.ck-why { margin:4px 0 0 34px; font-size:14.5px; line-height:1.8; color:var(--text-sub); }
+.ck-memo { margin:8px 0 0 34px; border-bottom:1px dashed #BFC9CF; height:26px; font-size:12px; color:#9AA5AD; }
+.ck-more { margin:6px 0 0 34px; font-size:14px; }
+.ck-more a { font-weight:600; }
+.ck-more a::before { content:"→ "; }
+.ck-item.is-checked label span { color:var(--muted); text-decoration:line-through; text-decoration-color:#B8C2C9; }
+
+.ck-note { font-size:13.5px; color:var(--text-sub); background:#FFF8E8; border-left:4px solid #E35F00; padding:12px 16px; margin:26px 0; }
+.ck-next { border:2px solid var(--primary-deep); border-radius:8px; padding:20px 22px; margin:28px 0 0; }
+.ck-next h2 { font-size:18px; margin:0 0 8px; }
+.ck-next ul { margin:0 0 16px; padding-left:20px; }
+.ck-next .btn-cta { display:flex; width:100%; }
+.ck-source { font-size:12px; color:var(--muted); margin-top:24px; }
+.ck-print-head { display:none; }
+
+@media (max-width:768px) {
+  .ck h1 { font-size:22px; }
+  .ck-why, .ck-memo, .ck-more { margin-left:34px; }
+}
+@media print {
+  .site-header, .breadcrumb, footer, .site-footer, .sticky-cta, .to-top, .ck-toolbar, .ck-howto, .ck-next, .ck-more, .ck-pr { display:none !important; }
+  body { background:#fff; font-size:11pt; padding:0; }
+  .ck { max-width:none; padding:0; }
+  .ck-print-head { display:block; font-size:10pt; color:#555; margin-bottom:6px; }
+  .ck-group { break-inside:avoid; }
+  .ck-item { padding:7px 4px; }
+  .ck-memo { color:transparent; }
+  [data-reveal] { opacity:1 !important; transform:none !important; }
+}

@@ -1,0 +1,114 @@
+---
+/* 実家じまいチェックリスト（印刷用・27項目）
+   項目は src/data/checklist.json。項目を足すと自動で件数・進捗に反映される。
+   元の下書き：市場調査メモ（2026-10-12）の checklist.html */
+import Base from '../layouts/Base.astro';
+import StickyCta from '../components/StickyCta.astro';
+import groups from '../data/checklist.json';
+import companies from '../data/companies.json';
+
+const total = groups.reduce((n, g) => n + g.items.length, 0);
+const hasAff = companies.some((c) => c.affUrl);
+const abs = (href) => new URL(href, Astro.site).href;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'HOME', item: abs('/') },
+      { '@type': 'ListItem', position: 2, name: '実家じまいチェックリスト', item: abs('/checklist.html') }
+    ]
+  }
+];
+---
+<Base
+  title={'実家じまいチェックリスト｜親が元気なうちに確認したい' + total + '項目【印刷用】'}
+  description={'親が元気なうちに確認しておきたい' + total + '項目を、お金・家・モノ・人・段取り・契約とデジタルの6つに分けたチェックリストです。印刷して親と一緒に埋められます。項目ごとに困ったときの調べ方も紹介しています。'}
+  pageCss="page-checklist.css"
+  jsonLd={jsonLd}
+>
+  <div class="breadcrumb" slot="breadcrumb">
+    <a href="/">HOME</a>
+    <span class="sep">›</span>
+    <span>実家じまいチェックリスト</span>
+  </div>
+
+  <main class="container ck">
+    {hasAff && <p class="ck-pr">※本記事はプロモーションを含みます。</p>}
+    <div class="ck-print-head">くらしの整理ナビ　https://iihinseiri.com/checklist.html　／　記入日：　　年　　月　　日</div>
+
+    <h1>実家じまいチェックリスト<br />親が元気なうちに確認したい{total}項目</h1>
+    <p class="ck-lead">実家じまいで本当に困るのは、モノの量ではありません。<strong>親にしか分からない「場所」と「中身」</strong>です。このリストは印刷して、親と一緒に埋められるように作りました。気になる項目には「困ったときの調べ方」も付けています。</p>
+
+    <div class="ck-howto">
+      <h2>使い方</h2>
+      <ol>
+        <li>まず印刷して、「これ一緒に埋めてみない？」と親に渡します。質問攻めにするより、作業にしたほうが話しやすくなります。</li>
+        <li>一度で全部埋めなくて大丈夫です。「最優先」の項目から始めてください。</li>
+        <li>記入した紙は、通帳などと同じく大切に保管してください。</li>
+      </ol>
+    </div>
+
+    <div class="ck-toolbar">
+      <button type="button" class="ck-btn ck-btn-print" id="ckPrint">印刷する</button>
+      <button type="button" class="ck-btn ck-btn-reset" id="ckReset">チェックをリセット</button>
+      <div class="ck-progress">
+        <div class="ck-bar"><span id="ckBar"></span></div>
+        <div class="ck-count"><span id="ckDone">0</span> / {total} 項目 確認済み</div>
+      </div>
+    </div>
+
+    {groups.map((g) => (
+      <section class="ck-group">
+        <h2>{g.title}<small>{g.sub}</small></h2>
+        {g.items.map((it) => (
+          <div class={'ck-item' + (it.imp ? ' is-imp' : '')}>
+            <label><input type="checkbox" /><span>{it.q}</span>{it.imp && <em class="ck-imp">最優先</em>}</label>
+            <p class="ck-why" set:html={it.why} />
+            <div class="ck-memo">メモ：</div>
+            {it.href && <p class="ck-more"><a href={it.href}>{it.label}</a></p>}
+          </div>
+        ))}
+      </section>
+    ))}
+
+    <p class="ck-note">相続放棄・相続登記の扱いは個別の事情で異なります。借金の有無が分からない場合は、遺品に手を付ける前に司法書士・弁護士などの専門家にご相談ください。</p>
+
+    <div class="ck-next">
+      <h2>チェックが埋まったら、次は見積もりの比較へ</h2>
+      <ul>
+        <li>料金は業者によって差が出やすいため、2〜3社の比較が基本です</li>
+        <li>遠方の実家なら、立ち会いなしに対応しているかも確認しましょう</li>
+      </ul>
+      <a class="btn-cta" href="/rankings/ihin.html">対応エリアと料金で業者を比較する</a>
+    </div>
+
+    <p class="ck-source">出典：裁判所「相続の放棄の申述」、民法915条・921条、法務省「相続登記の申請義務化に関するQ&amp;A」、経済産業省「家電リサイクル法」。</p>
+  </main>
+
+  <StickyCta slot="cta" />
+
+<script is:inline>
+(function () {
+  var KEY = 'iihinseiri_checklist_v2';
+  var boxes = [].slice.call(document.querySelectorAll('.ck-item input[type=checkbox]'));
+  var saved = [];
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) {}
+  function update() {
+    var n = 0, state = [];
+    boxes.forEach(function (b) {
+      b.closest('.ck-item').classList.toggle('is-checked', b.checked);
+      if (b.checked) n++;
+      state.push(b.checked ? 1 : 0);
+    });
+    document.getElementById('ckDone').textContent = n;
+    document.getElementById('ckBar').style.width = (n / boxes.length * 100) + '%';
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  boxes.forEach(function (b, i) { b.checked = !!saved[i]; b.addEventListener('change', update); });
+  document.getElementById('ckReset').addEventListener('click', function () { boxes.forEach(function (b) { b.checked = false; }); update(); });
+  document.getElementById('ckPrint').addEventListener('click', function () { window.print(); });
+  update();
+})();
+</script>
+</Base>

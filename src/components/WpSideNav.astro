@@ -19,6 +19,12 @@ const { tagSearch = false } = Astro.props;
     </ul>
   </div>
   <div class="wp-widget">
+    <h2 class="wp-wh">ツール</h2>
+    <ul class="wp-wlist">
+      <li><a href="/checklist.html">実家じまいチェックリスト</a></li>
+    </ul>
+  </div>
+  <div class="wp-widget">
     <h2 class="wp-wh">タグ</h2>
     <div class="wp-tags">
       {tags.map((t) => <a href={'/?q=' + encodeURIComponent(t)} data-q={tagSearch ? t : undefined}>{t}</a>)}

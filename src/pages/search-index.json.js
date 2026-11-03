@@ -9,7 +9,9 @@ const strip = (s) => freshen(String(s || '')).replace(/<[^>]*>/g, '').replace(/\
 
 export function GET() {
   const byId = Object.fromEntries(companies.map((c) => [c.id, c]));
-  const items = [];
+  const items = [
+    { k: 'ツール', u: '/checklist.html', t: '実家じまいチェックリスト｜親が元気なうちに確認したい27項目【印刷用】', d: '親が元気なうちに確認しておきたい項目を、お金・家・モノ・人・段取り・契約とデジタルの6つに分けたチェックリスト。印刷して親と一緒に埋められます。', x: '生前整理 実家じまい 借金 通帳 権利証 認知症 一人っ子 スマホ パスコード サブスク 解約 チェックリスト 印刷' }
+  ];
 
   for (const p of pages) {
     if (p.type === 'article') {
