@@ -34,7 +34,8 @@ body:has(main.ck) { background:#fff; }
 .ck-more a::before { content:"→ "; }
 .ck-item.is-checked label span { color:var(--muted); text-decoration:line-through; text-decoration-color:#B8C2C9; }
 
-.ck-note { font-size:13.5px; color:var(--text-sub); background:#FFF8E8; border-left:4px solid #E35F00; padding:12px 16px; margin:26px 0; }
+/* 注記：記事末尾の注記と同じ、地色・線なしの小さい灰色の文字 */
+.ck-note { font-size:13px; line-height:1.8; color:var(--muted); margin:26px 0; }
 .ck-next { border:2px solid var(--primary-deep); border-radius:8px; padding:20px 22px; margin:28px 0 0; }
 .ck-next h2 { font-size:18px; margin:0 0 8px; }
 .ck-next ul { margin:0 0 16px; padding-left:20px; }
