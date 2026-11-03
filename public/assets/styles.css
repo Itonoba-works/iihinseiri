@@ -1494,8 +1494,8 @@ body .mk2 .column-box p { margin:0; font-size:17.5px; line-height:1.8; font-weig
 /* 縦に流れる3つの点 */
 .pick-band .pick-recommend-wrap > p::after {
   content:"" !important; position:absolute; left:50%; top:calc(100% + 18px); margin:0 !important;
-  width:6px; height:6px; border:0; border-radius:50%; background:#E8820C;
-  box-shadow:0 10px 0 #E8820C, 0 20px 0 #E8820C;
+  width:6px; height:6px; border:0; border-radius:50%; background:#E35F00;
+  box-shadow:0 10px 0 #E35F00, 0 20px 0 #E35F00;
   transform:translateX(-50%) !important; animation:pk-flow 1.4s ease-in-out infinite !important;
 }
 @keyframes pk-flow {
@@ -1541,6 +1541,6 @@ body .mk2 .column-box p { margin:0; font-size:17.5px; line-height:1.8; font-weig
 .pick-band .pick-spec .pnum{color:#222 !important}
 .pick-band .pick-catch{color:#222 !important}
 
-.pick-band .pick-body h3{background:#FF7F00 !important}
+.pick-band .pick-body h3{background:#E35F00 !important}
 .pick-band .pick-card .btn-cta,.pick-band .pick-card a.btn-cta:link,.pick-band .pick-card a.btn-cta:visited{background:#FFD000 !important;color:#2B2100 !important;box-shadow:0 4px 0 #D9A400 !important}
 .pick-band .pick-card .btn-cta::after{color:#2B2100}
