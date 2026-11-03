@@ -1527,3 +1527,20 @@ body .mk2 .column-box p { margin:0; font-size:17.5px; line-height:1.8; font-weig
 .pick-band .pick-card .btn-cta:active { transform:translateY(3px); box-shadow:0 1px 0 #9C4A00; }
 .pick-band .pick-card .btn-cta::after { content:"▶"; font-size:10px; margin-left:8px; }
 .pick-band .pick-spec .pnum { color:#B85500; }
+
+/* 2026-11 3社カード：線をなくし、社名帯はオレンジのベタ、ボタンは黄色に黒字（x案） */
+
+.pick-band .pick-card{border:0 !important;box-shadow:0 2px 10px rgba(0,0,0,.10) !important;border-radius:8px}
+.pick-band .pick-body h3{border:0 !important;margin:0 0 14px !important}
+.pick-band .pick-body h3 a{color:#fff !important}
+.pick-band .pick-body h3 a::after{color:#fff !important}
+.pick-band .pick-body h3 a:hover{color:#fff !important}
+.pick-band .pick-spec li{border:0 !important;padding:3px 0 3px 0 !important}
+.pick-band .pick-spec li::before{display:none !important}
+.pick-band .pick-spec strong{color:#222 !important}
+.pick-band .pick-spec .pnum{color:#222 !important}
+.pick-band .pick-catch{color:#222 !important}
+
+.pick-band .pick-body h3{background:#FF7F00 !important}
+.pick-band .pick-card .btn-cta,.pick-band .pick-card a.btn-cta:link,.pick-band .pick-card a.btn-cta:visited{background:#FFD000 !important;color:#2B2100 !important;box-shadow:0 4px 0 #D9A400 !important}
+.pick-band .pick-card .btn-cta::after{color:#2B2100}
