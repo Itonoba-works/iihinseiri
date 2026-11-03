@@ -130,7 +130,7 @@
       ".article-body .column-box", ".article-body > .chat-bubble", ".article-body .data-highlight",
       ".article-body .toc", ".article-body .qa-item", ".article-body .info-box",
       ".company-block", ".pick-card", ".wp-sec > .wp-h2", ".wp-cat", ".wp-card", ".wp-widget",
-      ".tp-sec", ".key-points", "aside.side .side-block"
+      ".tp-sec"
     ].join(",");
     Array.prototype.forEach.call(d.querySelectorAll(AUTO), function (el) {
       if (el.hasAttribute("data-reveal")) return;
@@ -147,7 +147,7 @@
         if (!en.isIntersecting) return;
         var el = en.target;
         var i = Number(el.getAttribute("data-reveal")) || 0;
-        el.style.transitionDelay = Math.min(i, 6) * 60 + "ms";
+        el.style.transitionDelay = Math.min(i, 6) * (el.matches(".pick-card") ? 200 : 80) + "ms";
         el.classList.add("is-in");
         io.unobserve(el);
       });
