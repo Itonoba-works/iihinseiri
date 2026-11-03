@@ -160,10 +160,10 @@
     ],
     "bodyBytes": 10666,
     "related": [
+      "ihin-itsukara",
       "trouble",
       "gomiyashiki",
-      "jikka-enkaku",
-      "souzoku-houki"
+      "jikka-enkaku"
     ]
   },
   {
@@ -206,10 +206,10 @@
     ],
     "bodyBytes": 12897,
     "related": [
+      "kaden4",
       "combo",
       "gomiyashiki",
-      "trouble",
-      "taikyo-cleaning"
+      "trouble"
     ]
   },
   {
@@ -275,10 +275,10 @@
     ],
     "bodyBytes": 0,
     "related": [
+      "ihin-itsukara",
       "jikka-enkaku",
       "jikka-kyoudai",
-      "ihin-price",
-      "seizen"
+      "ihin-price"
     ]
   },
   {
@@ -298,10 +298,10 @@
     ],
     "bodyBytes": 0,
     "related": [
+      "ihin-itsukara",
       "jikka-enkaku",
       "souzoku-houki",
-      "seizen",
-      "ihin-price"
+      "seizen"
     ]
   },
   {
@@ -355,10 +355,10 @@
     ],
     "bodyBytes": 17902,
     "related": [
+      "kaden4",
       "taikyo-cleaning",
       "huyouhin",
-      "gomiyashiki",
-      "ihin-price"
+      "gomiyashiki"
     ]
   },
   {
@@ -404,5 +404,51 @@
     "meta": [],
     "keyPoints": [],
     "bodyBytes": 0
+  },
+  {
+    "slug": "kaden4",
+    "type": "article",
+    "title": "家電4品目の処分方法と費用｜冷蔵庫・洗濯機・エアコン・テレビ",
+    "description": "エアコン・テレビ・冷蔵庫・洗濯機は粗大ごみで出せません。家電リサイクル法の4つの処分方法、リサイクル料金と収集運搬料金、自分で持ち込む手順、実家の片付けで出たときの頼み方を、経済産業省と家電リサイクル券センターの情報をもとに整理しました。",
+    "catTag": "不用品回収／家電リサイクル",
+    "h1": "家電4品目の処分方法と費用｜冷蔵庫・洗濯機・エアコン・テレビの正しい出し方",
+    "meta": [],
+    "keyPoints": [
+      "4品目は粗大ごみで出せない",
+      "費用はリサイクル料金＋収集運搬料金",
+      "買い替えは新しく買う店、処分だけは買った店",
+      "自分で持ち込めば収集運搬料金は0円",
+      "「無料回収」には渡さない"
+    ],
+    "related": [
+      "huyouhin",
+      "combo",
+      "ihin-price",
+      "trouble"
+    ],
+    "bodyBytes": 19776
+  },
+  {
+    "slug": "ihin-itsukara",
+    "type": "article",
+    "title": "遺品整理はいつから？相続の期限から逆算する始め方",
+    "description": "遺品整理に法律上の期限はありませんが、相続放棄は3か月、準確定申告は4か月、相続税の申告は10か月、相続登記は3年と、関わる手続きには期限があります。期限から逆算した進め方と、片付けの前に探しておく書類を整理しました。",
+    "catTag": "相続／遺品整理",
+    "h1": "遺品整理はいつから始める？相続放棄・準確定申告・相続税の期限から逆算する",
+    "meta": [],
+    "keyPoints": [
+      "遺品整理そのものに期限はない",
+      "相続放棄は3か月、準確定申告は4か月",
+      "相続税の申告は10か月、相続登記は3年",
+      "方針が決まるまでは「探して保管」",
+      "賃貸なら解約までの家賃が実際の期限"
+    ],
+    "related": [
+      "souzoku-houki",
+      "jikka-enkaku",
+      "ihin-price",
+      "jikka-kyoudai"
+    ],
+    "bodyBytes": 17235
   }
 ]
