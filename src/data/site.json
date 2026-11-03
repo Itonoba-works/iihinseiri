@@ -3,7 +3,7 @@
   "nameEn": "KURASHI SEIRI NAVI",
   "tagline": "遺品整理・不用品回収・ハウスクリーニングの料金と対応エリアを比較",
   "description": "遺品整理・生前整理・不用品回収・ハウスクリーニングの料金と対応エリアを比べて、依頼先を選びやすく整理しています。",
-  "assetVersion": "20261104c",
+  "assetVersion": "20261104d",
   "topListMax": 10,
   "footerArticleMax": 10,
   "estimateAffId": "emeao",
@@ -29,6 +29,21 @@
       "href": "/articles.html",
       "label": "記事一覧",
       "key": "articles"
+    },
+    {
+      "href": "/checklist.html",
+      "label": "ツール",
+      "key": "tools",
+      "children": [
+        {
+          "href": "/checklist.html",
+          "label": "実家じまいチェックリスト"
+        },
+        {
+          "href": "/kigen.html",
+          "label": "期限カレンダー（亡くなった後の手続き）"
+        }
+      ]
     }
   ],
   "drawer": [
@@ -47,6 +62,21 @@
     {
       "href": "/articles.html",
       "label": "記事一覧"
+    },
+    {
+      "href": "/checklist.html",
+      "label": "ツール",
+      "key": "tools",
+      "children": [
+        {
+          "href": "/checklist.html",
+          "label": "実家じまいチェックリスト"
+        },
+        {
+          "href": "/kigen.html",
+          "label": "期限カレンダー（亡くなった後の手続き）"
+        }
+      ]
     }
   ],
   "footer": [

@@ -2,6 +2,7 @@
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import AdArticleMid from '../../components/AdArticleMid.astro';
 import pages from '../../data/pages.json';
+import kigenTool from '../../content/parts/kigen-tool.html?raw';
 
 const bodies = import.meta.glob('../../content/articles/*.html', { query: '?raw', import: 'default', eager: true });
 
@@ -13,7 +14,9 @@ export function getStaticPaths() {
 
 const { page } = Astro.props;
 const key = Object.keys(bodies).find((k) => k.endsWith('/' + page.slug + '.html'));
-const rawBody = key ? bodies[key] : '';
+/* 本文中の <!--kigen-tool--> を期限カレンダー（src/content/parts/kigen-tool.html）に置き換える。
+   /kigen.html と同じ部品を使う */
+const rawBody = (key ? bodies[key] : '').replace('<!--kigen-tool-->', kigenTool);
 
 /* 中段の広告枠。本文の見出し（h2）の中間地点にマーカーを1つだけ置き、
    その位置に ArticleLayout が <slot name="mid-cta"> を描画する。

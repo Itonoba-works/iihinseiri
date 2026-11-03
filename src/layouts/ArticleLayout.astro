@@ -52,6 +52,12 @@ const faq = extractFaq(faqHtml || body);
 /* 本文末尾の関連記事（比較ページには出さない） */
 const endRelated = page.type === 'ranking' ? [] : relatedArticles(page, { category, max: 4 });
 const shortTitle = (t) => String(t || '').replace(/【[^】]*】/g, '').trim();
+/* 記事の末尾に出すツールの案内（pages.json の "tool": "checklist" または "kigen"） */
+const TOOLS = {
+  checklist: { href: '/checklist.html', title: '実家じまいチェックリスト（印刷用・27項目）', desc: '親が元気なうちに確認しておきたいことを、お金・家・モノ・人・段取り・契約とデジタルの6つに分けました。印刷して親と一緒に埋められます。' },
+  kigen: { href: '/kigen.html', title: '期限カレンダー', desc: '亡くなった日を入れるだけで、死亡届・国民健康保険・相続放棄・準確定申告・相続税・相続登記の期限の目安日と残り日数が並びます。' }
+};
+const tool = TOOLS[page.tool] || null;
 
 const crumbItems = [{ label: 'HOME', href: '/' }, ...breadcrumb];
 const jsonLd = [
@@ -121,6 +127,13 @@ if (faq.length) {
         {hasMid && <slot name="mid-cta" />}
         {hasMid && <div set:html={resolveAff(bodyB)} />}
         <slot />
+        {tool && (
+          <a href={tool.href} class="tool-box">
+            <span class="tool-box-label">ツール</span>
+            <span class="tool-box-title">{tool.title}</span>
+            <span class="tool-box-desc">{tool.desc}</span>
+          </a>
+        )}
         {endRelated.length > 0 && (
           <section class="end-related" aria-label="関連記事">
             <h2 class="end-related-h">あわせて読みたい記事</h2>

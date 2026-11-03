@@ -62,6 +62,19 @@ const isArticles = (n) => n.key === 'articles' || n.href === '/articles.html';
               {articleTree.map((a) => (<a href={a.href}>{a.label}</a>))}
             </div>
           </div>
+        ) : n.children ? (
+          <div class="nav-item has-sub">
+            <a
+              href={n.href}
+              class={n.key === active ? 'active' : undefined}
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls={'navSub-' + n.key}
+            >{n.label}<span class="caret" aria-hidden="true"></span></a>
+            <div class="nav-sub" id={'navSub-' + n.key}>
+              {n.children.map((c) => (<a href={c.href}>{c.label}</a>))}
+            </div>
+          </div>
         ) : (
           <a href={n.href} class={n.key === active ? 'active' : undefined}>{n.label}</a>
         )
@@ -99,6 +112,15 @@ const isArticles = (n) => n.key === 'articles' || n.href === '/articles.html';
           <div class="d-sub" id="drawerArticleTree">
             <a href={n.href} class="d-sub-all">記事一覧をすべて見る</a>
             {articleTree.map((a) => (<a href={a.href}>{a.label}</a>))}
+          </div>
+        </div>
+      ) : n.children ? (
+        <div class="d-group">
+          <button class="d-item d-toggle" type="button" aria-expanded="false" aria-controls={'drawerSub-' + n.key}>
+            {n.label}<span class="chev" aria-hidden="true">›</span>
+          </button>
+          <div class="d-sub" id={'drawerSub-' + n.key}>
+            {n.children.map((c) => (<a href={c.href}>{c.label}</a>))}
           </div>
         </div>
       ) : (

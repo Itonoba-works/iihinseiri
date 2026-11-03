@@ -23,6 +23,7 @@ export function getStaticPaths() {
     { name: 'contact', src: HERO },
     { name: 'privacy', src: HERO },
     { name: 'checklist', src: HERO },
+    { name: 'kigen', src: HERO },
     { name: 'rankings-ihin', src: 'articles/ihin-price.webp' },
     { name: 'rankings-cleaning', src: 'articles/cleaning.webp' },
     ...pages.filter((p) => p.type === 'article').map((p) => ({ name: 'articles-' + p.slug, src: 'articles/' + p.slug + '.webp' })),

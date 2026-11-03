@@ -1573,3 +1573,11 @@ body .article-body .kigen-h::before { display:none !important; }
 .kigen-table tr.is-near td { background:#FFF4E5; font-weight:700; }
 .kigen-table tr.is-over td { color:var(--muted); }
 body .article-body .kigen-note { font-size:12.5px; color:var(--muted); line-height:1.7; margin:8px 0 0; }
+
+/* 2026-11 記事末尾のツール案内（チェックリスト／期限カレンダー）。TOPの入口と同じ枠線のボックス */
+body .article-body a.tool-box { display:block; margin:48px 0 0; padding:16px 18px; border:2px solid var(--primary-deep); border-radius:6px; color:var(--text); text-decoration:none; font-weight:400; }
+body .article-body a.tool-box:hover { background:#F4F8FA; text-decoration:none; color:var(--text); }
+.tool-box-label { display:inline-block; font-size:12px; font-weight:700; color:#fff; background:var(--primary-deep); padding:1px 8px; border-radius:3px; }
+.tool-box-title { display:block; margin-top:6px; font-size:17px; font-weight:700; color:var(--primary-deep); }
+.tool-box-title::after { content:" ›"; }
+.tool-box-desc { display:block; margin-top:4px; font-size:14px; line-height:1.7; color:var(--text-sub); }

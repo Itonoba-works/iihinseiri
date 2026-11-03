@@ -187,7 +187,8 @@
       "jikka-enkaku",
       "souzoku-houki",
       "ihin-price"
-    ]
+    ],
+    "tool": "checklist"
   },
   {
     "slug": "huyouhin",
@@ -255,7 +256,8 @@
       "jikka-kyoudai",
       "souzoku-houki",
       "ihin-price"
-    ]
+    ],
+    "tool": "checklist"
   },
   {
     "slug": "souzoku-houki",
@@ -278,7 +280,8 @@
       "jikka-enkaku",
       "jikka-kyoudai",
       "ihin-price"
-    ]
+    ],
+    "tool": "kigen"
   },
   {
     "slug": "jikka-kyoudai",
@@ -301,7 +304,8 @@
       "jikka-enkaku",
       "souzoku-houki",
       "seizen"
-    ]
+    ],
+    "tool": "checklist"
   },
   {
     "slug": "rcleaning",
@@ -424,7 +428,8 @@
       "souzoku-houki",
       "jikka-enkaku"
     ],
-    "bodyBytes": 23241
+    "bodyBytes": 23241,
+    "tool": "checklist"
   },
   {
     "slug": "keiyaku-kaiyaku",
@@ -447,7 +452,8 @@
       "souzoku-houki",
       "jikka-enkaku"
     ],
-    "bodyBytes": 17590
+    "bodyBytes": 17590,
+    "tool": "kigen"
   },
   {
     "slug": "hitorikko",
@@ -470,6 +476,7 @@
       "souzoku-houki",
       "keiyaku-kaiyaku"
     ],
-    "bodyBytes": 16704
+    "bodyBytes": 16704,
+    "tool": "kigen"
   }
 ]
