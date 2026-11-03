@@ -1544,3 +1544,7 @@ body .article-body .column-box p { margin:0; font-size:17.5px; line-height:1.8; 
 .pick-band .pick-body h3{background:#E35F00 !important}
 .pick-band .pick-card .btn-cta,.pick-band .pick-card a.btn-cta:link,.pick-band .pick-card a.btn-cta:visited{background:#FFD000 !important;color:#2B2100 !important;box-shadow:0 4px 0 #D9A400 !important}
 .pick-band .pick-card .btn-cta::after{color:#2B2100}
+
+/* 2026-11 見出し直後の結論（Bing・Copilotが引用しやすいよう、各見出しの答えを先に1〜2文で置く） */
+body .article-body .sec-answer { font-size:17px; font-weight:700; line-height:1.8; color:var(--text); margin:0 0 20px; }
+@media (max-width:768px) { body .article-body .sec-answer { font-size:16px; } }

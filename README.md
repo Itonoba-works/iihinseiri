@@ -330,6 +330,16 @@ src/data/companies.json
 
 サイトマップと記事一覧（`/articles.html`）には自動で追加されます。
 
+## OGP画像（SNS・Bing・Copilotの引用カードの画像）
+
+`src/pages/og/[name].jpg.js` が、ビルド時に各ページの 1200×630 のJPGを `/og/` に作ります。
+元画像は既存の画像です（記事＝`public/images/articles/{slug}.webp`、レビュー＝`public/images/companies/{id}.webp`、比較ページ＝`ihin-price.webp`／`cleaning.webp`、その他＝`hero.webp`）。
+**元画像を差し替えれば、次のビルドでOGP画像も自動で変わります。** OGP用の画像を別に作る必要はありません。
+
+## 記事の書き方（Bing・Copilot向け）
+
+各 `<h2>` の直後に、その見出しの答えを1〜2文で `<p class="sec-answer">…</p>` として置きます。本文に書いてある内容だけで、言い切りで書きます（新しい事実や数字を足さない）。「よくある質問」「まとめ」「業者の紹介」の見出しには付けません。
+
 ## CSS・JSを変えたとき
 
 `src/data/site.json` の `assetVersion` を新しい値（例：`20260926a`）に変えると、ブラウザに古いファイルが残らなくなります。

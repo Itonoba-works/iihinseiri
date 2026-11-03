@@ -15,6 +15,9 @@ const {
 const v = '?v=' + site.assetVersion;
 const fullTitle = title.indexOf(site.name) === -1 ? title + ' - ' + site.name : title;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+/* OGP画像：/articles/combo.html → /og/articles-combo.jpg（src/pages/og/[name].jpg.js がビルド時に作る） */
+const ogName = Astro.url.pathname.replace(/^\/|\.html$/g, '').replace(/\//g, '-') || 'home';
+const ogImage = new URL('/og/' + ogName + '.jpg', Astro.site).href;
 
 /* Cloudflare Web Analytics のトークン。
    Cloudflare の「Web Analytics」→ サイト → 「Manage site」の JS スニペットにある token と同じ値にする */
@@ -41,6 +44,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content={ogType} />
 <meta property="og:url" content={canonical} />
 <meta property="og:site_name" content={site.name} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content={ogImage} />
 
 <link rel="icon" type="image/png" href={'/favicon.png' + v} />
 <link rel="apple-touch-icon" href={'/favicon.png' + v} />
