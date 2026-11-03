@@ -6,11 +6,13 @@ import KeyPoints from './KeyPoints.astro';
 import AffLink from './AffLink.astro';
 import SidebarAd from './SidebarAd.astro';
 import { affFirst } from '../lib/aff.js';
+import { relatedArticles } from '../lib/related.js';
 
-const { keyPoints = [], category = 'ihin', currentSlug = '', showSideAd = false } = Astro.props;
+const { keyPoints = [], category = 'ihin', currentSlug = '', showSideAd = false, page = null } = Astro.props;
 const ranked = affFirst(companies.filter((c) => (c.categories || [c.category]).includes(category))).slice(0, 11);
 const catLabel = category === 'cleaning' ? 'ハウスクリーニング' : '遺品整理・不用品回収';
-const related = pages.filter((p) => p.type === 'article' && p.slug !== currentSlug).slice(0, 4);
+/* 関連記事：内容が近い記事を選ぶ（src/lib/related.js）。以前は全ページ同じ4本だった */
+const related = relatedArticles(page || pages.find((p) => p.slug === currentSlug) || { slug: currentSlug }, { category, max: 4 });
 ---
 <aside class="side">
   <div class="side-sticky">

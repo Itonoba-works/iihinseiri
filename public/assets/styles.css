@@ -1548,3 +1548,14 @@ body .article-body .column-box p { margin:0; font-size:17.5px; line-height:1.8; 
 /* 2026-11 見出し直後の結論（Bing・Copilotが引用しやすいよう、各見出しの答えを先に1〜2文で置く） */
 body .article-body .sec-answer { font-size:17px; font-weight:700; line-height:1.8; color:var(--text); margin:0 0 20px; }
 @media (max-width:768px) { body .article-body .sec-answer { font-size:16px; } }
+
+/* 2026-11 本文末尾の関連記事 */
+body .article-body .end-related { margin:56px 0 0; }
+body .article-body .end-related-h { margin:0 0 16px; }
+.end-related-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 16px; }
+.end-related-card { display:grid; grid-template-columns:140px minmax(0,1fr); gap:12px; align-items:center; color:var(--text) !important; text-decoration:none !important; font-weight:400 !important; }
+.end-related-card .thumb { display:block; aspect-ratio:8/5; position:relative; overflow:hidden; border-radius:3px; background:#E9EEF1; }
+.end-related-card .thumb img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.end-related-card .ttl { font-size:14.5px; font-weight:700; line-height:1.6; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.end-related-card:hover .ttl { color:var(--link); text-decoration:underline; }
+@media (max-width:768px) { .end-related-grid { grid-template-columns:1fr; } .end-related-card { grid-template-columns:112px minmax(0,1fr); } .end-related-card .ttl { font-size:14px; } }

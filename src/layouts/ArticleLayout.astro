@@ -3,6 +3,7 @@ import Base from './Base.astro';
 import Sidebar from '../components/Sidebar.astro';
 import StickyCta from '../components/StickyCta.astro';
 import { resolveAff } from '../lib/aff.js';
+import { relatedArticles } from '../lib/related.js';
 import companies from '../data/companies.json';
 import site from '../data/site.json';
 
@@ -15,7 +16,8 @@ const {
   breadcrumb = [],
   cta = {},
   faqHtml = '',
-  sideAd = false
+  sideAd = false,
+  noindex = false
 } = Astro.props;
 
 /* 本文中の <!--mid-cta--> を境に前後へ分割する。
@@ -46,6 +48,10 @@ function extractFaq(html) {
 }
 
 const faq = extractFaq(faqHtml || body);
+
+/* 本文末尾の関連記事（比較ページには出さない） */
+const endRelated = page.type === 'ranking' ? [] : relatedArticles(page, { category, max: 4 });
+const shortTitle = (t) => String(t || '').replace(/【[^】]*】/g, '').trim();
 
 const crumbItems = [{ label: 'HOME', href: '/' }, ...breadcrumb];
 const jsonLd = [
@@ -87,7 +93,7 @@ if (faq.length) {
   });
 }
 ---
-<Base title={page.title} description={page.description} active={active} pageCss={pageCss} jsonLd={jsonLd}>
+<Base title={page.title} description={page.description} active={active} pageCss={pageCss} jsonLd={jsonLd} noindex={noindex}>
   <div class="breadcrumb" slot="breadcrumb">
     <a href="/">HOME</a>
     {breadcrumb.map((b) => (
@@ -115,10 +121,23 @@ if (faq.length) {
         {hasMid && <slot name="mid-cta" />}
         {hasMid && <div set:html={resolveAff(bodyB)} />}
         <slot />
+        {endRelated.length > 0 && (
+          <section class="end-related" aria-label="関連記事">
+            <h2 class="end-related-h">あわせて読みたい記事</h2>
+            <div class="end-related-grid">
+              {endRelated.map((a) => (
+                <a href={'/articles/' + a.slug + '.html'} class="end-related-card">
+                  <span class="thumb"><img src={'/images/articles/' + a.slug + '.webp'} alt="" width="800" height="500" loading="lazy" decoding="async" onerror="this.style.display='none'" /></span>
+                  <span class="ttl">{shortTitle(a.h1)}</span>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
 
-    <Sidebar keyPoints={page.keyPoints} category={category} currentSlug={page.slug} showSideAd={sideAd} />
+    <Sidebar keyPoints={page.keyPoints} category={category} currentSlug={page.slug} showSideAd={sideAd} page={page} />
 
     <slot name="closing-cta" />
   </div>

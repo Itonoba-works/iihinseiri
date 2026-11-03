@@ -58,6 +58,7 @@ const body = withMidMarker(rawBody);
   body={body}
   active={company.category}
   category={company.category}
+  noindex={!company.hasReview}
   pageCss="page-review.css"
   breadcrumb={[
     { label: page.catTag, href: '/rankings/' + company.category + '.html' },

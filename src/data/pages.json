@@ -135,7 +135,13 @@
       "クーリング・オフは契約書受領から8日",
       "相談窓口は「188」"
     ],
-    "bodyBytes": 11279
+    "bodyBytes": 11279,
+    "related": [
+      "ihin-price",
+      "jikka-enkaku",
+      "gomiyashiki",
+      "huyouhin"
+    ]
   },
   {
     "slug": "ihin-price",
@@ -152,7 +158,13 @@
       "買取活用で実質半額も可能",
       "繁忙期（3〜5月、9〜11月）は避ける"
     ],
-    "bodyBytes": 10666
+    "bodyBytes": 10666,
+    "related": [
+      "trouble",
+      "gomiyashiki",
+      "jikka-enkaku",
+      "souzoku-houki"
+    ]
   },
   {
     "slug": "seizen",
@@ -169,7 +181,13 @@
       "デジタル資産の整理が最重要",
       "エンディングノートは市販が便利"
     ],
-    "bodyBytes": 12815
+    "bodyBytes": 12815,
+    "related": [
+      "jikka-kyoudai",
+      "jikka-enkaku",
+      "souzoku-houki",
+      "ihin-price"
+    ]
   },
   {
     "slug": "huyouhin",
@@ -186,7 +204,13 @@
       "「無料回収」の巡回業者は違法の可能性",
       "相見積もりで数千〜数万円節約"
     ],
-    "bodyBytes": 12897
+    "bodyBytes": 12897,
+    "related": [
+      "combo",
+      "gomiyashiki",
+      "trouble",
+      "taikyo-cleaning"
+    ]
   },
   {
     "slug": "gomiyashiki",
@@ -203,7 +227,13 @@
       "写真送付だけで概算がわかる業者も",
       "プライバシー配慮の業者を選ぶ"
     ],
-    "bodyBytes": 10716
+    "bodyBytes": 10716,
+    "related": [
+      "ihin-price",
+      "huyouhin",
+      "trouble",
+      "combo"
+    ]
   },
   {
     "slug": "jikka-enkaku",
@@ -220,7 +250,13 @@
       "見積もりは複数社を比較する",
       "立ち会わない部分は書面で取り決める"
     ],
-    "bodyBytes": 0
+    "bodyBytes": 0,
+    "related": [
+      "jikka-kyoudai",
+      "souzoku-houki",
+      "ihin-price",
+      "trouble"
+    ]
   },
   {
     "slug": "souzoku-houki",
@@ -237,7 +273,13 @@
       "買取・売却は方針が決まってから",
       "判断に迷ったら片付け前に専門家へ"
     ],
-    "bodyBytes": 0
+    "bodyBytes": 0,
+    "related": [
+      "jikka-enkaku",
+      "jikka-kyoudai",
+      "ihin-price",
+      "seizen"
+    ]
   },
   {
     "slug": "jikka-kyoudai",
@@ -254,7 +296,13 @@
       "相続登記は取得を知ってから3年以内",
       "まとまらなければ遺産分割調停も"
     ],
-    "bodyBytes": 0
+    "bodyBytes": 0,
+    "related": [
+      "jikka-enkaku",
+      "souzoku-houki",
+      "seizen",
+      "ihin-price"
+    ]
   },
   {
     "slug": "rcleaning",
@@ -282,7 +330,13 @@
       "金額の明示と契約時の説明が分かれ目",
       "納得できなければ明細の提示を求める"
     ],
-    "bodyBytes": 21553
+    "bodyBytes": 21553,
+    "related": [
+      "combo",
+      "huyouhin",
+      "gomiyashiki",
+      "trouble"
+    ]
   },
   {
     "slug": "combo",
@@ -299,7 +353,13 @@
       "家電4品目はリサイクル料金が別途",
       "見積もりは総額1枚で確認する"
     ],
-    "bodyBytes": 17902
+    "bodyBytes": 17902,
+    "related": [
+      "taikyo-cleaning",
+      "huyouhin",
+      "gomiyashiki",
+      "ihin-price"
+    ]
   },
   {
     "slug": "osoujimaster",
