@@ -7,45 +7,89 @@
             <thead><tr><th>手続き</th><th>期限の目安日</th><th>あと何日</th></tr></thead>
             <tbody id="kigenBody"></tbody>
           </table>
-          <p class="kigen-note">※日付は目安です。期限の数え方（初日を含めるか、土日祝日の扱いなど）は手続きごとに異なります。正確な期限は届出先・申告先で確認してください。年金の受給停止は「すみやかに」が期限です。</p>
+          <ul class="kigen-note">
+            <li>期限の最終日が土日・祝日・年末年始（12月29日〜1月3日）にあたる場合は、翌日（休み明け）に繰り下げて表示しています。</li>
+            <li>祝日は内閣府の公表分（<span id="kigenHolEnd"></span>）で判定しています。それ以外の年は、土日と年末年始だけで判定しています。</li>
+            <li>日付は目安です。正確な期限は、届出先・申告先で確認してください。</li>
+          </ul>
         </div>
       </section>
       <script>
       (function () {
+        /* 期限カレンダー（/kigen.html と記事「親が亡くなった後の手続き」で共通）
+           数え方の根拠（2026年11月確認）
+           - 死亡届：知った日を含めて7日以内（戸籍法43条・市区町村の案内）。最終日が休日なら翌日
+           - 世帯主の変更：翌日から数えて14日以内（住民基本台帳法・市区町村の案内）。最終日が休日なら翌日
+           - 国民健康保険：資格喪失日は亡くなった日の翌日。届出は亡くなった日から14日以内。休日の扱いは市区町村に確認
+           - 相続放棄：知った時から3か月（民法915条・140条・143条）。休日の扱い（民法142条）は家庭裁判所に確認
+           - 準確定申告：知った日の翌日から4か月を経過した日の前日（国税庁）。休日は翌日（国税通則法10条2項）
+           - 相続税：知った日の翌日から10か月目の日（国税庁）。休日は翌日（国税通則法10条2項）
+           - 相続登記：不動産を相続で取得したことを知った日から3年（法務省）。2024年4月1日より前の相続は2027年3月31日まで
+           祝日：内閣府「国民の祝日について」（毎年2月ごろに翌年分が公表される。公表されたら HOLIDAYS に追加する） */
+        var HOLIDAYS = [
+          '2026-01-01','2026-01-12','2026-02-11','2026-02-23','2026-03-20','2026-04-29','2026-05-03','2026-05-04','2026-05-05','2026-05-06',
+          '2026-07-20','2026-08-11','2026-09-21','2026-09-22','2026-09-23','2026-10-12','2026-11-03','2026-11-23',
+          '2027-01-01','2027-01-11','2027-02-11','2027-02-23','2027-03-21','2027-03-22','2027-04-29','2027-05-03','2027-05-04','2027-05-05',
+          '2027-07-19','2027-08-11','2027-09-20','2027-09-23','2027-10-11','2027-11-03','2027-11-23'
+        ];
+        var HOL_END = '2027-12-31';
         var input = document.getElementById('kigenDate');
         if (!input) return;
         var out = document.getElementById('kigenOut'), body = document.getElementById('kigenBody');
         var W = ['日','月','火','水','木','金','土'];
+        var holEnd = document.getElementById('kigenHolEnd');
+        if (holEnd) holEnd.textContent = HOLIDAYS[0].slice(0, 4) + '年〜' + HOL_END.slice(0, 4) + '年';
+        var hol = {}; HOLIDAYS.forEach(function (h) { hol[h] = 1; });
+        function iso(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
         function addDays(d, n) { var x = new Date(d); x.setDate(x.getDate() + n); return x; }
         function addMonths(d, n) {
           var x = new Date(d.getFullYear(), d.getMonth() + n, 1);
           var last = new Date(x.getFullYear(), x.getMonth() + 1, 0).getDate();
           x.setDate(Math.min(d.getDate(), last)); return x;
         }
+        function isOff(d) {
+          var w = d.getDay(), m = d.getMonth() + 1, day = d.getDate();
+          if (w === 0 || w === 6) return true;
+          if ((m === 12 && day >= 29) || (m === 1 && day <= 3)) return true;
+          return !!hol[iso(d)];
+        }
+        /* 最終日が休日なら、休日でない日まで繰り下げる */
+        function shift(d) { var x = new Date(d), moved = false; while (isOff(x)) { x = addDays(x, 1); moved = true; } return { d: x, moved: moved }; }
         function fmt(d) { return d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日（' + W[d.getDay()] + '）'; }
+
         var rows = [
-          ['死亡届', function (d) { return addDays(d, 6); }],
-          ['国民健康保険の脱退', function (d) { return addDays(d, 14); }],
-          ['世帯主の変更（残る人が2人以上）', function (d) { return addDays(d, 14); }],
-          ['相続放棄・限定承認', function (d) { return addMonths(d, 3); }],
-          ['準確定申告（必要な場合）', function (d) { return addMonths(d, 4); }],
-          ['相続税の申告・納付（必要な場合）', function (d) { return addMonths(d, 10); }],
-          ['相続登記（不動産がある場合）', function (d) { return addMonths(d, 36); }]
+          { name: '死亡届', calc: function (d) { return addDays(d, 6); }, shift: true, note: '知った日を含めて7日以内' },
+          { name: '年金の受給停止', none: 'すみやかに', note: 'マイナンバーが日本年金機構に収録されていれば、原則として届出を省略できる' },
+          { name: '国民健康保険の脱退', calc: function (d) { return addDays(d, 14); }, shift: true, note: '資格を失う日は亡くなった日の翌日。届出は亡くなった日から14日以内。休日の扱いは市区町村に確認' },
+          { name: '世帯主の変更（残る人が2人以上）', calc: function (d) { return addDays(d, 14); }, shift: true, note: '翌日から数えて14日以内' },
+          { name: '相続放棄・限定承認', calc: function (d) { return addMonths(d, 3); }, shift: true, note: '知った時から3か月。休日の扱いは家庭裁判所に確認' },
+          { name: '準確定申告（必要な場合）', calc: function (d) { return addMonths(d, 4); }, shift: true, note: '知った日の翌日から4か月以内' },
+          { name: '相続税の申告・納付（必要な場合）', calc: function (d) { return addMonths(d, 10); }, shift: true, note: '知った日の翌日から10か月以内' },
+          { name: '相続登記（不動産がある場合）', calc: function (d) {
+              return d < new Date(2024, 3, 1) ? new Date(2027, 2, 31) : addMonths(d, 36);
+            }, shift: false, note: '不動産を相続で取得したことを知った日から3年。2024年4月1日より前の相続は2027年3月31日まで' }
         ];
+
         function render() {
           var v = input.value;
           if (!v) { out.hidden = true; return; }
           var p = v.split('-'), d = new Date(+p[0], +p[1] - 1, +p[2]);
           var t = new Date(); t.setHours(0, 0, 0, 0);
           body.innerHTML = rows.map(function (r) {
-            var due = r[1](d), left = Math.round((due - t) / 86400000);
+            var note = '<span class="kigen-rownote">' + r.note + '</span>';
+            if (r.none) return '<tr><th>' + r.name + note + '</th><td>' + r.none + '</td><td>—</td></tr>';
+            var base = r.calc(d), res = r.shift ? shift(base) : { d: base, moved: false };
+            var left = Math.round((res.d - t) / 86400000);
             var cls = left < 0 ? 'is-over' : left <= 14 ? 'is-near' : '';
-            return '<tr class="' + cls + '"><th>' + r[0] + '</th><td>' + fmt(due) + '</td><td>' + (left < 0 ? '過ぎています' : left === 0 ? '今日' : 'あと' + left + '日') + '</td></tr>';
+            var moved = res.moved ? '<span class="kigen-moved">本来の最終日 ' + fmt(base) + ' が休日のため翌日以降に</span>' : '';
+            return '<tr class="' + cls + '"><th>' + r.name + note + '</th><td>' + fmt(res.d) + moved + '</td><td>' +
+              (left < 0 ? '過ぎています' : left === 0 ? '今日' : 'あと' + left + '日') + '</td></tr>';
           }).join('');
           out.hidden = false;
           try { localStorage.setItem('iihinseiri_kigen', v); } catch (e) {}
         }
-        var td = new Date(); input.max = td.getFullYear() + '-' + ('0' + (td.getMonth() + 1)).slice(-2) + '-' + ('0' + td.getDate()).slice(-2);
+        var td = new Date();
+        input.max = iso(td);
         try { var s = localStorage.getItem('iihinseiri_kigen'); if (s) input.value = s; } catch (e) {}
         input.addEventListener('change', render);
         render();
