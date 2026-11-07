@@ -401,3 +401,23 @@ body:has(.wp-layout) { background:#fff; }
 .wp-area-go:disabled { background:#C9D2D8; color:#fff; cursor:not-allowed; }
 .wp-area-help.is-result { font-size:15px; font-weight:700; color:var(--text); }
 @media (max-width:768px) { .wp-area-go { flex:1 1 100%; } }
+
+/* 検索結果：アイキャッチ付き（WPの検索結果ページ型） / カテゴリ：文字表示 */
+.wp-results a { display:flex; gap:16px; align-items:flex-start; padding:16px 4px; }
+.wp-results .th { flex:0 0 180px; aspect-ratio:8/5; position:relative; background:#E9EEF1; border-radius:4px; overflow:hidden; }
+.wp-results .th img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.wp-results .bd { flex:1; min-width:0; }
+.wp-results .k { display:inline-block; font-size:12px; font-weight:700; color:var(--primary-deep); background:#fff; border:1px solid var(--primary-deep); padding:1px 8px; border-radius:2px; margin:0 0 6px; vertical-align:0; }
+.wp-results .t { display:block; font-size:17px; line-height:1.6; }
+.wp-cat { display:flex; flex-direction:column; justify-content:center; position:relative; padding:14px 34px 14px 14px; min-height:74px; }
+.wp-cat::after { content:"›"; position:absolute; right:14px; top:50%; transform:translateY(-50%); font-size:22px; color:var(--muted); }
+.wp-cat .label { padding:0; font-size:16px; }
+.wp-cat .desc { padding:4px 0 0; font-size:12.5px; }
+@media (max-width:768px) {
+  .wp-results a { gap:12px; padding:14px 2px; }
+  .wp-results .th { flex-basis:104px; }
+  .wp-results .t { font-size:15px; }
+  .wp-results .d { -webkit-line-clamp:2; font-size:12.5px; }
+  .wp-cat { min-height:56px; padding:12px 30px 12px 12px; }
+  .wp-cat .label { padding:0; font-size:15px; }
+}
