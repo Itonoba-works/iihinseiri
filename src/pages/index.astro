@@ -119,6 +119,7 @@ const jsonLd = [
               </optgroup>
             ))}
           </select>
+          <button type="submit" class="wp-area-go" id="prefGo" disabled>この地域で探す</button>
           <button type="button" class="hm-reset" id="prefReset" hidden>地域の選択を解除</button>
         </form>
         <p class="wp-area-help" id="gyoushaSub">実家など、お住まいと別の場所でも選べます。</p>
@@ -187,9 +188,10 @@ const jsonLd = [
   if (!sel || !wrap) return;
   var first = true;
 
+  var go = document.getElementById('prefGo');
+  var counts = {};
   function render(pref) {
     title.textContent = pref ? pref + 'に対応している業者' : '地域から探す';
-    sub.textContent = pref ? 'この地域に対応している業者を表示しています。' : '実家など、お住まいと別の場所でも選べます。';
     reset.hidden = !pref;
     wrap.hidden = !pref;
     wrap.classList.remove('is-swap');
@@ -205,7 +207,14 @@ const jsonLd = [
       block.querySelector('.hm-cmp-empty').hidden = n > 0;
       var tab = wrap.querySelector('.wp-tab[data-tab="' + block.getAttribute('data-block') + '"] .cnt');
       if (tab) tab.textContent = '（' + n + '社）';
+      counts[block.getAttribute('data-block')] = n;
     });
+    var labels = { ihin: '遺品整理・不用品回収', cleaning: 'ハウスクリーニング' };
+    sub.textContent = pref
+      ? pref + 'で、' + Object.keys(counts).map(function (k) { return (labels[k] || k) + ' ' + counts[k] + '社'; }).join('、') + 'が見つかりました。'
+      : '実家など、お住まいと別の場所でも選べます。';
+    sub.classList.toggle('is-result', !!pref);
+    go.disabled = true;
     if (!first) { void wrap.offsetWidth; wrap.classList.add('is-swap'); }
     first = false;
   }
@@ -229,8 +238,26 @@ const jsonLd = [
     });
   });
 
-  form.addEventListener('submit', function (e) { e.preventDefault(); save(sel.value); render(sel.value); });
-  sel.addEventListener('change', function () { save(sel.value); render(sel.value); });
+  /* 都道府県を選んでから「この地域で探す」を押して結果を出す（選んだだけでは切り替えない） */
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!sel.value) return;
+    save(sel.value);
+    render(sel.value);
+    var top = document.getElementById('gyousha').getBoundingClientRect().top + window.pageYOffset - 70;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+    if (window.dataLayer) window.dataLayer.push({ event: 'area_search', area: sel.value });
+  });
+  sel.addEventListener('change', function () {
+    go.disabled = !sel.value;
+    if (!wrap.hidden) {
+      /* 前の結果を残すと、どの都道府県の結果か分からなくなるため、いったん隠す */
+      wrap.hidden = true;
+      title.textContent = '地域から探す';
+      sub.textContent = '「この地域で探す」を押すと、対応している業者が表示されます。';
+      sub.classList.remove('is-result');
+    }
+  });
   reset.addEventListener('click', function () { sel.value = ''; save(''); render(''); });
 })();
 </script>

@@ -395,3 +395,9 @@ body:has(.wp-layout) { background:#fff; }
 .wp-tool .ttl::after { content:" ›"; }
 .wp-tool .desc { display:block; margin-top:4px; font-size:14px; color:var(--text-sub); }
 .wp-tool:hover { background:#F4F8FA; text-decoration:none; color:var(--text); }
+/* 地域から探す：都道府県を選んで「この地域で探す」を押す */
+.wp-area-go { height:46px; padding:0 22px; font:inherit; font-size:15px; font-weight:700; color:#fff; background:var(--primary-deep); border:0; border-radius:4px; cursor:pointer; }
+.wp-area-go:hover:not(:disabled) { background:#0E3D50; }
+.wp-area-go:disabled { background:#C9D2D8; color:#fff; cursor:not-allowed; }
+.wp-area-help.is-result { font-size:15px; font-weight:700; color:var(--text); }
+@media (max-width:768px) { .wp-area-go { flex:1 1 100%; } }
