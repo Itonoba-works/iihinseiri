@@ -434,3 +434,12 @@ body:has(.wp-layout) { background:#fff; }
   .wp-cat::after { right:10px; }
   .wp-cat .label { font-size:min(14px,3.6vw); white-space:nowrap; letter-spacing:-.02em; }
 }
+/* チェックリスト導線：カテゴリと同じボタン形（枠線だけの箱にしない） */
+.wp-tool { position:relative; padding:16px 40px 16px 18px; border:1px solid #D5DDE3; box-shadow:0 2px 4px rgba(16,42,67,.10); background:#fff; transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.wp-tool .ttl { color:var(--text); }
+.wp-tool .ttl::after { content:none; }
+.wp-tool::after { content:"›"; position:absolute; right:16px; top:50%; transform:translateY(-50%); font-size:22px; color:var(--muted); transition:transform .18s ease, color .18s ease; }
+.wp-tool:hover { background:#fff; transform:translateY(-2px); box-shadow:0 6px 14px rgba(16,42,67,.16); border-color:var(--primary); }
+.wp-tool:hover .ttl { color:var(--primary); }
+.wp-tool:hover::after { transform:translate(3px,-50%); color:var(--primary); }
+@media (prefers-reduced-motion:reduce) { .wp-tool, .wp-tool::after { transition:none; } }
