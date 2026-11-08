@@ -449,3 +449,11 @@ body:has(.wp-layout) { background:#fff; }
 .wp-h2 { display:inline-block; background:#E35F00; color:#fff; font-size:16px; line-height:1.4; padding:6px 16px; border-radius:999px; margin:0 0 16px; }
 .wp-wh { display:inline-block; background:#E35F00; color:#fff; font-size:14px; padding:4px 14px; border-radius:999px; margin:0 0 10px; }
 @media (max-width:768px) { .wp-h2 { font-size:15px; } }
+/* 見出し：SWELL吹き出し型（オレンジ・下に三角。CTAボタンと形を分ける） */
+.wp-h2, .wp-wh { border-radius:3px; position:relative; }
+.wp-h2 { margin-bottom:22px; }
+.wp-wh { margin-bottom:16px; }
+.wp-h2::after, .wp-wh::after { content:""; position:absolute; left:18px; bottom:-7px; border:7px solid transparent; border-top-color:#E35F00; border-bottom:0; }
+/* 見出し：オレンジの吹き出し（SWELL吹き出し型。CTAの丸ボタンと区別するため角は3px） */
+.wp-h2, .wp-wh { border-radius:3px; position:relative; margin-bottom:22px; }
+.wp-h2::after, .wp-wh::after { content:""; position:absolute; left:18px; bottom:-7px; border:7px solid transparent; border-top-color:#E35F00; border-bottom:0; }
