@@ -443,3 +443,5 @@ body:has(.wp-layout) { background:#fff; }
 .wp-tool:hover .ttl { color:var(--primary); }
 .wp-tool:hover::after { transform:translate(3px,-50%); color:var(--primary); }
 @media (prefers-reduced-motion:reduce) { .wp-tool, .wp-tool::after { transition:none; } }
+/* 見出し：Cocoon型の紺の帯＋白文字 */
+.wp-h2 { background:var(--primary-deep); color:#fff; border-left:0; border-radius:3px; padding:10px 16px; }
