@@ -445,3 +445,7 @@ body:has(.wp-layout) { background:#fff; }
 @media (prefers-reduced-motion:reduce) { .wp-tool, .wp-tool::after { transition:none; } }
 /* 見出し：Cocoon型の紺の帯＋白文字 */
 .wp-h2 { background:var(--primary-deep); color:#fff; border-left:0; border-radius:3px; padding:10px 16px; }
+/* 見出し：SWELLタグ風ラベル（文字幅だけ・オレンジ） */
+.wp-h2 { display:inline-block; background:#E35F00; color:#fff; font-size:16px; line-height:1.4; padding:6px 16px; border-radius:999px; margin:0 0 16px; }
+.wp-wh { display:inline-block; background:#E35F00; color:#fff; font-size:14px; padding:4px 14px; border-radius:999px; margin:0 0 10px; }
+@media (max-width:768px) { .wp-h2 { font-size:15px; } }
