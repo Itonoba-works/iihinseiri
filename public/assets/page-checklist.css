@@ -64,3 +64,8 @@ body:has(main.ck) { background:#fff; }
 .kigen-links ul { margin:0; padding-left:20px; }
 .kigen-links li { margin:8px 0; line-height:1.7; }
 .kigen-links a { font-weight:700; }
+/* 見出し：オレンジの吹き出し（TOP・記事と統一） */
+.ck-group h2, .kigen-links h2 { display:table; background:#E35F00; position:relative; margin-bottom:16px; }
+.ck-group h2::after, .kigen-links h2::after { content:""; position:absolute; left:18px; bottom:-7px; border:7px solid transparent; border-top-color:#E35F00; border-bottom:0; }
+.ck-group h2 small { color:#FFE6D4; }
+@media print { .ck-group h2, .kigen-links h2 { background:none; color:#000; } .ck-group h2::after, .kigen-links h2::after { display:none; } }
