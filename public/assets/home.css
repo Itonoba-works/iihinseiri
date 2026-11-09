@@ -457,3 +457,35 @@ body:has(.wp-layout) { background:#fff; }
 /* 見出し：オレンジの吹き出し（SWELL吹き出し型。CTAの丸ボタンと区別するため角は3px） */
 .wp-h2, .wp-wh { border-radius:3px; position:relative; margin-bottom:22px; }
 .wp-h2::after, .wp-wh::after { content:""; position:absolute; left:18px; bottom:-7px; border:7px solid transparent; border-top-color:#E35F00; border-bottom:0; }
+/* 2026-11-10 余白を広げる（詰まりすぎの解消） */
+.wp-sec { margin-bottom:60px; }
+.wp-h2 { margin-bottom:26px; }
+.wp-wh { margin-bottom:16px; }
+.wp-widget { margin-bottom:40px; }
+.wp-cat { padding:20px 40px 20px 20px; min-height:92px; }
+.wp-cat .desc { padding-top:6px; line-height:1.6; }
+.wp-tool { padding:22px 44px 22px 22px; }
+.wp-tool .desc { line-height:1.8; margin-top:6px; }
+@media (max-width:768px) {
+  .wp-sec { margin-bottom:48px; }
+  .wp-cat { padding:16px 28px 16px 14px; min-height:64px; }
+}
+
+/* カード（カテゴリ・チェックリスト）：影を強く、登場とホバーの動きを大きく */
+.wp-cat, .wp-tool { box-shadow:0 4px 12px rgba(16,42,67,.14); transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease !important; transition-delay:0s !important; }
+.wp-cat:hover, .wp-tool:hover { transform:translateY(-6px); box-shadow:0 14px 28px rgba(16,42,67,.22); }
+.wp-cat:active, .wp-tool:active { transform:translateY(-1px); box-shadow:0 3px 8px rgba(16,42,67,.16); }
+.wp-cat:hover::after { transform:translate(8px,-50%); }
+.wp-tool:hover::after { transform:translate(8px,-50%); }
+.wp-cat::after, .wp-tool::after { transition:transform .25s ease, color .25s ease; }
+/* 登場：下から浮き上がって順番に出る（ホバーのtransitionと干渉しないようanimationで） */
+.js-reveal .wp-cat[data-reveal], .js-reveal .wp-tool[data-reveal] { opacity:0; transform:none; }
+.js-reveal .wp-cat[data-reveal].is-in, .js-reveal .wp-tool[data-reveal].is-in { opacity:1; animation:wpCardIn .7s cubic-bezier(.2,.8,.2,1) backwards; }
+.js-reveal .wp-cat.is-in:nth-child(2) { animation-delay:.12s; }
+.js-reveal .wp-cat.is-in:nth-child(3) { animation-delay:.24s; }
+.js-reveal .wp-cat.is-in:nth-child(4) { animation-delay:.36s; }
+@keyframes wpCardIn { 0% { opacity:0; transform:translateY(40px) scale(.95); } 70% { opacity:1; transform:translateY(-4px) scale(1.01); } 100% { opacity:1; transform:none; } }
+@media (prefers-reduced-motion:reduce) { .wp-cat, .wp-tool { animation:none !important; transition:none !important; } }
+.wp-cat { padding:20px 34px 20px 18px; }
+.wp-cat .label { white-space:nowrap; }
+@media (max-width:768px) { .wp-cat { padding:16px 26px 16px 12px; } }

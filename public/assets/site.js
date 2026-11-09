@@ -130,7 +130,7 @@
       ".article-body h2", ".article-body h3:not(.pick-body h3):not(.company-block h3)", ".article-body .table-wrap", ".article-body .table-scroll",
       ".article-body .column-box", ".article-body > .chat-bubble", ".article-body .data-highlight",
       ".article-body .toc", ".article-body .qa-item", ".article-body .info-box",
-      ".company-block", ".pick-card", ".wp-sec > .wp-h2", ".wp-cat", ".wp-card", ".wp-widget",
+      ".company-block", ".pick-card", ".wp-sec > .wp-h2", ".wp-cat", ".wp-tool", ".wp-card", ".wp-widget",
       ".tp-sec"
     ].join(",");
     Array.prototype.forEach.call(d.querySelectorAll(AUTO), function (el) {
