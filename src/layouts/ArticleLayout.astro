@@ -113,7 +113,7 @@ if (faq.length) {
   <div class="article-layout" data-screen-label={page.h1}>
     <div>
       <div class="article-title-block">
-        {page.catTag && <span class="cat-tag">{page.catTag}</span>}
+        {/* カテゴリ名はパンくずと重複するため表示しない */}
         <h1>{page.h1}</h1>
         {hasAff && <p class="pr-note">※本記事はプロモーションを含みます。</p>}
         <div class="article-meta-line">
