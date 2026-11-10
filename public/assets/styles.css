@@ -1697,3 +1697,4 @@ aside.side .side-rank-item .n, .kp-head { font-weight: 400 !important; }
 .author-box .name, .article-title-block ~ * .name, div.name, .pick-spec b, .pick-spec li b, ul li b { font-weight: 400 !important; }
 .company-block-head > div > div:first-child { font-weight: 400 !important; }
 .company-block-head > div > div { font-weight: 400 !important; }
+.pr-note, body .article-title-block .pr-note { font-size: 14px !important; }
