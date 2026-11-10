@@ -74,3 +74,8 @@ body:has(main.ck) { background:#fff; }
 .ck-next h2 { font-size:17px; line-height:1.4; display:block; background:none; color:#333; padding:0; }
 .ck-next h2::after { display:none; }
 .ck-next li { font-size:17px; line-height:1.5; }
+/* ④ 印刷・リセットボタン：低く */
+@media (max-width: 768px) {
+  .ck-btn { min-height: 0; height: 40px; padding: 0 16px; font-size: 14px; }
+}
+@media (max-width: 768px) { .ck-toolbar .ck-btn { min-height: 0 !important; height: 38px !important; padding: 0 14px !important; font-size: 14px !important; line-height: 38px !important; } }

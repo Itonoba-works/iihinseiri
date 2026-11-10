@@ -1698,3 +1698,18 @@ aside.side .side-rank-item .n, .kp-head { font-weight: 400 !important; }
 .company-block-head > div > div:first-child { font-weight: 400 !important; }
 .company-block-head > div > div { font-weight: 400 !important; }
 .pr-note, body .article-title-block .pr-note { font-size: 14px !important; }
+
+/* ===== 2026-11-10 SP UI修正（オーナー指示） ===== */
+@media (max-width: 768px) {
+  /* ⑤ 目次：小さく詰める */
+  body .toc { padding: 10px 12px !important; margin: 16px 0 !important; }
+  body .toc .toc-title { font-size: 13px !important; margin: 0 0 4px !important; }
+  body .toc ol { margin: 0 !important; padding-left: 1.6em !important; }
+  body .toc li { font-size: 14px !important; line-height: 1.4 !important; margin: 0 !important; padding: 3px 0 !important; }
+  body .toc li a { font-size: 14px !important; line-height: 1.4 !important; }
+  /* ③ 業者の情報テーブル：中央に */
+  body .company-block .table-wrap { margin-left: 0 !important; margin-right: 0 !important; width: 100% !important; }
+  body .company-block .company-info-table { width: 100% !important; margin: 0 auto !important; }
+}
+/* ⑥ 備考は控えめに 13px */
+.table-hint, body .article-body p.table-hint { font-size: 13px !important; line-height: 1.5 !important; color: #666 !important; }
