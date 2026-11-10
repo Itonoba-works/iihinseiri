@@ -1726,3 +1726,10 @@ body .article-body h2 { margin-bottom:20px; }
 .qa-item:not(.is-open) .qa-a { display: none; }
 .qa-item .qa-q::after { transition: transform .2s ease; }
 .qa-item.is-open .qa-q::after { transform: rotate(-135deg); }
+/* 目次：PCも詰める（SPと同じ考え方） */
+body .toc { padding: 14px 18px !important; margin: 20px 0 !important; }
+body .toc .toc-title { font-size: 13px !important; margin: 0 0 6px !important; }
+body .toc ol { margin: 0 !important; padding-left: 1.8em !important; }
+body .toc li { font-size: 15px !important; line-height: 1.4 !important; margin: 0 !important; padding: 3px 0 !important; }
+body .toc li a { font-size: 15px !important; line-height: 1.4 !important; }
+@media (max-width: 768px) { body .toc li, body .toc li a { font-size: 14px !important; } }
