@@ -1674,3 +1674,8 @@ body, button, input, select, textarea {
   /* 金額の大きい数字は1行に収める */
   .num, .pnum, .data-cell .num { line-height: 1.2 !important; }
 }
+/* フォント：yahoo.co.jp と同じ指定（m.yahoo.co.jp / news.yahoo.co.jp 実測）
+   iPhoneでは 英数字＝Helvetica、日本語＝ヒラギノ角ゴ ProN になる */
+html, body, button, input, select, textarea {
+  font-family: -apple-system-subset, Helvetica, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif !important;
+}
