@@ -565,3 +565,7 @@ body:has(.wp-layout) { background:#fff; }
   .wp-cat .pc-only { display:none; } .wp-cat .sp-only { display:inline; }
   .wp-cat .label { white-space:normal !important; font-size:11.5px !important; min-height:2.6em; display:flex; align-items:center; justify-content:center; }
 }
+/* バナーの矢印：CTAと別物の白い丸＋紺の矢印 */
+.bnr-go { flex:0 0 44px !important; width:44px; height:44px; padding:0 !important; border-radius:50% !important; background:#fff !important; color:#17546E !important; display:flex; align-items:center; justify-content:center; transition:transform .25s ease; }
+.wp-bnr:hover .bnr-go { transform:translateX(4px); }
+@media (max-width:768px){ .bnr-go { flex-basis:36px !important; width:36px; height:36px; } .bnr-go svg { width:17px; height:17px; } }
