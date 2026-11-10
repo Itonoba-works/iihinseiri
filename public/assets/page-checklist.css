@@ -69,3 +69,8 @@ body:has(main.ck) { background:#fff; }
 .ck-group h2::after, .kigen-links h2::after { content:""; position:absolute; left:18px; bottom:-7px; border:7px solid transparent; border-top-color:#E35F00; border-bottom:0; }
 .ck-group h2 small { color:#FFE6D4; }
 @media print { .ck-group h2, .kigen-links h2 { background:none; color:#000; } .ck-group h2::after, .kigen-links h2::after { display:none; } }
+/* 次の一歩の枠：細い線に（Yahooの区切り線と同じ 1px #E5EAEE） */
+.ck-next { border:1px solid #E5EAEE; border-radius:4px; padding:16px 12px; }
+.ck-next h2 { font-size:17px; line-height:1.4; display:block; background:none; color:#333; padding:0; }
+.ck-next h2::after { display:none; }
+.ck-next li { font-size:17px; line-height:1.5; }
