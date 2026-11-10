@@ -567,3 +567,4 @@ body:has(.wp-layout) { background:#fff; }
 .wp-wlist { border-color:#BFC9CF !important; }
 .wp-wlist li { border-top-color:#BFC9CF !important; }
 .wp-wlist li:first-child { border-top-color:#BFC9CF !important; }
+.wp-wlist { border-top:1px solid #BFC9CF !important; } .wp-wlist li:first-child { border-top:0 !important; }
