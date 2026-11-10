@@ -1662,3 +1662,15 @@ body, button, input, select, textarea {
   body aside.side .side-block .side-rank-item { padding: 12px 0 !important; border-bottom: 1px solid #E5EAEE !important; }
   body .pick-recommend-wrap > p, body .pick-band p, body .pick-catch { font-weight: 400 !important; font-size: 16px !important; line-height: 1.5 !important; }
 }
+/* Yahoo実測に完全一致：文字間は normal、行間は 本文1.5／見出し1.3／その他1.4 */
+@media (max-width: 768px) {
+  body, body * { letter-spacing: normal !important; }
+  body * { line-height: 1.4 !important; }
+  body .article-title-block h1, main.container > h1 { line-height: 1.3 !important; }
+  body .article-body p, body .article-body li, body .article-body .step-block p, body .article-body .column-box p,
+  body .article-body .qa-a, .ck-lead, .ck-why, .ck-next li, .ck-item label span { line-height: 1.5 !important; }
+  /* 段落の間：Yahoo本文の空行1行分（17px×1.5＝25.5px） */
+  body .article-body p { margin: 0 0 25.5px; }
+  /* 金額の大きい数字は1行に収める */
+  .num, .pnum, .data-cell .num { line-height: 1.2 !important; }
+}
