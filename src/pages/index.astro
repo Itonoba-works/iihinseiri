@@ -22,7 +22,7 @@ const topics = [
   { href: '/rankings/ihin.html', title: '遺品整理', desc: '故人の遺品を丁寧に', img: 'ihin-price', icon: '<path d="M4 9l8-5 8 5v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M12 17s-3-1.8-3-3.6A1.6 1.6 0 0 1 12 12.6a1.6 1.6 0 0 1 3 .8C15 15.2 12 17 12 17z"/>' },
   { href: '/articles/seizen.html', title: '生前整理', desc: '元気なうちに始める', img: 'seizen', icon: '<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 11l2 2 4-4"/><path d="M8.5 17h7"/>' },
   { href: '/articles/huyouhin.html', title: '不用品回収', desc: '大量処分もOK', img: 'huyouhin', icon: '<path d="M2 7h11v9H2z"/><path d="M13 10h4l3 3v3h-7"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/>' },
-  { href: '/rankings/cleaning.html', title: 'ハウスクリーニング', desc: '空き家・引越し前に', img: 'cleaning', icon: '<path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M18.5 15l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/><path d="M5 16l.5 1.3 1.3.5-1.3.5L5 19.6l-.5-1.3-1.3-.5 1.3-.5z"/>' }
+  { href: '/rankings/cleaning.html', title: 'ハウスクリーニング', sp: 'ハウス<br>クリーニング', desc: '空き家・引越し前に', img: 'cleaning', icon: '<path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M18.5 15l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/><path d="M5 16l.5 1.3 1.3.5-1.3.5L5 19.6l-.5-1.3-1.3-.5 1.3-.5z"/>' }
 ];
 
 
@@ -92,7 +92,7 @@ const jsonLd = [
           {topics.map((t) => (
             <a href={t.href} class="wp-cat">
               <span class="ic"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={t.icon} /></span>
-              <span class="label">{t.title}</span>
+              <span class="label">{t.sp ? <Fragment><span class="pc-only">{t.title}</span><span class="sp-only" set:html={t.sp} /></Fragment> : t.title}</span>
             </a>
           ))}
         </div>
