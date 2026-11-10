@@ -1713,3 +1713,6 @@ aside.side .side-rank-item .n, .kp-head { font-weight: 400 !important; }
 }
 /* ⑥ 備考は控えめに 13px */
 .table-hint, body .article-body p.table-hint { font-size: 13px !important; line-height: 1.5 !important; color: #666 !important; }
+/* 記事H2：吹き出しの三角をなくし、ただの四角に */
+body .article-body h2::after { content:none !important; display:none !important; }
+body .article-body h2 { margin-bottom:20px; }

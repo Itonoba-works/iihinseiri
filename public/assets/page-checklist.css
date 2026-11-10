@@ -79,3 +79,4 @@ body:has(main.ck) { background:#fff; }
   .ck-btn { min-height: 0; height: 40px; padding: 0 16px; font-size: 14px; }
 }
 @media (max-width: 768px) { .ck-toolbar .ck-btn { min-height: 0 !important; height: 38px !important; padding: 0 14px !important; font-size: 14px !important; line-height: 38px !important; } }
+.ck-group h2::after, .kigen-links h2::after { content:none !important; display:none !important; }
