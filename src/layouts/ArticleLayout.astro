@@ -54,7 +54,7 @@ const endRelated = page.type === 'ranking' ? [] : relatedArticles(page, { catego
 const shortTitle = (t) => String(t || '').replace(/【[^】]*】/g, '').trim();
 /* 記事の末尾に出すツールの案内（pages.json の "tool": "checklist" または "kigen"） */
 const TOOLS = {
-  checklist: { href: '/checklist.html', title: '実家じまいチェックリスト（印刷用・28項目）', desc: '親が元気なうちに確認しておきたいことを、お金・家・モノ・人・段取り・契約とデジタルの6つに分けました。印刷して親と一緒に埋められます。' },
+  checklist: { href: '/checklist.html', title: '実家じまいチェックリスト（印刷用・30項目）', desc: '親が元気なうちに確認しておきたいことを、お金・家・モノ・人・段取り・契約とデジタルの6つに分けました。印刷して親と一緒に埋められます。' },
   kigen: { href: '/kigen.html', title: '期限カレンダー', desc: '亡くなった日を入れるだけで、死亡届・国民健康保険・相続放棄・準確定申告・相続税・相続登記の期限の目安日と残り日数が並びます。' }
 };
 const tool = TOOLS[page.tool] || null;

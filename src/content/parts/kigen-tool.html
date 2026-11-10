@@ -10,6 +10,7 @@
           <ul class="kigen-note">
             <li>期限の最終日が土日・祝日・年末年始（12月29日〜1月3日）にあたる場合は、翌日（休み明け）に繰り下げて表示しています。</li>
             <li>祝日は内閣府の公表分（<span id="kigenHolEnd"></span>）で判定しています。それ以外の年は、土日と年末年始だけで判定しています。</li>
+            <li>葬祭費・埋葬料・高額療養費・生命保険金・年金の請求は、期限を過ぎると受け取れなくなります。表示は亡くなった日を起点にした目安です。</li>
             <li>日付は目安です。正確な期限は、届出先・申告先で確認してください。</li>
           </ul>
         </div>
@@ -67,7 +68,11 @@
           { name: '相続税の申告・納付（必要な場合）', calc: function (d) { return addMonths(d, 10); }, shift: true, note: '知った日の翌日から10か月以内' },
           { name: '相続登記（不動産がある場合）', calc: function (d) {
               return d < new Date(2024, 3, 1) ? new Date(2027, 2, 31) : addMonths(d, 36);
-            }, shift: false, note: '不動産を相続で取得したことを知った日から3年。2024年4月1日より前の相続は2027年3月31日まで' }
+            }, shift: false, note: '不動産を相続で取得したことを知った日から3年。2024年4月1日より前の相続は2027年3月31日まで' },
+          { name: '葬祭費・埋葬料の請求', calc: function (d) { return addMonths(d, 24); }, shift: false, note: '請求しないともらえないお金。期限は2年（葬祭費は葬儀の翌日から、埋葬料は亡くなった日の翌日から）' },
+          { name: '高額療養費の請求（該当する場合）', calc: function (d) { return addMonths(d, 24); }, shift: false, note: '亡くなる前の医療費が上限を超えていた場合。期限は診療月の翌月1日から2年。表示は亡くなった月の分の目安' },
+          { name: '生命保険金の請求', calc: function (d) { return addMonths(d, 36); }, shift: false, note: '受取人が請求する。期限は原則3年（保険法）' },
+          { name: '未支給年金・遺族年金の請求', calc: function (d) { return addMonths(d, 60); }, shift: false, note: '期限は5年。年金の受給停止と同じ窓口で手続きできる' }
         ];
 
         function render() {
