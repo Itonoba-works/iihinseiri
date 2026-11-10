@@ -19,10 +19,10 @@ const articles = pages.filter((p) => p.type === 'article').slice().reverse().sli
 const shortTitle = (t) => String(t || '').replace(/【[^】]*】/g, '').trim();
 
 const topics = [
-  { href: '/rankings/ihin.html', title: '遺品整理', desc: '故人の遺品を丁寧に', img: 'ihin-price' },
-  { href: '/articles/seizen.html', title: '生前整理', desc: '元気なうちに始める', img: 'seizen' },
-  { href: '/articles/huyouhin.html', title: '不用品回収', desc: '大量処分もOK', img: 'huyouhin' },
-  { href: '/rankings/cleaning.html', title: 'ハウスクリーニング', desc: '空き家・引越し前に', img: 'cleaning' }
+  { href: '/rankings/ihin.html', title: '遺品整理', desc: '故人の遺品を丁寧に', img: 'ihin-price', icon: '<path d="M4 9l8-5 8 5v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M12 17s-3-1.8-3-3.6A1.6 1.6 0 0 1 12 12.6a1.6 1.6 0 0 1 3 .8C15 15.2 12 17 12 17z"/>' },
+  { href: '/articles/seizen.html', title: '生前整理', desc: '元気なうちに始める', img: 'seizen', icon: '<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 11l2 2 4-4"/><path d="M8.5 17h7"/>' },
+  { href: '/articles/huyouhin.html', title: '不用品回収', desc: '大量処分もOK', img: 'huyouhin', icon: '<path d="M2 7h11v9H2z"/><path d="M13 10h4l3 3v3h-7"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/>' },
+  { href: '/rankings/cleaning.html', title: 'ハウスクリーニング', desc: '空き家・引越し前に', img: 'cleaning', icon: '<path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M18.5 15l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/><path d="M5 16l.5 1.3 1.3.5-1.3.5L5 19.6l-.5-1.3-1.3-.5 1.3-.5z"/>' }
 ];
 
 
@@ -91,8 +91,8 @@ const jsonLd = [
         <div class="wp-cats">
           {topics.map((t) => (
             <a href={t.href} class="wp-cat">
+              <span class="ic"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={t.icon} /></span>
               <span class="label">{t.title}</span>
-              <span class="desc">{t.desc}</span>
             </a>
           ))}
         </div>
@@ -100,9 +100,14 @@ const jsonLd = [
 
       <section class="wp-sec" data-screen-label="ツール">
         <h2 class="wp-h2">『チェックリスト』（保存版）</h2>
-        <a href="/checklist.html" class="wp-tool">
-          <span class="ttl">保存用『チェックリスト』 ～親が元気なうちに～</span>
-          <span class="desc">お金・家・モノ・人・段取り・契約とデジタルの6分類。印刷して親と一緒に埋められます。</span>
+        <a href="/checklist.html" class="wp-bnr">
+          <span class="bnr-ic"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 10l1.5 1.5 3-3"/><path d="M8.5 15.5l1.5 1.5 3-3"/></svg></span>
+          <span class="bnr-bd">
+            <span class="bnr-tag">無料・印刷できる</span>
+            <span class="bnr-ttl">保存用『チェックリスト』<br class="sp-br" />～親が元気なうちに～</span>
+            <span class="bnr-desc">お金・家・モノ・人など全27項目</span>
+          </span>
+          <span class="bnr-go">開く</span>
         </a>
       </section>
 
@@ -209,9 +214,8 @@ const jsonLd = [
       counts[block.getAttribute('data-block')] = n;
     });
     var labels = { ihin: '遺品整理・不用品回収', cleaning: 'ハウスクリーニング' };
-    sub.textContent = pref
-      ? pref + 'で、' + Object.keys(counts).map(function (k) { return (labels[k] || k) + ' ' + counts[k] + '社'; }).join('、') + 'が見つかりました。'
-      : '実家など、お住まいと別の場所でも選べます。';
+    sub.textContent = pref ? '' : '実家など、お住まいと別の場所でも選べます。';
+    sub.hidden = !!pref;
     sub.classList.toggle('is-result', !!pref);
     go.disabled = true;
     if (!first) { void wrap.offsetWidth; wrap.classList.add('is-swap'); }
@@ -253,6 +257,7 @@ const jsonLd = [
       /* 前の結果を残すと、どの都道府県の結果か分からなくなるため、いったん隠す */
       wrap.hidden = true;
       title.textContent = '地域から探す';
+      sub.hidden = false;
       sub.textContent = '「この地域で探す」を押すと、対応している業者が表示されます。';
       sub.classList.remove('is-result');
     }
