@@ -1,4 +1,5 @@
 ---
+import WpSideNav from '../components/WpSideNav.astro';
 /* 実家じまいチェックリスト（印刷用・27項目）
    項目は src/data/checklist.json。項目を足すと自動で件数・進捗に反映される。
    元の下書き：市場調査メモ（2026-10-12）の checklist.html */
@@ -25,7 +26,7 @@ const jsonLd = [
   title={'実家じまいチェックリスト｜親が元気なうちに確認したい' + total + '項目【印刷用】'}
   description={'親が元気なうちに確認しておきたい' + total + '項目を、お金・家・モノ・人・段取り・契約とデジタルの6つに分けたチェックリストです。印刷して親と一緒に埋められます。項目ごとに困ったときの調べ方も紹介しています。'}
   active="tools"
-  pageCss="page-checklist.css"
+  pageCss="home.css,page-checklist.css"
   jsonLd={jsonLd}
 >
   <div class="breadcrumb" slot="breadcrumb">
@@ -34,7 +35,8 @@ const jsonLd = [
     <span>実家じまいチェックリスト</span>
   </div>
 
-  <main class="container ck">
+  <div class="container wp-layout ck-layout">
+  <main class="wp-main ck">
     <div class="ck-print-head">くらしの整理ナビ　https://iihinseiri.com/checklist.html　／　記入日：　　年　　月　　日</div>
 
     <h1>実家じまいチェックリスト<br />親が元気なうちに確認したい{total}項目</h1>
@@ -76,6 +78,8 @@ const jsonLd = [
 
     <p class="ck-source">出典：裁判所「相続の放棄の申述」、民法915条・921条、法務省「相続登記の申請義務化に関するQ&amp;A」、経済産業省「家電リサイクル法」。</p>
   </main>
+    <WpSideNav />
+  </div>
 
   <StickyCta slot="cta" />
 

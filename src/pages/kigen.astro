@@ -1,4 +1,5 @@
 ---
+import WpSideNav from '../components/WpSideNav.astro';
 /* 期限カレンダー（/kigen.html）。SNSなどで共有する単独ページ。
    カレンダー本体は src/content/parts/kigen-tool.html（記事「親が亡くなった後の手続き」と共通） */
 import Base from '../layouts/Base.astro';
@@ -21,7 +22,7 @@ const jsonLd = [
   title="期限カレンダー｜親が亡くなった後の手続きの期限を、亡くなった日から一覧で"
   description="亡くなった日を入れるだけで、死亡届（7日以内）、国民健康保険・世帯主の変更（14日以内）、相続放棄（3か月）、準確定申告（4か月）、相続税（10か月）、相続登記（3年）の期限の目安日と残り日数を一覧で表示します。"
   active="tools"
-  pageCss="page-checklist.css"
+  pageCss="home.css,page-checklist.css"
   jsonLd={jsonLd}
 >
   <div class="breadcrumb" slot="breadcrumb">
@@ -30,7 +31,8 @@ const jsonLd = [
     <span>期限カレンダー</span>
   </div>
 
-  <main class="container ck">
+  <div class="container wp-layout ck-layout">
+  <main class="wp-main ck">
     <h1>期限カレンダー<br />親が亡くなった後の手続きの期限を一覧で</h1>
     <p class="ck-lead">親が亡くなると、届出や申告の期限が7日・14日・3か月・10か月と続きます。<strong>亡くなった日を入れるだけで、手続きごとの期限の目安日と残り日数</strong>が並びます。どの手続きから手を付ければよいかの目安にしてください。</p>
 
@@ -48,6 +50,8 @@ const jsonLd = [
 
     <p class="ck-source">出典：法務省「死亡届」「相続登記の申請義務化」、日本年金機構「年金を受けている方が亡くなったとき」、東京都保健医療局「国民健康保険の加入・喪失手続」、大阪市「世帯変更届」、裁判所「相続の放棄の申述」、国税庁 タックスアンサー No.2022・No.4205。</p>
   </main>
+    <WpSideNav />
+  </div>
 
   <StickyCta slot="cta" />
 </Base>

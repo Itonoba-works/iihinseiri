@@ -57,7 +57,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 <link rel="stylesheet" href={'/assets/styles.css' + v} />
-{pageCss && <link rel="stylesheet" href={'/assets/' + pageCss + v} />}
+{pageCss && pageCss.split(',').map((c) => <link rel="stylesheet" href={'/assets/' + c.trim() + v} />)}
 {jsonLd.map((o) => (
   <script type="application/ld+json" set:html={JSON.stringify(o)} />
 ))}

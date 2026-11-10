@@ -80,3 +80,7 @@ body:has(main.ck) { background:#fff; }
 }
 @media (max-width: 768px) { .ck-toolbar .ck-btn { min-height: 0 !important; height: 38px !important; padding: 0 14px !important; font-size: 14px !important; line-height: 38px !important; } }
 .ck-group h2::after, .kigen-links h2::after { content:none !important; display:none !important; }
+/* ツールページ：他ページと同じ幅（本文＋サイドバー） */
+.ck-layout .ck { max-width:none; padding-top:0; }
+@media (max-width:768px){ .ck-layout { display:block; } }
+@media print { .ck-layout { display:block !important; } .ck-layout .wp-side, .ck-layout aside { display:none !important; } }
