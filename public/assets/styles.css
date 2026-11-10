@@ -1679,3 +1679,21 @@ body, button, input, select, textarea {
 html, body, button, input, select, textarea {
   font-family: -apple-system-subset, Helvetica, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif !important;
 }
+
+/* 2026-11-10 太字の整理（オーナー指示）
+   太字のまま：見出し（h1〜h4・吹き出し・サイドバー見出し）／ボタン／料金の数字・期限の数字・表の見出しセル
+   普通の太さ：バッジ・ラベル／リンク・タイトル類／本文中の太字 */
+/* ② バッジ・ラベル */
+.cat-tag, .thumb .cat, .wp-card .cat, .step-num-label, .clabel, .tool-box-label, .ck-imp,
+span.no, span.no + span.num, .info-box .label, .chat-name, .data-cell .label { font-weight: 400 !important; }
+/* ③ リンク・タイトル類 */
+.wp-cat .label, .wp-tool .ttl, .wp-card .ttl, .toc a, .toc-title, .toc li a, .article-body li > a, .article-body p > a,
+td.c-name a, .compare-table .c-name a, .company-block h3 a, .pick-body h3 a, h3 > a,
+.ck-more a, .wp-more, .d-item, .nav-drawer-head .t, .end-related-card .ttl, .tool-box-title,
+aside.side .side-rank-item .n, .kp-head { font-weight: 400 !important; }
+/* ④ 本文中の太字 */
+.article-body b, .article-body strong, .article-body li b, .catch-copy, .qa-q, .step-title,
+.qa-a b, .chat-text b, .ck-lead strong, .wp-area label, .sec-answer, .lead { font-weight: 400 !important; }
+.author-box .name, .article-title-block ~ * .name, div.name, .pick-spec b, .pick-spec li b, ul li b { font-weight: 400 !important; }
+.company-block-head > div > div:first-child { font-weight: 400 !important; }
+.company-block-head > div > div { font-weight: 400 !important; }
