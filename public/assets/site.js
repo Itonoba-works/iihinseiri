@@ -273,3 +273,20 @@
   function init() { liftPickCards(); stampDate(); stampMonths(); drawer(); onScroll(); wrapTables(); reveal(); affiliates(); progress(); toTop(); overflowCheck(); }
   if (d.readyState === "loading") d.addEventListener("DOMContentLoaded", init); else init();
 })();
+
+/* FAQ 開閉 */
+(function () {
+  document.querySelectorAll('.qa-item').forEach(function (item) {
+    var q = item.querySelector('.qa-q');
+    if (!q) return;
+    q.setAttribute('role', 'button');
+    q.setAttribute('tabindex', '0');
+    q.setAttribute('aria-expanded', 'false');
+    function toggle() {
+      var open = item.classList.toggle('is-open');
+      q.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    q.addEventListener('click', toggle);
+    q.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+  });
+})();

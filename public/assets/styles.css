@@ -1716,3 +1716,13 @@ aside.side .side-rank-item .n, .kp-head { font-weight: 400 !important; }
 /* 記事H2：吹き出しの三角をなくし、ただの四角に */
 body .article-body h2::after { content:none !important; display:none !important; }
 body .article-body h2 { margin-bottom:20px; }
+
+/* 表：本文セルは左揃え（ボタンの列だけ中央） */
+.article-body .compare-table td { text-align: left; }
+.article-body .compare-table td.c-btn, .article-body .compare-table td.c-type { text-align: center; }
+
+/* FAQ：開閉式（初期は閉じる） */
+.qa-item .qa-q { cursor: pointer; user-select: none; }
+.qa-item:not(.is-open) .qa-a { display: none; }
+.qa-item .qa-q::after { transition: transform .2s ease; }
+.qa-item.is-open .qa-q::after { transform: rotate(-135deg); }
