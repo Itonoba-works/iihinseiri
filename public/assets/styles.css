@@ -1733,3 +1733,10 @@ body .toc ol { margin: 0 !important; padding-left: 1.8em !important; }
 body .toc li { font-size: 15px !important; line-height: 1.4 !important; margin: 0 !important; padding: 3px 0 !important; }
 body .toc li a { font-size: 15px !important; line-height: 1.4 !important; }
 @media (max-width: 768px) { body .toc li, body .toc li a { font-size: 14px !important; } }
+/* 2026-11-13 Yahooに合わせる：文字色を #333（青みなし）、平滑化指定を外す、文字サイズ自動調整を固定 */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { -webkit-font-smoothing: auto; }
+@media (max-width: 768px) {
+  body, body .article-body p, body .article-body p.lead, body .article-body li, body .article-body td, body .article-body th,
+  .ck-item label span, .wp-main p { color: #333 !important; }
+}
