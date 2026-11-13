@@ -141,6 +141,10 @@
       "jikka-enkaku",
       "gomiyashiki",
       "huyouhin"
+    ],
+    "thumb": [
+      "信頼できる",
+      "業者の見分け方"
     ]
   },
   {
@@ -164,6 +168,10 @@
       "trouble",
       "gomiyashiki",
       "jikka-enkaku"
+    ],
+    "thumb": [
+      "遺品整理の",
+      "料金相場"
     ]
   },
   {
@@ -188,7 +196,11 @@
       "souzoku-houki",
       "ihin-price"
     ],
-    "tool": "checklist"
+    "tool": "checklist",
+    "thumb": [
+      "50代から始める",
+      "生前整理"
+    ]
   },
   {
     "slug": "huyouhin",
@@ -210,6 +222,10 @@
       "combo",
       "gomiyashiki",
       "trouble"
+    ],
+    "thumb": [
+      "不用品回収の",
+      "相場と安くするコツ"
     ]
   },
   {
@@ -233,6 +249,10 @@
       "huyouhin",
       "trouble",
       "combo"
+    ],
+    "thumb": [
+      "ゴミ屋敷の",
+      "片付け費用"
     ]
   },
   {
@@ -257,7 +277,11 @@
       "souzoku-houki",
       "ihin-price"
     ],
-    "tool": "checklist"
+    "tool": "checklist",
+    "thumb": [
+      "遠方の実家を",
+      "片付ける方法"
+    ]
   },
   {
     "slug": "souzoku-houki",
@@ -281,7 +305,11 @@
       "jikka-kyoudai",
       "ihin-price"
     ],
-    "tool": "kigen"
+    "tool": "kigen",
+    "thumb": [
+      "相続放棄と",
+      "遺品整理"
+    ]
   },
   {
     "slug": "jikka-kyoudai",
@@ -305,7 +333,11 @@
       "souzoku-houki",
       "seizen"
     ],
-    "tool": "checklist"
+    "tool": "checklist",
+    "thumb": [
+      "きょうだいと",
+      "揉めない実家じまい"
+    ]
   },
   {
     "slug": "rcleaning",
@@ -339,6 +371,10 @@
       "huyouhin",
       "gomiyashiki",
       "trouble"
+    ],
+    "thumb": [
+      "退去時の",
+      "クリーニング"
     ]
   },
   {
@@ -361,6 +397,10 @@
       "taikyo-cleaning",
       "huyouhin",
       "gomiyashiki"
+    ],
+    "thumb": [
+      "回収と掃除を",
+      "まとめて頼む"
     ]
   },
   {
@@ -429,7 +469,11 @@
       "jikka-enkaku"
     ],
     "bodyBytes": 23241,
-    "tool": "checklist"
+    "tool": "checklist",
+    "thumb": [
+      "亡くなった後の",
+      "手続きと遺品整理"
+    ]
   },
   {
     "slug": "keiyaku-kaiyaku",
@@ -453,7 +497,11 @@
       "jikka-enkaku"
     ],
     "bodyBytes": 17590,
-    "tool": "kigen"
+    "tool": "kigen",
+    "thumb": [
+      "亡くなった後の",
+      "契約解約"
+    ]
   },
   {
     "slug": "password-note",
@@ -476,7 +524,11 @@
       "ihin-itsukara",
       "jikka-kyoudai"
     ],
-    "tool": "checklist"
+    "tool": "checklist",
+    "thumb": [
+      "パスワード",
+      "管理ノート"
+    ]
   },
   {
     "slug": "hitorikko",
@@ -500,6 +552,10 @@
       "keiyaku-kaiyaku"
     ],
     "bodyBytes": 16704,
-    "tool": "kigen"
+    "tool": "kigen",
+    "thumb": [
+      "一人っ子の",
+      "実家じまい"
+    ]
   }
 ]
