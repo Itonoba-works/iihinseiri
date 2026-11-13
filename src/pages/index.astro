@@ -163,7 +163,6 @@ const jsonLd = [
             <a href={'/articles/' + a.slug + '.html'} class="wp-card">
               <span class="thumb">
                 <img src={'/images/articles/' + a.slug + '.webp'} alt="" width="800" height="500" loading="lazy" decoding="async" onerror="this.style.display='none'" />
-                {a.catTag && <span class="cat">{String(a.catTag).split('／')[0]}</span>}
               </span>
               <span class="ttl">{shortTitle(a.h1)}</span>
             </a>

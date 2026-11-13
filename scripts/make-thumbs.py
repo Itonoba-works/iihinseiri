@@ -6,8 +6,8 @@ import json, io
 from playwright.sync_api import sync_playwright
 from PIL import Image
 
-COLORS = {'お悩み解決':'#17546E','料金相場':'#E35F00','生前整理':'#3E6B48','実家じまい':'#2F6F8F',
-          '相続':'#6B4E8A','賃貸':'#8A5A2B','不用品回収':'#B4532A','生活':'#4A5A68'}
+COLORS = {'お悩み解決':'#17546E','料金相場':'#8A5A2B','生前整理':'#6B4E8A','実家じまい':'#17546E',
+          '相続':'#17546E','賃貸':'#3E6B48','不用品回収':'#E35F00','生活':'#2F6F8F','手続き':'#6B4E8A'}
 ICONS = {
  'お悩み解決':'<path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
  '料金相場':'<circle cx="12" cy="12" r="8.5"/><path d="M9 8l3 4 3-4M12 12v6M9 13.5h6M9 16h6"/>',
@@ -19,9 +19,10 @@ ICONS = {
  '生活':'<rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
 }
 HTML = """<html><body style="margin:0"><div style="width:1376px;height:768px;background:{c};position:relative;
-font-family:'Noto Sans CJK JP','Noto Sans JP',sans-serif;color:#fff;box-sizing:border-box;padding:80px 96px">
-<div style="position:absolute;left:150px;top:50%;transform:translateY(-50%);font-size:100px;font-weight:700;line-height:1.3">{l1}<br>{l2}</div>
-<svg style="position:absolute;right:150px;top:50%;transform:translateY(-50%);opacity:.22" width="240" height="240" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">{ic}</svg>
+font-family:'Noto Sans CJK JP','Noto Sans JP',sans-serif;color:#fff;box-sizing:border-box">
+<div style="position:absolute;left:150px;top:72px;font-size:42px;font-weight:700;opacity:.85">{cat}</div>
+<div style="position:absolute;left:150px;bottom:84px;font-size:96px;font-weight:700;line-height:1.35">{l1}<br>{l2}</div>
+<svg style="position:absolute;right:150px;bottom:84px;opacity:.25" width="230" height="230" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"><path d="M4 9l8-5 8 5v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/></svg>
 </div></body></html>"""
 
 pages = json.load(open('src/data/pages.json'))
@@ -29,7 +30,7 @@ with sync_playwright() as p:
     b = p.chromium.launch(); pg = b.new_page(viewport={'width':1376,'height':768})
     for x in pages:
         if x.get('type') != 'article' or not x.get('thumb'): continue
-        cat = x['catTag'].split('／')[0]
+        cat = x.get('thumbCat') or x['catTag'].split('／')[0]
         pg.set_content(HTML.format(c=COLORS.get(cat,'#17546E'), cat=cat, l1=x['thumb'][0], l2=x['thumb'][1], ic=ICONS.get(cat,ICONS['実家じまい'])))
         png = pg.screenshot()
         Image.open(io.BytesIO(png)).convert('RGB').save(f"public/images/articles/{x['slug']}.webp", 'WEBP', quality=86)
