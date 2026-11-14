@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright
 from PIL import Image
 
 COLORS = {'お悩み解決':'#17546E','料金相場':'#8A5A2B','生前整理':'#6B4E8A','実家じまい':'#17546E',
-          '相続':'#17546E','賃貸':'#3E6B48','不用品回収':'#4A5A68','生活':'#2F6F8F','手続き':'#6B4E8A'}
+          '相続':'#17546E','賃貸':'#3E6B48','不用品回収':'#DE7A6C','生活':'#2F6F8F','手続き':'#6B4E8A'}
 ICONS = {
  'お悩み解決':'<path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
  '料金相場':'<circle cx="12" cy="12" r="8.5"/><path d="M9 8l3 4 3-4M12 12v6M9 13.5h6M9 16h6"/>',
@@ -24,7 +24,7 @@ HTML = """<html><body style="margin:0"><div style="width:1376px;height:768px;bac
 <svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">{ic}</svg></div>
 <div style="position:absolute;left:150px;bottom:100px">
 <div style="font-size:42px;color:#7A8791;font-weight:700;margin-bottom:10px">{cat}</div>
-<div style="font-size:92px;font-weight:700;line-height:1.3;color:#17546E">{l1}<br>{l2}</div></div></div></body></html>"""
+<div style="font-size:92px;font-weight:700;line-height:1.3;color:#333">{l1}<br>{l2}</div></div></div></body></html>"""
 
 pages = json.load(open('src/data/pages.json'))
 with sync_playwright() as p:
