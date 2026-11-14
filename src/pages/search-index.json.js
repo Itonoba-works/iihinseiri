@@ -23,7 +23,7 @@ export function GET() {
     if (p.type === 'article') {
       items.push({
         k: String(p.catTag || '記事').split('／')[0],
-        i: pic('articles/' + p.slug + '.webp'),
+        i: pic('articles/' + p.slug + '-s.webp'),
         u: '/articles/' + p.slug + '.html',
         t: strip(p.h1 || p.title),
         d: strip(p.description),

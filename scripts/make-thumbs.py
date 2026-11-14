@@ -29,12 +29,17 @@ HTML = """<html><body style="margin:0"><div style="width:640px;height:400px;back
 
 pages = json.load(open('src/data/pages.json'))
 with sync_playwright() as p:
-    b = p.chromium.launch(); pg = b.new_page(viewport={'width':640,'height':400})
+    b = p.chromium.launch()
+    # 大：640x400（TOP・記事一覧のカード用）／小：280x175（あわせて読みたい記事・検索結果用）
+    # 小は縮小せず、その大きさで文字を描いて書き出す（縮小すると文字がかすれるため）。どちらも劣化なし（lossless）で保存。
+    big = b.new_page(viewport={'width':640,'height':400})
+    small = b.new_page(viewport={'width':640,'height':400}, device_scale_factor=280/640)
     for x in pages:
         if x.get('type') != 'article' or not x.get('thumb'): continue
         cat = x.get('thumbCat') or x['catTag'].split('／')[0]
-        pg.set_content(HTML.format(c=COLORS.get(cat,'#17546E'), cat=cat, l1=x['thumb'][0], l2=x['thumb'][1], ic=ICONS.get(cat,ICONS['実家じまい'])))
-        png = pg.screenshot()
-        Image.open(io.BytesIO(png)).convert('RGB').save(f"public/images/articles/{x['slug']}.webp", 'WEBP', quality=86)
+        html = HTML.format(c=COLORS.get(cat,'#17546E'), cat=cat, l1=x['thumb'][0], l2=x['thumb'][1], ic=ICONS.get(cat,ICONS['実家じまい']))
+        for pg, name in ((big, x['slug']), (small, x['slug'] + '-s')):
+            pg.set_content(html)
+            Image.open(io.BytesIO(pg.screenshot())).convert('RGB').save(f"public/images/articles/{name}.webp", 'WEBP', lossless=True)
         print('made', x['slug'])
     b.close()
