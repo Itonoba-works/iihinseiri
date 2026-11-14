@@ -542,6 +542,6 @@ public/
 - 選択肢を出すときは、実在のWPテーマやサイト内の既存パーツを根拠にする。
 
 ## 記事のアイキャッチ（案B：カテゴリ色＋短い見出し）
-- `python3 scripts/make-thumbs.py` で `public/images/articles/{slug}.webp`（1376×768）を自動生成する。
+- `python3 scripts/make-thumbs.py` で `public/images/articles/{slug}.webp`（640×400）を自動生成する。
 - 見出しは pages.json の `"thumb": ["1行目", "2行目"]`、色とアイコンは catTag の先頭カテゴリで決まる（色の対応はスクリプト内 COLORS）。
 - 新しい記事を追加したら `thumb` を書いてスクリプトを実行する。以前の写真の画像は `public/images/articles-photo/` に保管。
