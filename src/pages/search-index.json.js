@@ -1,7 +1,6 @@
 import pages from '../data/pages.json';
 import companies from '../data/companies.json';
 import { freshen } from '../lib/freshen.js';
-import thumbStyle from '../data/thumb-style.json';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -25,8 +24,6 @@ export function GET() {
       items.push({
         k: String(p.catTag || '記事').split('／')[0],
         i: pic('articles/' + p.slug + '.webp'),
-        c: thumbStyle.colors[String(p.catTag || '').split('／')[0]] || '#17546E',
-        g: thumbStyle.icons[String(p.catTag || '').split('／')[0]] || thumbStyle.icons['実家じまい'],
         u: '/articles/' + p.slug + '.html',
         t: strip(p.h1 || p.title),
         d: strip(p.description),

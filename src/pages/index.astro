@@ -292,7 +292,7 @@ const jsonLd = [
       });
       title.textContent = '「' + q + '」の検索結果（' + hits.length + '件）';
       list.innerHTML = hits.length
-        ? hits.map(function (it) { return '<li><a href="' + esc(it.u) + '">' + (it.g ? '<span class="th th-mini"><span class="mi" style="background:' + esc(it.c) + '"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + it.g + '</svg></span></span>' : '<span class="th"><img src="' + esc(it.i || '/images/hero.webp') + '" alt="" loading="lazy" decoding="async" /></span>') + '<span class="bd"><span class="k">' + esc(it.k) + '</span><span class="t">' + esc(it.t) + '</span><span class="d">' + esc(it.d) + '</span></span></a></li>'; }).join('')
+        ? hits.map(function (it) { return '<li><a href="' + esc(it.u) + '"><span class="th"><img src="' + esc(it.i || '/images/hero.webp') + '" alt="" loading="lazy" decoding="async" /></span><span class="bd"><span class="k">' + esc(it.k) + '</span><span class="t">' + esc(it.t) + '</span><span class="d">' + esc(it.d) + '</span></span></a></li>'; }).join('')
         : '<li class="none">該当するページはありませんでした。別のキーワードでお試しください。</li>';
       box.hidden = false;
       box.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -573,6 +573,3 @@ body:has(.wp-layout) { background:#fff; }
 .wp-results .th { border:1px solid #BFC9CF; box-sizing:border-box; background:#fff; }
 /* アイキャッチがグレー地になったので枠線は外す */
 .wp-card .thumb, .wp-results .th { border:0 !important; }
-.wp-results .th-mini { display:flex; align-items:center; justify-content:center; background:#F1F4F6; }
-.wp-results .th-mini .mi { width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
-@media (max-width:768px){ .wp-results .th-mini .mi { width:34px; height:34px; } .wp-results .th-mini svg { width:18px; height:18px; } }
