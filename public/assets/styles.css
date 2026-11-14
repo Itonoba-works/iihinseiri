@@ -1745,3 +1745,10 @@ body { -webkit-font-smoothing: auto; }
 /* あわせて読みたい記事：小さい枠では画像を使わず、カテゴリ色の丸アイコンだけを描く（文字のかすれ対策） */
 .end-related-card .thumb-mini { display:flex; align-items:center; justify-content:center; background:#F1F4F6 !important; }
 .end-related-card .thumb-mini .mi { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+/* あわせて読みたい記事：アイキャッチと同じデザインをHTMLで描く（縮小しても文字がかすれない） */
+.end-related-card .thumb-html { position:relative; display:block; aspect-ratio:8/5; background:#F1F4F6 !important; border-radius:6px; overflow:hidden; }
+.thumb-html .wm { position:absolute; right:-6px; bottom:-9px; width:42%; height:auto; opacity:.10; }
+.thumb-html .mi { position:absolute; left:10%; top:12%; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+.thumb-html .mi svg { width:11px; height:11px; }
+.thumb-html .hd { position:absolute; left:10%; bottom:12%; font-size:11px; font-weight:700; line-height:1.3; color:#333; }
+.thumb-html .ct { display:block; font-size:8px; color:#6B7883; margin-bottom:2px; }
