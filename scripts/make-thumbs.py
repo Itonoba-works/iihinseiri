@@ -19,8 +19,9 @@ ICONS = {
  '手続き':'<path d="M6 3h9l3 3v15H6z"/><path d="M9 11l2 2 4-4M9 17h6"/>',
  '生活':'<rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
 }
-HTML = """<html><body style="margin:0"><div style="width:1376px;height:768px;background:#fff;position:relative;font-family:'Noto Sans CJK JP','Noto Sans JP',sans-serif">
-<div style="position:absolute;left:150px;top:100px;width:170px;height:170px;border-radius:50%;background:{c};display:flex;align-items:center;justify-content:center">
+HTML = """<html><body style="margin:0"><div style="width:1376px;height:768px;background:#F1F4F6;position:relative;overflow:hidden;font-family:'Noto Sans CJK JP','Noto Sans JP',sans-serif">
+<svg style="position:absolute;right:-40px;bottom:-60px;opacity:.10" width="560" height="560" viewBox="0 0 24 24" fill="none" stroke="{c}" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">{ic}</svg>
+<div style="position:absolute;left:150px;top:100px;width:170px;height:170px;border-radius:40px;background:{c};display:flex;align-items:center;justify-content:center">
 <svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">{ic}</svg></div>
 <div style="position:absolute;left:150px;bottom:100px">
 <div style="font-size:42px;color:#7A8791;font-weight:700;margin-bottom:10px">{cat}</div>

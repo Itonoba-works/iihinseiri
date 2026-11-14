@@ -1741,3 +1741,4 @@ body { -webkit-font-smoothing: auto; }
   .ck-item label span, .wp-main p { color: #333 !important; }
 }
 .end-related-card .thumb { border:1px solid #BFC9CF; border-radius:6px; box-sizing:border-box; background:#fff; }
+.end-related-card .thumb { border:0 !important; }

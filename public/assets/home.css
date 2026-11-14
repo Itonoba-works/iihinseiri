@@ -571,3 +571,5 @@ body:has(.wp-layout) { background:#fff; }
 /* 記事アイキャッチ（白地）に細い枠と角丸 */
 .wp-card .thumb { border:1px solid #BFC9CF; border-radius:6px; overflow:hidden; box-sizing:border-box; }
 .wp-results .th { border:1px solid #BFC9CF; box-sizing:border-box; background:#fff; }
+/* アイキャッチがグレー地になったので枠線は外す */
+.wp-card .thumb, .wp-results .th { border:0 !important; }
