@@ -568,3 +568,6 @@ body:has(.wp-layout) { background:#fff; }
 .wp-wlist li { border-top-color:#BFC9CF !important; }
 .wp-wlist li:first-child { border-top-color:#BFC9CF !important; }
 .wp-wlist { border-top:1px solid #BFC9CF !important; } .wp-wlist li:first-child { border-top:0 !important; }
+/* 記事アイキャッチ（白地）に細い枠と角丸 */
+.wp-card .thumb { border:1px solid #BFC9CF; border-radius:6px; overflow:hidden; box-sizing:border-box; }
+.wp-results .th { border:1px solid #BFC9CF; box-sizing:border-box; background:#fff; }

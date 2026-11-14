@@ -1,4 +1,4 @@
-"""記事のアイキャッチ（案B：カテゴリ色のベタ背景＋短い見出し）を生成する。
+"""記事のアイキャッチ（白地＋カテゴリ色の丸アイコン＋左下に短い見出し）を生成する。
 使い方: npx astro preview を起動せずに単体で実行できる。 python3 scripts/make-thumbs.py
 pages.json の各記事の "thumb"（2行の短い見出し）と catTag の先頭カテゴリから
 public/images/articles/{slug}.webp（1376x768）を作る。元の写真は public/images/articles-photo/ に保管。"""
@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright
 from PIL import Image
 
 COLORS = {'お悩み解決':'#17546E','料金相場':'#8A5A2B','生前整理':'#6B4E8A','実家じまい':'#17546E',
-          '相続':'#17546E','賃貸':'#3E6B48','不用品回収':'#E35F00','生活':'#2F6F8F','手続き':'#6B4E8A'}
+          '相続':'#17546E','賃貸':'#3E6B48','不用品回収':'#4A5A68','生活':'#2F6F8F','手続き':'#6B4E8A'}
 ICONS = {
  'お悩み解決':'<path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
  '料金相場':'<circle cx="12" cy="12" r="8.5"/><path d="M9 8l3 4 3-4M12 12v6M9 13.5h6M9 16h6"/>',
@@ -16,14 +16,15 @@ ICONS = {
  '相続':'<path d="M6 3h9l3 3v15H6z"/><path d="M9 10h6M9 14h6M9 18h4"/>',
  '賃貸':'<circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M21 12v2"/>',
  '不用品回収':'<path d="M2 7h11v9H2zM13 10h4l3 3v3h-7"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/>',
+ '手続き':'<path d="M6 3h9l3 3v15H6z"/><path d="M9 11l2 2 4-4M9 17h6"/>',
  '生活':'<rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
 }
-HTML = """<html><body style="margin:0"><div style="width:1376px;height:768px;background:{c};position:relative;
-font-family:'Noto Sans CJK JP','Noto Sans JP',sans-serif;color:#fff;box-sizing:border-box">
-<div style="position:absolute;left:150px;top:72px;font-size:42px;font-weight:700;opacity:.85">{cat}</div>
-<div style="position:absolute;left:150px;bottom:84px;font-size:96px;font-weight:700;line-height:1.35">{l1}<br>{l2}</div>
-<svg style="position:absolute;right:150px;bottom:84px;opacity:.25" width="230" height="230" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"><path d="M4 9l8-5 8 5v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/></svg>
-</div></body></html>"""
+HTML = """<html><body style="margin:0"><div style="width:1376px;height:768px;background:#fff;position:relative;font-family:'Noto Sans CJK JP','Noto Sans JP',sans-serif">
+<div style="position:absolute;left:150px;top:100px;width:170px;height:170px;border-radius:50%;background:{c};display:flex;align-items:center;justify-content:center">
+<svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">{ic}</svg></div>
+<div style="position:absolute;left:150px;bottom:100px">
+<div style="font-size:42px;color:#7A8791;font-weight:700;margin-bottom:10px">{cat}</div>
+<div style="font-size:92px;font-weight:700;line-height:1.3;color:#17546E">{l1}<br>{l2}</div></div></div></body></html>"""
 
 pages = json.load(open('src/data/pages.json'))
 with sync_playwright() as p:

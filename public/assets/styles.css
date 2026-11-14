@@ -1740,3 +1740,4 @@ body { -webkit-font-smoothing: auto; }
   body, body .article-body p, body .article-body p.lead, body .article-body li, body .article-body td, body .article-body th,
   .ck-item label span, .wp-main p { color: #333 !important; }
 }
+.end-related-card .thumb { border:1px solid #BFC9CF; border-radius:6px; box-sizing:border-box; background:#fff; }
