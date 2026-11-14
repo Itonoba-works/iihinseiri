@@ -1,5 +1,7 @@
 ---
 import Base from './Base.astro';
+import thumbStyle from '../data/thumb-style.json';
+const miniCat = (a) => String(a.catTag || '').split('／')[0];
 import Sidebar from '../components/Sidebar.astro';
 import StickyCta from '../components/StickyCta.astro';
 import { resolveAff } from '../lib/aff.js';
@@ -140,7 +142,7 @@ if (faq.length) {
             <div class="end-related-grid">
               {endRelated.map((a) => (
                 <a href={'/articles/' + a.slug + '.html'} class="end-related-card">
-                  <span class="thumb"><img src={'/images/articles/' + a.slug + '.webp'} alt="" width="800" height="500" loading="lazy" decoding="async" onerror="this.style.display='none'" /></span>
+                  <span class="thumb thumb-mini"><span class="mi" style={'background:' + (thumbStyle.colors[miniCat(a)] || '#17546E')}><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={thumbStyle.icons[miniCat(a)] || thumbStyle.icons['実家じまい']} /></span></span>
                   <span class="ttl">{shortTitle(a.h1)}</span>
                 </a>
               ))}

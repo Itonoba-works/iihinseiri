@@ -1742,3 +1742,6 @@ body { -webkit-font-smoothing: auto; }
 }
 .end-related-card .thumb { border:1px solid #BFC9CF; border-radius:6px; box-sizing:border-box; background:#fff; }
 .end-related-card .thumb { border:0 !important; }
+/* あわせて読みたい記事：小さい枠では画像を使わず、カテゴリ色の丸アイコンだけを描く（文字のかすれ対策） */
+.end-related-card .thumb-mini { display:flex; align-items:center; justify-content:center; background:#F1F4F6 !important; }
+.end-related-card .thumb-mini .mi { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
