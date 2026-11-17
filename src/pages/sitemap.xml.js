@@ -1,3 +1,4 @@
+import { prettyPath } from '../lib/prettyUrl.js';
 import pages from '../data/pages.json';
 import companies from '../data/companies.json';
 
@@ -11,21 +12,21 @@ export function GET({ site }) {
     { loc: '/', priority: '1.0', changefreq: 'weekly' },
     ...pages
       .filter((p) => p.type === 'ranking')
-      .map((p) => ({ loc: '/rankings/' + p.slug + '.html', priority: '0.9', changefreq: 'weekly' })),
+      .map((p) => ({ loc: '/rankings/' + p.slug, priority: '0.9', changefreq: 'weekly' })),
     ...pages
       .filter((p) => p.type === 'article')
-      .map((p) => ({ loc: '/articles/' + p.slug + '.html', priority: '0.8', changefreq: 'monthly' })),
-    { loc: '/articles.html', priority: '0.8', changefreq: 'weekly' },
-    { loc: '/checklist.html', priority: '0.8', changefreq: 'monthly' },
-    { loc: '/kigen.html', priority: '0.8', changefreq: 'monthly' },
+      .map((p) => ({ loc: '/articles/' + p.slug, priority: '0.8', changefreq: 'monthly' })),
+    { loc: '/articles', priority: '0.8', changefreq: 'weekly' },
+    { loc: '/checklist', priority: '0.8', changefreq: 'monthly' },
+    { loc: '/kigen', priority: '0.8', changefreq: 'monthly' },
     /* レビュー本文を持つ社だけ。hasReview=false の社は外部リンク専用で内部からも
        リンクしていないため、サイトマップにも載せない */
     ...companies
       .filter((c) => c.hasReview)
-      .map((c) => ({ loc: '/reviews/' + c.id + '.html', priority: '0.7', changefreq: 'monthly' })),
-    { loc: '/about.html', priority: '0.3', changefreq: 'yearly' },
-    { loc: '/contact.html', priority: '0.3', changefreq: 'yearly' },
-    { loc: '/privacy.html', priority: '0.3', changefreq: 'yearly' }
+      .map((c) => ({ loc: '/reviews/' + c.id, priority: '0.7', changefreq: 'monthly' })),
+    { loc: '/about', priority: '0.3', changefreq: 'yearly' },
+    { loc: '/contact', priority: '0.3', changefreq: 'yearly' },
+    { loc: '/privacy', priority: '0.3', changefreq: 'yearly' }
   ];
 
   const body =

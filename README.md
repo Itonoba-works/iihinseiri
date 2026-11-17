@@ -545,3 +545,8 @@ public/
 - `python3 scripts/make-thumbs.py` で `public/images/articles/{slug}.webp`（640×400）を自動生成する。
 - 見出しは pages.json の `"thumb": ["1行目", "2行目"]`、色とアイコンは catTag の先頭カテゴリで決まる（色の対応はスクリプト内 COLORS）。
 - 新しい記事を追加したら `thumb` を書いてスクリプトを実行する。以前の写真の画像は `public/images/articles-photo/` に保管。
+
+## URLは .html なしで出力する（インデックス対策）
+- Cloudflare Pages は `/foo.html` を `/foo` に転送するため、サイト内リンク・canonical・og:url・構造化データ・サイトマップ・検索インデックスはすべて `.html` なしのURLにする。
+- 実装：`src/lib/prettyUrl.js`（middleware でHTML出力時に変換）、sitemap.xml.js / search-index.json.js は直接 `.html` なしで出力。`_redirects` の転送先も `.html` なし。
+- ファイル名（astro.config の build.format 'file'）は変えない。
