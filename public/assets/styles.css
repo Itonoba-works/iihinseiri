@@ -1742,3 +1742,5 @@ body { -webkit-font-smoothing: auto; }
 }
 .end-related-card .thumb { border:1px solid #BFC9CF; border-radius:6px; box-sizing:border-box; background:#fff; }
 .end-related-card .thumb { border:0 !important; }
+/* 3社カード：解説ページへの文字リンク */
+.pick-card .pick-more { display:block; margin-top:10px; font-size:14px; color:var(--primary); text-align:center; text-decoration:underline; }
