@@ -36,9 +36,11 @@
   background: transparent;
 }
 
-.service-info h1 {
+.service-info .service-name {
   font-size: 26px;
   margin-bottom: 10px;
+  /* 元は h1。見た目を h1 と同じに保つ */
+  font-weight: 700; line-height: 1.45; margin-top: 0; color: var(--text); letter-spacing: .01em;
 }
 
 .service-catch {
@@ -181,7 +183,7 @@
   border-bottom: 1px solid var(--border);
 }
 
-.side-block h4 {
+.side-block h2 {
   font-size: 14px;
   padding-bottom: 10px;
   border-bottom: 2px solid var(--primary);

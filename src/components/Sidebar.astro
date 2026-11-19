@@ -21,7 +21,7 @@ const related = relatedArticles(page || pages.find((p) => p.slug === currentSlug
     {showSideAd && <SidebarAd />}
 
     <div class="side-block">
-      <h4>{catLabel} {ranked.length}社</h4>
+      <h2>{catLabel} {ranked.length}社</h2>
       {ranked.map((c, i) => (
         <AffLink id={c.id} class="side-rank-item" pos="sidebar">
           <div class="side-rank-num">{i + 1}</div>
@@ -34,7 +34,7 @@ const related = relatedArticles(page || pages.find((p) => p.slug === currentSlug
     </div>
 
     <div class="side-block">
-      <h4>関連記事</h4>
+      <h2>関連記事</h2>
       {related.map((p) => (
         <a href={'/articles/' + p.slug + '.html'} class="side-rank-item" style="grid-template-columns:1fr;">
           <div class="n">{p.h1}</div>

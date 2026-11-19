@@ -143,7 +143,7 @@
 
 .side-block:last-child { border-bottom: none; }
 
-.side-block h4 {
+.side-block h2 {
   font-size: 14px;
   padding-bottom: 8px;
   margin-bottom: 12px;
